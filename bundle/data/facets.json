@@ -1,0 +1,85 @@
+{
+  "family": [
+    {
+      "count": 1,
+      "label": "data",
+      "value": "data"
+    },
+    {
+      "count": 13,
+      "label": "geography",
+      "value": "geography"
+    },
+    {
+      "count": 4,
+      "label": "metadata",
+      "value": "metadata"
+    }
+  ],
+  "format": [
+    {
+      "count": 15,
+      "label": "application-json",
+      "value": "application-json"
+    },
+    {
+      "count": 1,
+      "label": "cols.json",
+      "value": "cols.json"
+    },
+    {
+      "count": 1,
+      "label": "csv",
+      "value": "csv"
+    },
+    {
+      "count": 1,
+      "label": "csvw",
+      "value": "csvw"
+    },
+    {
+      "count": 2,
+      "label": "geojson",
+      "value": "geojson"
+    },
+    {
+      "count": 1,
+      "label": "json-stat",
+      "value": "json-stat"
+    },
+    {
+      "count": 1,
+      "label": "rows.json",
+      "value": "rows.json"
+    },
+    {
+      "count": 1,
+      "label": "topojson",
+      "value": "topojson"
+    },
+    {
+      "count": 1,
+      "label": "xlsx",
+      "value": "xlsx"
+    }
+  ],
+  "has_documentation_issues": [
+    {
+      "count": 8,
+      "label": "no",
+      "value": "no"
+    },
+    {
+      "count": 10,
+      "label": "yes",
+      "value": "yes"
+    }
+  ],
+  "state": [
+    {
+      "count": 18,
+      "label": "internal-private-unstable",
+      "value": "internal-private-unstable"
+    }
+  ]
+}

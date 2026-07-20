@@ -1,0 +1,638 @@
+[
+  {
+    "bundle_metadata_only": true,
+    "dataset": "data",
+    "dataset_id": "els-api:operation:data",
+    "dataset_route": "operation/data",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+    "execution_included": false,
+    "format": "csv",
+    "formats": [
+      "csv",
+      "csvw",
+      "json-stat",
+      "xlsx",
+      "rows.json",
+      "cols.json"
+    ],
+    "id": "els-api:operation:data#endpoint",
+    "method": "GET",
+    "name": "data-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/data.[format]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/data-endpoint",
+    "title": "Documented endpoint for Filter and download statistical data",
+    "upstream_may_return_observations": true,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/data.{format}",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-list",
+    "dataset_id": "els-api:operation:geo-list",
+    "dataset_route": "operation/geo-list",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-list#endpoint",
+    "method": "GET",
+    "name": "geo-list-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/list/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-list-endpoint",
+    "title": "Documented endpoint for List geographic areas",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/list",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-levels",
+    "dataset_id": "els-api:operation:geo-levels",
+    "dataset_route": "operation/geo-levels",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-levels#endpoint",
+    "method": "GET",
+    "name": "geo-levels-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/levels/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-levels-endpoint",
+    "title": "Documented endpoint for List geography levels",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/levels",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-lookup",
+    "dataset_id": "els-api:operation:geo-lookup",
+    "dataset_route": "operation/geo-lookup",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "geojson",
+    "formats": [
+      "geojson"
+    ],
+    "id": "els-api:operation:geo-lookup#endpoint",
+    "method": "GET",
+    "name": "geo-lookup-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/lookup/[code]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-lookup-endpoint",
+    "title": "Documented endpoint for Look up one geographic area",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/lookup/{code}",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-related",
+    "dataset_id": "els-api:operation:geo-related",
+    "dataset_route": "operation/geo-related",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-related#endpoint",
+    "method": "GET",
+    "name": "geo-related-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-related-endpoint",
+    "title": "Documented endpoint for List all related areas",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-parents",
+    "dataset_id": "els-api:operation:geo-parents",
+    "dataset_route": "operation/geo-parents",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-parents#endpoint",
+    "method": "GET",
+    "name": "geo-parents-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/parents/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-parents-endpoint",
+    "title": "Documented endpoint for List parent areas",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/parents",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-children",
+    "dataset_id": "els-api:operation:geo-children",
+    "dataset_route": "operation/geo-children",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-children#endpoint",
+    "method": "GET",
+    "name": "geo-children-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/children/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-children-endpoint",
+    "title": "Documented endpoint for List child areas",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/children",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-siblings",
+    "dataset_id": "els-api:operation:geo-siblings",
+    "dataset_route": "operation/geo-siblings",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-siblings#endpoint",
+    "method": "GET",
+    "name": "geo-siblings-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/siblings/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-siblings-endpoint",
+    "title": "Documented endpoint for List sibling areas",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/siblings",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-similar",
+    "dataset_id": "els-api:operation:geo-similar",
+    "dataset_route": "operation/geo-similar",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-similar#endpoint",
+    "method": "GET",
+    "name": "geo-similar-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/similar/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-similar-endpoint",
+    "title": "Documented endpoint for List statistically similar areas",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/similar",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-boundaries",
+    "dataset_id": "els-api:operation:geo-boundaries",
+    "dataset_route": "operation/geo-boundaries",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "geojson",
+    "formats": [
+      "geojson",
+      "topojson"
+    ],
+    "id": "els-api:operation:geo-boundaries#endpoint",
+    "method": "GET",
+    "name": "geo-boundaries-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/boundaries.[format]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-boundaries-endpoint",
+    "title": "Documented endpoint for Get generalised boundaries",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/boundaries.{format}",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-search",
+    "dataset_id": "els-api:operation:geo-search",
+    "dataset_route": "operation/geo-search",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-search#endpoint",
+    "method": "GET",
+    "name": "geo-search-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/search/[name]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-search-endpoint",
+    "title": "Documented endpoint for Search areas by name",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/search/{name}",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-reverse",
+    "dataset_id": "els-api:operation:geo-reverse",
+    "dataset_route": "operation/geo-reverse",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-reverse#endpoint",
+    "method": "GET",
+    "name": "geo-reverse-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/reverse/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-reverse-endpoint",
+    "title": "Documented endpoint for Reverse geographic lookup",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/reverse",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-postcode",
+    "dataset_id": "els-api:operation:geo-postcode",
+    "dataset_route": "operation/geo-postcode",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-postcode#endpoint",
+    "method": "GET",
+    "name": "geo-postcode-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-postcode-endpoint",
+    "title": "Documented endpoint for Look up a full postcode",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "geo-postcode-autocomplete",
+    "dataset_id": "els-api:operation:geo-postcode-autocomplete",
+    "dataset_route": "operation/geo-postcode-autocomplete",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:geo-postcode-autocomplete#endpoint",
+    "method": "GET",
+    "name": "geo-postcode-autocomplete-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/autocomplete/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/geo-postcode-autocomplete-endpoint",
+    "title": "Documented endpoint for Autocomplete a partial postcode",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}/autocomplete",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "metadata-indicators",
+    "dataset_id": "els-api:operation:metadata-indicators",
+    "dataset_route": "operation/metadata-indicators",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:metadata-indicators#endpoint",
+    "method": "GET",
+    "name": "metadata-indicators-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/metadata-indicators-endpoint",
+    "title": "Documented endpoint for List indicator metadata",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "metadata-indicator",
+    "dataset_id": "els-api:operation:metadata-indicator",
+    "dataset_route": "operation/metadata-indicator",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:metadata-indicator#endpoint",
+    "method": "GET",
+    "name": "metadata-indicator-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/metadata-indicator-endpoint",
+    "title": "Documented endpoint for Get one indicator's metadata",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "metadata-dimension",
+    "dataset_id": "els-api:operation:metadata-dimension",
+    "dataset_route": "operation/metadata-dimension",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:metadata-dimension#endpoint",
+    "method": "GET",
+    "name": "metadata-dimension-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/dimensions/[...dimension]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/metadata-dimension-endpoint",
+    "title": "Documented endpoint for List values for one indicator dimension",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  {
+    "bundle_metadata_only": true,
+    "dataset": "metadata-taxonomy",
+    "dataset_id": "els-api:operation:metadata-taxonomy",
+    "dataset_route": "operation/metadata-taxonomy",
+    "description": "Metadata-only endpoint template. This bundle does not execute the request or store its response.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "execution_included": false,
+    "format": "application-json",
+    "formats": [
+      "application-json"
+    ],
+    "id": "els-api:operation:metadata-taxonomy#endpoint",
+    "method": "GET",
+    "name": "metadata-taxonomy-endpoint",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/taxonomy/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    },
+    "resource_type": "api-endpoint-template",
+    "route": "resource/metadata-taxonomy-endpoint",
+    "title": "Documented endpoint for List the indicator taxonomy",
+    "upstream_may_return_observations": false,
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/taxonomy",
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "counts": {
+    "documents": 6,
+    "formats": 9,
+    "issues": 9,
+    "operations": 18,
+    "relationships": 50,
+    "resources": 18
+  },
+  "familyCounts": {
+    "data": 1,
+    "geography": 13,
+    "metadata": 4
+  },
+  "generated_at": "2026-07-20T11:43:20Z",
+  "issueSeverityCounts": {
+    "critical-boundary": 1,
+    "high": 3,
+    "medium": 5
+  },
+  "liveProbePerformed": false,
+  "observationsIncluded": false,
+  "schema": "okf-els-api.overview.v1",
+  "snapshot": "els-wiki-2026-07-20",
+  "status": "internal-private-unstable",
+  "title": "Explore Local Statistics API discovery",
+  "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+}

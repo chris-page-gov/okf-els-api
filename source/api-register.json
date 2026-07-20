@@ -1,0 +1,692 @@
+{
+  "schema": "okf-els-api.register.v1",
+  "title": "Explore Local Statistics internal API",
+  "description": "Read-only statistical, metadata and geographic operations documented by the Explore Local Statistics application wiki.",
+  "baseUrl": "https://www.ons.gov.uk/explore-local-statistics",
+  "method": "GET",
+  "status": "internal-private-unstable",
+  "policy": {
+    "intendedAudience": "ONS applications and approved internal use",
+    "nonOnsWebApplicationsSupported": false,
+    "stabilityGuaranteed": false,
+    "corsAllowsBrowserCrossOrigin": false,
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests.",
+    "liveExecutionIncluded": false,
+    "observationsIncluded": false
+  },
+  "sourceVerification": {
+    "mode": "static-source-review",
+    "liveProbePerformed": false,
+    "repository": "https://github.com/ONSdigital/explore-local-statistics-app",
+    "branch": "develop",
+    "commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+    "commitDate": "2026-07-17T09:35:03+01:00",
+    "routeHandlerCount": 17,
+    "routeSetSha256": "7dbaee547e1f9a9f7656feaf6cc944e8449f7d25ac4ec8f259ff4b2d40edd589",
+    "scope": "GET handlers below src/routes/(api)/api/v1 only"
+  },
+  "formats": {
+    "csv": {
+      "label": "CSV",
+      "mediaType": "text/csv",
+      "kind": "tabular",
+      "wiki": "Data-formats"
+    },
+    "csvw": {
+      "label": "CSVW metadata",
+      "mediaType": "application/csvm+json",
+      "kind": "tabular-metadata",
+      "wiki": "Data-formats"
+    },
+    "json-stat": {
+      "label": "JSON-Stat",
+      "mediaType": "application/json",
+      "kind": "statistical-cube",
+      "pathValue": "json",
+      "wiki": "Data-formats"
+    },
+    "xlsx": {
+      "label": "Accessible XLSX spreadsheet",
+      "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "kind": "spreadsheet",
+      "wiki": "Data-formats"
+    },
+    "rows.json": {
+      "label": "Row-oriented JSON array",
+      "mediaType": "application/json",
+      "kind": "tabular-json",
+      "wiki": "Data-formats"
+    },
+    "cols.json": {
+      "label": "Column-oriented JSON arrays",
+      "mediaType": "application/json",
+      "kind": "tabular-json",
+      "wiki": "Data-formats"
+    },
+    "geojson": {
+      "label": "GeoJSON",
+      "mediaType": "application/geo+json",
+      "kind": "geospatial",
+      "wiki": "Requesting-geographic-information"
+    },
+    "topojson": {
+      "label": "TopoJSON",
+      "mediaType": "application/topo+json",
+      "kind": "geospatial",
+      "wiki": "Requesting-geographic-information"
+    },
+    "application-json": {
+      "label": "JSON",
+      "mediaType": "application/json",
+      "kind": "structured-data",
+      "wiki": "API-overview"
+    }
+  },
+  "parameters": {
+    "topic": {
+      "in": "query",
+      "type": "string",
+      "description": "One or more comma-separated topic or sub-topic codes, or all."
+    },
+    "indicator": {
+      "in": "query",
+      "type": "string",
+      "description": "One or more comma-separated indicator slugs, or all."
+    },
+    "excludeMultivariate": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Exclude multivariate indicators unless explicitly selected."
+    },
+    "time": {
+      "in": "query",
+      "type": "string",
+      "description": "latest, earliest, all, one date, or a comma-separated inclusive range."
+    },
+    "timeNearest": {
+      "in": "query",
+      "type": "string",
+      "enum": ["none", "latest", "earliest", "any"],
+      "description": "Fallback behaviour when the selected date is outside an indicator's range."
+    },
+    "geo": {
+      "in": "query",
+      "type": "string",
+      "description": "One or more comma-separated geography-level keys or GSS codes."
+    },
+    "geoExtent": {
+      "in": "query",
+      "type": "string",
+      "description": "Parent GSS code used to constrain returned geographies."
+    },
+    "geoCluster": {
+      "in": "query",
+      "type": "string",
+      "description": "Statistical cluster in grouping_cluster form."
+    },
+    "hasGeo": {
+      "in": "query",
+      "type": "string",
+      "description": "Return indicators that include a geography level or GSS code."
+    },
+    "dimension_{code}": {
+      "in": "query",
+      "type": "string",
+      "dynamic": true,
+      "description": "Dynamic non-time, non-geography dimension filter. Replace {code} with an indicator dimension code."
+    },
+    "measure": {
+      "in": "query",
+      "type": "string",
+      "description": "One or more measures. The wiki lists this parameter but does not define its semantics."
+    },
+    "includeNames": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Include human-readable area names where supported."
+    },
+    "includeStatus": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Include observation-level status identifiers where available."
+    },
+    "year": {
+      "in": "query",
+      "type": "string",
+      "description": "Geography validity year or all/latest where supported."
+    },
+    "country": {
+      "in": "query",
+      "type": "string",
+      "description": "One or more of E, N, S or W, or all."
+    },
+    "geoLevel": {
+      "in": "query",
+      "type": "string",
+      "description": "One or more geography-level keys, such as ltla or rgn."
+    },
+    "asLookup": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Return an object keyed by identifier instead of an array."
+    },
+    "groupByLevel": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Group returned areas by geography level."
+    },
+    "includeParents": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Include parent GSS codes."
+    },
+    "includeChildren": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Include child GSS codes."
+    },
+    "includeDates": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Include area start and end dates."
+    },
+    "includeLevel": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Include the geography-level code."
+    },
+    "includeAreas": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Include the individual area codes at each level."
+    },
+    "parentLevel": {
+      "in": "query",
+      "type": "string",
+      "description": "Parent geography level within which siblings are selected."
+    },
+    "limit": {
+      "in": "query",
+      "type": "integer",
+      "minimum": 0,
+      "description": "Maximum number of search results."
+    },
+    "offset": {
+      "in": "query",
+      "type": "integer",
+      "minimum": 0,
+      "description": "Zero-based result offset."
+    },
+    "searchPostcodes": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Fall back to postcode results when no area name matches."
+    },
+    "lng": {
+      "in": "query",
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Longitude for reverse lookup."
+    },
+    "lat": {
+      "in": "query",
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Latitude for reverse lookup."
+    },
+    "hasYear": {
+      "in": "query",
+      "type": "string",
+      "description": "Return indicators that contain the specified YYYY year."
+    },
+    "fullDims": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Include all available dimension values."
+    },
+    "flat": {
+      "in": "query",
+      "type": "boolean",
+      "description": "Return a flattened taxonomy instead of nested topics."
+    }
+  },
+  "operations": [
+    {
+      "id": "data",
+      "family": "data",
+      "title": "Filter and download statistical data",
+      "summary": "Filter one or more indicators by topic, geography, time, dimensions and measures.",
+      "path": "/api/v1/data.{format}",
+      "documentedPath": "/api/v1/data.{format}",
+      "sourcePath": "src/routes/(api)/api/v1/data.[format]/+server.ts",
+      "wiki": "Requesting-data",
+      "pathParameters": {
+        "format": {
+          "type": "string",
+          "enum": ["csv", "csvw", "json", "xlsx", "rows.json", "cols.json"]
+        }
+      },
+      "queryParameters": [
+        "topic",
+        "indicator",
+        "excludeMultivariate",
+        "time",
+        "timeNearest",
+        "geo",
+        "geoExtent",
+        "geoCluster",
+        "hasGeo",
+        "dimension_{code}",
+        "measure",
+        "includeNames",
+        "includeStatus"
+      ],
+      "defaults": {
+        "topic": "all",
+        "indicator": "all",
+        "excludeMultivariate": false,
+        "time": "latest",
+        "timeNearest": "none",
+        "geo": "all",
+        "geoExtent": "all",
+        "geoCluster": "all",
+        "hasGeo": "any",
+        "dimension_{code}": "all",
+        "measure": "all",
+        "includeNames": true,
+        "includeStatus": "true for json and xlsx; false otherwise"
+      },
+      "formats": ["csv", "csvw", "json-stat", "xlsx", "rows.json", "cols.json"],
+      "issueIds": [
+        "drift-data-hasgeo-default",
+        "drift-data-includenames",
+        "gap-data-measure",
+        "gap-response-schemas"
+      ]
+    },
+    {
+      "id": "geo-list",
+      "family": "geography",
+      "title": "List geographic areas",
+      "summary": "List names, codes and selected metadata for geographies represented in ELS.",
+      "path": "/api/v1/geo/list",
+      "documentedPath": "/api/v1/geo/list",
+      "sourcePath": "src/routes/(api)/api/v1/geo/list/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {},
+      "queryParameters": ["geo", "geoExtent", "year", "indicator", "asLookup", "groupByLevel", "includeParents", "includeChildren", "includeDates", "includeLevel"],
+      "defaults": {
+        "geo": "all",
+        "geoExtent": "all",
+        "year": "latest",
+        "indicator": "all",
+        "asLookup": false,
+        "groupByLevel": false,
+        "includeParents": false,
+        "includeChildren": false,
+        "includeDates": false,
+        "includeLevel": false
+      },
+      "formats": ["application-json"]
+    },
+    {
+      "id": "geo-levels",
+      "family": "geography",
+      "title": "List geography levels",
+      "summary": "List geography-level keys, type prefixes and optionally their area codes.",
+      "path": "/api/v1/geo/levels",
+      "documentedPath": "/api/v1/geo/levels",
+      "sourcePath": "src/routes/(api)/api/v1/geo/levels/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {},
+      "queryParameters": ["year", "includeAreas"],
+      "defaults": {"year": "latest", "includeAreas": true},
+      "formats": ["application-json"]
+    },
+    {
+      "id": "geo-lookup",
+      "family": "geography",
+      "title": "Look up one geographic area",
+      "summary": "Return a GeoJSON feature with boundary geometry and extended metadata for a GSS code.",
+      "path": "/api/v1/geo/lookup/{code}",
+      "documentedPath": "/api/v1/geo/lookup/{code}",
+      "sourcePath": "src/routes/(api)/api/v1/geo/lookup/[code]/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"code": {"type": "string", "description": "GSS code."}},
+      "queryParameters": [],
+      "defaults": {},
+      "formats": ["geojson"]
+    },
+    {
+      "id": "geo-related",
+      "family": "geography",
+      "title": "List all related areas",
+      "summary": "Return parents, children, siblings and statistically similar areas.",
+      "path": "/api/v1/geo/related/{code}",
+      "documentedPath": "/api/v1/geo/related/{code}",
+      "sourcePath": "src/routes/(api)/api/v1/geo/related/[code]/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"code": {"type": "string", "description": "GSS code."}},
+      "queryParameters": ["includeNames"],
+      "defaults": {"includeNames": true},
+      "formats": ["application-json"],
+      "issueIds": ["gap-geo-related-includenames"]
+    },
+    {
+      "id": "geo-parents",
+      "family": "geography",
+      "title": "List parent areas",
+      "summary": "List parents for an area identified by GSS code.",
+      "path": "/api/v1/geo/related/{code}/parents",
+      "documentedPath": "/api/v1/geo/related/{code}/parents",
+      "sourcePath": "src/routes/(api)/api/v1/geo/related/[code]/parents/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"code": {"type": "string", "description": "GSS code."}},
+      "queryParameters": ["includeNames"],
+      "defaults": {"includeNames": true},
+      "formats": ["application-json"],
+      "issueIds": ["gap-geo-related-includenames"]
+    },
+    {
+      "id": "geo-children",
+      "family": "geography",
+      "title": "List child areas",
+      "summary": "List immediate children or children at a selected geography level.",
+      "path": "/api/v1/geo/related/{code}/children",
+      "documentedPath": "/api/v1/geo/related/{code}/children",
+      "sourcePath": "src/routes/(api)/api/v1/geo/related/[code]/children/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"code": {"type": "string", "description": "GSS code."}},
+      "queryParameters": ["geoLevel", "includeNames"],
+      "defaults": {"geoLevel": null, "includeNames": true},
+      "formats": ["application-json"],
+      "issueIds": ["gap-geo-related-includenames"]
+    },
+    {
+      "id": "geo-siblings",
+      "family": "geography",
+      "title": "List sibling areas",
+      "summary": "List siblings sharing an immediate or selected parent level.",
+      "path": "/api/v1/geo/related/{code}/siblings",
+      "documentedPath": "/api/v1/geo/related/{code}/siblings",
+      "sourcePath": "src/routes/(api)/api/v1/geo/related/[code]/siblings/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"code": {"type": "string", "description": "GSS code."}},
+      "queryParameters": ["parentLevel", "includeNames"],
+      "defaults": {"parentLevel": null, "includeNames": true},
+      "formats": ["application-json"],
+      "issueIds": ["gap-geo-related-includenames"]
+    },
+    {
+      "id": "geo-similar",
+      "family": "geography",
+      "title": "List statistically similar areas",
+      "summary": "List cluster members and the 20 most similar areas for supported groupings.",
+      "path": "/api/v1/geo/related/{code}/similar",
+      "documentedPath": "/api/v1/geo/related/{code}/similar",
+      "sourcePath": "src/routes/(api)/api/v1/geo/related/[code]/similar/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"code": {"type": "string", "description": "GSS code."}},
+      "queryParameters": ["includeNames"],
+      "defaults": {"includeNames": true},
+      "formats": ["application-json"],
+      "issueIds": ["gap-geo-related-includenames"]
+    },
+    {
+      "id": "geo-boundaries",
+      "family": "geography",
+      "title": "Get generalised boundaries",
+      "summary": "Return filtered, low-resolution boundaries as GeoJSON or TopoJSON.",
+      "path": "/api/v1/geo/boundaries.{format}",
+      "documentedPath": "/api/v1/geo/boundaries.{format}",
+      "sourcePath": "src/routes/(api)/api/v1/geo/boundaries.[format]/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {
+        "format": {"type": "string", "enum": ["geojson", "topojson"]}
+      },
+      "queryParameters": ["year", "country", "geoLevel"],
+      "defaults": {"year": "latest", "country": "all", "geoLevel": "ltla"},
+      "formats": ["geojson", "topojson"]
+    },
+    {
+      "id": "geo-search",
+      "family": "geography",
+      "title": "Search areas by name",
+      "summary": "Search area names and optionally fall back to postcode autocomplete.",
+      "path": "/api/v1/geo/search/{name}",
+      "documentedPath": "/api/v1/geo/search/{string}",
+      "sourcePath": "src/routes/(api)/api/v1/geo/search/[name]/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"name": {"type": "string", "description": "Area-name search string."}},
+      "queryParameters": ["year", "limit", "offset", "searchPostcodes", "groupByLevel", "geoLevel"],
+      "documentedOnlyParameters": ["includeDates"],
+      "defaults": {
+        "year": "latest",
+        "limit": 10,
+        "offset": 0,
+        "searchPostcodes": false,
+        "groupByLevel": false,
+        "geoLevel": "all"
+      },
+      "formats": ["application-json"],
+      "issueIds": ["drift-geo-includedates"]
+    },
+    {
+      "id": "geo-reverse",
+      "family": "geography",
+      "title": "Reverse geographic lookup",
+      "summary": "Return areas containing a longitude and latitude.",
+      "path": "/api/v1/geo/reverse",
+      "documentedPath": "/api/v1/geo/reverse",
+      "sourcePath": "src/routes/(api)/api/v1/geo/reverse/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {},
+      "queryParameters": ["lng", "lat", "year", "geoLevel", "groupByLevel"],
+      "requiredQueryParameters": ["lng", "lat"],
+      "documentedOnlyParameters": ["includeDates"],
+      "defaults": {"year": "latest", "geoLevel": "all", "groupByLevel": false},
+      "formats": ["application-json"],
+      "issueIds": ["drift-geo-includedates"]
+    },
+    {
+      "id": "geo-postcode",
+      "family": "geography",
+      "title": "Look up a full postcode",
+      "summary": "Return public postcode coordinates and containing geographies.",
+      "path": "/api/v1/geo/postcodes/{code}",
+      "documentedPath": "/api/v1/geo/postcodes/{code}",
+      "sourcePath": "src/routes/(api)/api/v1/geo/postcodes/[code]/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"code": {"type": "string", "description": "Complete UK postcode."}},
+      "queryParameters": ["year", "geoLevel", "groupByLevel"],
+      "documentedOnlyParameters": ["includeDates"],
+      "defaults": {"year": "latest", "geoLevel": "all", "groupByLevel": false},
+      "formats": ["application-json"],
+      "issueIds": ["drift-geo-includedates"],
+      "privacyNote": "The operation is public lookup metadata. The OKF bundle stores neither submitted postcodes nor returned coordinates."
+    },
+    {
+      "id": "geo-postcode-autocomplete",
+      "family": "geography",
+      "title": "Autocomplete a partial postcode",
+      "summary": "Return matching postcodes and public coordinates for a partial postcode.",
+      "path": "/api/v1/geo/postcodes/{code}/autocomplete",
+      "documentedPath": "/api/v1/geo/postcodes/{partial_code}/autocomplete",
+      "sourcePath": "src/routes/(api)/api/v1/geo/postcodes/[code]/autocomplete/+server.ts",
+      "wiki": "Requesting-geographic-information",
+      "pathParameters": {"code": {"type": "string", "description": "Partial UK postcode."}},
+      "queryParameters": ["limit", "offset"],
+      "defaults": {"limit": 10, "offset": 0},
+      "formats": ["application-json"],
+      "privacyNote": "The OKF bundle stores neither submitted postcode fragments nor returned postcodes or coordinates."
+    },
+    {
+      "id": "metadata-indicators",
+      "family": "metadata",
+      "title": "List indicator metadata",
+      "summary": "Return metadata for indicators filtered by topic, geography and year.",
+      "path": "/api/v1/metadata/indicators",
+      "documentedPath": "/api/v1/metadata/indicators",
+      "sourcePath": "src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+      "wiki": "Requesting-metadata",
+      "pathParameters": {},
+      "queryParameters": ["topic", "indicator", "hasGeo", "hasYear", "excludeMultivariate", "fullDims", "asLookup"],
+      "sourceOnlyParameters": ["indicator"],
+      "defaults": {
+        "topic": "all",
+        "hasGeo": "all",
+        "hasYear": "all",
+        "excludeMultivariate": false,
+        "fullDims": false,
+        "asLookup": false
+      },
+      "formats": ["application-json"]
+    },
+    {
+      "id": "metadata-indicator",
+      "family": "metadata",
+      "title": "Get one indicator's metadata",
+      "summary": "Return metadata for one indicator and optionally its full dimension values.",
+      "path": "/api/v1/metadata/indicators/{indicator}",
+      "documentedPath": "/api/v1/metadata/indicators/{indicator}",
+      "sourcePath": "src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+      "wiki": "Requesting-metadata",
+      "pathParameters": {"indicator": {"type": "string", "description": "Indicator slug."}},
+      "queryParameters": ["fullDims"],
+      "defaults": {"fullDims": false},
+      "formats": ["application-json"]
+    },
+    {
+      "id": "metadata-dimension",
+      "family": "metadata",
+      "title": "List values for one indicator dimension",
+      "summary": "Return possible values for a specific dimension of a specific indicator.",
+      "path": "/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}",
+      "documentedPath": "/api/v1/metadata/indicators/{indicator}/{dimension}",
+      "sourcePath": "src/routes/(api)/api/v1/metadata/indicators/[...indicator]/dimensions/[...dimension]/+server.ts",
+      "wiki": "Requesting-metadata",
+      "pathParameters": {
+        "indicator": {"type": "string", "description": "Indicator slug."},
+        "dimension": {"type": "string", "description": "Dimension code."}
+      },
+      "queryParameters": [],
+      "defaults": {},
+      "formats": ["application-json"],
+      "issueIds": ["drift-metadata-dimension-route"]
+    },
+    {
+      "id": "metadata-taxonomy",
+      "family": "metadata",
+      "title": "List the indicator taxonomy",
+      "summary": "Return indicators grouped into topics and sub-topics, nested or flat.",
+      "path": "/api/v1/metadata/taxonomy",
+      "documentedPath": "/api/v1/metadata/taxonomy",
+      "sourcePath": "src/routes/(api)/api/v1/metadata/taxonomy/+server.ts",
+      "wiki": "Requesting-metadata",
+      "pathParameters": {},
+      "queryParameters": ["topic", "hasGeo", "hasYear", "excludeMultivariate", "flat"],
+      "defaults": {
+        "topic": "all",
+        "hasGeo": "all",
+        "hasYear": "all",
+        "excludeMultivariate": false,
+        "flat": false
+      },
+      "formats": ["application-json"]
+    }
+  ],
+  "issues": [
+    {
+      "id": "boundary-internal-api",
+      "severity": "critical-boundary",
+      "kind": "usage-boundary",
+      "title": "The API is internal/private and unstable",
+      "wikiEvidence": "Home",
+      "sourceEvidence": null,
+      "statement": "The bundle must not imply that the API is public, supported for third parties, stable, or usable cross-origin from browsers.",
+      "recommendation": "Keep execution opt-in and obtain an ONS-supported contract before depending on the service."
+    },
+    {
+      "id": "drift-metadata-dimension-route",
+      "severity": "high",
+      "kind": "wiki-source-conflict",
+      "title": "Dimension-values route differs",
+      "wikiEvidence": "/api/v1/metadata/indicators/{indicator}/{dimension}",
+      "sourceEvidence": "/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}",
+      "statement": "Following the documented route can address the wrong optional-rest route instead of the dimension handler.",
+      "recommendation": "Update the wiki or implementation and add a route contract test."
+    },
+    {
+      "id": "drift-data-includenames",
+      "severity": "high",
+      "kind": "wiki-internal-conflict",
+      "title": "Area-name parameter name and default conflict",
+      "wikiEvidence": "The parameter table and example use includeNames with default true; prose says names are excluded by default and refers to geoNames.",
+      "sourceEvidence": "The data handler accepts includeNames and defaults it to true.",
+      "statement": "Clients following the prose can send an invalid parameter or assume the wrong payload shape.",
+      "recommendation": "Use includeNames consistently and state one tested default."
+    },
+    {
+      "id": "drift-geo-includedates",
+      "severity": "high",
+      "kind": "wiki-source-conflict",
+      "title": "includeDates is documented where handlers reject it",
+      "wikiEvidence": "Name search, reverse lookup and postcode lookup parameter tables list includeDates.",
+      "sourceEvidence": "The reviewed handlers' allow-lists omit includeDates and reject unknown parameters.",
+      "statement": "Documented requests using includeDates can receive HTTP 400.",
+      "recommendation": "Implement includeDates or remove it from those three tables."
+    },
+    {
+      "id": "drift-data-hasgeo-default",
+      "severity": "medium",
+      "kind": "wiki-source-conflict",
+      "title": "hasGeo default differs",
+      "wikiEvidence": "The data page states a default of all.",
+      "sourceEvidence": "The reviewed data handler defaults hasGeo to any.",
+      "statement": "The omission behaviour is ambiguous.",
+      "recommendation": "Define and test the public semantic difference between any and all."
+    },
+    {
+      "id": "gap-geo-related-includenames",
+      "severity": "medium",
+      "kind": "source-only-capability",
+      "title": "Related-area includeNames parameter is undocumented",
+      "wikiEvidence": "The related, parents, children, siblings and similar sections omit includeNames.",
+      "sourceEvidence": "Each reviewed handler accepts includeNames and defaults it to true.",
+      "statement": "Clients cannot discover a useful payload-size and shape control from the wiki.",
+      "recommendation": "Document includeNames consistently for related-area operations."
+    },
+    {
+      "id": "gap-data-measure",
+      "severity": "medium",
+      "kind": "documentation-gap",
+      "title": "measure is listed but not explained",
+      "wikiEvidence": "measure appears in the data parameter table without a subsection.",
+      "sourceEvidence": "The reviewed handler accepts measure and defaults it to all.",
+      "statement": "Allowed values and interaction with indicator and status fields are not documented.",
+      "recommendation": "Add semantics, examples and a link to discover valid measure codes."
+    },
+    {
+      "id": "gap-response-schemas",
+      "severity": "medium",
+      "kind": "documentation-gap",
+      "title": "Response and error contracts are incomplete",
+      "wikiEvidence": "The wiki provides examples and format descriptions but no complete schemas or common error model.",
+      "sourceEvidence": "Handlers return 400/404 responses and apply request-size validation.",
+      "statement": "Typed clients cannot be generated safely and agents cannot validate outputs rigorously.",
+      "recommendation": "Publish an upstream OpenAPI 3.1 contract with response schemas, errors, limits and examples."
+    },
+    {
+      "id": "gap-compatibility-policy",
+      "severity": "medium",
+      "kind": "governance-gap",
+      "title": "No compatibility or deprecation policy",
+      "wikiEvidence": "The wiki says the API may change without notice.",
+      "sourceEvidence": null,
+      "statement": "The v1 path does not itself establish stability.",
+      "recommendation": "Define ownership, change notification, versioning, deprecation and support expectations before external reuse."
+    }
+  ]
+}

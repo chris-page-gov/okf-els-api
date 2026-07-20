@@ -1,0 +1,352 @@
+[
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/data"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/data",
+    "target": "document/Requesting-data"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/data",
+    "target": "issue/drift-data-hasgeo-default"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/data",
+    "target": "issue/drift-data-includenames"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/data",
+    "target": "issue/gap-data-measure"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/data",
+    "target": "issue/gap-response-schemas"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-list"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-list",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-levels"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-levels",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-lookup"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-lookup",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-related"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-related",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/geo-related",
+    "target": "issue/gap-geo-related-includenames"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-parents"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-parents",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/geo-parents",
+    "target": "issue/gap-geo-related-includenames"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-children"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-children",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/geo-children",
+    "target": "issue/gap-geo-related-includenames"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-siblings"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-siblings",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/geo-siblings",
+    "target": "issue/gap-geo-related-includenames"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-similar"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-similar",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/geo-similar",
+    "target": "issue/gap-geo-related-includenames"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-boundaries"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-boundaries",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-search"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-search",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/geo-search",
+    "target": "issue/drift-geo-includedates"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-reverse"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-reverse",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/geo-reverse",
+    "target": "issue/drift-geo-includedates"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-postcode"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-postcode",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/geo-postcode",
+    "target": "issue/drift-geo-includedates"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/geo-postcode-autocomplete"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/geo-postcode-autocomplete",
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/metadata-indicators"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/metadata-indicators",
+    "target": "document/Requesting-metadata"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/metadata-indicator"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/metadata-indicator",
+    "target": "document/Requesting-metadata"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/metadata-dimension"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/metadata-dimension",
+    "target": "document/Requesting-metadata"
+  },
+  {
+    "confidence": "observed",
+    "evidence_type": "wiki-source-comparison",
+    "kind": "has-documentation-issue",
+    "source": "operation/metadata-dimension",
+    "target": "issue/drift-metadata-dimension-route"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-and-static-source-review",
+    "kind": "has-operation",
+    "source": "service/els-api",
+    "target": "operation/metadata-taxonomy"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-page-reference",
+    "kind": "documented-by",
+    "source": "operation/metadata-taxonomy",
+    "target": "document/Requesting-metadata"
+  },
+  {
+    "confidence": "declared",
+    "evidence_type": "wiki-warning",
+    "kind": "has-usage-boundary",
+    "source": "service/els-api",
+    "target": "issue/boundary-internal-api"
+  }
+]

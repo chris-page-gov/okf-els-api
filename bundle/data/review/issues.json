@@ -1,0 +1,92 @@
+[
+  {
+    "id": "boundary-internal-api",
+    "kind": "usage-boundary",
+    "recommendation": "Keep execution opt-in and obtain an ONS-supported contract before depending on the service.",
+    "severity": "critical-boundary",
+    "sourceEvidence": null,
+    "statement": "The bundle must not imply that the API is public, supported for third parties, stable, or usable cross-origin from browsers.",
+    "title": "The API is internal/private and unstable",
+    "wikiEvidence": "Home"
+  },
+  {
+    "id": "drift-metadata-dimension-route",
+    "kind": "wiki-source-conflict",
+    "recommendation": "Update the wiki or implementation and add a route contract test.",
+    "severity": "high",
+    "sourceEvidence": "/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}",
+    "statement": "Following the documented route can address the wrong optional-rest route instead of the dimension handler.",
+    "title": "Dimension-values route differs",
+    "wikiEvidence": "/api/v1/metadata/indicators/{indicator}/{dimension}"
+  },
+  {
+    "id": "drift-data-includenames",
+    "kind": "wiki-internal-conflict",
+    "recommendation": "Use includeNames consistently and state one tested default.",
+    "severity": "high",
+    "sourceEvidence": "The data handler accepts includeNames and defaults it to true.",
+    "statement": "Clients following the prose can send an invalid parameter or assume the wrong payload shape.",
+    "title": "Area-name parameter name and default conflict",
+    "wikiEvidence": "The parameter table and example use includeNames with default true; prose says names are excluded by default and refers to geoNames."
+  },
+  {
+    "id": "drift-geo-includedates",
+    "kind": "wiki-source-conflict",
+    "recommendation": "Implement includeDates or remove it from those three tables.",
+    "severity": "high",
+    "sourceEvidence": "The reviewed handlers' allow-lists omit includeDates and reject unknown parameters.",
+    "statement": "Documented requests using includeDates can receive HTTP 400.",
+    "title": "includeDates is documented where handlers reject it",
+    "wikiEvidence": "Name search, reverse lookup and postcode lookup parameter tables list includeDates."
+  },
+  {
+    "id": "drift-data-hasgeo-default",
+    "kind": "wiki-source-conflict",
+    "recommendation": "Define and test the public semantic difference between any and all.",
+    "severity": "medium",
+    "sourceEvidence": "The reviewed data handler defaults hasGeo to any.",
+    "statement": "The omission behaviour is ambiguous.",
+    "title": "hasGeo default differs",
+    "wikiEvidence": "The data page states a default of all."
+  },
+  {
+    "id": "gap-geo-related-includenames",
+    "kind": "source-only-capability",
+    "recommendation": "Document includeNames consistently for related-area operations.",
+    "severity": "medium",
+    "sourceEvidence": "Each reviewed handler accepts includeNames and defaults it to true.",
+    "statement": "Clients cannot discover a useful payload-size and shape control from the wiki.",
+    "title": "Related-area includeNames parameter is undocumented",
+    "wikiEvidence": "The related, parents, children, siblings and similar sections omit includeNames."
+  },
+  {
+    "id": "gap-data-measure",
+    "kind": "documentation-gap",
+    "recommendation": "Add semantics, examples and a link to discover valid measure codes.",
+    "severity": "medium",
+    "sourceEvidence": "The reviewed handler accepts measure and defaults it to all.",
+    "statement": "Allowed values and interaction with indicator and status fields are not documented.",
+    "title": "measure is listed but not explained",
+    "wikiEvidence": "measure appears in the data parameter table without a subsection."
+  },
+  {
+    "id": "gap-response-schemas",
+    "kind": "documentation-gap",
+    "recommendation": "Publish an upstream OpenAPI 3.1 contract with response schemas, errors, limits and examples.",
+    "severity": "medium",
+    "sourceEvidence": "Handlers return 400/404 responses and apply request-size validation.",
+    "statement": "Typed clients cannot be generated safely and agents cannot validate outputs rigorously.",
+    "title": "Response and error contracts are incomplete",
+    "wikiEvidence": "The wiki provides examples and format descriptions but no complete schemas or common error model."
+  },
+  {
+    "id": "gap-compatibility-policy",
+    "kind": "governance-gap",
+    "recommendation": "Define ownership, change notification, versioning, deprecation and support expectations before external reuse.",
+    "severity": "medium",
+    "sourceEvidence": null,
+    "statement": "The v1 path does not itself establish stability.",
+    "title": "No compatibility or deprecation policy",
+    "wikiEvidence": "The wiki says the API may change without notice."
+  }
+]

@@ -1,0 +1,78 @@
+{
+  "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld",
+  "@id": "urn:okf:els-api:descriptor",
+  "counts": {
+    "datasets": 18,
+    "documents": 6,
+    "formats": 9,
+    "issues": 9,
+    "publishers": 1,
+    "records": 18,
+    "relationships": 50,
+    "resources": 18
+  },
+  "description": "Read-only statistical, metadata and geographic operations documented by the Explore Local Statistics application wiki.",
+  "entrypoints": {
+    "coverage": "data/coverage/ledger.json",
+    "data_manifest": "data/manifest.json",
+    "documents": "data/documents-0.json",
+    "formats": "data/formats.json",
+    "openapi": "data/openapi.json",
+    "overview_index": "data/overview.json",
+    "parameters": "data/parameters.json",
+    "review": "data/review/issues.json",
+    "selection_contract": "data/selection-contract.json",
+    "snapshot": "data/provenance/wiki-snapshot.json",
+    "viewer": "https://chris-page-gov.github.io/okf-explorer/"
+  },
+  "extensions": {
+    "okf-api-discovery.v1": {
+      "execution_included": false,
+      "openapi": "openapi",
+      "read_only_documented_method": "GET",
+      "selection_contract": "selection_contract"
+    },
+    "okf-documentation-review.v1": {
+      "conflicts_preserved": true,
+      "live_probe_performed": false,
+      "review": "review"
+    }
+  },
+  "generated_at": "2026-07-20T11:43:20Z",
+  "kind": "okf-small-api-corpus",
+  "license": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+  "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
+  "publisher": "https://www.ons.gov.uk/",
+  "schema": "okf-explorer-large-corpus.v1",
+  "scope": {
+    "api_operations": 18,
+    "complete_for_all_els_behaviour": false,
+    "complete_for_declared_source_files": true,
+    "live_execution_included": false,
+    "metadata_only": true,
+    "observations_included": false,
+    "wiki_pages": 6
+  },
+  "semantic_descriptor": "okf-bundle.jsonld",
+  "snapshot": "els-wiki-2026-07-20",
+  "source": {
+    "application_source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+    "title": "Explore Local Statistics application wiki",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+    "verification_mode": "static-source-review",
+    "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+  },
+  "status": "bounded-review-draft",
+  "title": "Explore Local Statistics API discovery OKF",
+  "version": "0.1.0",
+  "vocabulary": {
+    "publisher_plural": "publishers",
+    "publisher_singular": "publisher",
+    "record_plural": "API operations",
+    "record_singular": "API operation",
+    "resource_plural": "endpoint templates",
+    "resource_singular": "endpoint template",
+    "search_placeholder": "Search routes, parameters, formats and geography operations"
+  },
+  "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+}

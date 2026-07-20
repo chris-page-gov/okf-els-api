@@ -1,0 +1,2615 @@
+[
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Filter one or more indicators by topic, geography, time, dimensions and measures.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/data.[format]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/data.{format}",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "csv",
+      "csvw",
+      "json-stat",
+      "xlsx",
+      "rows.json",
+      "cols.json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:data",
+    "issue_count": 4,
+    "issues": [
+      {
+        "id": "drift-data-hasgeo-default",
+        "severity": "medium",
+        "title": "hasGeo default differs"
+      },
+      {
+        "id": "drift-data-includenames",
+        "severity": "high",
+        "title": "Area-name parameter name and default conflict"
+      },
+      {
+        "id": "gap-data-measure",
+        "severity": "medium",
+        "title": "measure is listed but not explained"
+      },
+      {
+        "id": "gap-response-schemas",
+        "severity": "medium",
+        "title": "Response and error contracts are incomplete"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "data",
+    "native_id": "data",
+    "notes": "Filter one or more indicators by topic, geography, time, dimensions and measures.",
+    "open": "operation/data",
+    "parameters": [
+      {
+        "description": "Path value for format.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "format",
+        "required": true,
+        "schema": {
+          "enum": [
+            "csv",
+            "csvw",
+            "json",
+            "xlsx",
+            "rows.json",
+            "cols.json"
+          ],
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more comma-separated topic or sub-topic codes, or all.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "topic",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more comma-separated indicator slugs, or all.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "indicator",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": false,
+        "description": "Exclude multivariate indicators unless explicitly selected.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "excludeMultivariate",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": "latest",
+        "description": "latest, earliest, all, one date, or a comma-separated inclusive range.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "time",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "none",
+        "description": "Fallback behaviour when the selected date is outside an indicator's range.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "timeNearest",
+        "required": false,
+        "schema": {
+          "enum": [
+            "none",
+            "latest",
+            "earliest",
+            "any"
+          ],
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more comma-separated geography-level keys or GSS codes.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geo",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "Parent GSS code used to constrain returned geographies.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geoExtent",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "Statistical cluster in grouping_cluster form.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geoCluster",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "any",
+        "description": "Return indicators that include a geography level or GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "hasGeo",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "Dynamic non-time, non-geography dimension filter. Replace {code} with an indicator dimension code.",
+        "dynamic": true,
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "dimension_{code}",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more measures. The wiki lists this parameter but does not define its semantics.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "measure",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": true,
+        "description": "Include human-readable area names where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeNames",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": "true for json and xlsx; false otherwise",
+        "description": "Include observation-level status identifiers where available.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeStatus",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/data.{format}",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/data.[format]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:data",
+    "record_type": "ELS API operation",
+    "route": "operation/data",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "data",
+      "internal-private-unstable"
+    ],
+    "title": "Filter and download statistical data",
+    "topics": [
+      "data"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/data.{format}"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "List names, codes and selected metadata for geographies represented in ELS.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/list/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/list",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-list",
+    "issue_count": 0,
+    "issues": [],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-list",
+    "native_id": "geo-list",
+    "notes": "List names, codes and selected metadata for geographies represented in ELS.",
+    "open": "operation/geo-list",
+    "parameters": [
+      {
+        "default": "all",
+        "description": "One or more comma-separated geography-level keys or GSS codes.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geo",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "Parent GSS code used to constrain returned geographies.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geoExtent",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "latest",
+        "description": "Geography validity year or all/latest where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "year",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more comma-separated indicator slugs, or all.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "indicator",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": false,
+        "description": "Return an object keyed by identifier instead of an array.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "asLookup",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Group returned areas by geography level.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "groupByLevel",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Include parent GSS codes.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeParents",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Include child GSS codes.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeChildren",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Include area start and end dates.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeDates",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Include the geography-level code.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeLevel",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/list",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/list/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-list",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-list",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "List geographic areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/list"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "List geography-level keys, type prefixes and optionally their area codes.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/levels/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/levels",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-levels",
+    "issue_count": 0,
+    "issues": [],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-levels",
+    "native_id": "geo-levels",
+    "notes": "List geography-level keys, type prefixes and optionally their area codes.",
+    "open": "operation/geo-levels",
+    "parameters": [
+      {
+        "default": "latest",
+        "description": "Geography validity year or all/latest where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "year",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": true,
+        "description": "Include the individual area codes at each level.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeAreas",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/levels",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/levels/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-levels",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-levels",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "List geography levels",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/levels"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return a GeoJSON feature with boundary geometry and extended metadata for a GSS code.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/lookup/[code]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/lookup/{code}",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "geojson"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-lookup",
+    "issue_count": 0,
+    "issues": [],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-lookup",
+    "native_id": "geo-lookup",
+    "notes": "Return a GeoJSON feature with boundary geometry and extended metadata for a GSS code.",
+    "open": "operation/geo-lookup",
+    "parameters": [
+      {
+        "description": "GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/lookup/{code}",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/lookup/[code]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-lookup",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-lookup",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "Look up one geographic area",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/lookup/{code}"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return parents, children, siblings and statistically similar areas.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/related/{code}",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-related",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "gap-geo-related-includenames",
+        "severity": "medium",
+        "title": "Related-area includeNames parameter is undocumented"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-related",
+    "native_id": "geo-related",
+    "notes": "Return parents, children, siblings and statistically similar areas.",
+    "open": "operation/geo-related",
+    "parameters": [
+      {
+        "description": "GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": true,
+        "description": "Include human-readable area names where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeNames",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/related/{code}",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-related",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-related",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "List all related areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "List parents for an area identified by GSS code.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/parents/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/related/{code}/parents",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-parents",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "gap-geo-related-includenames",
+        "severity": "medium",
+        "title": "Related-area includeNames parameter is undocumented"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-parents",
+    "native_id": "geo-parents",
+    "notes": "List parents for an area identified by GSS code.",
+    "open": "operation/geo-parents",
+    "parameters": [
+      {
+        "description": "GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": true,
+        "description": "Include human-readable area names where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeNames",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/related/{code}/parents",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/parents/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-parents",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-parents",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "List parent areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/parents"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "List immediate children or children at a selected geography level.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/children/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/related/{code}/children",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-children",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "gap-geo-related-includenames",
+        "severity": "medium",
+        "title": "Related-area includeNames parameter is undocumented"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-children",
+    "native_id": "geo-children",
+    "notes": "List immediate children or children at a selected geography level.",
+    "open": "operation/geo-children",
+    "parameters": [
+      {
+        "description": "GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": null,
+        "description": "One or more geography-level keys, such as ltla or rgn.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geoLevel",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": true,
+        "description": "Include human-readable area names where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeNames",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/related/{code}/children",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/children/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-children",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-children",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "List child areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/children"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "List siblings sharing an immediate or selected parent level.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/siblings/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/related/{code}/siblings",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-siblings",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "gap-geo-related-includenames",
+        "severity": "medium",
+        "title": "Related-area includeNames parameter is undocumented"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-siblings",
+    "native_id": "geo-siblings",
+    "notes": "List siblings sharing an immediate or selected parent level.",
+    "open": "operation/geo-siblings",
+    "parameters": [
+      {
+        "description": "GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": null,
+        "description": "Parent geography level within which siblings are selected.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "parentLevel",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": true,
+        "description": "Include human-readable area names where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeNames",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/related/{code}/siblings",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/siblings/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-siblings",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-siblings",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "List sibling areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/siblings"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "List cluster members and the 20 most similar areas for supported groupings.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/similar/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/related/{code}/similar",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-similar",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "gap-geo-related-includenames",
+        "severity": "medium",
+        "title": "Related-area includeNames parameter is undocumented"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-similar",
+    "native_id": "geo-similar",
+    "notes": "List cluster members and the 20 most similar areas for supported groupings.",
+    "open": "operation/geo-similar",
+    "parameters": [
+      {
+        "description": "GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": true,
+        "description": "Include human-readable area names where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "includeNames",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/related/{code}/similar",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/similar/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-similar",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-similar",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "List statistically similar areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/similar"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return filtered, low-resolution boundaries as GeoJSON or TopoJSON.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/boundaries.[format]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/boundaries.{format}",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "geojson",
+      "topojson"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-boundaries",
+    "issue_count": 0,
+    "issues": [],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-boundaries",
+    "native_id": "geo-boundaries",
+    "notes": "Return filtered, low-resolution boundaries as GeoJSON or TopoJSON.",
+    "open": "operation/geo-boundaries",
+    "parameters": [
+      {
+        "description": "Path value for format.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "format",
+        "required": true,
+        "schema": {
+          "enum": [
+            "geojson",
+            "topojson"
+          ],
+          "type": "string"
+        }
+      },
+      {
+        "default": "latest",
+        "description": "Geography validity year or all/latest where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "year",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more of E, N, S or W, or all.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "country",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "ltla",
+        "description": "One or more geography-level keys, such as ltla or rgn.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geoLevel",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/boundaries.{format}",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/boundaries.[format]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-boundaries",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-boundaries",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "Get generalised boundaries",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/boundaries.{format}"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Search area names and optionally fall back to postcode autocomplete.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/search/[name]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [
+      "includeDates"
+    ],
+    "documented_path_template": "/api/v1/geo/search/{string}",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-search",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "drift-geo-includedates",
+        "severity": "high",
+        "title": "includeDates is documented where handlers reject it"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-search",
+    "native_id": "geo-search",
+    "notes": "Search area names and optionally fall back to postcode autocomplete.",
+    "open": "operation/geo-search",
+    "parameters": [
+      {
+        "description": "Area-name search string.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "name",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "latest",
+        "description": "Geography validity year or all/latest where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "year",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": 10,
+        "description": "Maximum number of search results.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      {
+        "default": 0,
+        "description": "Zero-based result offset.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "offset",
+        "required": false,
+        "schema": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      {
+        "default": false,
+        "description": "Fall back to postcode results when no area name matches.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "searchPostcodes",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Group returned areas by geography level.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "groupByLevel",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more geography-level keys, such as ltla or rgn.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geoLevel",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/search/{name}",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/search/[name]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-search",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-search",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "Search areas by name",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/search/{name}"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return areas containing a longitude and latitude.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/reverse/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [
+      "includeDates"
+    ],
+    "documented_path_template": "/api/v1/geo/reverse",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-reverse",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "drift-geo-includedates",
+        "severity": "high",
+        "title": "includeDates is documented where handlers reject it"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-reverse",
+    "native_id": "geo-reverse",
+    "notes": "Return areas containing a longitude and latitude.",
+    "open": "operation/geo-reverse",
+    "parameters": [
+      {
+        "description": "Longitude for reverse lookup.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "lng",
+        "required": true,
+        "schema": {
+          "maximum": 180,
+          "minimum": -180,
+          "type": "number"
+        }
+      },
+      {
+        "description": "Latitude for reverse lookup.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "lat",
+        "required": true,
+        "schema": {
+          "maximum": 90,
+          "minimum": -90,
+          "type": "number"
+        }
+      },
+      {
+        "default": "latest",
+        "description": "Geography validity year or all/latest where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "year",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more geography-level keys, such as ltla or rgn.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geoLevel",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": false,
+        "description": "Group returned areas by geography level.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "groupByLevel",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/reverse",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/reverse/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-reverse",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-reverse",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "Reverse geographic lookup",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/reverse"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return public postcode coordinates and containing geographies.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [
+      "includeDates"
+    ],
+    "documented_path_template": "/api/v1/geo/postcodes/{code}",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-postcode",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "drift-geo-includedates",
+        "severity": "high",
+        "title": "includeDates is documented where handlers reject it"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-postcode",
+    "native_id": "geo-postcode",
+    "notes": "Return public postcode coordinates and containing geographies.",
+    "open": "operation/geo-postcode",
+    "parameters": [
+      {
+        "description": "Complete UK postcode.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "latest",
+        "description": "Geography validity year or all/latest where supported.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "year",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "One or more geography-level keys, such as ltla or rgn.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "geoLevel",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": false,
+        "description": "Group returned areas by geography level.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "groupByLevel",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/postcodes/{code}",
+    "privacy_note": "The operation is public lookup metadata. The OKF bundle stores neither submitted postcodes nor returned coordinates.",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-postcode",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-postcode",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "Look up a full postcode",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return matching postcodes and public coordinates for a partial postcode.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/autocomplete/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/geo/postcodes/{partial_code}/autocomplete",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:geo-postcode-autocomplete",
+    "issue_count": 0,
+    "issues": [],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "geo-postcode-autocomplete",
+    "native_id": "geo-postcode-autocomplete",
+    "notes": "Return matching postcodes and public coordinates for a partial postcode.",
+    "open": "operation/geo-postcode-autocomplete",
+    "parameters": [
+      {
+        "description": "Partial UK postcode.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": 10,
+        "description": "Maximum number of search results.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      {
+        "default": 0,
+        "description": "Zero-based result offset.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "offset",
+        "required": false,
+        "schema": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      }
+    ],
+    "path_template": "/api/v1/geo/postcodes/{code}/autocomplete",
+    "privacy_note": "The OKF bundle stores neither submitted postcode fragments nor returned postcodes or coordinates.",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/autocomplete/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-postcode-autocomplete",
+    "record_type": "ELS API operation",
+    "route": "operation/geo-postcode-autocomplete",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "title": "Autocomplete a partial postcode",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}/autocomplete"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return metadata for indicators filtered by topic, geography and year.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/metadata/indicators",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:metadata-indicators",
+    "issue_count": 0,
+    "issues": [],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "metadata-indicators",
+    "native_id": "metadata-indicators",
+    "notes": "Return metadata for indicators filtered by topic, geography and year.",
+    "open": "operation/metadata-indicators",
+    "parameters": [
+      {
+        "default": "all",
+        "description": "One or more comma-separated topic or sub-topic codes, or all.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "topic",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "description": "One or more comma-separated indicator slugs, or all.",
+        "evidence": "source-only",
+        "in": "query",
+        "name": "indicator",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "Return indicators that include a geography level or GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "hasGeo",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "Return indicators that contain the specified YYYY year.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "hasYear",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": false,
+        "description": "Exclude multivariate indicators unless explicitly selected.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "excludeMultivariate",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Include all available dimension values.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "fullDims",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Return an object keyed by identifier instead of an array.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "asLookup",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/metadata/indicators",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:metadata-indicators",
+    "record_type": "ELS API operation",
+    "route": "operation/metadata-indicators",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [
+      "indicator"
+    ],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "metadata",
+      "internal-private-unstable"
+    ],
+    "title": "List indicator metadata",
+    "topics": [
+      "metadata"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return metadata for one indicator and optionally its full dimension values.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/metadata/indicators/{indicator}",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:metadata-indicator",
+    "issue_count": 0,
+    "issues": [],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "metadata-indicator",
+    "native_id": "metadata-indicator",
+    "notes": "Return metadata for one indicator and optionally its full dimension values.",
+    "open": "operation/metadata-indicator",
+    "parameters": [
+      {
+        "description": "Indicator slug.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "indicator",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": false,
+        "description": "Include all available dimension values.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "fullDims",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/metadata/indicators/{indicator}",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:metadata-indicator",
+    "record_type": "ELS API operation",
+    "route": "operation/metadata-indicator",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "metadata",
+      "internal-private-unstable"
+    ],
+    "title": "Get one indicator's metadata",
+    "topics": [
+      "metadata"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return possible values for a specific dimension of a specific indicator.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/dimensions/[...dimension]/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/metadata/indicators/{indicator}/{dimension}",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:metadata-dimension",
+    "issue_count": 1,
+    "issues": [
+      {
+        "id": "drift-metadata-dimension-route",
+        "severity": "high",
+        "title": "Dimension-values route differs"
+      }
+    ],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "metadata-dimension",
+    "native_id": "metadata-dimension",
+    "notes": "Return possible values for a specific dimension of a specific indicator.",
+    "open": "operation/metadata-dimension",
+    "parameters": [
+      {
+        "description": "Indicator slug.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "indicator",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "description": "Dimension code.",
+        "evidence": "wiki-and-source",
+        "in": "path",
+        "name": "dimension",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "path_template": "/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/dimensions/[...dimension]/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:metadata-dimension",
+    "record_type": "ELS API operation",
+    "route": "operation/metadata-dimension",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "metadata",
+      "internal-private-unstable"
+    ],
+    "title": "List values for one indicator dimension",
+    "topics": [
+      "metadata"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}"
+  },
+  {
+    "dcat_type": "hydra:Operation",
+    "description": "Return indicators grouped into topics and sub-topics, nested or flat.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "documentation_evidence": {
+      "source_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/taxonomy/+server.ts",
+      "verification_mode": "static-source-review",
+      "wiki": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "wiki_commit": "3da822e28d775f1213d328573da34aba8278d79f"
+    },
+    "documented_only_parameters": [],
+    "documented_path_template": "/api/v1/metadata/taxonomy",
+    "evidence_availability": {
+      "absent": [
+        "complete response schemas",
+        "common error schema",
+        "live deployment verification",
+        "stability guarantee",
+        "compatibility and deprecation policy"
+      ],
+      "present": [
+        "method",
+        "path",
+        "summary",
+        "parameter names",
+        "selected defaults",
+        "representation names",
+        "source provenance"
+      ],
+      "service_quality_evaluated": false
+    },
+    "execution": {
+      "included": false,
+      "live_verified": false,
+      "requires_explicit_client_action": true,
+      "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    },
+    "formats": [
+      "application-json"
+    ],
+    "host": "www.ons.gov.uk",
+    "id": "els-api:operation:metadata-taxonomy",
+    "issue_count": 0,
+    "issues": [],
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+    "license_title": "MIT (associated application repository)",
+    "metadata_modified": "2026-07-20T12:17:57+01:00",
+    "method": "GET",
+    "name": "metadata-taxonomy",
+    "native_id": "metadata-taxonomy",
+    "notes": "Return indicators grouped into topics and sub-topics, nested or flat.",
+    "open": "operation/metadata-taxonomy",
+    "parameters": [
+      {
+        "default": "all",
+        "description": "One or more comma-separated topic or sub-topic codes, or all.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "topic",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "Return indicators that include a geography level or GSS code.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "hasGeo",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": "all",
+        "description": "Return indicators that contain the specified YYYY year.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "hasYear",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "default": false,
+        "description": "Exclude multivariate indicators unless explicitly selected.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "excludeMultivariate",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "default": false,
+        "description": "Return a flattened taxonomy instead of nested topics.",
+        "evidence": "wiki-and-source",
+        "in": "query",
+        "name": "flat",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "path_template": "/api/v1/metadata/taxonomy",
+    "privacy_note": "",
+    "protocol": [
+      "HTTPS",
+      "REST/HTTP"
+    ],
+    "provenance": {
+      "retrieved_at": "2026-07-20T11:43:20Z",
+      "schema": "okf-provenance.v1",
+      "snapshot_id": "els-wiki-2026-07-20",
+      "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+      "source_handler_commit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+      "source_handler_url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/taxonomy/+server.ts",
+      "source_url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    },
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:metadata-taxonomy",
+    "record_type": "ELS API operation",
+    "route": "operation/metadata-taxonomy",
+    "source_adapter": "wiki-and-static-source-review",
+    "source_only_parameters": [],
+    "source_surface": "els-api-wiki",
+    "state": "internal-private-unstable",
+    "tags": [
+      "api",
+      "get",
+      "metadata",
+      "internal-private-unstable"
+    ],
+    "title": "List the indicator taxonomy",
+    "topics": [
+      "metadata"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/taxonomy"
+  }
+]

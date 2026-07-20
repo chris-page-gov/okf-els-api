@@ -1,0 +1,12 @@
+[
+  {
+    "dataset_count": 18,
+    "description": "Publisher of the Explore Local Statistics service.",
+    "id": "office-for-national-statistics",
+    "name": "office-for-national-statistics",
+    "resource_count": 18,
+    "route": "publisher/office-for-national-statistics",
+    "title": "Office for National Statistics",
+    "url": "https://www.ons.gov.uk/"
+  }
+]

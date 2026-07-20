@@ -1,0 +1,57 @@
+{
+  "application-json": {
+    "kind": "structured-data",
+    "label": "JSON",
+    "mediaType": "application/json",
+    "wiki": "API-overview"
+  },
+  "cols.json": {
+    "kind": "tabular-json",
+    "label": "Column-oriented JSON arrays",
+    "mediaType": "application/json",
+    "wiki": "Data-formats"
+  },
+  "csv": {
+    "kind": "tabular",
+    "label": "CSV",
+    "mediaType": "text/csv",
+    "wiki": "Data-formats"
+  },
+  "csvw": {
+    "kind": "tabular-metadata",
+    "label": "CSVW metadata",
+    "mediaType": "application/csvm+json",
+    "wiki": "Data-formats"
+  },
+  "geojson": {
+    "kind": "geospatial",
+    "label": "GeoJSON",
+    "mediaType": "application/geo+json",
+    "wiki": "Requesting-geographic-information"
+  },
+  "json-stat": {
+    "kind": "statistical-cube",
+    "label": "JSON-Stat",
+    "mediaType": "application/json",
+    "pathValue": "json",
+    "wiki": "Data-formats"
+  },
+  "rows.json": {
+    "kind": "tabular-json",
+    "label": "Row-oriented JSON array",
+    "mediaType": "application/json",
+    "wiki": "Data-formats"
+  },
+  "topojson": {
+    "kind": "geospatial",
+    "label": "TopoJSON",
+    "mediaType": "application/topo+json",
+    "wiki": "Requesting-geographic-information"
+  },
+  "xlsx": {
+    "kind": "spreadsheet",
+    "label": "Accessible XLSX spreadsheet",
+    "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "wiki": "Data-formats"
+  }
+}

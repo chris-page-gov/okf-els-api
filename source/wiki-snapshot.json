@@ -1,0 +1,78 @@
+{
+  "schema": "okf-els-api.wiki-snapshot.v1",
+  "snapshotId": "els-wiki-2026-07-20",
+  "retrievedAt": "2026-07-20T11:43:20Z",
+  "metadataOnly": true,
+  "observationsIncluded": false,
+  "source": {
+    "title": "Explore Local Statistics application wiki",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+    "gitUrl": "https://github.com/ONSdigital/explore-local-statistics-app.wiki.git",
+    "commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "commitDate": "2026-07-20T12:17:57+01:00",
+    "commitSubject": "Updated Requesting geographic information (markdown)"
+  },
+  "denominator": {
+    "pageCount": 6,
+    "representedPageCount": 6,
+    "unrepresentedPageCount": 0,
+    "lineCount": 548,
+    "byteCount": 31838,
+    "pageSetSha256": "0539fb15d0c35c9da1e149a2f082e897d30a6aeb548c0b47432d18e679895256"
+  },
+  "pages": [
+    {
+      "name": "API-overview",
+      "file": "API-overview.md",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/API-overview",
+      "lines": 73,
+      "bytes": 6259,
+      "sha256": "3cd0d3c641577924139bfdb0e53ed52c714cd68cb511f33100e7cabeb2704b97"
+    },
+    {
+      "name": "Data-formats",
+      "file": "Data-formats.md",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Data-formats",
+      "lines": 115,
+      "bytes": 6528,
+      "sha256": "5abc72a81ac74e3210ceb9087d64b506bf01a2a77520344cea330e88ff589bee"
+    },
+    {
+      "name": "Home",
+      "file": "Home.md",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+      "lines": 12,
+      "bytes": 1234,
+      "sha256": "f6c86981523374cf145298274d85011283719234d1a10eeb1f1c24cb9c94ca5e"
+    },
+    {
+      "name": "Requesting-data",
+      "file": "Requesting-data.md",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+      "lines": 164,
+      "bytes": 8711,
+      "sha256": "f15cc3eddb662a7b3e578a68cf7ce644ae8c2d8a39f06a047d7580f36d8643b7"
+    },
+    {
+      "name": "Requesting-geographic-information",
+      "file": "Requesting-geographic-information.md",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "lines": 141,
+      "bytes": 7030,
+      "sha256": "7eb059867836b105e6bde9aeb5eb7bf81952f6fc1c0c1ebe907c07871c388ba5"
+    },
+    {
+      "name": "Requesting-metadata",
+      "file": "Requesting-metadata.md",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "lines": 43,
+      "bytes": 2076,
+      "sha256": "ae20497f3249b5aa57fa13c7eece79201c9c075933c696ec234d2eb859be3682"
+    }
+  ],
+  "licenceEvidence": {
+    "status": "associated-repository",
+    "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+  }
+}

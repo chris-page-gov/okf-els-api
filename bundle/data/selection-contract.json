@@ -1,0 +1,48 @@
+{
+  "constraints": {
+    "documentedOnlyParameters": "Blocked until the wiki/source conflict is resolved.",
+    "method": "GET",
+    "operationId": [
+      "data",
+      "geo-boundaries",
+      "geo-children",
+      "geo-levels",
+      "geo-list",
+      "geo-lookup",
+      "geo-parents",
+      "geo-postcode",
+      "geo-postcode-autocomplete",
+      "geo-related",
+      "geo-reverse",
+      "geo-search",
+      "geo-siblings",
+      "geo-similar",
+      "metadata-dimension",
+      "metadata-indicator",
+      "metadata-indicators",
+      "metadata-taxonomy"
+    ],
+    "pathArguments": "Every path variable for the selected operation must be supplied.",
+    "queryArguments": "Names must be registered for the selected operation, except documented dimension_{code} dynamic filters."
+  },
+  "execution": {
+    "included": false,
+    "requiresExplicitClientAction": true,
+    "warning": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+  },
+  "outcomes": [
+    "unknown-operation",
+    "incomplete-path",
+    "unsupported-parameter",
+    "documented-source-conflict",
+    "complete-non-executing-plan"
+  ],
+  "purpose": "Validate a read-only request plan without executing it.",
+  "required": [
+    "operationId",
+    "method",
+    "pathArguments",
+    "queryArguments"
+  ],
+  "schema": "okf-els-api.selection-plan.v1"
+}

@@ -1,0 +1,175 @@
+{
+  "asLookup": {
+    "description": "Return an object keyed by identifier instead of an array.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "country": {
+    "description": "One or more of E, N, S or W, or all.",
+    "in": "query",
+    "type": "string"
+  },
+  "dimension_{code}": {
+    "description": "Dynamic non-time, non-geography dimension filter. Replace {code} with an indicator dimension code.",
+    "dynamic": true,
+    "in": "query",
+    "type": "string"
+  },
+  "excludeMultivariate": {
+    "description": "Exclude multivariate indicators unless explicitly selected.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "flat": {
+    "description": "Return a flattened taxonomy instead of nested topics.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "fullDims": {
+    "description": "Include all available dimension values.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "geo": {
+    "description": "One or more comma-separated geography-level keys or GSS codes.",
+    "in": "query",
+    "type": "string"
+  },
+  "geoCluster": {
+    "description": "Statistical cluster in grouping_cluster form.",
+    "in": "query",
+    "type": "string"
+  },
+  "geoExtent": {
+    "description": "Parent GSS code used to constrain returned geographies.",
+    "in": "query",
+    "type": "string"
+  },
+  "geoLevel": {
+    "description": "One or more geography-level keys, such as ltla or rgn.",
+    "in": "query",
+    "type": "string"
+  },
+  "groupByLevel": {
+    "description": "Group returned areas by geography level.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "hasGeo": {
+    "description": "Return indicators that include a geography level or GSS code.",
+    "in": "query",
+    "type": "string"
+  },
+  "hasYear": {
+    "description": "Return indicators that contain the specified YYYY year.",
+    "in": "query",
+    "type": "string"
+  },
+  "includeAreas": {
+    "description": "Include the individual area codes at each level.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "includeChildren": {
+    "description": "Include child GSS codes.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "includeDates": {
+    "description": "Include area start and end dates.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "includeLevel": {
+    "description": "Include the geography-level code.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "includeNames": {
+    "description": "Include human-readable area names where supported.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "includeParents": {
+    "description": "Include parent GSS codes.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "includeStatus": {
+    "description": "Include observation-level status identifiers where available.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "indicator": {
+    "description": "One or more comma-separated indicator slugs, or all.",
+    "in": "query",
+    "type": "string"
+  },
+  "lat": {
+    "description": "Latitude for reverse lookup.",
+    "in": "query",
+    "maximum": 90,
+    "minimum": -90,
+    "type": "number"
+  },
+  "limit": {
+    "description": "Maximum number of search results.",
+    "in": "query",
+    "minimum": 0,
+    "type": "integer"
+  },
+  "lng": {
+    "description": "Longitude for reverse lookup.",
+    "in": "query",
+    "maximum": 180,
+    "minimum": -180,
+    "type": "number"
+  },
+  "measure": {
+    "description": "One or more measures. The wiki lists this parameter but does not define its semantics.",
+    "in": "query",
+    "type": "string"
+  },
+  "offset": {
+    "description": "Zero-based result offset.",
+    "in": "query",
+    "minimum": 0,
+    "type": "integer"
+  },
+  "parentLevel": {
+    "description": "Parent geography level within which siblings are selected.",
+    "in": "query",
+    "type": "string"
+  },
+  "searchPostcodes": {
+    "description": "Fall back to postcode results when no area name matches.",
+    "in": "query",
+    "type": "boolean"
+  },
+  "time": {
+    "description": "latest, earliest, all, one date, or a comma-separated inclusive range.",
+    "in": "query",
+    "type": "string"
+  },
+  "timeNearest": {
+    "description": "Fallback behaviour when the selected date is outside an indicator's range.",
+    "enum": [
+      "none",
+      "latest",
+      "earliest",
+      "any"
+    ],
+    "in": "query",
+    "type": "string"
+  },
+  "topic": {
+    "description": "One or more comma-separated topic or sub-topic codes, or all.",
+    "in": "query",
+    "type": "string"
+  },
+  "year": {
+    "description": "Geography validity year or all/latest where supported.",
+    "in": "query",
+    "type": "string"
+  }
+}

@@ -1,0 +1,906 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "okf": "https://chris-page-gov.github.io/okf-explorer/vocab/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "urn:okf:els-api:catalogue",
+  "@type": "dcat:Catalog",
+  "dcat:record": [
+    {
+      "@id": "urn:okf:els-api:document:API-overview",
+      "@type": "foaf:Document",
+      "dct:identifier": "3cd0d3c641577924139bfdb0e53ed52c714cd68cb511f33100e7cabeb2704b97",
+      "dct:source": {
+        "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/API-overview"
+      },
+      "dct:title": "API overview"
+    },
+    {
+      "@id": "urn:okf:els-api:document:Data-formats",
+      "@type": "foaf:Document",
+      "dct:identifier": "5abc72a81ac74e3210ceb9087d64b506bf01a2a77520344cea330e88ff589bee",
+      "dct:source": {
+        "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Data-formats"
+      },
+      "dct:title": "Data formats"
+    },
+    {
+      "@id": "urn:okf:els-api:document:Home",
+      "@type": "foaf:Document",
+      "dct:identifier": "f6c86981523374cf145298274d85011283719234d1a10eeb1f1c24cb9c94ca5e",
+      "dct:source": {
+        "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki"
+      },
+      "dct:title": "Home"
+    },
+    {
+      "@id": "urn:okf:els-api:document:Requesting-data",
+      "@type": "foaf:Document",
+      "dct:identifier": "f15cc3eddb662a7b3e578a68cf7ce644ae8c2d8a39f06a047d7580f36d8643b7",
+      "dct:source": {
+        "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data"
+      },
+      "dct:title": "Requesting data"
+    },
+    {
+      "@id": "urn:okf:els-api:document:Requesting-geographic-information",
+      "@type": "foaf:Document",
+      "dct:identifier": "7eb059867836b105e6bde9aeb5eb7bf81952f6fc1c0c1ebe907c07871c388ba5",
+      "dct:source": {
+        "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+      },
+      "dct:title": "Requesting geographic information"
+    },
+    {
+      "@id": "urn:okf:els-api:document:Requesting-metadata",
+      "@type": "foaf:Document",
+      "dct:identifier": "ae20497f3249b5aa57fa13c7eece79201c9c075933c696ec234d2eb859be3682",
+      "dct:source": {
+        "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+      },
+      "dct:title": "Requesting metadata"
+    }
+  ],
+  "dcat:service": [
+    {
+      "@id": "urn:okf:els-api:service",
+      "@type": "dcat:DataService",
+      "dcat:endpointDescription": {
+        "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki"
+      },
+      "dcat:endpointURL": {
+        "@id": "https://www.ons.gov.uk/explore-local-statistics"
+      },
+      "dct:description": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests.",
+      "dct:title": "Explore Local Statistics internal API",
+      "hydra:supportedOperation": [
+        {
+          "@id": "urn:okf:els-api:operation:data",
+          "@type": "hydra:Operation",
+          "dct:description": "Filter one or more indicators by topic, geography, time, dimensions and measures.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data"
+          },
+          "dct:title": "Filter and download statistical data",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "format",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "topic",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "indicator",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "excludeMultivariate",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "time",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "timeNearest",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geo",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geoExtent",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geoCluster",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "hasGeo",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "dimension_{code}",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "measure",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeNames",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeStatus",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/data.{format}"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-list",
+          "@type": "hydra:Operation",
+          "dct:description": "List names, codes and selected metadata for geographies represented in ELS.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "List geographic areas",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geo",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geoExtent",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "year",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "indicator",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "asLookup",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "groupByLevel",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeParents",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeChildren",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeDates",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeLevel",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/list"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-levels",
+          "@type": "hydra:Operation",
+          "dct:description": "List geography-level keys, type prefixes and optionally their area codes.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "List geography levels",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "year",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeAreas",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/levels"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-lookup",
+          "@type": "hydra:Operation",
+          "dct:description": "Return a GeoJSON feature with boundary geometry and extended metadata for a GSS code.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "Look up one geographic area",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "code",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/lookup/{code}"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-related",
+          "@type": "hydra:Operation",
+          "dct:description": "Return parents, children, siblings and statistically similar areas.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "List all related areas",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "code",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeNames",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-parents",
+          "@type": "hydra:Operation",
+          "dct:description": "List parents for an area identified by GSS code.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "List parent areas",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "code",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeNames",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/parents"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-children",
+          "@type": "hydra:Operation",
+          "dct:description": "List immediate children or children at a selected geography level.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "List child areas",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "code",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geoLevel",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeNames",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/children"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-siblings",
+          "@type": "hydra:Operation",
+          "dct:description": "List siblings sharing an immediate or selected parent level.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "List sibling areas",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "code",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "parentLevel",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeNames",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/siblings"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-similar",
+          "@type": "hydra:Operation",
+          "dct:description": "List cluster members and the 20 most similar areas for supported groupings.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "List statistically similar areas",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "code",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "includeNames",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/similar"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-boundaries",
+          "@type": "hydra:Operation",
+          "dct:description": "Return filtered, low-resolution boundaries as GeoJSON or TopoJSON.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "Get generalised boundaries",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "format",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "year",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "country",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geoLevel",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/boundaries.{format}"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-search",
+          "@type": "hydra:Operation",
+          "dct:description": "Search area names and optionally fall back to postcode autocomplete.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "Search areas by name",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "name",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "year",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "limit",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "offset",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "searchPostcodes",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "groupByLevel",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geoLevel",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/search/{name}"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-reverse",
+          "@type": "hydra:Operation",
+          "dct:description": "Return areas containing a longitude and latitude.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "Reverse geographic lookup",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "lng",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "lat",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "year",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geoLevel",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "groupByLevel",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/reverse"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-postcode",
+          "@type": "hydra:Operation",
+          "dct:description": "Return public postcode coordinates and containing geographies.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "Look up a full postcode",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "code",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "year",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "geoLevel",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "groupByLevel",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:geo-postcode-autocomplete",
+          "@type": "hydra:Operation",
+          "dct:description": "Return matching postcodes and public coordinates for a partial postcode.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+          },
+          "dct:title": "Autocomplete a partial postcode",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "code",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "limit",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "offset",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}/autocomplete"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:metadata-indicators",
+          "@type": "hydra:Operation",
+          "dct:description": "Return metadata for indicators filtered by topic, geography and year.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+          },
+          "dct:title": "List indicator metadata",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "topic",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "indicator",
+                "okf:evidence": "source-only"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "hasGeo",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "hasYear",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "excludeMultivariate",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "fullDims",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "asLookup",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:metadata-indicator",
+          "@type": "hydra:Operation",
+          "dct:description": "Return metadata for one indicator and optionally its full dimension values.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+          },
+          "dct:title": "Get one indicator's metadata",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "indicator",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "fullDims",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:metadata-dimension",
+          "@type": "hydra:Operation",
+          "dct:description": "Return possible values for a specific dimension of a specific indicator.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+          },
+          "dct:title": "List values for one indicator dimension",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "indicator",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": true,
+                "hydra:variable": "dimension",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        },
+        {
+          "@id": "urn:okf:els-api:operation:metadata-taxonomy",
+          "@type": "hydra:Operation",
+          "dct:description": "Return indicators grouped into topics and sub-topics, nested or flat.",
+          "dct:source": {
+            "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+          },
+          "dct:title": "List the indicator taxonomy",
+          "hydra:expects": {
+            "@type": "hydra:IriTemplate",
+            "hydra:mapping": [
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "topic",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "hasGeo",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "hasYear",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "excludeMultivariate",
+                "okf:evidence": "wiki-and-source"
+              },
+              {
+                "@type": "hydra:IriTemplateMapping",
+                "hydra:required": false,
+                "hydra:variable": "flat",
+                "okf:evidence": "wiki-and-source"
+              }
+            ],
+            "hydra:template": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/taxonomy"
+          },
+          "hydra:method": "GET",
+          "okf:executionIncluded": false,
+          "okf:liveVerified": false
+        }
+      ],
+      "okf:executionIncluded": false,
+      "okf:observationsIncluded": false,
+      "okf:status": "internal-private-unstable"
+    }
+  ],
+  "dct:description": "Read-only statistical, metadata and geographic operations documented by the Explore Local Statistics application wiki.",
+  "dct:issued": "2026-07-20T11:43:20Z",
+  "dct:license": {
+    "@id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+  },
+  "dct:publisher": {
+    "@id": "https://www.ons.gov.uk/",
+    "@type": "foaf:Agent",
+    "foaf:name": "Office for National Statistics"
+  },
+  "dct:title": "Explore Local Statistics API discovery OKF",
+  "okf:alignmentClaim": {
+    "claim": "Bundle mapping only; not upstream conformance or service certification.",
+    "dcat-3": "aligned",
+    "hydra": "partial",
+    "openapi-3.1": "partial",
+    "prov-o": "aligned"
+  },
+  "prov:wasDerivedFrom": [
+    {
+      "@id": "https://github.com/ONSdigital/explore-local-statistics-app/wiki"
+    },
+    {
+      "@id": "https://github.com/ONSdigital/explore-local-statistics-app"
+    }
+  ]
+}

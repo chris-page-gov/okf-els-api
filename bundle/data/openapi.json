@@ -1,0 +1,1651 @@
+{
+  "info": {
+    "description": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests. This file is generated from a wiki snapshot and static source review; it is not an upstream ONS API contract.",
+    "license": {
+      "name": "MIT (associated application repository)",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+    },
+    "title": "Explore Local Statistics internal API — OKF review draft",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/v1/data.{format}": {
+      "get": {
+        "description": "Filter one or more indicators by topic, geography, time, dimensions and measures.",
+        "operationId": "data",
+        "parameters": [
+          {
+            "description": "Path value for format.",
+            "in": "path",
+            "name": "format",
+            "required": true,
+            "schema": {
+              "enum": [
+                "csv",
+                "csvw",
+                "json",
+                "xlsx",
+                "rows.json",
+                "cols.json"
+              ],
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more comma-separated topic or sub-topic codes, or all.",
+            "in": "query",
+            "name": "topic",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more comma-separated indicator slugs, or all.",
+            "in": "query",
+            "name": "indicator",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Exclude multivariate indicators unless explicitly selected.",
+            "in": "query",
+            "name": "excludeMultivariate",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "latest, earliest, all, one date, or a comma-separated inclusive range.",
+            "in": "query",
+            "name": "time",
+            "required": false,
+            "schema": {
+              "default": "latest",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Fallback behaviour when the selected date is outside an indicator's range.",
+            "in": "query",
+            "name": "timeNearest",
+            "required": false,
+            "schema": {
+              "default": "none",
+              "enum": [
+                "none",
+                "latest",
+                "earliest",
+                "any"
+              ],
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more comma-separated geography-level keys or GSS codes.",
+            "in": "query",
+            "name": "geo",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Parent GSS code used to constrain returned geographies.",
+            "in": "query",
+            "name": "geoExtent",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Statistical cluster in grouping_cluster form.",
+            "in": "query",
+            "name": "geoCluster",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Return indicators that include a geography level or GSS code.",
+            "in": "query",
+            "name": "hasGeo",
+            "required": false,
+            "schema": {
+              "default": "any",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more measures. The wiki lists this parameter but does not define its semantics.",
+            "in": "query",
+            "name": "measure",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include human-readable area names where supported.",
+            "in": "query",
+            "name": "includeNames",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include observation-level status identifiers where available.",
+            "in": "query",
+            "name": "includeStatus",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/csvm+json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              },
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              },
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                },
+                "x-okf-schema-status": "not-specified-by-wiki"
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                },
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "Filter and download statistical data",
+        "tags": [
+          "data"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+        "x-okf-documentation-issues": [
+          {
+            "id": "drift-data-hasgeo-default",
+            "severity": "medium",
+            "title": "hasGeo default differs"
+          },
+          {
+            "id": "drift-data-includenames",
+            "severity": "high",
+            "title": "Area-name parameter name and default conflict"
+          },
+          {
+            "id": "gap-data-measure",
+            "severity": "medium",
+            "title": "measure is listed but not explained"
+          },
+          {
+            "id": "gap-response-schemas",
+            "severity": "medium",
+            "title": "Response and error contracts are incomplete"
+          }
+        ],
+        "x-okf-dynamic-query-parameters": [
+          {
+            "default": "all",
+            "description": "Dynamic non-time, non-geography dimension filter. Replace {code} with an indicator dimension code.",
+            "dynamic": true,
+            "evidence": "wiki-and-source",
+            "in": "query",
+            "name": "dimension_{code}",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/data.[format]/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/boundaries.{format}": {
+      "get": {
+        "description": "Return filtered, low-resolution boundaries as GeoJSON or TopoJSON.",
+        "operationId": "geo_boundaries",
+        "parameters": [
+          {
+            "description": "Path value for format.",
+            "in": "path",
+            "name": "format",
+            "required": true,
+            "schema": {
+              "enum": [
+                "geojson",
+                "topojson"
+              ],
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Geography validity year or all/latest where supported.",
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "schema": {
+              "default": "latest",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more of E, N, S or W, or all.",
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more geography-level keys, such as ltla or rgn.",
+            "in": "query",
+            "name": "geoLevel",
+            "required": false,
+            "schema": {
+              "default": "ltla",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              },
+              "application/topo+json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "Get generalised boundaries",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/boundaries.[format]/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/levels": {
+      "get": {
+        "description": "List geography-level keys, type prefixes and optionally their area codes.",
+        "operationId": "geo_levels",
+        "parameters": [
+          {
+            "description": "Geography validity year or all/latest where supported.",
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "schema": {
+              "default": "latest",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include the individual area codes at each level.",
+            "in": "query",
+            "name": "includeAreas",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List geography levels",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/levels/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/list": {
+      "get": {
+        "description": "List names, codes and selected metadata for geographies represented in ELS.",
+        "operationId": "geo_list",
+        "parameters": [
+          {
+            "description": "One or more comma-separated geography-level keys or GSS codes.",
+            "in": "query",
+            "name": "geo",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Parent GSS code used to constrain returned geographies.",
+            "in": "query",
+            "name": "geoExtent",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Geography validity year or all/latest where supported.",
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "schema": {
+              "default": "latest",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more comma-separated indicator slugs, or all.",
+            "in": "query",
+            "name": "indicator",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Return an object keyed by identifier instead of an array.",
+            "in": "query",
+            "name": "asLookup",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Group returned areas by geography level.",
+            "in": "query",
+            "name": "groupByLevel",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include parent GSS codes.",
+            "in": "query",
+            "name": "includeParents",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include child GSS codes.",
+            "in": "query",
+            "name": "includeChildren",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include area start and end dates.",
+            "in": "query",
+            "name": "includeDates",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include the geography-level code.",
+            "in": "query",
+            "name": "includeLevel",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List geographic areas",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/list/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/lookup/{code}": {
+      "get": {
+        "description": "Return a GeoJSON feature with boundary geometry and extended metadata for a GSS code.",
+        "operationId": "geo_lookup",
+        "parameters": [
+          {
+            "description": "GSS code.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "Look up one geographic area",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/lookup/[code]/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/postcodes/{code}": {
+      "get": {
+        "description": "Return public postcode coordinates and containing geographies.",
+        "operationId": "geo_postcode",
+        "parameters": [
+          {
+            "description": "Complete UK postcode.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Geography validity year or all/latest where supported.",
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "schema": {
+              "default": "latest",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more geography-level keys, such as ltla or rgn.",
+            "in": "query",
+            "name": "geoLevel",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Group returned areas by geography level.",
+            "in": "query",
+            "name": "groupByLevel",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "Look up a full postcode",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [
+          {
+            "id": "drift-geo-includedates",
+            "severity": "high",
+            "title": "includeDates is documented where handlers reject it"
+          }
+        ],
+        "x-okf-documented-only-parameters": [
+          "includeDates"
+        ],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/postcodes/{code}/autocomplete": {
+      "get": {
+        "description": "Return matching postcodes and public coordinates for a partial postcode.",
+        "operationId": "geo_postcode_autocomplete",
+        "parameters": [
+          {
+            "description": "Partial UK postcode.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Maximum number of search results.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Zero-based result offset.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "Autocomplete a partial postcode",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [],
+        "x-okf-documented-path": "/api/v1/geo/postcodes/{partial_code}/autocomplete",
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/autocomplete/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/related/{code}": {
+      "get": {
+        "description": "Return parents, children, siblings and statistically similar areas.",
+        "operationId": "geo_related",
+        "parameters": [
+          {
+            "description": "GSS code.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include human-readable area names where supported.",
+            "in": "query",
+            "name": "includeNames",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List all related areas",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [
+          {
+            "id": "gap-geo-related-includenames",
+            "severity": "medium",
+            "title": "Related-area includeNames parameter is undocumented"
+          }
+        ],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/related/{code}/children": {
+      "get": {
+        "description": "List immediate children or children at a selected geography level.",
+        "operationId": "geo_children",
+        "parameters": [
+          {
+            "description": "GSS code.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more geography-level keys, such as ltla or rgn.",
+            "in": "query",
+            "name": "geoLevel",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include human-readable area names where supported.",
+            "in": "query",
+            "name": "includeNames",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List child areas",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [
+          {
+            "id": "gap-geo-related-includenames",
+            "severity": "medium",
+            "title": "Related-area includeNames parameter is undocumented"
+          }
+        ],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/children/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/related/{code}/parents": {
+      "get": {
+        "description": "List parents for an area identified by GSS code.",
+        "operationId": "geo_parents",
+        "parameters": [
+          {
+            "description": "GSS code.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include human-readable area names where supported.",
+            "in": "query",
+            "name": "includeNames",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List parent areas",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [
+          {
+            "id": "gap-geo-related-includenames",
+            "severity": "medium",
+            "title": "Related-area includeNames parameter is undocumented"
+          }
+        ],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/parents/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/related/{code}/siblings": {
+      "get": {
+        "description": "List siblings sharing an immediate or selected parent level.",
+        "operationId": "geo_siblings",
+        "parameters": [
+          {
+            "description": "GSS code.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Parent geography level within which siblings are selected.",
+            "in": "query",
+            "name": "parentLevel",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include human-readable area names where supported.",
+            "in": "query",
+            "name": "includeNames",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List sibling areas",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [
+          {
+            "id": "gap-geo-related-includenames",
+            "severity": "medium",
+            "title": "Related-area includeNames parameter is undocumented"
+          }
+        ],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/siblings/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/related/{code}/similar": {
+      "get": {
+        "description": "List cluster members and the 20 most similar areas for supported groupings.",
+        "operationId": "geo_similar",
+        "parameters": [
+          {
+            "description": "GSS code.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include human-readable area names where supported.",
+            "in": "query",
+            "name": "includeNames",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List statistically similar areas",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [
+          {
+            "id": "gap-geo-related-includenames",
+            "severity": "medium",
+            "title": "Related-area includeNames parameter is undocumented"
+          }
+        ],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/similar/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/reverse": {
+      "get": {
+        "description": "Return areas containing a longitude and latitude.",
+        "operationId": "geo_reverse",
+        "parameters": [
+          {
+            "description": "Longitude for reverse lookup.",
+            "in": "query",
+            "name": "lng",
+            "required": true,
+            "schema": {
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Latitude for reverse lookup.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "schema": {
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Geography validity year or all/latest where supported.",
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "schema": {
+              "default": "latest",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more geography-level keys, such as ltla or rgn.",
+            "in": "query",
+            "name": "geoLevel",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Group returned areas by geography level.",
+            "in": "query",
+            "name": "groupByLevel",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "Reverse geographic lookup",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [
+          {
+            "id": "drift-geo-includedates",
+            "severity": "high",
+            "title": "includeDates is documented where handlers reject it"
+          }
+        ],
+        "x-okf-documented-only-parameters": [
+          "includeDates"
+        ],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/reverse/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/geo/search/{name}": {
+      "get": {
+        "description": "Search area names and optionally fall back to postcode autocomplete.",
+        "operationId": "geo_search",
+        "parameters": [
+          {
+            "description": "Area-name search string.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Geography validity year or all/latest where supported.",
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "schema": {
+              "default": "latest",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Maximum number of search results.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Zero-based result offset.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Fall back to postcode results when no area name matches.",
+            "in": "query",
+            "name": "searchPostcodes",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Group returned areas by geography level.",
+            "in": "query",
+            "name": "groupByLevel",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more geography-level keys, such as ltla or rgn.",
+            "in": "query",
+            "name": "geoLevel",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "Search areas by name",
+        "tags": [
+          "geography"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+        "x-okf-documentation-issues": [
+          {
+            "id": "drift-geo-includedates",
+            "severity": "high",
+            "title": "includeDates is documented where handlers reject it"
+          }
+        ],
+        "x-okf-documented-only-parameters": [
+          "includeDates"
+        ],
+        "x-okf-documented-path": "/api/v1/geo/search/{string}",
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/search/[name]/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/metadata/indicators": {
+      "get": {
+        "description": "Return metadata for indicators filtered by topic, geography and year.",
+        "operationId": "metadata_indicators",
+        "parameters": [
+          {
+            "description": "One or more comma-separated topic or sub-topic codes, or all.",
+            "in": "query",
+            "name": "topic",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "One or more comma-separated indicator slugs, or all.",
+            "in": "query",
+            "name": "indicator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "source-only"
+          },
+          {
+            "description": "Return indicators that include a geography level or GSS code.",
+            "in": "query",
+            "name": "hasGeo",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Return indicators that contain the specified YYYY year.",
+            "in": "query",
+            "name": "hasYear",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Exclude multivariate indicators unless explicitly selected.",
+            "in": "query",
+            "name": "excludeMultivariate",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include all available dimension values.",
+            "in": "query",
+            "name": "fullDims",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Return an object keyed by identifier instead of an array.",
+            "in": "query",
+            "name": "asLookup",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List indicator metadata",
+        "tags": [
+          "metadata"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+        "x-okf-documentation-issues": [],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+        "x-okf-source-only-parameters": [
+          "indicator"
+        ],
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/metadata/indicators/{indicator}": {
+      "get": {
+        "description": "Return metadata for one indicator and optionally its full dimension values.",
+        "operationId": "metadata_indicator",
+        "parameters": [
+          {
+            "description": "Indicator slug.",
+            "in": "path",
+            "name": "indicator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Include all available dimension values.",
+            "in": "query",
+            "name": "fullDims",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "Get one indicator's metadata",
+        "tags": [
+          "metadata"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+        "x-okf-documentation-issues": [],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}": {
+      "get": {
+        "description": "Return possible values for a specific dimension of a specific indicator.",
+        "operationId": "metadata_dimension",
+        "parameters": [
+          {
+            "description": "Indicator slug.",
+            "in": "path",
+            "name": "indicator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Dimension code.",
+            "in": "path",
+            "name": "dimension",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List values for one indicator dimension",
+        "tags": [
+          "metadata"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+        "x-okf-documentation-issues": [
+          {
+            "id": "drift-metadata-dimension-route",
+            "severity": "high",
+            "title": "Dimension-values route differs"
+          }
+        ],
+        "x-okf-documented-path": "/api/v1/metadata/indicators/{indicator}/{dimension}",
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/dimensions/[...dimension]/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    },
+    "/api/v1/metadata/taxonomy": {
+      "get": {
+        "description": "Return indicators grouped into topics and sub-topics, nested or flat.",
+        "operationId": "metadata_taxonomy",
+        "parameters": [
+          {
+            "description": "One or more comma-separated topic or sub-topic codes, or all.",
+            "in": "query",
+            "name": "topic",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Return indicators that include a geography level or GSS code.",
+            "in": "query",
+            "name": "hasGeo",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Return indicators that contain the specified YYYY year.",
+            "in": "query",
+            "name": "hasYear",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "type": "string"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Exclude multivariate indicators unless explicitly selected.",
+            "in": "query",
+            "name": "excludeMultivariate",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          },
+          {
+            "description": "Return a flattened taxonomy instead of nested topics.",
+            "in": "query",
+            "name": "flat",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-okf-evidence": "wiki-and-source"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {},
+                "x-okf-schema-status": "not-specified-by-wiki"
+              }
+            },
+            "description": "Successful response. The wiki does not provide a complete response schema."
+          },
+          "400": {
+            "description": "Invalid, duplicate, unsupported or oversized request."
+          },
+          "404": {
+            "description": "Requested indicator, dimension or area was not found."
+          }
+        },
+        "summary": "List the indicator taxonomy",
+        "tags": [
+          "metadata"
+        ],
+        "x-okf-documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+        "x-okf-documentation-issues": [],
+        "x-okf-execution-included": false,
+        "x-okf-live-verified": false,
+        "x-okf-source-handler": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/taxonomy/+server.ts",
+        "x-okf-status": "review-draft-not-upstream-contract"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.ons.gov.uk/explore-local-statistics"
+    }
+  ],
+  "tags": [
+    {
+      "description": "Statistical filtering and download.",
+      "name": "data"
+    },
+    {
+      "description": "Indicator metadata and taxonomy.",
+      "name": "metadata"
+    },
+    {
+      "description": "Area metadata and boundaries.",
+      "name": "geography"
+    }
+  ],
+  "x-okf": {
+    "executionIncluded": false,
+    "liveProbePerformed": false,
+    "observationsIncluded": false,
+    "schema": "okf-els-api.openapi-review.v1",
+    "sourceCommit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+    "sourceSnapshot": "els-wiki-2026-07-20",
+    "status": "review-draft",
+    "wikiCommit": "3da822e28d775f1213d328573da34aba8278d79f"
+  }
+}

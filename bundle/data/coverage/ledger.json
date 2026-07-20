@@ -1,0 +1,27 @@
+{
+  "claim": "Complete for the six declared wiki pages and the reviewed v1 GET route handler set only; not complete for all ELS behaviour or deployment state.",
+  "exclusions": [
+    "Live API responses and production deployment verification",
+    "Observation values and statistical cells",
+    "Boundary geometries, postcode results and coordinates",
+    "Credentials, cookies and personal information",
+    "Historical routes and compatibility behaviour",
+    "Complete response schema inference"
+  ],
+  "implementationReview": {
+    "completeForAllBehaviour": false,
+    "handlerFiles": 17,
+    "operationRecords": 18,
+    "routeSetSha256": "7dbaee547e1f9a9f7656feaf6cc944e8449f7d25ac4ec8f259ff4b2d40edd589"
+  },
+  "schema": "okf-els-api.coverage.v1",
+  "snapshot": "els-wiki-2026-07-20",
+  "status": "bounded-source-snapshot",
+  "wiki": {
+    "completeForDeclaredFiles": true,
+    "expected": 6,
+    "pageSetSha256": "0539fb15d0c35c9da1e149a2f082e897d30a6aeb548c0b47432d18e679895256",
+    "represented": 6,
+    "unrepresented": 0
+  }
+}

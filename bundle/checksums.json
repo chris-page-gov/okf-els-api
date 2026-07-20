@@ -1,0 +1,103 @@
+{
+  "algorithm": "sha256",
+  "fileCount": 19,
+  "files": [
+    {
+      "bytes": 305,
+      "path": "context/okf-els-api.jsonld",
+      "sha256": "e88f5e90d3dd4f32ca191c18eae818fb1e393c6637b3de0c4bdb3e8eb08280da"
+    },
+    {
+      "bytes": 1041,
+      "path": "data/coverage/ledger.json",
+      "sha256": "ab3489a06d1e4dcd78e24e922acf94954af921c6f475a33d898e05feb6cb0fd1"
+    },
+    {
+      "bytes": 93301,
+      "path": "data/datasets-0.json",
+      "sha256": "02c3b89342b2fcc6dd828f21f226329a08a99bc6b6ef879888e48e04401663b7"
+    },
+    {
+      "bytes": 5108,
+      "path": "data/documents-0.json",
+      "sha256": "8e4d807cee8006cd8437d85d87dd250ba0be0fa06112925830868f5cefeb35c7"
+    },
+    {
+      "bytes": 1356,
+      "path": "data/facets.json",
+      "sha256": "522cc8f0280ae9c1fbe63472652034b203e86518d6f16c0b6482cf4e18569682"
+    },
+    {
+      "bytes": 1414,
+      "path": "data/formats.json",
+      "sha256": "30645407c0714fdb632750b0cbb13baeef0a0f3f7b6cbbc0d99c4543ad802f07"
+    },
+    {
+      "bytes": 1113,
+      "path": "data/manifest.json",
+      "sha256": "609b17e549a9d85a95433dc60571d1bf6ca60200f0f24d793386d7be8ade8dfb"
+    },
+    {
+      "bytes": 57542,
+      "path": "data/openapi.json",
+      "sha256": "6f638a29d484b3225af6bec42dddafa4aabf195598b6a2ba0f449928f56e6681"
+    },
+    {
+      "bytes": 776,
+      "path": "data/overview.json",
+      "sha256": "1ea0431db9625c061530c2e73aed7b78fc6f269b0baff9b6bab385b94d1efae7"
+    },
+    {
+      "bytes": 4572,
+      "path": "data/parameters.json",
+      "sha256": "c1183275063c3196994f3df3e1cbbb5029ad342d14ab178f69b7fe6e9f0c548b"
+    },
+    {
+      "bytes": 3001,
+      "path": "data/provenance/wiki-snapshot.json",
+      "sha256": "397d82ad0165164eaea30dbf11e174a1c04effe2eee2c136d739d6bb4e63c432"
+    },
+    {
+      "bytes": 367,
+      "path": "data/publishers-0.json",
+      "sha256": "b5b46847293b960810fcfd02a3dc8c9d99b8bf7c28394880afd7de8a0eebbeba"
+    },
+    {
+      "bytes": 10172,
+      "path": "data/relationships-0.json",
+      "sha256": "b9dcd89f44de47515621141df6be1e6cbb79a11f31283fbbe16794c25a138f72"
+    },
+    {
+      "bytes": 32317,
+      "path": "data/resources-0.json",
+      "sha256": "61fc3ace4db93c53370ec7cd5fd8013a8a9a88af153dc914d94bbe646b6a86cb"
+    },
+    {
+      "bytes": 4780,
+      "path": "data/review/issues.json",
+      "sha256": "5aa2b88cf7521b37810662bb2b14f04f030a5a96549d69fe65630e572c0811fc"
+    },
+    {
+      "bytes": 1446,
+      "path": "data/selection-contract.json",
+      "sha256": "c3d1c11d33d4aa5160e2943036b23ec0c08452ab82508c54308bc9983477e706"
+    },
+    {
+      "bytes": 334,
+      "path": "index.md",
+      "sha256": "7452c0d1b5f18c30fb3451ac41b5e1a72a700d2b1fbab501b2b17d4b310eb677"
+    },
+    {
+      "bytes": 35674,
+      "path": "okf-bundle.jsonld",
+      "sha256": "a78d931dc6d02fb3bd30819fa93ccb913921596030b2ff3933545d6ccbb6480a"
+    },
+    {
+      "bytes": 3035,
+      "path": "okf-explorer.json",
+      "sha256": "0e6f25647fd8de6b1afd959eb78271327ad4475025e339c99852a4fe6cb07e0f"
+    }
+  ],
+  "rootSha256": "18bb9a63d14749fefe038543dba85e00dc8696f9c4b8f8c2f625e02a8831fa73",
+  "schema": "okf-els-api.checksums.v1"
+}

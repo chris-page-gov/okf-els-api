@@ -1,0 +1,110 @@
+[
+  {
+    "bytes": 6259,
+    "file": "API-overview.md",
+    "id": "els-api:document:API-overview",
+    "license_evidence": {
+      "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
+      "status": "associated-repository",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+    },
+    "lines": 73,
+    "name": "API-overview",
+    "record_type": "Wiki documentation page",
+    "retrieved_at": "2026-07-20T11:43:20Z",
+    "sha256": "3cd0d3c641577924139bfdb0e53ed52c714cd68cb511f33100e7cabeb2704b97",
+    "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "title": "API overview",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/API-overview"
+  },
+  {
+    "bytes": 6528,
+    "file": "Data-formats.md",
+    "id": "els-api:document:Data-formats",
+    "license_evidence": {
+      "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
+      "status": "associated-repository",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+    },
+    "lines": 115,
+    "name": "Data-formats",
+    "record_type": "Wiki documentation page",
+    "retrieved_at": "2026-07-20T11:43:20Z",
+    "sha256": "5abc72a81ac74e3210ceb9087d64b506bf01a2a77520344cea330e88ff589bee",
+    "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "title": "Data formats",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Data-formats"
+  },
+  {
+    "bytes": 1234,
+    "file": "Home.md",
+    "id": "els-api:document:Home",
+    "license_evidence": {
+      "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
+      "status": "associated-repository",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+    },
+    "lines": 12,
+    "name": "Home",
+    "record_type": "Wiki documentation page",
+    "retrieved_at": "2026-07-20T11:43:20Z",
+    "sha256": "f6c86981523374cf145298274d85011283719234d1a10eeb1f1c24cb9c94ca5e",
+    "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "title": "Home",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki"
+  },
+  {
+    "bytes": 8711,
+    "file": "Requesting-data.md",
+    "id": "els-api:document:Requesting-data",
+    "license_evidence": {
+      "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
+      "status": "associated-repository",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+    },
+    "lines": 164,
+    "name": "Requesting-data",
+    "record_type": "Wiki documentation page",
+    "retrieved_at": "2026-07-20T11:43:20Z",
+    "sha256": "f15cc3eddb662a7b3e578a68cf7ce644ae8c2d8a39f06a047d7580f36d8643b7",
+    "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "title": "Requesting data",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data"
+  },
+  {
+    "bytes": 7030,
+    "file": "Requesting-geographic-information.md",
+    "id": "els-api:document:Requesting-geographic-information",
+    "license_evidence": {
+      "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
+      "status": "associated-repository",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+    },
+    "lines": 141,
+    "name": "Requesting-geographic-information",
+    "record_type": "Wiki documentation page",
+    "retrieved_at": "2026-07-20T11:43:20Z",
+    "sha256": "7eb059867836b105e6bde9aeb5eb7bf81952f6fc1c0c1ebe907c07871c388ba5",
+    "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "title": "Requesting geographic information",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+  },
+  {
+    "bytes": 2076,
+    "file": "Requesting-metadata.md",
+    "id": "els-api:document:Requesting-metadata",
+    "license_evidence": {
+      "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
+      "status": "associated-repository",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+    },
+    "lines": 43,
+    "name": "Requesting-metadata",
+    "record_type": "Wiki documentation page",
+    "retrieved_at": "2026-07-20T11:43:20Z",
+    "sha256": "ae20497f3249b5aa57fa13c7eece79201c9c075933c696ec234d2eb859be3682",
+    "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "title": "Requesting metadata",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+  }
+]
