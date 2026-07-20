@@ -26,6 +26,8 @@ python3 -m unittest discover -s tests -v
 
 The public entrypoints are:
 
+- [GitHub Pages landing page](https://chris-page-gov.github.io/okf-els-api/);
+- [Open in OKF Explorer](https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json);
 - `bundle/okf-explorer.json` — portable OKF Explorer descriptor;
 - `bundle/okf-bundle.jsonld` — semantic DCAT/Hydra/PROV descriptor;
 - `bundle/data/openapi.json` — review-draft OpenAPI 3.1 description;

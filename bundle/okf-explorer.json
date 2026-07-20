@@ -1,6 +1,6 @@
 {
   "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld",
-  "@id": "urn:okf:els-api:descriptor",
+  "@id": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
   "counts": {
     "datasets": 18,
     "documents": 6,
@@ -36,12 +36,22 @@
       "conflicts_preserved": true,
       "live_probe_performed": false,
       "review": "review"
+    },
+    "okf-pages-publication.v1": {
+      "descriptor": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
+      "explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json",
+      "site": "https://chris-page-gov.github.io/okf-els-api/"
     }
   },
   "generated_at": "2026-07-20T11:43:20Z",
   "kind": "okf-small-api-corpus",
   "license": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
   "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
+  "publication": {
+    "descriptor": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
+    "okf_explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json",
+    "site": "https://chris-page-gov.github.io/okf-els-api/"
+  },
   "publisher": "https://www.ons.gov.uk/",
   "schema": "okf-explorer-large-corpus.v1",
   "scope": {
