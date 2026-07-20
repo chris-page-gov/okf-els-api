@@ -49,6 +49,22 @@ class BundleTests(unittest.TestCase):
         self.assertEqual(manifest["counts"]["datasets"], 18)
         self.assertEqual(manifest["counts"]["resources"], 18)
 
+    def test_pages_landing_and_okf_explorer_link(self) -> None:
+        descriptor = load("okf-explorer.json")
+        publication = descriptor["publication"]
+        self.assertEqual(
+            publication["descriptor"],
+            "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
+        )
+        self.assertIn(
+            "bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json",
+            publication["okf_explorer"],
+        )
+        landing = (BUNDLE / "index.html").read_text(encoding="utf-8")
+        self.assertIn(publication["okf_explorer"], landing)
+        self.assertTrue((BUNDLE / "site.css").is_file())
+        self.assertTrue((BUNDLE / ".nojekyll").is_file())
+
     def test_every_operation_is_non_executing_get(self) -> None:
         operations = load("data/datasets-0.json")
         self.assertEqual(len(operations), 18)

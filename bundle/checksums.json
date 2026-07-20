@@ -1,7 +1,12 @@
 {
   "algorithm": "sha256",
-  "fileCount": 19,
+  "fileCount": 22,
   "files": [
+    {
+      "bytes": 0,
+      "path": ".nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
     {
       "bytes": 305,
       "path": "context/okf-els-api.jsonld",
@@ -83,6 +88,11 @@
       "sha256": "c3d1c11d33d4aa5160e2943036b23ec0c08452ab82508c54308bc9983477e706"
     },
     {
+      "bytes": 4263,
+      "path": "index.html",
+      "sha256": "8a7484815a1535927c2d4196c0a21b8414f83d4e86d316fdc784d8568d5a76dd"
+    },
+    {
       "bytes": 334,
       "path": "index.md",
       "sha256": "7452c0d1b5f18c30fb3451ac41b5e1a72a700d2b1fbab501b2b17d4b310eb677"
@@ -93,11 +103,16 @@
       "sha256": "a78d931dc6d02fb3bd30819fa93ccb913921596030b2ff3933545d6ccbb6480a"
     },
     {
-      "bytes": 3035,
+      "bytes": 3726,
       "path": "okf-explorer.json",
-      "sha256": "0e6f25647fd8de6b1afd959eb78271327ad4475025e339c99852a4fe6cb07e0f"
+      "sha256": "18fbeb766307303cd0e6cb1e0797fcba0538c46d6921d29c753a5142dd455c09"
+    },
+    {
+      "bytes": 4249,
+      "path": "site.css",
+      "sha256": "e236d54b1afd0835a00c7bc0796c16b73d2c1c18b20c5bfa5f015248e88e91d5"
     }
   ],
-  "rootSha256": "18bb9a63d14749fefe038543dba85e00dc8696f9c4b8f8c2f625e02a8831fa73",
+  "rootSha256": "321a1288361d261b06dbd0b7fbcb5643d2641f188deb819d3d3c740f672683bc",
   "schema": "okf-els-api.checksums.v1"
 }

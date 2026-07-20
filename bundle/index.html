@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Metadata-only OKF discovery bundle for the Explore Local Statistics internal API documentation.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Explore Local Statistics API · Open Knowledge Format</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to bundle summary</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="./" aria-label="Explore Local Statistics API OKF home">
+        <span class="brand-mark" aria-hidden="true">OKF</span>
+        <span>
+          <strong>Explore Local Statistics API</strong>
+          <small>metadata-only discovery bundle</small>
+        </span>
+      </a>
+      <nav aria-label="Bundle links">
+        <a href="okf-explorer.json">Descriptor</a>
+        <a href="data/openapi.json">OpenAPI</a>
+        <a href="data/review/issues.json">Review findings</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Bounded source snapshot · read-only documentation</p>
+          <h1>Discover the ELS API surface without executing it.</h1>
+          <p class="lede">
+            A portable catalogue of routes, parameters, representations,
+            provenance and known differences between the wiki and application source.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json" rel="noreferrer">
+              Open in OKF Explorer
+            </a>
+            <a class="button secondary" href="okf-explorer.json">
+              View machine descriptor
+            </a>
+          </div>
+        </div>
+        <aside class="warning" aria-labelledby="warning-title">
+          <h2 id="warning-title">Upstream usage boundary</h2>
+          <p>The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests.</p>
+        </aside>
+      </div>
+    </section>
+    <section class="shell summary" aria-labelledby="summary-title">
+      <div>
+        <p class="eyebrow">Published snapshot</p>
+        <h2 id="summary-title">What is represented</h2>
+      </div>
+      <dl class="cards">
+        <div><dt>GET operations</dt><dd>18</dd></div>
+        <div><dt>Wiki pages</dt><dd>6</dd></div>
+        <div><dt>Review findings</dt><dd>9</dd></div>
+        <div><dt>Snapshot</dt><dd class="text-value">els-wiki-2026-07-20</dd></div>
+      </dl>
+    </section>
+    <section class="shell files" aria-labelledby="files-title">
+      <p class="eyebrow">Human and machine entrypoints</p>
+      <h2 id="files-title">Use the evidence directly</h2>
+      <div class="file-grid">
+        <a href="okf-explorer.json"><strong>OKF descriptor</strong><span>Portable OKF Explorer entrypoint</span></a>
+        <a href="okf-bundle.jsonld"><strong>Semantic JSON-LD</strong><span>DCAT, Hydra and PROV representation</span></a>
+        <a href="data/openapi.json"><strong>OpenAPI review draft</strong><span>18 source-reviewed GET operations</span></a>
+        <a href="data/review/issues.json"><strong>Drift register</strong><span>Wiki conflicts and documentation gaps</span></a>
+        <a href="data/coverage/ledger.json"><strong>Coverage ledger</strong><span>Bounded denominator and exclusions</span></a>
+        <a href="checksums.json"><strong>Checksums</strong><span>Deterministic SHA-256 manifest</span></a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="shell">
+      <p>No observation values, postcode results, boundaries, coordinates or credentials are stored.</p>
+      <a href="https://github.com/chris-page-gov/okf-els-api">Source repository</a>
+    </div>
+  </footer>
+</body>
+</html>
