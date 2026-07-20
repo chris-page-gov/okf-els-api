@@ -1,0 +1,4670 @@
+{
+  "all": [
+    {
+      "df": 1,
+      "token": "all"
+    }
+  ],
+  "api": [
+    {
+      "df": 18,
+      "token": "api"
+    }
+  ],
+  "app": [
+    {
+      "df": 15,
+      "token": "application-json"
+    }
+  ],
+  "appl": [
+    {
+      "df": 15,
+      "token": "application-json"
+    }
+  ],
+  "appli": [
+    {
+      "df": 15,
+      "token": "application-json"
+    }
+  ],
+  "applic": [
+    {
+      "df": 15,
+      "token": "application-json"
+    }
+  ],
+  "applica": [
+    {
+      "df": 15,
+      "token": "application-json"
+    }
+  ],
+  "applicat": [
+    {
+      "df": 15,
+      "token": "application-json"
+    }
+  ],
+  "are": [
+    {
+      "df": 8,
+      "token": "areas"
+    },
+    {
+      "df": 4,
+      "token": "area"
+    }
+  ],
+  "area": [
+    {
+      "df": 8,
+      "token": "areas"
+    },
+    {
+      "df": 4,
+      "token": "area"
+    }
+  ],
+  "areas": [
+    {
+      "df": 8,
+      "token": "areas"
+    }
+  ],
+  "asl": [
+    {
+      "df": 2,
+      "token": "aslookup"
+    }
+  ],
+  "aslo": [
+    {
+      "df": 2,
+      "token": "aslookup"
+    }
+  ],
+  "asloo": [
+    {
+      "df": 2,
+      "token": "aslookup"
+    }
+  ],
+  "aslook": [
+    {
+      "df": 2,
+      "token": "aslookup"
+    }
+  ],
+  "aslooku": [
+    {
+      "df": 2,
+      "token": "aslookup"
+    }
+  ],
+  "aslookup": [
+    {
+      "df": 2,
+      "token": "aslookup"
+    }
+  ],
+  "aut": [
+    {
+      "df": 2,
+      "token": "autocomplete"
+    }
+  ],
+  "auto": [
+    {
+      "df": 2,
+      "token": "autocomplete"
+    }
+  ],
+  "autoc": [
+    {
+      "df": 2,
+      "token": "autocomplete"
+    }
+  ],
+  "autoco": [
+    {
+      "df": 2,
+      "token": "autocomplete"
+    }
+  ],
+  "autocom": [
+    {
+      "df": 2,
+      "token": "autocomplete"
+    }
+  ],
+  "autocomp": [
+    {
+      "df": 2,
+      "token": "autocomplete"
+    }
+  ],
+  "bac": [
+    {
+      "df": 1,
+      "token": "back"
+    }
+  ],
+  "back": [
+    {
+      "df": 1,
+      "token": "back"
+    }
+  ],
+  "bou": [
+    {
+      "df": 1,
+      "token": "boundaries"
+    },
+    {
+      "df": 1,
+      "token": "boundary"
+    }
+  ],
+  "boun": [
+    {
+      "df": 1,
+      "token": "boundaries"
+    },
+    {
+      "df": 1,
+      "token": "boundary"
+    }
+  ],
+  "bound": [
+    {
+      "df": 1,
+      "token": "boundaries"
+    },
+    {
+      "df": 1,
+      "token": "boundary"
+    }
+  ],
+  "bounda": [
+    {
+      "df": 1,
+      "token": "boundaries"
+    },
+    {
+      "df": 1,
+      "token": "boundary"
+    }
+  ],
+  "boundar": [
+    {
+      "df": 1,
+      "token": "boundaries"
+    },
+    {
+      "df": 1,
+      "token": "boundary"
+    }
+  ],
+  "boundari": [
+    {
+      "df": 1,
+      "token": "boundaries"
+    }
+  ],
+  "boundary": [
+    {
+      "df": 1,
+      "token": "boundary"
+    }
+  ],
+  "bun": [
+    {
+      "df": 18,
+      "token": "bundle"
+    }
+  ],
+  "bund": [
+    {
+      "df": 18,
+      "token": "bundle"
+    }
+  ],
+  "bundl": [
+    {
+      "df": 18,
+      "token": "bundle"
+    }
+  ],
+  "bundle": [
+    {
+      "df": 18,
+      "token": "bundle"
+    }
+  ],
+  "chi": [
+    {
+      "df": 2,
+      "token": "children"
+    },
+    {
+      "df": 1,
+      "token": "child"
+    }
+  ],
+  "chil": [
+    {
+      "df": 2,
+      "token": "children"
+    },
+    {
+      "df": 1,
+      "token": "child"
+    }
+  ],
+  "child": [
+    {
+      "df": 2,
+      "token": "children"
+    },
+    {
+      "df": 1,
+      "token": "child"
+    }
+  ],
+  "childr": [
+    {
+      "df": 2,
+      "token": "children"
+    }
+  ],
+  "childre": [
+    {
+      "df": 2,
+      "token": "children"
+    }
+  ],
+  "children": [
+    {
+      "df": 2,
+      "token": "children"
+    }
+  ],
+  "clu": [
+    {
+      "df": 1,
+      "token": "cluster"
+    }
+  ],
+  "clus": [
+    {
+      "df": 1,
+      "token": "cluster"
+    }
+  ],
+  "clust": [
+    {
+      "df": 1,
+      "token": "cluster"
+    }
+  ],
+  "cluste": [
+    {
+      "df": 1,
+      "token": "cluster"
+    }
+  ],
+  "cluster": [
+    {
+      "df": 1,
+      "token": "cluster"
+    }
+  ],
+  "cod": [
+    {
+      "df": 9,
+      "token": "code"
+    },
+    {
+      "df": 2,
+      "token": "codes"
+    }
+  ],
+  "code": [
+    {
+      "df": 9,
+      "token": "code"
+    },
+    {
+      "df": 2,
+      "token": "codes"
+    }
+  ],
+  "codes": [
+    {
+      "df": 2,
+      "token": "codes"
+    }
+  ],
+  "col": [
+    {
+      "df": 1,
+      "token": "cols.json"
+    }
+  ],
+  "cols": [
+    {
+      "df": 1,
+      "token": "cols.json"
+    }
+  ],
+  "cols.": [
+    {
+      "df": 1,
+      "token": "cols.json"
+    }
+  ],
+  "cols.j": [
+    {
+      "df": 1,
+      "token": "cols.json"
+    }
+  ],
+  "cols.js": [
+    {
+      "df": 1,
+      "token": "cols.json"
+    }
+  ],
+  "cols.jso": [
+    {
+      "df": 1,
+      "token": "cols.json"
+    }
+  ],
+  "con": [
+    {
+      "df": 2,
+      "token": "containing"
+    }
+  ],
+  "cont": [
+    {
+      "df": 2,
+      "token": "containing"
+    }
+  ],
+  "conta": [
+    {
+      "df": 2,
+      "token": "containing"
+    }
+  ],
+  "contai": [
+    {
+      "df": 2,
+      "token": "containing"
+    }
+  ],
+  "contain": [
+    {
+      "df": 2,
+      "token": "containing"
+    }
+  ],
+  "containi": [
+    {
+      "df": 2,
+      "token": "containing"
+    }
+  ],
+  "coo": [
+    {
+      "df": 2,
+      "token": "coordinates"
+    }
+  ],
+  "coor": [
+    {
+      "df": 2,
+      "token": "coordinates"
+    }
+  ],
+  "coord": [
+    {
+      "df": 2,
+      "token": "coordinates"
+    }
+  ],
+  "coordi": [
+    {
+      "df": 2,
+      "token": "coordinates"
+    }
+  ],
+  "coordin": [
+    {
+      "df": 2,
+      "token": "coordinates"
+    }
+  ],
+  "coordina": [
+    {
+      "df": 2,
+      "token": "coordinates"
+    }
+  ],
+  "cou": [
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "coun": [
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "count": [
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "countr": [
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "country": [
+    {
+      "df": 1,
+      "token": "country"
+    }
+  ],
+  "csv": [
+    {
+      "df": 1,
+      "token": "csv"
+    },
+    {
+      "df": 1,
+      "token": "csvw"
+    }
+  ],
+  "csvw": [
+    {
+      "df": 1,
+      "token": "csvw"
+    }
+  ],
+  "dat": [
+    {
+      "df": 1,
+      "token": "data"
+    },
+    {
+      "df": 1,
+      "token": "data-endpoint"
+    }
+  ],
+  "data": [
+    {
+      "df": 1,
+      "token": "data"
+    },
+    {
+      "df": 1,
+      "token": "data-endpoint"
+    }
+  ],
+  "data-": [
+    {
+      "df": 1,
+      "token": "data-endpoint"
+    }
+  ],
+  "data-e": [
+    {
+      "df": 1,
+      "token": "data-endpoint"
+    }
+  ],
+  "data-en": [
+    {
+      "df": 1,
+      "token": "data-endpoint"
+    }
+  ],
+  "data-end": [
+    {
+      "df": 1,
+      "token": "data-endpoint"
+    }
+  ],
+  "dim": [
+    {
+      "df": 3,
+      "token": "dimension"
+    },
+    {
+      "df": 2,
+      "token": "dimensions"
+    }
+  ],
+  "dime": [
+    {
+      "df": 3,
+      "token": "dimension"
+    },
+    {
+      "df": 2,
+      "token": "dimensions"
+    }
+  ],
+  "dimen": [
+    {
+      "df": 3,
+      "token": "dimension"
+    },
+    {
+      "df": 2,
+      "token": "dimensions"
+    }
+  ],
+  "dimens": [
+    {
+      "df": 3,
+      "token": "dimension"
+    },
+    {
+      "df": 2,
+      "token": "dimensions"
+    }
+  ],
+  "dimensi": [
+    {
+      "df": 3,
+      "token": "dimension"
+    },
+    {
+      "df": 2,
+      "token": "dimensions"
+    }
+  ],
+  "dimensio": [
+    {
+      "df": 3,
+      "token": "dimension"
+    },
+    {
+      "df": 2,
+      "token": "dimensions"
+    }
+  ],
+  "doc": [
+    {
+      "df": 18,
+      "token": "documented"
+    }
+  ],
+  "docu": [
+    {
+      "df": 18,
+      "token": "documented"
+    }
+  ],
+  "docum": [
+    {
+      "df": 18,
+      "token": "documented"
+    }
+  ],
+  "docume": [
+    {
+      "df": 18,
+      "token": "documented"
+    }
+  ],
+  "documen": [
+    {
+      "df": 18,
+      "token": "documented"
+    }
+  ],
+  "document": [
+    {
+      "df": 18,
+      "token": "documented"
+    }
+  ],
+  "doe": [
+    {
+      "df": 18,
+      "token": "does"
+    }
+  ],
+  "does": [
+    {
+      "df": 18,
+      "token": "does"
+    }
+  ],
+  "dow": [
+    {
+      "df": 1,
+      "token": "download"
+    }
+  ],
+  "down": [
+    {
+      "df": 1,
+      "token": "download"
+    }
+  ],
+  "downl": [
+    {
+      "df": 1,
+      "token": "download"
+    }
+  ],
+  "downlo": [
+    {
+      "df": 1,
+      "token": "download"
+    }
+  ],
+  "downloa": [
+    {
+      "df": 1,
+      "token": "download"
+    }
+  ],
+  "download": [
+    {
+      "df": 1,
+      "token": "download"
+    }
+  ],
+  "els": [
+    {
+      "df": 1,
+      "token": "els"
+    }
+  ],
+  "end": [
+    {
+      "df": 18,
+      "token": "endpoint"
+    }
+  ],
+  "endp": [
+    {
+      "df": 18,
+      "token": "endpoint"
+    }
+  ],
+  "endpo": [
+    {
+      "df": 18,
+      "token": "endpoint"
+    }
+  ],
+  "endpoi": [
+    {
+      "df": 18,
+      "token": "endpoint"
+    }
+  ],
+  "endpoin": [
+    {
+      "df": 18,
+      "token": "endpoint"
+    }
+  ],
+  "endpoint": [
+    {
+      "df": 18,
+      "token": "endpoint"
+    }
+  ],
+  "exc": [
+    {
+      "df": 3,
+      "token": "excludemultivariate"
+    }
+  ],
+  "excl": [
+    {
+      "df": 3,
+      "token": "excludemultivariate"
+    }
+  ],
+  "exclu": [
+    {
+      "df": 3,
+      "token": "excludemultivariate"
+    }
+  ],
+  "exclud": [
+    {
+      "df": 3,
+      "token": "excludemultivariate"
+    }
+  ],
+  "exclude": [
+    {
+      "df": 3,
+      "token": "excludemultivariate"
+    }
+  ],
+  "excludem": [
+    {
+      "df": 3,
+      "token": "excludemultivariate"
+    }
+  ],
+  "exe": [
+    {
+      "df": 18,
+      "token": "execute"
+    }
+  ],
+  "exec": [
+    {
+      "df": 18,
+      "token": "execute"
+    }
+  ],
+  "execu": [
+    {
+      "df": 18,
+      "token": "execute"
+    }
+  ],
+  "execut": [
+    {
+      "df": 18,
+      "token": "execute"
+    }
+  ],
+  "execute": [
+    {
+      "df": 18,
+      "token": "execute"
+    }
+  ],
+  "exp": [
+    {
+      "df": 18,
+      "token": "explore-local-statistics"
+    }
+  ],
+  "expl": [
+    {
+      "df": 18,
+      "token": "explore-local-statistics"
+    }
+  ],
+  "explo": [
+    {
+      "df": 18,
+      "token": "explore-local-statistics"
+    }
+  ],
+  "explor": [
+    {
+      "df": 18,
+      "token": "explore-local-statistics"
+    }
+  ],
+  "explore": [
+    {
+      "df": 18,
+      "token": "explore-local-statistics"
+    }
+  ],
+  "explore-": [
+    {
+      "df": 18,
+      "token": "explore-local-statistics"
+    }
+  ],
+  "ext": [
+    {
+      "df": 1,
+      "token": "extended"
+    }
+  ],
+  "exte": [
+    {
+      "df": 1,
+      "token": "extended"
+    }
+  ],
+  "exten": [
+    {
+      "df": 1,
+      "token": "extended"
+    }
+  ],
+  "extend": [
+    {
+      "df": 1,
+      "token": "extended"
+    }
+  ],
+  "extende": [
+    {
+      "df": 1,
+      "token": "extended"
+    }
+  ],
+  "extended": [
+    {
+      "df": 1,
+      "token": "extended"
+    }
+  ],
+  "fal": [
+    {
+      "df": 1,
+      "token": "fall"
+    }
+  ],
+  "fall": [
+    {
+      "df": 1,
+      "token": "fall"
+    }
+  ],
+  "fea": [
+    {
+      "df": 1,
+      "token": "feature"
+    }
+  ],
+  "feat": [
+    {
+      "df": 1,
+      "token": "feature"
+    }
+  ],
+  "featu": [
+    {
+      "df": 1,
+      "token": "feature"
+    }
+  ],
+  "featur": [
+    {
+      "df": 1,
+      "token": "feature"
+    }
+  ],
+  "feature": [
+    {
+      "df": 1,
+      "token": "feature"
+    }
+  ],
+  "fil": [
+    {
+      "df": 2,
+      "token": "filtered"
+    },
+    {
+      "df": 1,
+      "token": "filter"
+    }
+  ],
+  "filt": [
+    {
+      "df": 2,
+      "token": "filtered"
+    },
+    {
+      "df": 1,
+      "token": "filter"
+    }
+  ],
+  "filte": [
+    {
+      "df": 2,
+      "token": "filtered"
+    },
+    {
+      "df": 1,
+      "token": "filter"
+    }
+  ],
+  "filter": [
+    {
+      "df": 2,
+      "token": "filtered"
+    },
+    {
+      "df": 1,
+      "token": "filter"
+    }
+  ],
+  "filtere": [
+    {
+      "df": 2,
+      "token": "filtered"
+    }
+  ],
+  "filtered": [
+    {
+      "df": 2,
+      "token": "filtered"
+    }
+  ],
+  "fla": [
+    {
+      "df": 1,
+      "token": "flat"
+    }
+  ],
+  "flat": [
+    {
+      "df": 1,
+      "token": "flat"
+    }
+  ],
+  "for": [
+    {
+      "df": 2,
+      "token": "format"
+    }
+  ],
+  "form": [
+    {
+      "df": 2,
+      "token": "format"
+    }
+  ],
+  "forma": [
+    {
+      "df": 2,
+      "token": "format"
+    }
+  ],
+  "format": [
+    {
+      "df": 2,
+      "token": "format"
+    }
+  ],
+  "ful": [
+    {
+      "df": 2,
+      "token": "full"
+    },
+    {
+      "df": 2,
+      "token": "fulldims"
+    }
+  ],
+  "full": [
+    {
+      "df": 2,
+      "token": "full"
+    },
+    {
+      "df": 2,
+      "token": "fulldims"
+    }
+  ],
+  "fulld": [
+    {
+      "df": 2,
+      "token": "fulldims"
+    }
+  ],
+  "fulldi": [
+    {
+      "df": 2,
+      "token": "fulldims"
+    }
+  ],
+  "fulldim": [
+    {
+      "df": 2,
+      "token": "fulldims"
+    }
+  ],
+  "fulldims": [
+    {
+      "df": 2,
+      "token": "fulldims"
+    }
+  ],
+  "gen": [
+    {
+      "df": 1,
+      "token": "generalised"
+    }
+  ],
+  "gene": [
+    {
+      "df": 1,
+      "token": "generalised"
+    }
+  ],
+  "gener": [
+    {
+      "df": 1,
+      "token": "generalised"
+    }
+  ],
+  "genera": [
+    {
+      "df": 1,
+      "token": "generalised"
+    }
+  ],
+  "general": [
+    {
+      "df": 1,
+      "token": "generalised"
+    }
+  ],
+  "generali": [
+    {
+      "df": 1,
+      "token": "generalised"
+    }
+  ],
+  "geo": [
+    {
+      "df": 15,
+      "token": "geography"
+    },
+    {
+      "df": 14,
+      "token": "geo"
+    },
+    {
+      "df": 5,
+      "token": "geolevel"
+    },
+    {
+      "df": 3,
+      "token": "geographic"
+    },
+    {
+      "df": 2,
+      "token": "geoextent"
+    },
+    {
+      "df": 2,
+      "token": "geographies"
+    },
+    {
+      "df": 2,
+      "token": "geojson"
+    },
+    {
+      "df": 1,
+      "token": "geo-boundaries"
+    },
+    {
+      "df": 1,
+      "token": "geo-boundaries-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-children"
+    },
+    {
+      "df": 1,
+      "token": "geo-children-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-levels"
+    },
+    {
+      "df": 1,
+      "token": "geo-levels-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-list"
+    },
+    {
+      "df": 1,
+      "token": "geo-list-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-parents"
+    },
+    {
+      "df": 1,
+      "token": "geo-parents-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-related"
+    }
+  ],
+  "geo-": [
+    {
+      "df": 1,
+      "token": "geo-boundaries"
+    },
+    {
+      "df": 1,
+      "token": "geo-boundaries-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-children"
+    },
+    {
+      "df": 1,
+      "token": "geo-children-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-levels"
+    },
+    {
+      "df": 1,
+      "token": "geo-levels-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-list"
+    },
+    {
+      "df": 1,
+      "token": "geo-list-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-parents"
+    },
+    {
+      "df": 1,
+      "token": "geo-parents-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-related"
+    },
+    {
+      "df": 1,
+      "token": "geo-related-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-reverse"
+    },
+    {
+      "df": 1,
+      "token": "geo-reverse-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-search"
+    },
+    {
+      "df": 1,
+      "token": "geo-search-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-siblings"
+    },
+    {
+      "df": 1,
+      "token": "geo-siblings-endpoint"
+    }
+  ],
+  "geo-b": [
+    {
+      "df": 1,
+      "token": "geo-boundaries"
+    },
+    {
+      "df": 1,
+      "token": "geo-boundaries-endpoint"
+    }
+  ],
+  "geo-bo": [
+    {
+      "df": 1,
+      "token": "geo-boundaries"
+    },
+    {
+      "df": 1,
+      "token": "geo-boundaries-endpoint"
+    }
+  ],
+  "geo-bou": [
+    {
+      "df": 1,
+      "token": "geo-boundaries"
+    },
+    {
+      "df": 1,
+      "token": "geo-boundaries-endpoint"
+    }
+  ],
+  "geo-boun": [
+    {
+      "df": 1,
+      "token": "geo-boundaries"
+    },
+    {
+      "df": 1,
+      "token": "geo-boundaries-endpoint"
+    }
+  ],
+  "geo-c": [
+    {
+      "df": 1,
+      "token": "geo-children"
+    },
+    {
+      "df": 1,
+      "token": "geo-children-endpoint"
+    }
+  ],
+  "geo-ch": [
+    {
+      "df": 1,
+      "token": "geo-children"
+    },
+    {
+      "df": 1,
+      "token": "geo-children-endpoint"
+    }
+  ],
+  "geo-chi": [
+    {
+      "df": 1,
+      "token": "geo-children"
+    },
+    {
+      "df": 1,
+      "token": "geo-children-endpoint"
+    }
+  ],
+  "geo-chil": [
+    {
+      "df": 1,
+      "token": "geo-children"
+    },
+    {
+      "df": 1,
+      "token": "geo-children-endpoint"
+    }
+  ],
+  "geo-l": [
+    {
+      "df": 1,
+      "token": "geo-levels"
+    },
+    {
+      "df": 1,
+      "token": "geo-levels-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-list"
+    },
+    {
+      "df": 1,
+      "token": "geo-list-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup-endpoint"
+    }
+  ],
+  "geo-le": [
+    {
+      "df": 1,
+      "token": "geo-levels"
+    },
+    {
+      "df": 1,
+      "token": "geo-levels-endpoint"
+    }
+  ],
+  "geo-lev": [
+    {
+      "df": 1,
+      "token": "geo-levels"
+    },
+    {
+      "df": 1,
+      "token": "geo-levels-endpoint"
+    }
+  ],
+  "geo-leve": [
+    {
+      "df": 1,
+      "token": "geo-levels"
+    },
+    {
+      "df": 1,
+      "token": "geo-levels-endpoint"
+    }
+  ],
+  "geo-li": [
+    {
+      "df": 1,
+      "token": "geo-list"
+    },
+    {
+      "df": 1,
+      "token": "geo-list-endpoint"
+    }
+  ],
+  "geo-lis": [
+    {
+      "df": 1,
+      "token": "geo-list"
+    },
+    {
+      "df": 1,
+      "token": "geo-list-endpoint"
+    }
+  ],
+  "geo-list": [
+    {
+      "df": 1,
+      "token": "geo-list"
+    },
+    {
+      "df": 1,
+      "token": "geo-list-endpoint"
+    }
+  ],
+  "geo-lo": [
+    {
+      "df": 1,
+      "token": "geo-lookup"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup-endpoint"
+    }
+  ],
+  "geo-loo": [
+    {
+      "df": 1,
+      "token": "geo-lookup"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup-endpoint"
+    }
+  ],
+  "geo-look": [
+    {
+      "df": 1,
+      "token": "geo-lookup"
+    },
+    {
+      "df": 1,
+      "token": "geo-lookup-endpoint"
+    }
+  ],
+  "geo-p": [
+    {
+      "df": 1,
+      "token": "geo-parents"
+    },
+    {
+      "df": 1,
+      "token": "geo-parents-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-endpoint"
+    }
+  ],
+  "geo-pa": [
+    {
+      "df": 1,
+      "token": "geo-parents"
+    },
+    {
+      "df": 1,
+      "token": "geo-parents-endpoint"
+    }
+  ],
+  "geo-par": [
+    {
+      "df": 1,
+      "token": "geo-parents"
+    },
+    {
+      "df": 1,
+      "token": "geo-parents-endpoint"
+    }
+  ],
+  "geo-pare": [
+    {
+      "df": 1,
+      "token": "geo-parents"
+    },
+    {
+      "df": 1,
+      "token": "geo-parents-endpoint"
+    }
+  ],
+  "geo-po": [
+    {
+      "df": 1,
+      "token": "geo-postcode"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-endpoint"
+    }
+  ],
+  "geo-pos": [
+    {
+      "df": 1,
+      "token": "geo-postcode"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-endpoint"
+    }
+  ],
+  "geo-post": [
+    {
+      "df": 1,
+      "token": "geo-postcode"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-autocomplete-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-postcode-endpoint"
+    }
+  ],
+  "geo-r": [
+    {
+      "df": 1,
+      "token": "geo-related"
+    },
+    {
+      "df": 1,
+      "token": "geo-related-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-reverse"
+    },
+    {
+      "df": 1,
+      "token": "geo-reverse-endpoint"
+    }
+  ],
+  "geo-re": [
+    {
+      "df": 1,
+      "token": "geo-related"
+    },
+    {
+      "df": 1,
+      "token": "geo-related-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-reverse"
+    },
+    {
+      "df": 1,
+      "token": "geo-reverse-endpoint"
+    }
+  ],
+  "geo-rel": [
+    {
+      "df": 1,
+      "token": "geo-related"
+    },
+    {
+      "df": 1,
+      "token": "geo-related-endpoint"
+    }
+  ],
+  "geo-rela": [
+    {
+      "df": 1,
+      "token": "geo-related"
+    },
+    {
+      "df": 1,
+      "token": "geo-related-endpoint"
+    }
+  ],
+  "geo-rev": [
+    {
+      "df": 1,
+      "token": "geo-reverse"
+    },
+    {
+      "df": 1,
+      "token": "geo-reverse-endpoint"
+    }
+  ],
+  "geo-reve": [
+    {
+      "df": 1,
+      "token": "geo-reverse"
+    },
+    {
+      "df": 1,
+      "token": "geo-reverse-endpoint"
+    }
+  ],
+  "geo-s": [
+    {
+      "df": 1,
+      "token": "geo-search"
+    },
+    {
+      "df": 1,
+      "token": "geo-search-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-siblings"
+    },
+    {
+      "df": 1,
+      "token": "geo-siblings-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-similar"
+    },
+    {
+      "df": 1,
+      "token": "geo-similar-endpoint"
+    }
+  ],
+  "geo-se": [
+    {
+      "df": 1,
+      "token": "geo-search"
+    },
+    {
+      "df": 1,
+      "token": "geo-search-endpoint"
+    }
+  ],
+  "geo-sea": [
+    {
+      "df": 1,
+      "token": "geo-search"
+    },
+    {
+      "df": 1,
+      "token": "geo-search-endpoint"
+    }
+  ],
+  "geo-sear": [
+    {
+      "df": 1,
+      "token": "geo-search"
+    },
+    {
+      "df": 1,
+      "token": "geo-search-endpoint"
+    }
+  ],
+  "geo-si": [
+    {
+      "df": 1,
+      "token": "geo-siblings"
+    },
+    {
+      "df": 1,
+      "token": "geo-siblings-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "geo-similar"
+    },
+    {
+      "df": 1,
+      "token": "geo-similar-endpoint"
+    }
+  ],
+  "geo-sib": [
+    {
+      "df": 1,
+      "token": "geo-siblings"
+    },
+    {
+      "df": 1,
+      "token": "geo-siblings-endpoint"
+    }
+  ],
+  "geo-sibl": [
+    {
+      "df": 1,
+      "token": "geo-siblings"
+    },
+    {
+      "df": 1,
+      "token": "geo-siblings-endpoint"
+    }
+  ],
+  "geo-sim": [
+    {
+      "df": 1,
+      "token": "geo-similar"
+    },
+    {
+      "df": 1,
+      "token": "geo-similar-endpoint"
+    }
+  ],
+  "geo-simi": [
+    {
+      "df": 1,
+      "token": "geo-similar"
+    },
+    {
+      "df": 1,
+      "token": "geo-similar-endpoint"
+    }
+  ],
+  "geoc": [
+    {
+      "df": 1,
+      "token": "geocluster"
+    }
+  ],
+  "geocl": [
+    {
+      "df": 1,
+      "token": "geocluster"
+    }
+  ],
+  "geoclu": [
+    {
+      "df": 1,
+      "token": "geocluster"
+    }
+  ],
+  "geoclus": [
+    {
+      "df": 1,
+      "token": "geocluster"
+    }
+  ],
+  "geoclust": [
+    {
+      "df": 1,
+      "token": "geocluster"
+    }
+  ],
+  "geoe": [
+    {
+      "df": 2,
+      "token": "geoextent"
+    }
+  ],
+  "geoex": [
+    {
+      "df": 2,
+      "token": "geoextent"
+    }
+  ],
+  "geoext": [
+    {
+      "df": 2,
+      "token": "geoextent"
+    }
+  ],
+  "geoexte": [
+    {
+      "df": 2,
+      "token": "geoextent"
+    }
+  ],
+  "geoexten": [
+    {
+      "df": 2,
+      "token": "geoextent"
+    }
+  ],
+  "geog": [
+    {
+      "df": 15,
+      "token": "geography"
+    },
+    {
+      "df": 3,
+      "token": "geographic"
+    },
+    {
+      "df": 2,
+      "token": "geographies"
+    },
+    {
+      "df": 1,
+      "token": "geography-level"
+    }
+  ],
+  "geogr": [
+    {
+      "df": 15,
+      "token": "geography"
+    },
+    {
+      "df": 3,
+      "token": "geographic"
+    },
+    {
+      "df": 2,
+      "token": "geographies"
+    },
+    {
+      "df": 1,
+      "token": "geography-level"
+    }
+  ],
+  "geogra": [
+    {
+      "df": 15,
+      "token": "geography"
+    },
+    {
+      "df": 3,
+      "token": "geographic"
+    },
+    {
+      "df": 2,
+      "token": "geographies"
+    },
+    {
+      "df": 1,
+      "token": "geography-level"
+    }
+  ],
+  "geograp": [
+    {
+      "df": 15,
+      "token": "geography"
+    },
+    {
+      "df": 3,
+      "token": "geographic"
+    },
+    {
+      "df": 2,
+      "token": "geographies"
+    },
+    {
+      "df": 1,
+      "token": "geography-level"
+    }
+  ],
+  "geograph": [
+    {
+      "df": 15,
+      "token": "geography"
+    },
+    {
+      "df": 3,
+      "token": "geographic"
+    },
+    {
+      "df": 2,
+      "token": "geographies"
+    },
+    {
+      "df": 1,
+      "token": "geography-level"
+    }
+  ],
+  "geoj": [
+    {
+      "df": 2,
+      "token": "geojson"
+    }
+  ],
+  "geojs": [
+    {
+      "df": 2,
+      "token": "geojson"
+    }
+  ],
+  "geojso": [
+    {
+      "df": 2,
+      "token": "geojson"
+    }
+  ],
+  "geojson": [
+    {
+      "df": 2,
+      "token": "geojson"
+    }
+  ],
+  "geol": [
+    {
+      "df": 5,
+      "token": "geolevel"
+    }
+  ],
+  "geole": [
+    {
+      "df": 5,
+      "token": "geolevel"
+    }
+  ],
+  "geolev": [
+    {
+      "df": 5,
+      "token": "geolevel"
+    }
+  ],
+  "geoleve": [
+    {
+      "df": 5,
+      "token": "geolevel"
+    }
+  ],
+  "geolevel": [
+    {
+      "df": 5,
+      "token": "geolevel"
+    }
+  ],
+  "geom": [
+    {
+      "df": 1,
+      "token": "geometry"
+    }
+  ],
+  "geome": [
+    {
+      "df": 1,
+      "token": "geometry"
+    }
+  ],
+  "geomet": [
+    {
+      "df": 1,
+      "token": "geometry"
+    }
+  ],
+  "geometr": [
+    {
+      "df": 1,
+      "token": "geometry"
+    }
+  ],
+  "geometry": [
+    {
+      "df": 1,
+      "token": "geometry"
+    }
+  ],
+  "get": [
+    {
+      "df": 18,
+      "token": "get"
+    }
+  ],
+  "gro": [
+    {
+      "df": 4,
+      "token": "groupbylevel"
+    },
+    {
+      "df": 1,
+      "token": "grouped"
+    },
+    {
+      "df": 1,
+      "token": "groupings"
+    }
+  ],
+  "grou": [
+    {
+      "df": 4,
+      "token": "groupbylevel"
+    },
+    {
+      "df": 1,
+      "token": "grouped"
+    },
+    {
+      "df": 1,
+      "token": "groupings"
+    }
+  ],
+  "group": [
+    {
+      "df": 4,
+      "token": "groupbylevel"
+    },
+    {
+      "df": 1,
+      "token": "grouped"
+    },
+    {
+      "df": 1,
+      "token": "groupings"
+    }
+  ],
+  "groupb": [
+    {
+      "df": 4,
+      "token": "groupbylevel"
+    }
+  ],
+  "groupby": [
+    {
+      "df": 4,
+      "token": "groupbylevel"
+    }
+  ],
+  "groupbyl": [
+    {
+      "df": 4,
+      "token": "groupbylevel"
+    }
+  ],
+  "groupe": [
+    {
+      "df": 1,
+      "token": "grouped"
+    }
+  ],
+  "grouped": [
+    {
+      "df": 1,
+      "token": "grouped"
+    }
+  ],
+  "groupi": [
+    {
+      "df": 1,
+      "token": "groupings"
+    }
+  ],
+  "groupin": [
+    {
+      "df": 1,
+      "token": "groupings"
+    }
+  ],
+  "grouping": [
+    {
+      "df": 1,
+      "token": "groupings"
+    }
+  ],
+  "gss": [
+    {
+      "df": 2,
+      "token": "gss"
+    }
+  ],
+  "has": [
+    {
+      "df": 3,
+      "token": "hasgeo"
+    },
+    {
+      "df": 2,
+      "token": "hasyear"
+    }
+  ],
+  "hasg": [
+    {
+      "df": 3,
+      "token": "hasgeo"
+    }
+  ],
+  "hasge": [
+    {
+      "df": 3,
+      "token": "hasgeo"
+    }
+  ],
+  "hasgeo": [
+    {
+      "df": 3,
+      "token": "hasgeo"
+    }
+  ],
+  "hasy": [
+    {
+      "df": 2,
+      "token": "hasyear"
+    }
+  ],
+  "hasye": [
+    {
+      "df": 2,
+      "token": "hasyear"
+    }
+  ],
+  "hasyea": [
+    {
+      "df": 2,
+      "token": "hasyear"
+    }
+  ],
+  "hasyear": [
+    {
+      "df": 2,
+      "token": "hasyear"
+    }
+  ],
+  "htt": [
+    {
+      "df": 18,
+      "token": "https"
+    }
+  ],
+  "http": [
+    {
+      "df": 18,
+      "token": "https"
+    }
+  ],
+  "https": [
+    {
+      "df": 18,
+      "token": "https"
+    }
+  ],
+  "ide": [
+    {
+      "df": 1,
+      "token": "identified"
+    }
+  ],
+  "iden": [
+    {
+      "df": 1,
+      "token": "identified"
+    }
+  ],
+  "ident": [
+    {
+      "df": 1,
+      "token": "identified"
+    }
+  ],
+  "identi": [
+    {
+      "df": 1,
+      "token": "identified"
+    }
+  ],
+  "identif": [
+    {
+      "df": 1,
+      "token": "identified"
+    }
+  ],
+  "identifi": [
+    {
+      "df": 1,
+      "token": "identified"
+    }
+  ],
+  "imm": [
+    {
+      "df": 2,
+      "token": "immediate"
+    }
+  ],
+  "imme": [
+    {
+      "df": 2,
+      "token": "immediate"
+    }
+  ],
+  "immed": [
+    {
+      "df": 2,
+      "token": "immediate"
+    }
+  ],
+  "immedi": [
+    {
+      "df": 2,
+      "token": "immediate"
+    }
+  ],
+  "immedia": [
+    {
+      "df": 2,
+      "token": "immediate"
+    }
+  ],
+  "immediat": [
+    {
+      "df": 2,
+      "token": "immediate"
+    }
+  ],
+  "inc": [
+    {
+      "df": 6,
+      "token": "includenames"
+    },
+    {
+      "df": 1,
+      "token": "includeareas"
+    },
+    {
+      "df": 1,
+      "token": "includechildren"
+    },
+    {
+      "df": 1,
+      "token": "includedates"
+    },
+    {
+      "df": 1,
+      "token": "includelevel"
+    },
+    {
+      "df": 1,
+      "token": "includeparents"
+    },
+    {
+      "df": 1,
+      "token": "includestatus"
+    }
+  ],
+  "incl": [
+    {
+      "df": 6,
+      "token": "includenames"
+    },
+    {
+      "df": 1,
+      "token": "includeareas"
+    },
+    {
+      "df": 1,
+      "token": "includechildren"
+    },
+    {
+      "df": 1,
+      "token": "includedates"
+    },
+    {
+      "df": 1,
+      "token": "includelevel"
+    },
+    {
+      "df": 1,
+      "token": "includeparents"
+    },
+    {
+      "df": 1,
+      "token": "includestatus"
+    }
+  ],
+  "inclu": [
+    {
+      "df": 6,
+      "token": "includenames"
+    },
+    {
+      "df": 1,
+      "token": "includeareas"
+    },
+    {
+      "df": 1,
+      "token": "includechildren"
+    },
+    {
+      "df": 1,
+      "token": "includedates"
+    },
+    {
+      "df": 1,
+      "token": "includelevel"
+    },
+    {
+      "df": 1,
+      "token": "includeparents"
+    },
+    {
+      "df": 1,
+      "token": "includestatus"
+    }
+  ],
+  "includ": [
+    {
+      "df": 6,
+      "token": "includenames"
+    },
+    {
+      "df": 1,
+      "token": "includeareas"
+    },
+    {
+      "df": 1,
+      "token": "includechildren"
+    },
+    {
+      "df": 1,
+      "token": "includedates"
+    },
+    {
+      "df": 1,
+      "token": "includelevel"
+    },
+    {
+      "df": 1,
+      "token": "includeparents"
+    },
+    {
+      "df": 1,
+      "token": "includestatus"
+    }
+  ],
+  "include": [
+    {
+      "df": 6,
+      "token": "includenames"
+    },
+    {
+      "df": 1,
+      "token": "includeareas"
+    },
+    {
+      "df": 1,
+      "token": "includechildren"
+    },
+    {
+      "df": 1,
+      "token": "includedates"
+    },
+    {
+      "df": 1,
+      "token": "includelevel"
+    },
+    {
+      "df": 1,
+      "token": "includeparents"
+    },
+    {
+      "df": 1,
+      "token": "includestatus"
+    }
+  ],
+  "includea": [
+    {
+      "df": 1,
+      "token": "includeareas"
+    }
+  ],
+  "includec": [
+    {
+      "df": 1,
+      "token": "includechildren"
+    }
+  ],
+  "included": [
+    {
+      "df": 1,
+      "token": "includedates"
+    }
+  ],
+  "includel": [
+    {
+      "df": 1,
+      "token": "includelevel"
+    }
+  ],
+  "includen": [
+    {
+      "df": 6,
+      "token": "includenames"
+    }
+  ],
+  "includep": [
+    {
+      "df": 1,
+      "token": "includeparents"
+    }
+  ],
+  "includes": [
+    {
+      "df": 1,
+      "token": "includestatus"
+    }
+  ],
+  "ind": [
+    {
+      "df": 6,
+      "token": "indicator"
+    },
+    {
+      "df": 5,
+      "token": "indicators"
+    }
+  ],
+  "indi": [
+    {
+      "df": 6,
+      "token": "indicator"
+    },
+    {
+      "df": 5,
+      "token": "indicators"
+    }
+  ],
+  "indic": [
+    {
+      "df": 6,
+      "token": "indicator"
+    },
+    {
+      "df": 5,
+      "token": "indicators"
+    }
+  ],
+  "indica": [
+    {
+      "df": 6,
+      "token": "indicator"
+    },
+    {
+      "df": 5,
+      "token": "indicators"
+    }
+  ],
+  "indicat": [
+    {
+      "df": 6,
+      "token": "indicator"
+    },
+    {
+      "df": 5,
+      "token": "indicators"
+    }
+  ],
+  "indicato": [
+    {
+      "df": 6,
+      "token": "indicator"
+    },
+    {
+      "df": 5,
+      "token": "indicators"
+    }
+  ],
+  "int": [
+    {
+      "df": 18,
+      "token": "internal-private-unstable"
+    }
+  ],
+  "inte": [
+    {
+      "df": 18,
+      "token": "internal-private-unstable"
+    }
+  ],
+  "inter": [
+    {
+      "df": 18,
+      "token": "internal-private-unstable"
+    }
+  ],
+  "intern": [
+    {
+      "df": 18,
+      "token": "internal-private-unstable"
+    }
+  ],
+  "interna": [
+    {
+      "df": 18,
+      "token": "internal-private-unstable"
+    }
+  ],
+  "internal": [
+    {
+      "df": 18,
+      "token": "internal-private-unstable"
+    }
+  ],
+  "its": [
+    {
+      "df": 18,
+      "token": "its"
+    }
+  ],
+  "jso": [
+    {
+      "df": 1,
+      "token": "json-stat"
+    }
+  ],
+  "json": [
+    {
+      "df": 1,
+      "token": "json-stat"
+    }
+  ],
+  "json-": [
+    {
+      "df": 1,
+      "token": "json-stat"
+    }
+  ],
+  "json-s": [
+    {
+      "df": 1,
+      "token": "json-stat"
+    }
+  ],
+  "json-st": [
+    {
+      "df": 1,
+      "token": "json-stat"
+    }
+  ],
+  "json-sta": [
+    {
+      "df": 1,
+      "token": "json-stat"
+    }
+  ],
+  "key": [
+    {
+      "df": 1,
+      "token": "keys"
+    }
+  ],
+  "keys": [
+    {
+      "df": 1,
+      "token": "keys"
+    }
+  ],
+  "lat": [
+    {
+      "df": 1,
+      "token": "lat"
+    },
+    {
+      "df": 1,
+      "token": "latitude"
+    }
+  ],
+  "lati": [
+    {
+      "df": 1,
+      "token": "latitude"
+    }
+  ],
+  "latit": [
+    {
+      "df": 1,
+      "token": "latitude"
+    }
+  ],
+  "latitu": [
+    {
+      "df": 1,
+      "token": "latitude"
+    }
+  ],
+  "latitud": [
+    {
+      "df": 1,
+      "token": "latitude"
+    }
+  ],
+  "latitude": [
+    {
+      "df": 1,
+      "token": "latitude"
+    }
+  ],
+  "lev": [
+    {
+      "df": 2,
+      "token": "level"
+    },
+    {
+      "df": 1,
+      "token": "levels"
+    }
+  ],
+  "leve": [
+    {
+      "df": 2,
+      "token": "level"
+    },
+    {
+      "df": 1,
+      "token": "levels"
+    }
+  ],
+  "level": [
+    {
+      "df": 2,
+      "token": "level"
+    },
+    {
+      "df": 1,
+      "token": "levels"
+    }
+  ],
+  "levels": [
+    {
+      "df": 1,
+      "token": "levels"
+    }
+  ],
+  "lim": [
+    {
+      "df": 2,
+      "token": "limit"
+    }
+  ],
+  "limi": [
+    {
+      "df": 2,
+      "token": "limit"
+    }
+  ],
+  "limit": [
+    {
+      "df": 2,
+      "token": "limit"
+    }
+  ],
+  "lis": [
+    {
+      "df": 10,
+      "token": "list"
+    }
+  ],
+  "list": [
+    {
+      "df": 10,
+      "token": "list"
+    }
+  ],
+  "lng": [
+    {
+      "df": 1,
+      "token": "lng"
+    }
+  ],
+  "lon": [
+    {
+      "df": 1,
+      "token": "longitude"
+    }
+  ],
+  "long": [
+    {
+      "df": 1,
+      "token": "longitude"
+    }
+  ],
+  "longi": [
+    {
+      "df": 1,
+      "token": "longitude"
+    }
+  ],
+  "longit": [
+    {
+      "df": 1,
+      "token": "longitude"
+    }
+  ],
+  "longitu": [
+    {
+      "df": 1,
+      "token": "longitude"
+    }
+  ],
+  "longitud": [
+    {
+      "df": 1,
+      "token": "longitude"
+    }
+  ],
+  "loo": [
+    {
+      "df": 2,
+      "token": "look"
+    },
+    {
+      "df": 2,
+      "token": "lookup"
+    }
+  ],
+  "look": [
+    {
+      "df": 2,
+      "token": "look"
+    },
+    {
+      "df": 2,
+      "token": "lookup"
+    }
+  ],
+  "looku": [
+    {
+      "df": 2,
+      "token": "lookup"
+    }
+  ],
+  "lookup": [
+    {
+      "df": 2,
+      "token": "lookup"
+    }
+  ],
+  "low": [
+    {
+      "df": 1,
+      "token": "low-resolution"
+    }
+  ],
+  "low-": [
+    {
+      "df": 1,
+      "token": "low-resolution"
+    }
+  ],
+  "low-r": [
+    {
+      "df": 1,
+      "token": "low-resolution"
+    }
+  ],
+  "low-re": [
+    {
+      "df": 1,
+      "token": "low-resolution"
+    }
+  ],
+  "low-res": [
+    {
+      "df": 1,
+      "token": "low-resolution"
+    }
+  ],
+  "low-reso": [
+    {
+      "df": 1,
+      "token": "low-resolution"
+    }
+  ],
+  "mat": [
+    {
+      "df": 1,
+      "token": "matching"
+    }
+  ],
+  "matc": [
+    {
+      "df": 1,
+      "token": "matching"
+    }
+  ],
+  "match": [
+    {
+      "df": 1,
+      "token": "matching"
+    }
+  ],
+  "matchi": [
+    {
+      "df": 1,
+      "token": "matching"
+    }
+  ],
+  "matchin": [
+    {
+      "df": 1,
+      "token": "matching"
+    }
+  ],
+  "matching": [
+    {
+      "df": 1,
+      "token": "matching"
+    }
+  ],
+  "mea": [
+    {
+      "df": 1,
+      "token": "measure"
+    },
+    {
+      "df": 1,
+      "token": "measures"
+    }
+  ],
+  "meas": [
+    {
+      "df": 1,
+      "token": "measure"
+    },
+    {
+      "df": 1,
+      "token": "measures"
+    }
+  ],
+  "measu": [
+    {
+      "df": 1,
+      "token": "measure"
+    },
+    {
+      "df": 1,
+      "token": "measures"
+    }
+  ],
+  "measur": [
+    {
+      "df": 1,
+      "token": "measure"
+    },
+    {
+      "df": 1,
+      "token": "measures"
+    }
+  ],
+  "measure": [
+    {
+      "df": 1,
+      "token": "measure"
+    },
+    {
+      "df": 1,
+      "token": "measures"
+    }
+  ],
+  "measures": [
+    {
+      "df": 1,
+      "token": "measures"
+    }
+  ],
+  "mem": [
+    {
+      "df": 1,
+      "token": "members"
+    }
+  ],
+  "memb": [
+    {
+      "df": 1,
+      "token": "members"
+    }
+  ],
+  "membe": [
+    {
+      "df": 1,
+      "token": "members"
+    }
+  ],
+  "member": [
+    {
+      "df": 1,
+      "token": "members"
+    }
+  ],
+  "members": [
+    {
+      "df": 1,
+      "token": "members"
+    }
+  ],
+  "met": [
+    {
+      "df": 18,
+      "token": "metadata-only"
+    },
+    {
+      "df": 6,
+      "token": "metadata"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy-endpoint"
+    }
+  ],
+  "meta": [
+    {
+      "df": 18,
+      "token": "metadata-only"
+    },
+    {
+      "df": 6,
+      "token": "metadata"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy-endpoint"
+    }
+  ],
+  "metad": [
+    {
+      "df": 18,
+      "token": "metadata-only"
+    },
+    {
+      "df": 6,
+      "token": "metadata"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy-endpoint"
+    }
+  ],
+  "metada": [
+    {
+      "df": 18,
+      "token": "metadata-only"
+    },
+    {
+      "df": 6,
+      "token": "metadata"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy-endpoint"
+    }
+  ],
+  "metadat": [
+    {
+      "df": 18,
+      "token": "metadata-only"
+    },
+    {
+      "df": 6,
+      "token": "metadata"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy-endpoint"
+    }
+  ],
+  "metadata": [
+    {
+      "df": 18,
+      "token": "metadata-only"
+    },
+    {
+      "df": 6,
+      "token": "metadata"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension"
+    },
+    {
+      "df": 1,
+      "token": "metadata-dimension-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicator-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators"
+    },
+    {
+      "df": 1,
+      "token": "metadata-indicators-endpoint"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy"
+    },
+    {
+      "df": 1,
+      "token": "metadata-taxonomy-endpoint"
+    }
+  ],
+  "mor": [
+    {
+      "df": 1,
+      "token": "more"
+    }
+  ],
+  "more": [
+    {
+      "df": 1,
+      "token": "more"
+    }
+  ],
+  "mos": [
+    {
+      "df": 1,
+      "token": "most"
+    }
+  ],
+  "most": [
+    {
+      "df": 1,
+      "token": "most"
+    }
+  ],
+  "nam": [
+    {
+      "df": 2,
+      "token": "names"
+    },
+    {
+      "df": 1,
+      "token": "name"
+    }
+  ],
+  "name": [
+    {
+      "df": 2,
+      "token": "names"
+    },
+    {
+      "df": 1,
+      "token": "name"
+    }
+  ],
+  "names": [
+    {
+      "df": 2,
+      "token": "names"
+    }
+  ],
+  "nat": [
+    {
+      "df": 18,
+      "token": "national"
+    }
+  ],
+  "nati": [
+    {
+      "df": 18,
+      "token": "national"
+    }
+  ],
+  "natio": [
+    {
+      "df": 18,
+      "token": "national"
+    }
+  ],
+  "nation": [
+    {
+      "df": 18,
+      "token": "national"
+    }
+  ],
+  "nationa": [
+    {
+      "df": 18,
+      "token": "national"
+    }
+  ],
+  "national": [
+    {
+      "df": 18,
+      "token": "national"
+    }
+  ],
+  "nes": [
+    {
+      "df": 1,
+      "token": "nested"
+    }
+  ],
+  "nest": [
+    {
+      "df": 1,
+      "token": "nested"
+    }
+  ],
+  "neste": [
+    {
+      "df": 1,
+      "token": "nested"
+    }
+  ],
+  "nested": [
+    {
+      "df": 1,
+      "token": "nested"
+    }
+  ],
+  "not": [
+    {
+      "df": 18,
+      "token": "not"
+    }
+  ],
+  "off": [
+    {
+      "df": 18,
+      "token": "office"
+    },
+    {
+      "df": 18,
+      "token": "office-for-national-statistics"
+    },
+    {
+      "df": 2,
+      "token": "offset"
+    }
+  ],
+  "offi": [
+    {
+      "df": 18,
+      "token": "office"
+    },
+    {
+      "df": 18,
+      "token": "office-for-national-statistics"
+    }
+  ],
+  "offic": [
+    {
+      "df": 18,
+      "token": "office"
+    },
+    {
+      "df": 18,
+      "token": "office-for-national-statistics"
+    }
+  ],
+  "office": [
+    {
+      "df": 18,
+      "token": "office"
+    },
+    {
+      "df": 18,
+      "token": "office-for-national-statistics"
+    }
+  ],
+  "office-": [
+    {
+      "df": 18,
+      "token": "office-for-national-statistics"
+    }
+  ],
+  "office-f": [
+    {
+      "df": 18,
+      "token": "office-for-national-statistics"
+    }
+  ],
+  "offs": [
+    {
+      "df": 2,
+      "token": "offset"
+    }
+  ],
+  "offse": [
+    {
+      "df": 2,
+      "token": "offset"
+    }
+  ],
+  "offset": [
+    {
+      "df": 2,
+      "token": "offset"
+    }
+  ],
+  "one": [
+    {
+      "df": 4,
+      "token": "one"
+    }
+  ],
+  "opt": [
+    {
+      "df": 3,
+      "token": "optionally"
+    }
+  ],
+  "opti": [
+    {
+      "df": 3,
+      "token": "optionally"
+    }
+  ],
+  "optio": [
+    {
+      "df": 3,
+      "token": "optionally"
+    }
+  ],
+  "option": [
+    {
+      "df": 3,
+      "token": "optionally"
+    }
+  ],
+  "optiona": [
+    {
+      "df": 3,
+      "token": "optionally"
+    }
+  ],
+  "optional": [
+    {
+      "df": 3,
+      "token": "optionally"
+    }
+  ],
+  "par": [
+    {
+      "df": 2,
+      "token": "parent"
+    },
+    {
+      "df": 2,
+      "token": "parents"
+    },
+    {
+      "df": 1,
+      "token": "parentlevel"
+    },
+    {
+      "df": 1,
+      "token": "partial"
+    },
+    {
+      "df": 1,
+      "token": "partial_code"
+    }
+  ],
+  "pare": [
+    {
+      "df": 2,
+      "token": "parent"
+    },
+    {
+      "df": 2,
+      "token": "parents"
+    },
+    {
+      "df": 1,
+      "token": "parentlevel"
+    }
+  ],
+  "paren": [
+    {
+      "df": 2,
+      "token": "parent"
+    },
+    {
+      "df": 2,
+      "token": "parents"
+    },
+    {
+      "df": 1,
+      "token": "parentlevel"
+    }
+  ],
+  "parent": [
+    {
+      "df": 2,
+      "token": "parent"
+    },
+    {
+      "df": 2,
+      "token": "parents"
+    },
+    {
+      "df": 1,
+      "token": "parentlevel"
+    }
+  ],
+  "parentl": [
+    {
+      "df": 1,
+      "token": "parentlevel"
+    }
+  ],
+  "parentle": [
+    {
+      "df": 1,
+      "token": "parentlevel"
+    }
+  ],
+  "parents": [
+    {
+      "df": 2,
+      "token": "parents"
+    }
+  ],
+  "part": [
+    {
+      "df": 1,
+      "token": "partial"
+    },
+    {
+      "df": 1,
+      "token": "partial_code"
+    }
+  ],
+  "parti": [
+    {
+      "df": 1,
+      "token": "partial"
+    },
+    {
+      "df": 1,
+      "token": "partial_code"
+    }
+  ],
+  "partia": [
+    {
+      "df": 1,
+      "token": "partial"
+    },
+    {
+      "df": 1,
+      "token": "partial_code"
+    }
+  ],
+  "partial": [
+    {
+      "df": 1,
+      "token": "partial"
+    },
+    {
+      "df": 1,
+      "token": "partial_code"
+    }
+  ],
+  "partial_": [
+    {
+      "df": 1,
+      "token": "partial_code"
+    }
+  ],
+  "pos": [
+    {
+      "df": 3,
+      "token": "postcode"
+    },
+    {
+      "df": 2,
+      "token": "postcodes"
+    },
+    {
+      "df": 1,
+      "token": "possible"
+    }
+  ],
+  "poss": [
+    {
+      "df": 1,
+      "token": "possible"
+    }
+  ],
+  "possi": [
+    {
+      "df": 1,
+      "token": "possible"
+    }
+  ],
+  "possib": [
+    {
+      "df": 1,
+      "token": "possible"
+    }
+  ],
+  "possibl": [
+    {
+      "df": 1,
+      "token": "possible"
+    }
+  ],
+  "possible": [
+    {
+      "df": 1,
+      "token": "possible"
+    }
+  ],
+  "post": [
+    {
+      "df": 3,
+      "token": "postcode"
+    },
+    {
+      "df": 2,
+      "token": "postcodes"
+    }
+  ],
+  "postc": [
+    {
+      "df": 3,
+      "token": "postcode"
+    },
+    {
+      "df": 2,
+      "token": "postcodes"
+    }
+  ],
+  "postco": [
+    {
+      "df": 3,
+      "token": "postcode"
+    },
+    {
+      "df": 2,
+      "token": "postcodes"
+    }
+  ],
+  "postcod": [
+    {
+      "df": 3,
+      "token": "postcode"
+    },
+    {
+      "df": 2,
+      "token": "postcodes"
+    }
+  ],
+  "postcode": [
+    {
+      "df": 3,
+      "token": "postcode"
+    },
+    {
+      "df": 2,
+      "token": "postcodes"
+    }
+  ],
+  "pre": [
+    {
+      "df": 1,
+      "token": "prefixes"
+    }
+  ],
+  "pref": [
+    {
+      "df": 1,
+      "token": "prefixes"
+    }
+  ],
+  "prefi": [
+    {
+      "df": 1,
+      "token": "prefixes"
+    }
+  ],
+  "prefix": [
+    {
+      "df": 1,
+      "token": "prefixes"
+    }
+  ],
+  "prefixe": [
+    {
+      "df": 1,
+      "token": "prefixes"
+    }
+  ],
+  "prefixes": [
+    {
+      "df": 1,
+      "token": "prefixes"
+    }
+  ],
+  "pub": [
+    {
+      "df": 2,
+      "token": "public"
+    }
+  ],
+  "publ": [
+    {
+      "df": 2,
+      "token": "public"
+    }
+  ],
+  "publi": [
+    {
+      "df": 2,
+      "token": "public"
+    }
+  ],
+  "public": [
+    {
+      "df": 2,
+      "token": "public"
+    }
+  ],
+  "rel": [
+    {
+      "df": 5,
+      "token": "related"
+    }
+  ],
+  "rela": [
+    {
+      "df": 5,
+      "token": "related"
+    }
+  ],
+  "relat": [
+    {
+      "df": 5,
+      "token": "related"
+    }
+  ],
+  "relate": [
+    {
+      "df": 5,
+      "token": "related"
+    }
+  ],
+  "related": [
+    {
+      "df": 5,
+      "token": "related"
+    }
+  ],
+  "rep": [
+    {
+      "df": 1,
+      "token": "represented"
+    }
+  ],
+  "repr": [
+    {
+      "df": 1,
+      "token": "represented"
+    }
+  ],
+  "repre": [
+    {
+      "df": 1,
+      "token": "represented"
+    }
+  ],
+  "repres": [
+    {
+      "df": 1,
+      "token": "represented"
+    }
+  ],
+  "represe": [
+    {
+      "df": 1,
+      "token": "represented"
+    }
+  ],
+  "represen": [
+    {
+      "df": 1,
+      "token": "represented"
+    }
+  ],
+  "req": [
+    {
+      "df": 18,
+      "token": "request"
+    }
+  ],
+  "requ": [
+    {
+      "df": 18,
+      "token": "request"
+    }
+  ],
+  "reque": [
+    {
+      "df": 18,
+      "token": "request"
+    }
+  ],
+  "reques": [
+    {
+      "df": 18,
+      "token": "request"
+    }
+  ],
+  "request": [
+    {
+      "df": 18,
+      "token": "request"
+    }
+  ],
+  "res": [
+    {
+      "df": 18,
+      "token": "response"
+    }
+  ],
+  "resp": [
+    {
+      "df": 18,
+      "token": "response"
+    }
+  ],
+  "respo": [
+    {
+      "df": 18,
+      "token": "response"
+    }
+  ],
+  "respon": [
+    {
+      "df": 18,
+      "token": "response"
+    }
+  ],
+  "respons": [
+    {
+      "df": 18,
+      "token": "response"
+    }
+  ],
+  "response": [
+    {
+      "df": 18,
+      "token": "response"
+    }
+  ],
+  "ret": [
+    {
+      "df": 10,
+      "token": "return"
+    }
+  ],
+  "retu": [
+    {
+      "df": 10,
+      "token": "return"
+    }
+  ],
+  "retur": [
+    {
+      "df": 10,
+      "token": "return"
+    }
+  ],
+  "return": [
+    {
+      "df": 10,
+      "token": "return"
+    }
+  ],
+  "rev": [
+    {
+      "df": 1,
+      "token": "reverse"
+    }
+  ],
+  "reve": [
+    {
+      "df": 1,
+      "token": "reverse"
+    }
+  ],
+  "rever": [
+    {
+      "df": 1,
+      "token": "reverse"
+    }
+  ],
+  "revers": [
+    {
+      "df": 1,
+      "token": "reverse"
+    }
+  ],
+  "reverse": [
+    {
+      "df": 1,
+      "token": "reverse"
+    }
+  ],
+  "row": [
+    {
+      "df": 1,
+      "token": "rows.json"
+    }
+  ],
+  "rows": [
+    {
+      "df": 1,
+      "token": "rows.json"
+    }
+  ],
+  "rows.": [
+    {
+      "df": 1,
+      "token": "rows.json"
+    }
+  ],
+  "rows.j": [
+    {
+      "df": 1,
+      "token": "rows.json"
+    }
+  ],
+  "rows.js": [
+    {
+      "df": 1,
+      "token": "rows.json"
+    }
+  ],
+  "rows.jso": [
+    {
+      "df": 1,
+      "token": "rows.json"
+    }
+  ],
+  "sea": [
+    {
+      "df": 1,
+      "token": "search"
+    },
+    {
+      "df": 1,
+      "token": "searchpostcodes"
+    }
+  ],
+  "sear": [
+    {
+      "df": 1,
+      "token": "search"
+    },
+    {
+      "df": 1,
+      "token": "searchpostcodes"
+    }
+  ],
+  "searc": [
+    {
+      "df": 1,
+      "token": "search"
+    },
+    {
+      "df": 1,
+      "token": "searchpostcodes"
+    }
+  ],
+  "search": [
+    {
+      "df": 1,
+      "token": "search"
+    },
+    {
+      "df": 1,
+      "token": "searchpostcodes"
+    }
+  ],
+  "searchp": [
+    {
+      "df": 1,
+      "token": "searchpostcodes"
+    }
+  ],
+  "searchpo": [
+    {
+      "df": 1,
+      "token": "searchpostcodes"
+    }
+  ],
+  "sel": [
+    {
+      "df": 3,
+      "token": "selected"
+    }
+  ],
+  "sele": [
+    {
+      "df": 3,
+      "token": "selected"
+    }
+  ],
+  "selec": [
+    {
+      "df": 3,
+      "token": "selected"
+    }
+  ],
+  "select": [
+    {
+      "df": 3,
+      "token": "selected"
+    }
+  ],
+  "selecte": [
+    {
+      "df": 3,
+      "token": "selected"
+    }
+  ],
+  "selected": [
+    {
+      "df": 3,
+      "token": "selected"
+    }
+  ],
+  "sha": [
+    {
+      "df": 1,
+      "token": "sharing"
+    }
+  ],
+  "shar": [
+    {
+      "df": 1,
+      "token": "sharing"
+    }
+  ],
+  "shari": [
+    {
+      "df": 1,
+      "token": "sharing"
+    }
+  ],
+  "sharin": [
+    {
+      "df": 1,
+      "token": "sharing"
+    }
+  ],
+  "sharing": [
+    {
+      "df": 1,
+      "token": "sharing"
+    }
+  ],
+  "sib": [
+    {
+      "df": 2,
+      "token": "siblings"
+    },
+    {
+      "df": 1,
+      "token": "sibling"
+    }
+  ],
+  "sibl": [
+    {
+      "df": 2,
+      "token": "siblings"
+    },
+    {
+      "df": 1,
+      "token": "sibling"
+    }
+  ],
+  "sibli": [
+    {
+      "df": 2,
+      "token": "siblings"
+    },
+    {
+      "df": 1,
+      "token": "sibling"
+    }
+  ],
+  "siblin": [
+    {
+      "df": 2,
+      "token": "siblings"
+    },
+    {
+      "df": 1,
+      "token": "sibling"
+    }
+  ],
+  "sibling": [
+    {
+      "df": 2,
+      "token": "siblings"
+    },
+    {
+      "df": 1,
+      "token": "sibling"
+    }
+  ],
+  "siblings": [
+    {
+      "df": 2,
+      "token": "siblings"
+    }
+  ],
+  "sim": [
+    {
+      "df": 2,
+      "token": "similar"
+    }
+  ],
+  "simi": [
+    {
+      "df": 2,
+      "token": "similar"
+    }
+  ],
+  "simil": [
+    {
+      "df": 2,
+      "token": "similar"
+    }
+  ],
+  "simila": [
+    {
+      "df": 2,
+      "token": "similar"
+    }
+  ],
+  "similar": [
+    {
+      "df": 2,
+      "token": "similar"
+    }
+  ],
+  "spe": [
+    {
+      "df": 1,
+      "token": "specific"
+    }
+  ],
+  "spec": [
+    {
+      "df": 1,
+      "token": "specific"
+    }
+  ],
+  "speci": [
+    {
+      "df": 1,
+      "token": "specific"
+    }
+  ],
+  "specif": [
+    {
+      "df": 1,
+      "token": "specific"
+    }
+  ],
+  "specifi": [
+    {
+      "df": 1,
+      "token": "specific"
+    }
+  ],
+  "specific": [
+    {
+      "df": 1,
+      "token": "specific"
+    }
+  ],
+  "sta": [
+    {
+      "df": 18,
+      "token": "statistics"
+    },
+    {
+      "df": 2,
+      "token": "statistically"
+    },
+    {
+      "df": 1,
+      "token": "statistical"
+    }
+  ],
+  "stat": [
+    {
+      "df": 18,
+      "token": "statistics"
+    },
+    {
+      "df": 2,
+      "token": "statistically"
+    },
+    {
+      "df": 1,
+      "token": "statistical"
+    }
+  ],
+  "stati": [
+    {
+      "df": 18,
+      "token": "statistics"
+    },
+    {
+      "df": 2,
+      "token": "statistically"
+    },
+    {
+      "df": 1,
+      "token": "statistical"
+    }
+  ],
+  "statis": [
+    {
+      "df": 18,
+      "token": "statistics"
+    },
+    {
+      "df": 2,
+      "token": "statistically"
+    },
+    {
+      "df": 1,
+      "token": "statistical"
+    }
+  ],
+  "statist": [
+    {
+      "df": 18,
+      "token": "statistics"
+    },
+    {
+      "df": 2,
+      "token": "statistically"
+    },
+    {
+      "df": 1,
+      "token": "statistical"
+    }
+  ],
+  "statisti": [
+    {
+      "df": 18,
+      "token": "statistics"
+    },
+    {
+      "df": 2,
+      "token": "statistically"
+    },
+    {
+      "df": 1,
+      "token": "statistical"
+    }
+  ],
+  "sto": [
+    {
+      "df": 18,
+      "token": "store"
+    }
+  ],
+  "stor": [
+    {
+      "df": 18,
+      "token": "store"
+    }
+  ],
+  "store": [
+    {
+      "df": 18,
+      "token": "store"
+    }
+  ],
+  "str": [
+    {
+      "df": 1,
+      "token": "string"
+    }
+  ],
+  "stri": [
+    {
+      "df": 1,
+      "token": "string"
+    }
+  ],
+  "strin": [
+    {
+      "df": 1,
+      "token": "string"
+    }
+  ],
+  "string": [
+    {
+      "df": 1,
+      "token": "string"
+    }
+  ],
+  "sub": [
+    {
+      "df": 1,
+      "token": "sub-topics"
+    }
+  ],
+  "sub-": [
+    {
+      "df": 1,
+      "token": "sub-topics"
+    }
+  ],
+  "sub-t": [
+    {
+      "df": 1,
+      "token": "sub-topics"
+    }
+  ],
+  "sub-to": [
+    {
+      "df": 1,
+      "token": "sub-topics"
+    }
+  ],
+  "sub-top": [
+    {
+      "df": 1,
+      "token": "sub-topics"
+    }
+  ],
+  "sub-topi": [
+    {
+      "df": 1,
+      "token": "sub-topics"
+    }
+  ],
+  "sup": [
+    {
+      "df": 1,
+      "token": "supported"
+    }
+  ],
+  "supp": [
+    {
+      "df": 1,
+      "token": "supported"
+    }
+  ],
+  "suppo": [
+    {
+      "df": 1,
+      "token": "supported"
+    }
+  ],
+  "suppor": [
+    {
+      "df": 1,
+      "token": "supported"
+    }
+  ],
+  "support": [
+    {
+      "df": 1,
+      "token": "supported"
+    }
+  ],
+  "supporte": [
+    {
+      "df": 1,
+      "token": "supported"
+    }
+  ],
+  "tax": [
+    {
+      "df": 1,
+      "token": "taxonomy"
+    }
+  ],
+  "taxo": [
+    {
+      "df": 1,
+      "token": "taxonomy"
+    }
+  ],
+  "taxon": [
+    {
+      "df": 1,
+      "token": "taxonomy"
+    }
+  ],
+  "taxono": [
+    {
+      "df": 1,
+      "token": "taxonomy"
+    }
+  ],
+  "taxonom": [
+    {
+      "df": 1,
+      "token": "taxonomy"
+    }
+  ],
+  "taxonomy": [
+    {
+      "df": 1,
+      "token": "taxonomy"
+    }
+  ],
+  "tem": [
+    {
+      "df": 18,
+      "token": "template"
+    }
+  ],
+  "temp": [
+    {
+      "df": 18,
+      "token": "template"
+    }
+  ],
+  "templ": [
+    {
+      "df": 18,
+      "token": "template"
+    }
+  ],
+  "templa": [
+    {
+      "df": 18,
+      "token": "template"
+    }
+  ],
+  "templat": [
+    {
+      "df": 18,
+      "token": "template"
+    }
+  ],
+  "template": [
+    {
+      "df": 18,
+      "token": "template"
+    }
+  ],
+  "the": [
+    {
+      "df": 1,
+      "token": "their"
+    }
+  ],
+  "thei": [
+    {
+      "df": 1,
+      "token": "their"
+    }
+  ],
+  "their": [
+    {
+      "df": 1,
+      "token": "their"
+    }
+  ],
+  "thi": [
+    {
+      "df": 18,
+      "token": "this"
+    }
+  ],
+  "this": [
+    {
+      "df": 18,
+      "token": "this"
+    }
+  ],
+  "tim": [
+    {
+      "df": 1,
+      "token": "time"
+    },
+    {
+      "df": 1,
+      "token": "timenearest"
+    }
+  ],
+  "time": [
+    {
+      "df": 1,
+      "token": "time"
+    },
+    {
+      "df": 1,
+      "token": "timenearest"
+    }
+  ],
+  "timen": [
+    {
+      "df": 1,
+      "token": "timenearest"
+    }
+  ],
+  "timene": [
+    {
+      "df": 1,
+      "token": "timenearest"
+    }
+  ],
+  "timenea": [
+    {
+      "df": 1,
+      "token": "timenearest"
+    }
+  ],
+  "timenear": [
+    {
+      "df": 1,
+      "token": "timenearest"
+    }
+  ],
+  "top": [
+    {
+      "df": 3,
+      "token": "topic"
+    },
+    {
+      "df": 1,
+      "token": "topics"
+    },
+    {
+      "df": 1,
+      "token": "topojson"
+    }
+  ],
+  "topi": [
+    {
+      "df": 3,
+      "token": "topic"
+    },
+    {
+      "df": 1,
+      "token": "topics"
+    }
+  ],
+  "topic": [
+    {
+      "df": 3,
+      "token": "topic"
+    },
+    {
+      "df": 1,
+      "token": "topics"
+    }
+  ],
+  "topics": [
+    {
+      "df": 1,
+      "token": "topics"
+    }
+  ],
+  "topo": [
+    {
+      "df": 1,
+      "token": "topojson"
+    }
+  ],
+  "topoj": [
+    {
+      "df": 1,
+      "token": "topojson"
+    }
+  ],
+  "topojs": [
+    {
+      "df": 1,
+      "token": "topojson"
+    }
+  ],
+  "topojso": [
+    {
+      "df": 1,
+      "token": "topojson"
+    }
+  ],
+  "topojson": [
+    {
+      "df": 1,
+      "token": "topojson"
+    }
+  ],
+  "typ": [
+    {
+      "df": 1,
+      "token": "type"
+    }
+  ],
+  "type": [
+    {
+      "df": 1,
+      "token": "type"
+    }
+  ],
+  "val": [
+    {
+      "df": 2,
+      "token": "values"
+    }
+  ],
+  "valu": [
+    {
+      "df": 2,
+      "token": "values"
+    }
+  ],
+  "value": [
+    {
+      "df": 2,
+      "token": "values"
+    }
+  ],
+  "values": [
+    {
+      "df": 2,
+      "token": "values"
+    }
+  ],
+  "www": [
+    {
+      "df": 18,
+      "token": "www.ons.gov.uk"
+    }
+  ],
+  "www.": [
+    {
+      "df": 18,
+      "token": "www.ons.gov.uk"
+    }
+  ],
+  "www.o": [
+    {
+      "df": 18,
+      "token": "www.ons.gov.uk"
+    }
+  ],
+  "www.on": [
+    {
+      "df": 18,
+      "token": "www.ons.gov.uk"
+    }
+  ],
+  "www.ons": [
+    {
+      "df": 18,
+      "token": "www.ons.gov.uk"
+    }
+  ],
+  "www.ons.": [
+    {
+      "df": 18,
+      "token": "www.ons.gov.uk"
+    }
+  ],
+  "xls": [
+    {
+      "df": 1,
+      "token": "xlsx"
+    }
+  ],
+  "xlsx": [
+    {
+      "df": 1,
+      "token": "xlsx"
+    }
+  ],
+  "yea": [
+    {
+      "df": 7,
+      "token": "year"
+    }
+  ],
+  "year": [
+    {
+      "df": 7,
+      "token": "year"
+    }
+  ]
+}

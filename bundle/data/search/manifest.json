@@ -1,0 +1,57 @@
+{
+  "counts": {
+    "doc_map_shards": 1,
+    "documents": 18,
+    "lexicon_chunks": 1,
+    "max_postings_per_token": 18,
+    "postings": 770,
+    "postings_shards": 1,
+    "prefix_chunks": 1,
+    "result_doc_chunks": 1,
+    "tokens": 194
+  },
+  "entrypoints": {
+    "doc_map": "data/search/doc-map.json",
+    "facets": "data/search/facets.json",
+    "lexicon": {
+      "_": "data/search/lexicon-_.json"
+    },
+    "postings": [
+      "data/search/postings-0001.json"
+    ],
+    "prefixes": {
+      "_": "data/search/prefix-_.json"
+    },
+    "result_docs": [
+      "data/search/results-0.json"
+    ]
+  },
+  "field_masks": {
+    "formats": 64,
+    "name": 4,
+    "notes": 16,
+    "publisher": 8,
+    "resources": 32,
+    "route": 2,
+    "tags": 128,
+    "title": 1
+  },
+  "generated_at": "2026-07-20T11:43:20Z",
+  "lexicon_shard_length": 1,
+  "prefix_min_length": 3,
+  "result_doc_chunk_size": 18,
+  "result_limit": 50,
+  "schema": "okf-static-search.v1",
+  "snapshot": "els-wiki-2026-07-20",
+  "token_min_length": 2,
+  "weights": {
+    "formats": 6,
+    "name": 14,
+    "notes": 8,
+    "publisher": 8,
+    "resources": 7,
+    "route": 15,
+    "tags": 5,
+    "title": 16
+  }
+}

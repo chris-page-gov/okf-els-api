@@ -75,6 +75,13 @@
       "value": "yes"
     }
   ],
+  "publisher": [
+    {
+      "count": 18,
+      "label": "office-for-national-statistics",
+      "value": "office-for-national-statistics"
+    }
+  ],
   "state": [
     {
       "count": 18,

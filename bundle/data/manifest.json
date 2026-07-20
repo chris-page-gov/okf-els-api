@@ -30,6 +30,7 @@
     "overview": "data/overview.json",
     "parameters": "data/parameters.json",
     "review": "data/review/issues.json",
+    "search": "data/search/manifest.json",
     "selection_contract": "data/selection-contract.json",
     "snapshot": "data/provenance/wiki-snapshot.json"
   },
@@ -38,6 +39,12 @@
     "startup_mode": "eager-small-corpus"
   },
   "schema": "okf-explorer-data-manifest.v1",
+  "search": {
+    "documents": 18,
+    "result_limit": 50,
+    "schema": "okf-static-search.v1",
+    "tokens": 194
+  },
   "snapshot": "els-wiki-2026-07-20",
   "title": "Explore Local Statistics API discovery OKF"
 }
