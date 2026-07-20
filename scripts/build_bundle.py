@@ -963,7 +963,7 @@ def write_bundle(target: Path) -> None:
         "@id": PUBLISHED_DESCRIPTOR,
         "schema": "okf-explorer-large-corpus.v1",
         "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
-        "kind": "okf-small-api-corpus",
+        "kind": "okf-large-corpus",
         "title": "Explore Local Statistics API discovery OKF",
         "description": register["description"],
         "version": "0.1.0",

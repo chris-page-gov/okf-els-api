@@ -103,9 +103,9 @@
       "sha256": "a78d931dc6d02fb3bd30819fa93ccb913921596030b2ff3933545d6ccbb6480a"
     },
     {
-      "bytes": 3726,
+      "bytes": 3722,
       "path": "okf-explorer.json",
-      "sha256": "18fbeb766307303cd0e6cb1e0797fcba0538c46d6921d29c753a5142dd455c09"
+      "sha256": "78cf1e36bc939db071d0a1621db3ca0055c3b584af86f6c97c6ab82e98f21c10"
     },
     {
       "bytes": 4249,
@@ -113,6 +113,6 @@
       "sha256": "e236d54b1afd0835a00c7bc0796c16b73d2c1c18b20c5bfa5f015248e88e91d5"
     }
   ],
-  "rootSha256": "321a1288361d261b06dbd0b7fbcb5643d2641f188deb819d3d3c740f672683bc",
+  "rootSha256": "a4f02caab957f46046fa82d443e3b873c0e4430be7c20e2c3980c56052d3ba4a",
   "schema": "okf-els-api.checksums.v1"
 }

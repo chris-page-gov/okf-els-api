@@ -28,6 +28,7 @@ class BundleTests(unittest.TestCase):
 
     def test_declared_counts_and_safety_boundary(self) -> None:
         descriptor = load("okf-explorer.json")
+        self.assertEqual(descriptor["kind"], "okf-large-corpus")
         self.assertEqual(descriptor["counts"]["records"], 18)
         self.assertEqual(descriptor["counts"]["documents"], 6)
         self.assertEqual(descriptor["counts"]["issues"], 9)

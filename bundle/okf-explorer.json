@@ -44,7 +44,7 @@
     }
   },
   "generated_at": "2026-07-20T11:43:20Z",
-  "kind": "okf-small-api-corpus",
+  "kind": "okf-large-corpus",
   "license": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
   "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
   "publication": {
