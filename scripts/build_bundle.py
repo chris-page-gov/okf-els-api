@@ -7,10 +7,12 @@ import argparse
 import hashlib
 import html
 import json
+import re
 import shutil
 import sys
 import tempfile
-from collections import Counter
+import unicodedata
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
@@ -22,7 +24,33 @@ SNAPSHOT_PATH = ROOT / "source" / "wiki-snapshot.json"
 PAGES_ROOT = "https://chris-page-gov.github.io/okf-els-api/"
 PUBLISHED_DESCRIPTOR = f"{PAGES_ROOT}okf-explorer.json"
 EXPLORER_ROOT = "https://chris-page-gov.github.io/okf-explorer/"
-EXPLORER_URL = f"{EXPLORER_ROOT}?bundle={quote(PUBLISHED_DESCRIPTOR, safe='')}"
+BUNDLE_VERSION = "0.2.0"
+EXPLORER_DESCRIPTOR = f"{PUBLISHED_DESCRIPTOR}?version={BUNDLE_VERSION}"
+EXPLORER_URL = f"{EXPLORER_ROOT}?bundle={quote(EXPLORER_DESCRIPTOR, safe='')}"
+SEARCH_FIELD_WEIGHTS = {
+    "title": 16,
+    "route": 15,
+    "name": 14,
+    "publisher": 8,
+    "notes": 8,
+    "resources": 7,
+    "formats": 6,
+    "tags": 5,
+}
+SEARCH_FIELD_MASKS = {
+    field: 1 << index for index, field in enumerate(SEARCH_FIELD_WEIGHTS)
+}
+SEARCH_STOP_WORDS = {
+    "and",
+    "for",
+    "from",
+    "into",
+    "of",
+    "or",
+    "the",
+    "to",
+    "with",
+}
 
 
 class BuildError(RuntimeError):
@@ -643,6 +671,202 @@ def facet_rows(values: list[str]) -> list[dict[str, Any]]:
     ]
 
 
+def search_tokens(value: Any) -> list[str]:
+    text = unicodedata.normalize("NFKD", str(value))
+    text = "".join(character for character in text if not unicodedata.combining(character))
+    seen: set[str] = set()
+    tokens: list[str] = []
+    for match in re.findall(r"[a-z0-9][a-z0-9._-]*", text.lower()):
+        token = match.strip("._-")
+        if len(token) < 2 or token in SEARCH_STOP_WORDS or token in seen:
+            continue
+        seen.add(token)
+        tokens.append(token)
+    return tokens
+
+
+def search_result_documents(
+    records: list[dict[str, Any]],
+    resources: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    resource_counts = Counter(resource["dataset"] for resource in resources)
+    return [
+        {
+            "ordinal": ordinal,
+            "name": record["name"],
+            "title": record["title"],
+            "publisher": record["publisher"],
+            "publisher_title": record["publisher_title"],
+            "resource_count": resource_counts[record["name"]],
+            "formats": record["formats"],
+            "tags": record["tags"],
+            "topics": record["topics"],
+            "timestamp": record["metadata_modified"],
+            "notes": record["notes"],
+            "endpoint_host": record["host"],
+            "documentation_host": "github.com",
+            "access_model": "internal-private",
+            "record_type": record["record_type"],
+            "open": record["open"],
+            "url": record["url"],
+        }
+        for ordinal, record in enumerate(records)
+    ]
+
+
+def delta_encode(ordinals: list[int]) -> list[int]:
+    previous = 0
+    encoded: list[int] = []
+    for index, ordinal in enumerate(ordinals):
+        encoded.append(ordinal if index == 0 else ordinal - previous)
+        previous = ordinal
+    return encoded
+
+
+def static_search_index(
+    records: list[dict[str, Any]],
+    resources: list[dict[str, Any]],
+    snapshot: dict[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    result_documents = search_result_documents(records, resources)
+    resources_by_dataset: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for resource in resources:
+        resources_by_dataset[resource["dataset"]].append(resource)
+
+    postings: dict[str, dict[int, list[int]]] = defaultdict(dict)
+    for ordinal, record in enumerate(records):
+        related_resources = resources_by_dataset[record["name"]]
+        fields = {
+            "title": record["title"],
+            "route": " ".join(
+                [
+                    record["path_template"],
+                    record["documented_path_template"],
+                    *[parameter["name"] for parameter in record["parameters"]],
+                ]
+            ),
+            "name": f"{record['name']} {record['native_id']}",
+            "publisher": f"{record['publisher']} {record['publisher_title']}",
+            "notes": f"{record['notes']} {record['description']}",
+            "resources": " ".join(
+                " ".join(
+                    str(resource.get(key, ""))
+                    for key in ("name", "title", "description", "format", "url")
+                )
+                for resource in related_resources
+            ),
+            "formats": " ".join(record["formats"]),
+            "tags": " ".join([*record["tags"], *record["topics"]]),
+        }
+        for field, value in fields.items():
+            for token in search_tokens(value):
+                score_mask = postings[token].setdefault(ordinal, [0, 0])
+                score_mask[0] += SEARCH_FIELD_WEIGHTS[field]
+                score_mask[1] |= SEARCH_FIELD_MASKS[field]
+
+    postings_path = "data/search/postings-0001.json"
+    lexicon = [
+        {
+            "token": token,
+            "df": len(documents),
+            "postings": postings_path,
+        }
+        for token, documents in sorted(postings.items())
+    ]
+    prefixes: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for token, documents in sorted(postings.items()):
+        for length in range(3, min(len(token), 8) + 1):
+            prefixes[token[:length]].append({"token": token, "df": len(documents)})
+    prefix_index = {
+        prefix: sorted(
+            values,
+            key=lambda row: (-row["df"], row["token"]),
+        )[:24]
+        for prefix, values in sorted(prefixes.items())
+    }
+
+    facet_ordinals: dict[str, dict[str, list[int]]] = {
+        "family": defaultdict(list),
+        "format": defaultdict(list),
+        "has_documentation_issues": defaultdict(list),
+        "publisher": defaultdict(list),
+        "state": defaultdict(list),
+    }
+    for ordinal, record in enumerate(records):
+        facet_ordinals["family"][record["topics"][0]].append(ordinal)
+        facet_ordinals["has_documentation_issues"][
+            "yes" if record["issues"] else "no"
+        ].append(ordinal)
+        facet_ordinals["publisher"][record["publisher"]].append(ordinal)
+        facet_ordinals["state"][record["state"]].append(ordinal)
+        for format_id in record["formats"]:
+            facet_ordinals["format"][format_id].append(ordinal)
+    search_facets = {
+        key: {
+            value: delta_encode(ordinals)
+            for value, ordinals in sorted(values.items())
+        }
+        for key, values in facet_ordinals.items()
+    }
+    document_map = {
+        record["name"]: {
+            "ordinal": ordinal,
+            "doc_chunk": "data/search/results-0.json",
+        }
+        for ordinal, record in enumerate(records)
+    }
+    manifest = {
+        "schema": "okf-static-search.v1",
+        "snapshot": snapshot["snapshotId"],
+        "generated_at": snapshot["retrievedAt"],
+        "token_min_length": 2,
+        "prefix_min_length": 3,
+        "lexicon_shard_length": 1,
+        "result_limit": 50,
+        "result_doc_chunk_size": len(result_documents),
+        "weights": SEARCH_FIELD_WEIGHTS,
+        "field_masks": SEARCH_FIELD_MASKS,
+        "counts": {
+            "documents": len(result_documents),
+            "tokens": len(postings),
+            "max_postings_per_token": len(result_documents),
+            "lexicon_chunks": 1,
+            "prefix_chunks": 1,
+            "postings_shards": 1,
+            "postings": sum(len(rows) for rows in postings.values()),
+            "result_doc_chunks": 1,
+            "doc_map_shards": 1,
+        },
+        "entrypoints": {
+            "lexicon": {"_": "data/search/lexicon-_.json"},
+            "prefixes": {"_": "data/search/prefix-_.json"},
+            "postings": [postings_path],
+            "result_docs": ["data/search/results-0.json"],
+            "facets": "data/search/facets.json",
+            "doc_map": "data/search/doc-map.json",
+        },
+    }
+    outputs = {
+        "data/search/manifest.json": manifest,
+        "data/search/lexicon-_.json": lexicon,
+        "data/search/prefix-_.json": prefix_index,
+        postings_path: {
+            "schema": "okf-search-postings.v1",
+            "tokens": {
+                token: [
+                    [ordinal, score_mask[0], score_mask[1]]
+                    for ordinal, score_mask in sorted(documents.items())
+                ]
+                for token, documents in sorted(postings.items())
+            },
+        },
+        "data/search/results-0.json": result_documents,
+        "data/search/facets.json": search_facets,
+        "data/search/doc-map.json": document_map,
+    }
+    return manifest, outputs
+
+
 def selection_contract(register: dict[str, Any]) -> dict[str, Any]:
     return {
         "schema": "okf-els-api.selection-plan.v1",
@@ -863,6 +1087,19 @@ def write_bundle(target: Path) -> None:
         "resource_count": len(resources),
         "route": "publisher/office-for-national-statistics",
     }
+    facets = {
+        "family": facet_rows([record["topics"][0] for record in records]),
+        "format": facet_rows(
+            [format_id for record in records for format_id in record["formats"]]
+        ),
+        "has_documentation_issues": facet_rows(
+            ["yes" if record["issues"] else "no" for record in records]
+        ),
+        "publisher": facet_rows([record["publisher"] for record in records]),
+        "state": facet_rows([record["state"] for record in records]),
+    }
+    search_manifest, search_outputs = static_search_index(records, resources, snapshot)
+    result_documents = search_outputs["data/search/results-0.json"]
     overview = {
         "schema": "okf-els-api.overview.v1",
         "title": "Explore Local Statistics API discovery",
@@ -874,9 +1111,25 @@ def write_bundle(target: Path) -> None:
             "documents": len(documents),
             "formats": len(register["formats"]),
             "issues": len(register["issues"]),
+            "datasets": len(records),
+            "publishers": 1,
             "resources": len(resources),
             "relationships": len(relationships),
         },
+        "top_publishers": [
+            {
+                "name": publisher["name"],
+                "title": publisher["title"],
+                "dataset_count": publisher["dataset_count"],
+            }
+        ],
+        "recent_datasets": result_documents[:6],
+        "format_counts": facets["format"],
+        "facet_previews": facets,
+        "notices": [
+            "Metadata-only bundle; no live API requests or observation values are included.",
+            register["policy"]["warning"],
+        ],
         "familyCounts": dict(sorted(family_counts.items())),
         "issueSeverityCounts": dict(sorted(issue_counts.items())),
         "liveProbePerformed": False,
@@ -940,23 +1193,20 @@ def write_bundle(target: Path) -> None:
             "overview": "data/overview.json",
             "parameters": "data/parameters.json",
             "review": "data/review/issues.json",
+            "search": "data/search/manifest.json",
             "selection_contract": "data/selection-contract.json",
             "snapshot": "data/provenance/wiki-snapshot.json",
+        },
+        "search": {
+            "schema": search_manifest["schema"],
+            "documents": search_manifest["counts"]["documents"],
+            "tokens": search_manifest["counts"]["tokens"],
+            "result_limit": search_manifest["result_limit"],
         },
         "performance": {
             "startup_mode": "eager-small-corpus",
             "full_record_hydration": "single-chunk",
         },
-    }
-    facets = {
-        "family": facet_rows([record["topics"][0] for record in records]),
-        "format": facet_rows(
-            [format_id for record in records for format_id in record["formats"]]
-        ),
-        "has_documentation_issues": facet_rows(
-            ["yes" if record["issues"] else "no" for record in records]
-        ),
-        "state": facet_rows([record["state"] for record in records]),
     }
     descriptor = {
         "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld",
@@ -966,7 +1216,7 @@ def write_bundle(target: Path) -> None:
         "kind": "okf-large-corpus",
         "title": "Explore Local Statistics API discovery OKF",
         "description": register["description"],
-        "version": "0.1.0",
+        "version": BUNDLE_VERSION,
         "status": "bounded-review-draft",
         "snapshot": snapshot["snapshotId"],
         "generated_at": snapshot["retrievedAt"],
@@ -992,6 +1242,7 @@ def write_bundle(target: Path) -> None:
             "overview_index": "data/overview.json",
             "parameters": "data/parameters.json",
             "review": "data/review/issues.json",
+            "search_manifest": "data/search/manifest.json",
             "selection_contract": "data/selection-contract.json",
             "snapshot": "data/provenance/wiki-snapshot.json",
             "viewer": "https://chris-page-gov.github.io/okf-explorer/",
@@ -1077,6 +1328,8 @@ def write_bundle(target: Path) -> None:
     writer.write_json("data/provenance/wiki-snapshot.json", snapshot)
     writer.write_json("data/review/issues.json", register["issues"])
     writer.write_json("data/selection-contract.json", selection_contract(register))
+    for path, payload in search_outputs.items():
+        writer.write_json(path, payload)
     writer.write_text("index.html", landing_page(register, snapshot, len(records)))
     writer.write_text("site.css", landing_styles())
     writer.write_text(".nojekyll", "")

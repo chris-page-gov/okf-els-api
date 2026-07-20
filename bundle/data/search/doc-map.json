@@ -1,0 +1,74 @@
+{
+  "data": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 0
+  },
+  "geo-boundaries": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 9
+  },
+  "geo-children": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 6
+  },
+  "geo-levels": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 2
+  },
+  "geo-list": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 1
+  },
+  "geo-lookup": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 3
+  },
+  "geo-parents": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 5
+  },
+  "geo-postcode": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 12
+  },
+  "geo-postcode-autocomplete": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 13
+  },
+  "geo-related": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 4
+  },
+  "geo-reverse": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 11
+  },
+  "geo-search": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 10
+  },
+  "geo-siblings": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 7
+  },
+  "geo-similar": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 8
+  },
+  "metadata-dimension": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 16
+  },
+  "metadata-indicator": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 15
+  },
+  "metadata-indicators": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 14
+  },
+  "metadata-taxonomy": {
+    "doc_chunk": "data/search/results-0.json",
+    "ordinal": 17
+  }
+}

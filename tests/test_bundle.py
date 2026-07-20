@@ -29,6 +29,7 @@ class BundleTests(unittest.TestCase):
     def test_declared_counts_and_safety_boundary(self) -> None:
         descriptor = load("okf-explorer.json")
         self.assertEqual(descriptor["kind"], "okf-large-corpus")
+        self.assertEqual(descriptor["version"], "0.2.0")
         self.assertEqual(descriptor["counts"]["records"], 18)
         self.assertEqual(descriptor["counts"]["documents"], 6)
         self.assertEqual(descriptor["counts"]["issues"], 9)
@@ -61,10 +62,31 @@ class BundleTests(unittest.TestCase):
             "bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json",
             publication["okf_explorer"],
         )
+        self.assertIn("%3Fversion%3D0.2.0", publication["okf_explorer"])
         landing = (BUNDLE / "index.html").read_text(encoding="utf-8")
         self.assertIn(publication["okf_explorer"], landing)
         self.assertTrue((BUNDLE / "site.css").is_file())
         self.assertTrue((BUNDLE / ".nojekyll").is_file())
+
+    def test_okf_explorer_search_index_covers_operations(self) -> None:
+        descriptor = load("okf-explorer.json")
+        search = load(descriptor["entrypoints"]["search_manifest"])
+        self.assertEqual(search["schema"], "okf-static-search.v1")
+        self.assertEqual(search["counts"]["documents"], 18)
+        self.assertEqual(search["counts"]["postings_shards"], 1)
+
+        lexicon = load(search["entrypoints"]["lexicon"]["_"])
+        reverse = next(row for row in lexicon if row["token"] == "reverse")
+        postings = load(reverse["postings"])["tokens"]["reverse"]
+        results = load(search["entrypoints"]["result_docs"][0])
+        matched = [results[row[0]]["name"] for row in postings]
+        self.assertIn("geo-reverse", matched)
+
+        document_map = load(search["entrypoints"]["doc_map"])
+        self.assertEqual(set(document_map), {row["name"] for row in results})
+        overview = load("data/overview.json")
+        self.assertTrue(overview["recent_datasets"])
+        self.assertIn("family", overview["facet_previews"])
 
     def test_every_operation_is_non_executing_get(self) -> None:
         operations = load("data/datasets-0.json")

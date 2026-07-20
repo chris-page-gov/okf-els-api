@@ -1,0 +1,512 @@
+[
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "csv",
+      "csvw",
+      "json-stat",
+      "xlsx",
+      "rows.json",
+      "cols.json"
+    ],
+    "name": "data",
+    "notes": "Filter one or more indicators by topic, geography, time, dimensions and measures.",
+    "open": "operation/data",
+    "ordinal": 0,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "data",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "Filter and download statistical data",
+    "topics": [
+      "data"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/data.{format}"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-list",
+    "notes": "List names, codes and selected metadata for geographies represented in ELS.",
+    "open": "operation/geo-list",
+    "ordinal": 1,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List geographic areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/list"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-levels",
+    "notes": "List geography-level keys, type prefixes and optionally their area codes.",
+    "open": "operation/geo-levels",
+    "ordinal": 2,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List geography levels",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/levels"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "geojson"
+    ],
+    "name": "geo-lookup",
+    "notes": "Return a GeoJSON feature with boundary geometry and extended metadata for a GSS code.",
+    "open": "operation/geo-lookup",
+    "ordinal": 3,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "Look up one geographic area",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/lookup/{code}"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-related",
+    "notes": "Return parents, children, siblings and statistically similar areas.",
+    "open": "operation/geo-related",
+    "ordinal": 4,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List all related areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-parents",
+    "notes": "List parents for an area identified by GSS code.",
+    "open": "operation/geo-parents",
+    "ordinal": 5,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List parent areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/parents"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-children",
+    "notes": "List immediate children or children at a selected geography level.",
+    "open": "operation/geo-children",
+    "ordinal": 6,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List child areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/children"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-siblings",
+    "notes": "List siblings sharing an immediate or selected parent level.",
+    "open": "operation/geo-siblings",
+    "ordinal": 7,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List sibling areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/siblings"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-similar",
+    "notes": "List cluster members and the 20 most similar areas for supported groupings.",
+    "open": "operation/geo-similar",
+    "ordinal": 8,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List statistically similar areas",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/similar"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "geojson",
+      "topojson"
+    ],
+    "name": "geo-boundaries",
+    "notes": "Return filtered, low-resolution boundaries as GeoJSON or TopoJSON.",
+    "open": "operation/geo-boundaries",
+    "ordinal": 9,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "Get generalised boundaries",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/boundaries.{format}"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-search",
+    "notes": "Search area names and optionally fall back to postcode autocomplete.",
+    "open": "operation/geo-search",
+    "ordinal": 10,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "Search areas by name",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/search/{name}"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-reverse",
+    "notes": "Return areas containing a longitude and latitude.",
+    "open": "operation/geo-reverse",
+    "ordinal": 11,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "Reverse geographic lookup",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/reverse"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-postcode",
+    "notes": "Return public postcode coordinates and containing geographies.",
+    "open": "operation/geo-postcode",
+    "ordinal": 12,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "Look up a full postcode",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "geo-postcode-autocomplete",
+    "notes": "Return matching postcodes and public coordinates for a partial postcode.",
+    "open": "operation/geo-postcode-autocomplete",
+    "ordinal": 13,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "geography",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "Autocomplete a partial postcode",
+    "topics": [
+      "geography"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}/autocomplete"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "metadata-indicators",
+    "notes": "Return metadata for indicators filtered by topic, geography and year.",
+    "open": "operation/metadata-indicators",
+    "ordinal": 14,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "metadata",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List indicator metadata",
+    "topics": [
+      "metadata"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "metadata-indicator",
+    "notes": "Return metadata for one indicator and optionally its full dimension values.",
+    "open": "operation/metadata-indicator",
+    "ordinal": 15,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "metadata",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "Get one indicator's metadata",
+    "topics": [
+      "metadata"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "metadata-dimension",
+    "notes": "Return possible values for a specific dimension of a specific indicator.",
+    "open": "operation/metadata-dimension",
+    "ordinal": 16,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "metadata",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List values for one indicator dimension",
+    "topics": [
+      "metadata"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}"
+  },
+  {
+    "access_model": "internal-private",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "name": "metadata-taxonomy",
+    "notes": "Return indicators grouped into topics and sub-topics, nested or flat.",
+    "open": "operation/metadata-taxonomy",
+    "ordinal": 17,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_type": "ELS API operation",
+    "resource_count": 1,
+    "tags": [
+      "api",
+      "get",
+      "metadata",
+      "internal-private-unstable"
+    ],
+    "timestamp": "2026-07-20T12:17:57+01:00",
+    "title": "List the indicator taxonomy",
+    "topics": [
+      "metadata"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/taxonomy"
+  }
+]

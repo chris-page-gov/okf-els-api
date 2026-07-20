@@ -21,6 +21,7 @@
     "overview_index": "data/overview.json",
     "parameters": "data/parameters.json",
     "review": "data/review/issues.json",
+    "search_manifest": "data/search/manifest.json",
     "selection_contract": "data/selection-contract.json",
     "snapshot": "data/provenance/wiki-snapshot.json",
     "viewer": "https://chris-page-gov.github.io/okf-explorer/"
@@ -39,7 +40,7 @@
     },
     "okf-pages-publication.v1": {
       "descriptor": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
-      "explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json",
+      "explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json%3Fversion%3D0.2.0",
       "site": "https://chris-page-gov.github.io/okf-els-api/"
     }
   },
@@ -49,7 +50,7 @@
   "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
   "publication": {
     "descriptor": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
-    "okf_explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json",
+    "okf_explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json%3Fversion%3D0.2.0",
     "site": "https://chris-page-gov.github.io/okf-els-api/"
   },
   "publisher": "https://www.ons.gov.uk/",
@@ -74,7 +75,7 @@
   },
   "status": "bounded-review-draft",
   "title": "Explore Local Statistics API discovery OKF",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "vocabulary": {
     "publisher_plural": "publishers",
     "publisher_singular": "publisher",
