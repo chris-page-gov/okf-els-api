@@ -1,6 +1,6 @@
 [project]
 name = "okf-els-api"
-version = "0.1.0"
+version = "0.2.0"
 description = "Metadata-only OKF bundle for the Explore Local Statistics internal API documentation"
 requires-python = ">=3.11"
 license = { text = "MIT" }

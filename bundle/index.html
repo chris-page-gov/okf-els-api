@@ -21,6 +21,7 @@
         </span>
       </a>
       <nav aria-label="Bundle links">
+        <a href="index.md">OKF 0.2</a>
         <a href="okf-explorer.json">Descriptor</a>
         <a href="data/openapi.json">OpenAPI</a>
         <a href="data/review/issues.json">Review findings</a>
@@ -64,12 +65,29 @@
         <div><dt>Snapshot</dt><dd class="text-value">els-wiki-2026-07-20</dd></div>
       </dl>
     </section>
+    <section class="shell temporal" aria-labelledby="temporal-title">
+      <p class="eyebrow">Snapshot versus live</p>
+      <h2 id="temporal-title">Three dates, no implied live verification</h2>
+      <dl class="cards temporal-cards">
+        <div><dt>Bundle generated</dt><dd class="text-value">2026-07-25T12:17:29Z</dd></div>
+        <div><dt>Wiki snapshot commit</dt><dd class="text-value">3da822e28d77</dd></div>
+        <div><dt>Reviewed develop commit</dt><dd class="text-value">795eaf204f47</dd></div>
+        <div><dt>Current live state</dt><dd class="text-value">Not checked</dd></div>
+      </dl>
+      <p>
+        Drift findings compare the two pinned source surfaces only. They do not
+        describe the current wiki, current <code>develop</code> branch or deployed API.
+      </p>
+    </section>
     <section class="shell files" aria-labelledby="files-title">
       <p class="eyebrow">Human and machine entrypoints</p>
       <h2 id="files-title">Use the evidence directly</h2>
       <div class="file-grid">
+        <a href="index.md"><strong>OKF v0.2 Markdown</strong><span>Normative concept-tree entrypoint</span></a>
+        <a href="data/standards/okf-v0.2.json"><strong>Conformance report</strong><span>Producer validation and trust/lifecycle counts</span></a>
         <a href="okf-explorer.json"><strong>OKF descriptor</strong><span>Portable OKF Explorer entrypoint</span></a>
         <a href="okf-bundle.jsonld"><strong>Semantic JSON-LD</strong><span>DCAT, Hydra and PROV representation</span></a>
+        <a href="okf-bundle.yamlld"><strong>Semantic YAML-LD</strong><span>Byte-stable YAML 1.2 projection</span></a>
         <a href="data/openapi.json"><strong>OpenAPI review draft</strong><span>18 source-reviewed GET operations</span></a>
         <a href="data/review/issues.json"><strong>Drift register</strong><span>Wiki conflicts and documentation gaps</span></a>
         <a href="data/coverage/ledger.json"><strong>Coverage ledger</strong><span>Bounded denominator and exclusions</span></a>

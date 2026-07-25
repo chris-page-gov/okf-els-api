@@ -36,6 +36,9 @@ jobs:
       - name: Verify deterministic rebuild
         run: python scripts/build_bundle.py --check
 
+      - name: Validate OKF v0.2 concept layer
+        run: python scripts/check_okf.py
+
       - name: Run tests
         run: python -m unittest discover -s tests -v
 
@@ -45,9 +48,12 @@ jobs:
       - name: Verify public entrypoints
         run: |
           test -f bundle/index.html
+          test -f bundle/index.md
           test -f bundle/.nojekyll
           test -f bundle/okf-explorer.json
           test -f bundle/okf-bundle.jsonld
+          test -f bundle/okf-bundle.yamlld
+          test -f bundle/data/standards/okf-v0.2.json
           test -f bundle/data/openapi.json
           test -f bundle/data/review/issues.json
           test -f bundle/data/coverage/ledger.json

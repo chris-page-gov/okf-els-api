@@ -587,7 +587,7 @@
     },
     "/api/v1/geo/postcodes/{code}": {
       "get": {
-        "description": "Return public postcode coordinates and containing geographies.",
+        "description": "Return postcode coordinates and containing geographies.",
         "operationId": "geo_postcode",
         "parameters": [
           {
@@ -674,7 +674,7 @@
     },
     "/api/v1/geo/postcodes/{code}/autocomplete": {
       "get": {
-        "description": "Return matching postcodes and public coordinates for a partial postcode.",
+        "description": "Return matching postcodes and coordinates for a partial postcode.",
         "operationId": "geo_postcode_autocomplete",
         "parameters": [
           {

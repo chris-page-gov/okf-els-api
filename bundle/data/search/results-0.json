@@ -25,7 +25,7 @@
       "data",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "Filter and download statistical data",
     "topics": [
       "data"
@@ -53,7 +53,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List geographic areas",
     "topics": [
       "geography"
@@ -81,7 +81,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List geography levels",
     "topics": [
       "geography"
@@ -109,7 +109,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "Look up one geographic area",
     "topics": [
       "geography"
@@ -137,7 +137,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List all related areas",
     "topics": [
       "geography"
@@ -165,7 +165,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List parent areas",
     "topics": [
       "geography"
@@ -193,7 +193,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List child areas",
     "topics": [
       "geography"
@@ -221,7 +221,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List sibling areas",
     "topics": [
       "geography"
@@ -249,7 +249,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List statistically similar areas",
     "topics": [
       "geography"
@@ -278,7 +278,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "Get generalised boundaries",
     "topics": [
       "geography"
@@ -306,7 +306,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "Search areas by name",
     "topics": [
       "geography"
@@ -334,7 +334,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "Reverse geographic lookup",
     "topics": [
       "geography"
@@ -349,7 +349,7 @@
       "application-json"
     ],
     "name": "geo-postcode",
-    "notes": "Return public postcode coordinates and containing geographies.",
+    "notes": "Return postcode coordinates and containing geographies.",
     "open": "operation/geo-postcode",
     "ordinal": 12,
     "publisher": "office-for-national-statistics",
@@ -362,7 +362,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "Look up a full postcode",
     "topics": [
       "geography"
@@ -377,7 +377,7 @@
       "application-json"
     ],
     "name": "geo-postcode-autocomplete",
-    "notes": "Return matching postcodes and public coordinates for a partial postcode.",
+    "notes": "Return matching postcodes and coordinates for a partial postcode.",
     "open": "operation/geo-postcode-autocomplete",
     "ordinal": 13,
     "publisher": "office-for-national-statistics",
@@ -390,7 +390,7 @@
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "Autocomplete a partial postcode",
     "topics": [
       "geography"
@@ -418,7 +418,7 @@
       "metadata",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List indicator metadata",
     "topics": [
       "metadata"
@@ -446,7 +446,7 @@
       "metadata",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "Get one indicator's metadata",
     "topics": [
       "metadata"
@@ -474,7 +474,7 @@
       "metadata",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List values for one indicator dimension",
     "topics": [
       "metadata"
@@ -502,7 +502,7 @@
       "metadata",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-20T12:17:57+01:00",
+    "timestamp": "2026-07-25T12:17:29Z",
     "title": "List the indicator taxonomy",
     "topics": [
       "metadata"

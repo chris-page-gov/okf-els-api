@@ -4,11 +4,11 @@
     "documents": 18,
     "lexicon_chunks": 1,
     "max_postings_per_token": 18,
-    "postings": 770,
+    "postings": 768,
     "postings_shards": 1,
     "prefix_chunks": 1,
     "result_doc_chunks": 1,
-    "tokens": 194
+    "tokens": 193
   },
   "entrypoints": {
     "doc_map": "data/search/doc-map.json",
@@ -36,7 +36,7 @@
     "tags": 128,
     "title": 1
   },
-  "generated_at": "2026-07-20T11:43:20Z",
+  "generated_at": "2026-07-25T12:17:29Z",
   "lexicon_shard_length": 1,
   "prefix_min_length": 3,
   "result_doc_chunk_size": 18,

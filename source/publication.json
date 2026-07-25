@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-07-25T12:17:29Z",
+  "generatedBy": "process:okf-els-api-build",
+  "okfSpecification": {
+    "commit": "3fcbb9f828c2f23d109c855ee403c3a4c81f3a96",
+    "resource": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md",
+    "version": "0.2"
+  },
+  "schema": "okf-els-api.publication.v1"
+}

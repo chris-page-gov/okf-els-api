@@ -494,7 +494,7 @@
       "id": "geo-postcode",
       "family": "geography",
       "title": "Look up a full postcode",
-      "summary": "Return public postcode coordinates and containing geographies.",
+      "summary": "Return postcode coordinates and containing geographies.",
       "path": "/api/v1/geo/postcodes/{code}",
       "documentedPath": "/api/v1/geo/postcodes/{code}",
       "sourcePath": "src/routes/(api)/api/v1/geo/postcodes/[code]/+server.ts",
@@ -505,13 +505,13 @@
       "defaults": {"year": "latest", "geoLevel": "all", "groupByLevel": false},
       "formats": ["application-json"],
       "issueIds": ["drift-geo-includedates"],
-      "privacyNote": "The operation is public lookup metadata. The OKF bundle stores neither submitted postcodes nor returned coordinates."
+      "privacyNote": "The operation returns lookup metadata. The OKF bundle stores neither submitted postcodes nor returned coordinates."
     },
     {
       "id": "geo-postcode-autocomplete",
       "family": "geography",
       "title": "Autocomplete a partial postcode",
-      "summary": "Return matching postcodes and public coordinates for a partial postcode.",
+      "summary": "Return matching postcodes and coordinates for a partial postcode.",
       "path": "/api/v1/geo/postcodes/{code}/autocomplete",
       "documentedPath": "/api/v1/geo/postcodes/{partial_code}/autocomplete",
       "sourcePath": "src/routes/(api)/api/v1/geo/postcodes/[code]/autocomplete/+server.ts",
@@ -646,7 +646,7 @@
       "wikiEvidence": "The data page states a default of all.",
       "sourceEvidence": "The reviewed data handler defaults hasGeo to any.",
       "statement": "The omission behaviour is ambiguous.",
-      "recommendation": "Define and test the public semantic difference between any and all."
+      "recommendation": "Define and test the documented semantic difference between any and all."
     },
     {
       "id": "gap-geo-related-includenames",

@@ -42,7 +42,7 @@
   {
     "id": "drift-data-hasgeo-default",
     "kind": "wiki-source-conflict",
-    "recommendation": "Define and test the public semantic difference between any and all.",
+    "recommendation": "Define and test the documented semantic difference between any and all.",
     "severity": "medium",
     "sourceEvidence": "The reviewed data handler defaults hasGeo to any.",
     "statement": "The omission behaviour is ambiguous.",

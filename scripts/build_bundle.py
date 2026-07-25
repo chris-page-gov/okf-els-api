@@ -13,14 +13,26 @@ import sys
 import tempfile
 import unicodedata
 from collections import Counter, defaultdict
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
+
+from okf_v02 import (
+    OKFConformanceError,
+    OKF_SPEC_COMMIT,
+    OKF_SPECIFICATION,
+    OKF_VERSION,
+    render_concept,
+    render_frontmatter,
+    validate_okf_bundle,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "bundle"
 REGISTER_PATH = ROOT / "source" / "api-register.json"
 SNAPSHOT_PATH = ROOT / "source" / "wiki-snapshot.json"
+PUBLICATION_PATH = ROOT / "source" / "publication.json"
 PAGES_ROOT = "https://chris-page-gov.github.io/okf-els-api/"
 PUBLISHED_DESCRIPTOR = f"{PAGES_ROOT}okf-explorer.json"
 EXPLORER_ROOT = "https://chris-page-gov.github.io/okf-explorer/"
@@ -193,6 +205,33 @@ def validate_inputs(register: dict[str, Any], snapshot: dict[str, Any]) -> None:
             )
 
 
+def validate_publication(publication: dict[str, Any]) -> None:
+    if publication.get("schema") != "okf-els-api.publication.v1":
+        raise BuildError("Unsupported publication schema")
+    if publication.get("generatedBy") != "process:okf-els-api-build":
+        raise BuildError("Publication must identify the deterministic build process")
+    specification = publication.get("okfSpecification")
+    if not isinstance(specification, dict):
+        raise BuildError("Publication has no OKF specification pin")
+    if specification.get("version") != OKF_VERSION:
+        raise BuildError("Publication must target OKF v0.2")
+    if specification.get("commit") != OKF_SPEC_COMMIT:
+        raise BuildError("Publication must pin the reviewed OKF v0.2 commit")
+    if specification.get("resource") != OKF_SPECIFICATION:
+        raise BuildError("Publication must use the pinned OKF v0.2 specification")
+    generated_at = publication.get("generatedAt")
+    if not isinstance(generated_at, str):
+        raise BuildError("Publication generatedAt must be an ISO 8601 datetime")
+    try:
+        parsed = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise BuildError(
+            "Publication generatedAt must be an ISO 8601 datetime"
+        ) from exc
+    if parsed.tzinfo is None:
+        raise BuildError("Publication generatedAt must include a timezone")
+
+
 def parameter_record(
     name: str,
     definition: dict[str, Any],
@@ -222,6 +261,7 @@ def parameter_record(
 def operation_records(
     register: dict[str, Any],
     snapshot: dict[str, Any],
+    generated_at: str,
 ) -> list[dict[str, Any]]:
     issue_lookup = {issue["id"]: issue for issue in register["issues"]}
     records: list[dict[str, Any]] = []
@@ -329,7 +369,8 @@ def operation_records(
                 "license_id": "mit-associated-repository",
                 "license_title": "MIT (associated application repository)",
                 "license_source_id": snapshot["licenceEvidence"]["url"],
-                "metadata_modified": snapshot["source"]["commitDate"],
+                "metadata_modified": generated_at,
+                "source_observed_at": snapshot["retrievedAt"],
                 "provenance": {
                     "schema": "okf-provenance.v1",
                     "snapshot_id": snapshot["snapshotId"],
@@ -578,6 +619,7 @@ def semantic_descriptor(
     records: list[dict[str, Any]],
     documents: list[dict[str, Any]],
     snapshot: dict[str, Any],
+    publication: dict[str, Any],
 ) -> dict[str, Any]:
     operations = [
         {
@@ -624,7 +666,8 @@ def semantic_descriptor(
             "@type": "foaf:Agent",
             "foaf:name": "Office for National Statistics",
         },
-        "dct:issued": snapshot["retrievedAt"],
+        "dct:issued": publication["generatedAt"],
+        "dct:conformsTo": {"@id": OKF_SPECIFICATION},
         "dct:license": {"@id": snapshot["licenceEvidence"]["url"]},
         "prov:wasDerivedFrom": [
             {"@id": snapshot["source"]["url"]},
@@ -661,6 +704,15 @@ def semantic_descriptor(
             "prov-o": "aligned",
             "claim": "Bundle mapping only; not upstream conformance or service certification.",
         },
+        "okf:okfVersion": OKF_VERSION,
+        "okf:normativeEntrypoint": {"@id": "index.md"},
+        "okf:snapshotMode": "frozen",
+        "okf:liveStatus": "not-checked",
+        "okf:generatedAt": publication["generatedAt"],
+        "okf:wikiSourceModified": snapshot["source"]["commitDate"],
+        "okf:applicationSourceModified": register["sourceVerification"][
+            "commitDate"
+        ],
     }
 
 
@@ -727,6 +779,7 @@ def static_search_index(
     records: list[dict[str, Any]],
     resources: list[dict[str, Any]],
     snapshot: dict[str, Any],
+    generated_at: str,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     result_documents = search_result_documents(records, resources)
     resources_by_dataset: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -818,7 +871,7 @@ def static_search_index(
     manifest = {
         "schema": "okf-static-search.v1",
         "snapshot": snapshot["snapshotId"],
-        "generated_at": snapshot["retrievedAt"],
+        "generated_at": generated_at,
         "token_min_length": 2,
         "prefix_min_length": 3,
         "lexicon_shard_length": 1,
@@ -894,13 +947,419 @@ def selection_contract(register: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def write_okf_markdown(
+    writer: Writer,
+    register: dict[str, Any],
+    snapshot: dict[str, Any],
+    publication: dict[str, Any],
+    records: list[dict[str, Any]],
+    documents: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Write the normative OKF v0.2 layer and return its validation report."""
+
+    generated = {
+        "by": publication["generatedBy"],
+        "at": publication["generatedAt"],
+    }
+    wiki_modified = snapshot["source"]["commitDate"][:10]
+    source_modified = register["sourceVerification"]["commitDate"][:10]
+    wiki_source = {
+        "id": "els-wiki",
+        "resource": snapshot["source"]["url"],
+        "title": snapshot["source"]["title"],
+        "last_modified": wiki_modified,
+        "pinned_commit": snapshot["source"]["commit"],
+    }
+    application_source = {
+        "id": "els-application",
+        "resource": (
+            f"{register['sourceVerification']['repository']}/tree/"
+            f"{register['sourceVerification']['commit']}"
+        ),
+        "title": "Explore Local Statistics application source review",
+        "last_modified": source_modified,
+        "pinned_commit": register["sourceVerification"]["commit"],
+    }
+
+    writer.write_text(
+        "index.md",
+        render_frontmatter({"okf_version": OKF_VERSION})
+        + (
+            "\n# Explore Local Statistics API discovery OKF\n\n"
+            f"{register['policy']['warning']}\n\n"
+            "This Markdown tree is the normative OKF v0.2 layer. JSON, JSON-LD, "
+            "YAML-LD, OpenAPI and search files are generated projections.\n\n"
+            "## Explore\n\n"
+            "* [Knowledge concepts](knowledge/) - service, operation, source, "
+            "review and contract concepts.\n"
+            "* [Update log](log.md) - publication history.\n"
+            "* [OKF conformance report](data/standards/okf-v0.2.json) - "
+            "producer validation evidence.\n"
+            "* [OKF Explorer descriptor](okf-explorer.json) - interactive "
+            "projection entrypoint.\n"
+        ),
+    )
+    writer.write_text(
+        "log.md",
+        (
+            "# Bundle update log\n\n"
+            "## 2026-07-25\n"
+            "* **Migration**: Added a normative OKF v0.2 Markdown concept layer "
+            "without inventing verification, freshness or attestation claims.\n"
+            "* **Clarification**: Separated the bundle generation checkpoint from "
+            "the pinned wiki and application-source modification dates.\n\n"
+            "## 2026-07-20\n"
+            "* **Creation**: Published the bounded metadata-only API review bundle.\n"
+        ),
+    )
+    writer.write_text(
+        "knowledge/index.md",
+        (
+            "# Knowledge concepts\n\n"
+            "* [ELS API service](service.md) - bounded, non-executing service "
+            "discovery concept.\n"
+            "* [Operations](operations/) - 18 documented GET operations.\n"
+            "* [Source documents](documents/) - six pinned wiki page records.\n"
+            "* [Review issues](issues/) - nine preserved findings and gaps.\n"
+            "* [Review artifacts](artifacts/) - generated OpenAPI and selection "
+            "planning contracts.\n"
+            "* [Source snapshot](snapshots/) - frozen wiki and application review "
+            "boundary.\n"
+        ),
+    )
+    writer.write_text(
+        "knowledge/operations/index.md",
+        "# API operations\n\n"
+        + "".join(
+            f"* [{record['title']}]({record['native_id']}.md) - "
+            f"{record['description']}\n"
+            for record in records
+        ),
+    )
+    writer.write_text(
+        "knowledge/documents/index.md",
+        "# Source documents\n\n"
+        + "".join(
+            f"* [{document['title']}]({document['name']}.md) - "
+            "pinned wiki page metadata.\n"
+            for document in documents
+        ),
+    )
+    writer.write_text(
+        "knowledge/issues/index.md",
+        "# Review issues\n\n"
+        + "".join(
+            f"* [{issue['title']}]({issue['id']}.md) - "
+            f"{issue['kind']} ({issue['severity']}).\n"
+            for issue in register["issues"]
+        ),
+    )
+    writer.write_text(
+        "knowledge/artifacts/index.md",
+        (
+            "# Review artifacts\n\n"
+            "* [OpenAPI review draft](openapi-review.md) - generated API contract "
+            "projection, not an upstream contract.\n"
+            "* [Selection plan](selection-plan.md) - validates request plans without "
+            "executing them.\n"
+        ),
+    )
+    writer.write_text(
+        "knowledge/snapshots/index.md",
+        (
+            "# Source snapshots\n\n"
+            "* [Wiki and application source review](wiki-and-source.md) - frozen "
+            "evidence boundary and live-status declaration.\n"
+        ),
+    )
+
+    writer.write_text(
+        "knowledge/service.md",
+        render_concept(
+            {
+                "type": "API Service",
+                "title": register["title"],
+                "description": register["description"],
+                "resource": register["baseUrl"],
+                "tags": ["api", "ons", "internal-private", "metadata-only"],
+                "status": "draft",
+                "generated": generated,
+                "sources": [wiki_source, application_source],
+                "snapshot_mode": "frozen",
+                "live_status": "not-checked",
+                "execution_included": False,
+                "observations_included": False,
+            },
+            (
+                "# Scope\n\n"
+                f"{register['policy']['warning']}\n\n"
+                "This concept describes the bounded API discovery surface; it does "
+                "not certify the service as stable, public, supported or live. See "
+                "the [frozen source boundary](snapshots/wiki-and-source.md) and the "
+                "[18 operation concepts](operations/).\n\n"
+                "# Execution boundary\n\n"
+                "The bundle does not execute requests. The generated selection plan "
+                "only checks a proposed request's shape."
+            ),
+        ),
+    )
+    writer.write_text(
+        "knowledge/snapshots/wiki-and-source.md",
+        render_concept(
+            {
+                "type": "Source Snapshot",
+                "title": "ELS wiki and application source review boundary",
+                "description": (
+                    "Frozen evidence from six wiki pages and a bounded static review "
+                    "of v1 GET route handlers."
+                ),
+                "resource": "/data/provenance/wiki-snapshot.json",
+                "tags": ["snapshot", "provenance", "drift"],
+                "status": "draft",
+                "generated": generated,
+                "sources": [wiki_source, application_source],
+                "snapshot_id": snapshot["snapshotId"],
+                "snapshot_mode": "frozen",
+                "live_status": "not-checked",
+                "drift_scope": "pinned-wiki-versus-pinned-develop-review",
+            },
+            (
+                "# Temporal boundary\n\n"
+                f"* Bundle generation checkpoint: `{publication['generatedAt']}`.\n"
+                f"* Wiki snapshot: `{snapshot['source']['commit']}` "
+                f"({snapshot['source']['commitDate']}).\n"
+                "* Reviewed application `develop` commit: "
+                f"`{register['sourceVerification']['commit']}` "
+                f"({register['sourceVerification']['commitDate']}).\n"
+                "* Current live/upstream state: **not checked**.\n\n"
+                "The nine drift findings compare the two pinned evidence surfaces. "
+                "They do not assert the present state of the wiki, branch or deployed "
+                "service."
+            ),
+        ),
+    )
+
+    document_lookup = {document["name"]: document for document in documents}
+    for record in records:
+        operation = next(
+            row for row in register["operations"] if row["id"] == record["native_id"]
+        )
+        document = document_lookup[operation["wiki"]]
+        issue_links = (
+            "\n".join(
+                f"* [{issue['title']}](../issues/{issue['id']}.md) "
+                f"({issue['severity']})"
+                for issue in record["issues"]
+            )
+            or "* No registered issue is attached to this operation."
+        )
+        parameter_names = ", ".join(
+            f"`{parameter['name']}`" for parameter in record["parameters"]
+        )
+        writer.write_text(
+            f"knowledge/operations/{record['native_id']}.md",
+            render_concept(
+                {
+                    "type": "API Endpoint",
+                    "title": record["title"],
+                    "description": record["description"],
+                    "resource": record["url"],
+                    "tags": record["tags"],
+                    "status": "draft",
+                    "generated": generated,
+                    "sources": [
+                        {
+                            "id": "wiki-page",
+                            "resource": record["documentation"],
+                            "title": document["title"],
+                            "pinned_commit": snapshot["source"]["commit"],
+                            "revision_at": snapshot["source"]["commitDate"],
+                            "sha256": document["sha256"],
+                        },
+                        {
+                            "id": "route-handler",
+                            "resource": record["documentation_evidence"][
+                                "source_handler"
+                            ],
+                            "title": "Reviewed application route handler",
+                            "pinned_commit": register["sourceVerification"]["commit"],
+                            "revision_at": register["sourceVerification"][
+                                "commitDate"
+                            ],
+                        },
+                    ],
+                    "method": "GET",
+                    "path_template": record["path_template"],
+                    "documented_path_template": record[
+                        "documented_path_template"
+                    ],
+                    "snapshot_mode": "frozen",
+                    "live_status": "not-checked",
+                    "execution_included": False,
+                },
+                (
+                    "# Route\n\n"
+                    f"`GET {record['path_template']}`\n\n"
+                    f"Parameters represented by the bounded review: "
+                    f"{parameter_names or 'none'}.\n\n"
+                    f"Source page: [{document['title']}]"
+                    f"(../documents/{document['name']}.md).\n\n"
+                    "# Preserved review findings\n\n"
+                    f"{issue_links}\n\n"
+                    "# Usage boundary\n\n"
+                    f"{register['policy']['warning']} This concept is descriptive "
+                    "and does not authorise execution."
+                ),
+            ),
+        )
+
+    for document in documents:
+        writer.write_text(
+            f"knowledge/documents/{document['name']}.md",
+            render_concept(
+                {
+                    "type": "Reference",
+                    "title": document["title"],
+                    "description": "Metadata for one page in the frozen ELS API wiki snapshot.",
+                    "resource": document["url"],
+                    "tags": ["wiki", "source-document", "snapshot"],
+                    "status": "draft",
+                    "generated": generated,
+                    "sources": [
+                        {
+                            "id": "wiki-page",
+                            "resource": document["url"],
+                            "title": document["title"],
+                            "pinned_commit": document["source_commit"],
+                            "revision_at": snapshot["source"]["commitDate"],
+                        }
+                    ],
+                    "snapshot_mode": "frozen",
+                    "live_status": "not-checked",
+                },
+                (
+                    "# Snapshot evidence\n\n"
+                    f"* File: `{document['file']}`\n"
+                    f"* SHA-256: `{document['sha256']}`\n"
+                    f"* Lines: {document['lines']}\n"
+                    f"* Bytes: {document['bytes']}\n"
+                    f"* Retrieved: `{document['retrieved_at']}`\n\n"
+                    "The page body is not republished here; this concept records the "
+                    "bounded source identity and integrity evidence."
+                ),
+            ),
+        )
+
+    for issue in register["issues"]:
+        writer.write_text(
+            f"knowledge/issues/{issue['id']}.md",
+            render_concept(
+                {
+                    "type": "Governance Finding",
+                    "title": issue["title"],
+                    "description": issue["statement"],
+                    "tags": ["review-finding", issue["kind"], issue["severity"]],
+                    "status": "draft",
+                    "generated": generated,
+                    "sources": [wiki_source, application_source],
+                    "finding_kind": issue["kind"],
+                    "severity": issue["severity"],
+                    "wiki_evidence": issue.get("wikiEvidence"),
+                    "source_evidence": issue.get("sourceEvidence"),
+                    "recommendation": issue["recommendation"],
+                    "snapshot_mode": "frozen",
+                    "live_status": "not-checked",
+                },
+                (
+                    "# Finding\n\n"
+                    f"{issue['statement']}\n\n"
+                    "# Evidence\n\n"
+                    f"* Wiki evidence: {issue.get('wikiEvidence') or 'not supplied'}\n"
+                    "* Application source evidence: "
+                    f"{issue.get('sourceEvidence') or 'not supplied'}\n\n"
+                    "# Recommendation\n\n"
+                    f"{issue['recommendation']}\n\n"
+                    "# Evidence boundary\n\n"
+                    "This finding records a comparison of the pinned wiki snapshot "
+                    "and pinned application source review. It has not been rechecked "
+                    "against current upstream or a live service."
+                ),
+            ),
+        )
+
+    artifact_source = {
+        "id": "snapshot-boundary",
+        "resource": "/knowledge/snapshots/wiki-and-source.md",
+        "title": "ELS wiki and application source review boundary",
+        "revision_at": publication["generatedAt"],
+    }
+    writer.write_text(
+        "knowledge/artifacts/openapi-review.md",
+        render_concept(
+            {
+                "type": "API Contract Draft",
+                "title": "ELS API OpenAPI review draft",
+                "description": (
+                    "Generated OpenAPI 3.1 projection of the bounded source review."
+                ),
+                "resource": "/data/openapi.json",
+                "tags": ["openapi", "review-draft", "non-executing"],
+                "status": "draft",
+                "generated": generated,
+                "sources": [artifact_source],
+                "snapshot_mode": "frozen",
+                "live_status": "not-checked",
+                "upstream_contract": False,
+            },
+            (
+                "# Contract boundary\n\n"
+                "This projection preserves known wiki/source conflicts. It is not an "
+                "upstream ONS API contract and does not establish compatibility, "
+                "support or deployment state."
+            ),
+        ),
+    )
+    writer.write_text(
+        "knowledge/artifacts/selection-plan.md",
+        render_concept(
+            {
+                "type": "Request Planning Contract",
+                "title": "ELS API non-executing selection plan",
+                "description": (
+                    "Checks a proposed GET request plan without calling the service."
+                ),
+                "resource": "/data/selection-contract.json",
+                "tags": ["request-plan", "validation", "non-executing"],
+                "status": "draft",
+                "generated": generated,
+                "sources": [artifact_source],
+                "snapshot_mode": "frozen",
+                "live_status": "not-checked",
+                "execution_included": False,
+                "attested_computation": False,
+            },
+            (
+                "# Planning boundary\n\n"
+                "This is passive metadata for request planning. It is not an Attested "
+                "Computation, executor, attester or permission to invoke the API."
+            ),
+        ),
+    )
+
+    return validate_okf_bundle(writer.root)
+
+
 def landing_page(
     register: dict[str, Any],
     snapshot: dict[str, Any],
+    publication: dict[str, Any],
     operation_count: int,
 ) -> str:
     warning = html.escape(register["policy"]["warning"])
     snapshot_id = html.escape(snapshot["snapshotId"])
+    generated_at = html.escape(publication["generatedAt"])
+    wiki_commit = html.escape(snapshot["source"]["commit"][:12])
+    source_commit = html.escape(register["sourceVerification"]["commit"][:12])
     return f"""<!doctype html>
 <html lang="en-GB">
 <head>
@@ -924,6 +1383,7 @@ def landing_page(
         </span>
       </a>
       <nav aria-label="Bundle links">
+        <a href="index.md">OKF 0.2</a>
         <a href="okf-explorer.json">Descriptor</a>
         <a href="data/openapi.json">OpenAPI</a>
         <a href="data/review/issues.json">Review findings</a>
@@ -967,12 +1427,29 @@ def landing_page(
         <div><dt>Snapshot</dt><dd class="text-value">{snapshot_id}</dd></div>
       </dl>
     </section>
+    <section class="shell temporal" aria-labelledby="temporal-title">
+      <p class="eyebrow">Snapshot versus live</p>
+      <h2 id="temporal-title">Three dates, no implied live verification</h2>
+      <dl class="cards temporal-cards">
+        <div><dt>Bundle generated</dt><dd class="text-value">{generated_at}</dd></div>
+        <div><dt>Wiki snapshot commit</dt><dd class="text-value">{wiki_commit}</dd></div>
+        <div><dt>Reviewed develop commit</dt><dd class="text-value">{source_commit}</dd></div>
+        <div><dt>Current live state</dt><dd class="text-value">Not checked</dd></div>
+      </dl>
+      <p>
+        Drift findings compare the two pinned source surfaces only. They do not
+        describe the current wiki, current <code>develop</code> branch or deployed API.
+      </p>
+    </section>
     <section class="shell files" aria-labelledby="files-title">
       <p class="eyebrow">Human and machine entrypoints</p>
       <h2 id="files-title">Use the evidence directly</h2>
       <div class="file-grid">
+        <a href="index.md"><strong>OKF v0.2 Markdown</strong><span>Normative concept-tree entrypoint</span></a>
+        <a href="data/standards/okf-v0.2.json"><strong>Conformance report</strong><span>Producer validation and trust/lifecycle counts</span></a>
         <a href="okf-explorer.json"><strong>OKF descriptor</strong><span>Portable OKF Explorer entrypoint</span></a>
         <a href="okf-bundle.jsonld"><strong>Semantic JSON-LD</strong><span>DCAT, Hydra and PROV representation</span></a>
+        <a href="okf-bundle.yamlld"><strong>Semantic YAML-LD</strong><span>Byte-stable YAML 1.2 projection</span></a>
         <a href="data/openapi.json"><strong>OpenAPI review draft</strong><span>18 source-reviewed GET operations</span></a>
         <a href="data/review/issues.json"><strong>Drift register</strong><span>Wiki conflicts and documentation gaps</span></a>
         <a href="data/coverage/ledger.json"><strong>Coverage ledger</strong><span>Bounded denominator and exclusions</span></a>
@@ -1034,12 +1511,15 @@ h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1.15; }
 .warning { padding: 1.6rem; color: var(--ink); background: var(--warning); border-top: 6px solid #e8a900; box-shadow: 0 12px 34px rgb(0 0 0 / .18); }
 .warning h2 { font-size: 1.25rem; }
 .warning p { margin-bottom: 0; }
-.summary, .files { padding-top: 4rem; padding-bottom: 4rem; }
+.summary, .temporal, .files { padding-top: 4rem; padding-bottom: 4rem; }
 .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0 0; }
 .cards div { min-width: 0; padding: 1.4rem; background: var(--white); border-top: 4px solid var(--purple); box-shadow: 0 2px 10px rgb(0 0 0 / .08); }
 .cards dt { color: var(--muted); font-weight: 700; }
 .cards dd { margin: .45rem 0 0; font-size: 2.3rem; font-weight: 800; }
 .cards .text-value { overflow-wrap: anywhere; font-size: 1rem; }
+.temporal { border-top: 1px solid var(--line); }
+.temporal-cards div { border-top-color: var(--cyan); }
+.temporal > p:last-child { max-width: 54rem; color: var(--muted); }
 .files { border-top: 1px solid var(--line); }
 .file-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
 .file-grid a { min-height: 8rem; padding: 1.35rem; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-bottom: 4px solid var(--cyan); text-decoration: none; }
@@ -1066,9 +1546,12 @@ footer p { margin: 0; }
 def write_bundle(target: Path) -> None:
     register = read_object(REGISTER_PATH)
     snapshot = read_object(SNAPSHOT_PATH)
+    publication = read_object(PUBLICATION_PATH)
     validate_inputs(register, snapshot)
+    validate_publication(publication)
+    generated_at = publication["generatedAt"]
     writer = Writer(target)
-    records = operation_records(register, snapshot)
+    records = operation_records(register, snapshot, generated_at)
     documents = document_records(snapshot)
     resources = resource_records(register, records)
     relationships = relationship_records(register, records)
@@ -1098,13 +1581,18 @@ def write_bundle(target: Path) -> None:
         "publisher": facet_rows([record["publisher"] for record in records]),
         "state": facet_rows([record["state"] for record in records]),
     }
-    search_manifest, search_outputs = static_search_index(records, resources, snapshot)
+    search_manifest, search_outputs = static_search_index(
+        records,
+        resources,
+        snapshot,
+        generated_at,
+    )
     result_documents = search_outputs["data/search/results-0.json"]
     overview = {
         "schema": "okf-els-api.overview.v1",
         "title": "Explore Local Statistics API discovery",
         "snapshot": snapshot["snapshotId"],
-        "generated_at": snapshot["retrievedAt"],
+        "generated_at": generated_at,
         "status": register["status"],
         "counts": {
             "operations": len(records),
@@ -1170,7 +1658,7 @@ def write_bundle(target: Path) -> None:
         "schema": "okf-explorer-data-manifest.v1",
         "title": "Explore Local Statistics API discovery OKF",
         "snapshot": snapshot["snapshotId"],
-        "generated_at": snapshot["retrievedAt"],
+        "generated_at": generated_at,
         "chunks": {
             "datasets": ["data/datasets-0.json"],
             "publishers": ["data/publishers-0.json"],
@@ -1219,7 +1707,9 @@ def write_bundle(target: Path) -> None:
         "version": BUNDLE_VERSION,
         "status": "bounded-review-draft",
         "snapshot": snapshot["snapshotId"],
-        "generated_at": snapshot["retrievedAt"],
+        "generated_at": generated_at,
+        "okf_version": OKF_VERSION,
+        "normative_entrypoint": "index.md",
         "publisher": "https://www.ons.gov.uk/",
         "license": snapshot["licenceEvidence"]["url"],
         "semantic_descriptor": "okf-bundle.jsonld",
@@ -1235,6 +1725,7 @@ def write_bundle(target: Path) -> None:
         },
         "entrypoints": {
             "coverage": "data/coverage/ledger.json",
+            "conformance": "data/standards/okf-v0.2.json",
             "data_manifest": "data/manifest.json",
             "documents": "data/documents-0.json",
             "formats": "data/formats.json",
@@ -1245,6 +1736,8 @@ def write_bundle(target: Path) -> None:
             "search_manifest": "data/search/manifest.json",
             "selection_contract": "data/selection-contract.json",
             "snapshot": "data/provenance/wiki-snapshot.json",
+            "semantic_jsonld": "okf-bundle.jsonld",
+            "semantic_yamlld": "okf-bundle.yamlld",
             "viewer": "https://chris-page-gov.github.io/okf-explorer/",
         },
         "scope": {
@@ -1264,6 +1757,12 @@ def write_bundle(target: Path) -> None:
             "verification_mode": register["sourceVerification"]["mode"],
         },
         "extensions": {
+            "okf-v0.2": {
+                "specification": OKF_SPECIFICATION,
+                "normative_entrypoint": "index.md",
+                "trust_model": "derived-from-verified",
+                "attested_computation_execution": "not-included",
+            },
             "okf-api-discovery.v1": {
                 "openapi": "openapi",
                 "selection_contract": "selection_contract",
@@ -1307,11 +1806,18 @@ def write_bundle(target: Path) -> None:
             "prov": "http://www.w3.org/ns/prov#",
         }
     }
-    writer.write_json("okf-explorer.json", descriptor)
-    writer.write_json(
-        "okf-bundle.jsonld",
-        semantic_descriptor(register, records, documents, snapshot),
+    semantic = semantic_descriptor(
+        register,
+        records,
+        documents,
+        snapshot,
+        publication,
     )
+    writer.write_json("okf-explorer.json", descriptor)
+    writer.write_json("okf-bundle.jsonld", semantic)
+    # JSON is a strict YAML 1.2 subset, making this a byte-stable YAML-LD
+    # projection without introducing a runtime YAML dependency.
+    writer.write_json("okf-bundle.yamlld", semantic)
     writer.write_json("context/okf-els-api.jsonld", context)
     writer.write_json("data/datasets-0.json", records)
     writer.write_json("data/documents-0.json", documents)
@@ -1330,18 +1836,21 @@ def write_bundle(target: Path) -> None:
     writer.write_json("data/selection-contract.json", selection_contract(register))
     for path, payload in search_outputs.items():
         writer.write_json(path, payload)
-    writer.write_text("index.html", landing_page(register, snapshot, len(records)))
+    writer.write_text(
+        "index.html",
+        landing_page(register, snapshot, publication, len(records)),
+    )
     writer.write_text("site.css", landing_styles())
     writer.write_text(".nojekyll", "")
-    writer.write_text(
-        "index.md",
-        (
-            "# Explore Local Statistics API discovery OKF\n\n"
-            f"{register['policy']['warning']}\n\n"
-            "Open `okf-explorer.json` in OKF Explorer. Review "
-            "`data/review/issues.json` before using the generated OpenAPI draft.\n"
-        ),
+    conformance = write_okf_markdown(
+        writer,
+        register,
+        snapshot,
+        publication,
+        records,
+        documents,
     )
+    writer.write_json("data/standards/okf-v0.2.json", conformance)
     writer.write_json("checksums.json", writer.checksum_manifest())
 
 
@@ -1355,8 +1864,29 @@ def directory_bytes(root: Path) -> dict[str, bytes]:
     }
 
 
+def safe_output_path(requested: Path) -> Path:
+    """Resolve a build destination while refusing broad or source-tree targets."""
+
+    expanded = requested.expanduser()
+    if expanded.is_symlink():
+        raise BuildError(f"Refusing symlink output path: {requested}")
+    output = expanded.resolve()
+    repository = ROOT.resolve()
+    default_output = DEFAULT_OUTPUT.resolve()
+    if output == Path(output.anchor) or output == Path.home().resolve():
+        raise BuildError(f"Refusing broad output path: {output}")
+    if output == repository or output in repository.parents:
+        raise BuildError(f"Refusing repository or ancestor output path: {output}")
+    if output != default_output and output.is_relative_to(repository):
+        raise BuildError(
+            "Custom output paths must be outside the repository; "
+            f"refusing to replace {output}"
+        )
+    return output
+
+
 def build(output: Path, check: bool) -> None:
-    output = output.resolve()
+    output = safe_output_path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".okf-els-api-", dir=output.parent) as temp:
         candidate = Path(temp) / "bundle"
@@ -1378,6 +1908,8 @@ def build(output: Path, check: bool) -> None:
                     f"(missing={missing}, extra={extra}, changed={changed})"
                 )
             return
+        if output.is_symlink():
+            raise BuildError(f"Refusing symlink output path: {output}")
         if output.exists():
             shutil.rmtree(output)
         shutil.copytree(candidate, output)
@@ -1394,7 +1926,7 @@ def main() -> int:
     args = parse_args()
     try:
         build(args.output, args.check)
-    except BuildError as exc:
+    except (BuildError, OKFConformanceError, OSError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
     action = "verified" if args.check else "built"
