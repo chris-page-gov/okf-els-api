@@ -25,5 +25,6 @@ Run before publishing:
 ```bash
 python3 scripts/build_bundle.py
 python3 scripts/build_bundle.py --check
+python3 scripts/check_okf.py
 python3 -m unittest discover -s tests -v
 ```

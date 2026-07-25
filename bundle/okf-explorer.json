@@ -13,6 +13,7 @@
   },
   "description": "Read-only statistical, metadata and geographic operations documented by the Explore Local Statistics application wiki.",
   "entrypoints": {
+    "conformance": "data/standards/okf-v0.2.json",
     "coverage": "data/coverage/ledger.json",
     "data_manifest": "data/manifest.json",
     "documents": "data/documents-0.json",
@@ -23,6 +24,8 @@
     "review": "data/review/issues.json",
     "search_manifest": "data/search/manifest.json",
     "selection_contract": "data/selection-contract.json",
+    "semantic_jsonld": "okf-bundle.jsonld",
+    "semantic_yamlld": "okf-bundle.yamlld",
     "snapshot": "data/provenance/wiki-snapshot.json",
     "viewer": "https://chris-page-gov.github.io/okf-explorer/"
   },
@@ -42,11 +45,19 @@
       "descriptor": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
       "explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json%3Fversion%3D0.2.0",
       "site": "https://chris-page-gov.github.io/okf-els-api/"
+    },
+    "okf-v0.2": {
+      "attested_computation_execution": "not-included",
+      "normative_entrypoint": "index.md",
+      "specification": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md",
+      "trust_model": "derived-from-verified"
     }
   },
-  "generated_at": "2026-07-20T11:43:20Z",
+  "generated_at": "2026-07-25T12:17:29Z",
   "kind": "okf-large-corpus",
   "license": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md",
+  "normative_entrypoint": "index.md",
+  "okf_version": "0.2",
   "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
   "publication": {
     "descriptor": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",

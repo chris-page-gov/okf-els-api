@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import subprocess
 import sys
 import unittest
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLE = ROOT / "bundle"
@@ -37,6 +39,128 @@ class BundleTests(unittest.TestCase):
         self.assertFalse(descriptor["scope"]["live_execution_included"])
         self.assertFalse(descriptor["scope"]["observations_included"])
         self.assertIn("internal/private", descriptor["warning"])
+
+    def test_okf_v02_normative_layer_and_trust_boundary(self) -> None:
+        descriptor = load("okf-explorer.json")
+        report = load("data/standards/okf-v0.2.json")
+        self.assertEqual(descriptor["okf_version"], "0.2")
+        self.assertEqual(descriptor["normative_entrypoint"], "index.md")
+        self.assertEqual(
+            descriptor["extensions"]["okf-v0.2"]["trust_model"],
+            "derived-from-verified",
+        )
+        self.assertEqual(report["status"], "conformant")
+        self.assertEqual(report["conceptCount"], 37)
+        self.assertEqual(report["markdownDocumentCount"], 45)
+        self.assertEqual(report["trustTiers"]["unverified"], 37)
+        self.assertEqual(report["trustTiers"]["machineConfirmed"], 0)
+        self.assertEqual(report["trustTiers"]["humanReviewed"], 0)
+        self.assertEqual(report["lifecycle"]["draft"], 37)
+        self.assertEqual(report["attestedComputationCount"], 0)
+        self.assertEqual(report["legacyV01FallbackCount"], 0)
+
+        root_index = (BUNDLE / "index.md").read_text(encoding="utf-8")
+        self.assertTrue(root_index.startswith('---\nokf_version: "0.2"\n---\n'))
+        for relative in report["conceptPaths"]:
+            concept = (BUNDLE / relative).read_text(encoding="utf-8")
+            self.assertTrue(concept.startswith("---\ntype:"), relative)
+            self.assertIn('\nstatus: "draft"\n', concept, relative)
+            self.assertIn(
+                '"by":"process:okf-els-api-build"',
+                concept,
+                relative,
+            )
+            self.assertNotIn("\nverified:", concept, relative)
+
+    def test_okf_v02_checker_accepts_generated_report(self) -> None:
+        result = subprocess.run(
+            [sys.executable, "scripts/check_okf.py"],
+            cwd=ROOT,
+            capture_output=True,
+            check=False,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("37 concepts", result.stdout)
+        self.assertIn("37 explicitly unverified", result.stdout)
+
+    def test_snapshot_and_publication_dates_remain_distinct(self) -> None:
+        publication = json.loads(
+            (ROOT / "source" / "publication.json").read_text(encoding="utf-8")
+        )
+        snapshot = json.loads(
+            (ROOT / "source" / "wiki-snapshot.json").read_text(encoding="utf-8")
+        )
+        register = json.loads(
+            (ROOT / "source" / "api-register.json").read_text(encoding="utf-8")
+        )
+        descriptor = load("okf-explorer.json")
+        self.assertEqual(descriptor["generated_at"], publication["generatedAt"])
+        self.assertNotEqual(
+            descriptor["generated_at"],
+            snapshot["source"]["commitDate"],
+        )
+        self.assertNotEqual(
+            descriptor["generated_at"],
+            register["sourceVerification"]["commitDate"],
+        )
+        snapshot_concept = (
+            BUNDLE / "knowledge" / "snapshots" / "wiki-and-source.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("Current live/upstream state: **not checked**", snapshot_concept)
+        self.assertIn(snapshot["source"]["commit"], snapshot_concept)
+        self.assertIn(register["sourceVerification"]["commit"], snapshot_concept)
+
+    def test_semantic_yamlld_is_byte_equivalent_jsonld(self) -> None:
+        jsonld = (BUNDLE / "okf-bundle.jsonld").read_bytes()
+        yamlld = (BUNDLE / "okf-bundle.yamlld").read_bytes()
+        self.assertEqual(yamlld, jsonld)
+        semantic = json.loads(yamlld)
+        self.assertEqual(semantic["okf:okfVersion"], "0.2")
+        self.assertEqual(semantic["okf:snapshotMode"], "frozen")
+        self.assertEqual(semantic["okf:liveStatus"], "not-checked")
+
+    def test_output_guard_refuses_repository_targets(self) -> None:
+        for unsafe in (ROOT, ROOT / "scripts" / "generated-bundle"):
+            with self.subTest(unsafe=unsafe):
+                result = subprocess.run(
+                    [
+                        sys.executable,
+                        "scripts/build_bundle.py",
+                        "--output",
+                        str(unsafe),
+                    ],
+                    cwd=ROOT,
+                    capture_output=True,
+                    check=False,
+                    text=True,
+                )
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("refusing", result.stderr.lower())
+
+    def test_generated_markdown_internal_links_resolve(self) -> None:
+        markdown_link = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+        for source in sorted(BUNDLE.rglob("*.md")):
+            for raw_target in markdown_link.findall(
+                source.read_text(encoding="utf-8")
+            ):
+                parsed = urlsplit(raw_target)
+                if parsed.scheme or parsed.netloc or not parsed.path:
+                    continue
+                relative = Path(unquote(parsed.path))
+                target = (
+                    BUNDLE / str(relative).lstrip("/")
+                    if parsed.path.startswith("/")
+                    else source.parent / relative
+                )
+                if parsed.path.endswith("/") or target.is_dir():
+                    target /= "index.md"
+                with self.subTest(
+                    source=source.relative_to(BUNDLE),
+                    target=raw_target,
+                ):
+                    self.assertTrue(target.resolve().is_relative_to(BUNDLE.resolve()))
+                    self.assertTrue(target.is_file())
 
     def test_manifest_entrypoints_and_chunks_exist(self) -> None:
         descriptor = load("okf-explorer.json")
@@ -141,6 +265,8 @@ class BundleTests(unittest.TestCase):
         self.assertEqual(services[0]["@type"], "dcat:DataService")
         self.assertFalse(services[0]["okf:executionIncluded"])
         self.assertEqual(len(services[0]["hydra:supportedOperation"]), 18)
+        self.assertEqual(descriptor["okf:okfVersion"], "0.2")
+        self.assertEqual(descriptor["okf:liveStatus"], "not-checked")
 
     def test_checksum_manifest_matches_payloads(self) -> None:
         manifest = load("checksums.json")

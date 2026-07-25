@@ -20,7 +20,7 @@
     "relationships": 50,
     "resources": 18
   },
-  "generated_at": "2026-07-20T11:43:20Z",
+  "generated_at": "2026-07-25T12:17:29Z",
   "indexes": {
     "coverage": "data/coverage/ledger.json",
     "documents": "data/documents-0.json",
@@ -43,7 +43,7 @@
     "documents": 18,
     "result_limit": 50,
     "schema": "okf-static-search.v1",
-    "tokens": 194
+    "tokens": 193
   },
   "snapshot": "els-wiki-2026-07-20",
   "title": "Explore Local Statistics API discovery OKF"

@@ -775,11 +775,6 @@
     "token": "prefixes"
   },
   {
-    "df": 2,
-    "postings": "data/search/postings-0001.json",
-    "token": "public"
-  },
-  {
     "df": 5,
     "postings": "data/search/postings-0001.json",
     "token": "related"
