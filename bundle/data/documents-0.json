@@ -1,110 +1,344 @@
 [
   {
+    "access_model": "anonymous-web",
     "bytes": 6259,
+    "concept_id": "knowledge/documents/API-overview.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "description": "Metadata for one page in the frozen ELS API wiki snapshot.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/API-overview",
     "file": "API-overview.md",
+    "formats": [
+      "markdown"
+    ],
     "id": "els-api:document:API-overview",
+    "isopen": false,
+    "issues": [],
     "license_evidence": {
       "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
       "status": "associated-repository",
       "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
     },
+    "lifecycle_status": "draft",
     "lines": 73,
     "name": "API-overview",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/API-overview",
+    "private": false,
+    "protocol": [
+      "HTTPS"
+    ],
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
     "record_type": "Wiki documentation page",
     "retrieved_at": "2026-07-20T11:43:20Z",
+    "route": "document/API-overview",
     "sha256": "3cd0d3c641577924139bfdb0e53ed52c714cd68cb511f33100e7cabeb2704b97",
+    "source_adapter": "pinned-wiki-snapshot",
     "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "source_observed_at": "2026-07-20T11:43:20Z",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "state": "bounded-review-draft",
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
     "title": "API overview",
-    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/API-overview"
+    "topics": [
+      "documentation"
+    ],
+    "type": "Reference",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/API-overview",
+    "visibility": "public-source-document"
   },
   {
+    "access_model": "anonymous-web",
     "bytes": 6528,
+    "concept_id": "knowledge/documents/Data-formats.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "description": "Metadata for one page in the frozen ELS API wiki snapshot.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Data-formats",
     "file": "Data-formats.md",
+    "formats": [
+      "markdown"
+    ],
     "id": "els-api:document:Data-formats",
+    "isopen": false,
+    "issues": [],
     "license_evidence": {
       "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
       "status": "associated-repository",
       "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
     },
+    "lifecycle_status": "draft",
     "lines": 115,
     "name": "Data-formats",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Data-formats",
+    "private": false,
+    "protocol": [
+      "HTTPS"
+    ],
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
     "record_type": "Wiki documentation page",
     "retrieved_at": "2026-07-20T11:43:20Z",
+    "route": "document/Data-formats",
     "sha256": "5abc72a81ac74e3210ceb9087d64b506bf01a2a77520344cea330e88ff589bee",
+    "source_adapter": "pinned-wiki-snapshot",
     "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "source_observed_at": "2026-07-20T11:43:20Z",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "state": "bounded-review-draft",
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
     "title": "Data formats",
-    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Data-formats"
+    "topics": [
+      "documentation"
+    ],
+    "type": "Reference",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Data-formats",
+    "visibility": "public-source-document"
   },
   {
+    "access_model": "anonymous-web",
     "bytes": 1234,
+    "concept_id": "knowledge/documents/Home.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "description": "Metadata for one page in the frozen ELS API wiki snapshot.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
     "file": "Home.md",
+    "formats": [
+      "markdown"
+    ],
     "id": "els-api:document:Home",
+    "isopen": false,
+    "issues": [],
     "license_evidence": {
       "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
       "status": "associated-repository",
       "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
     },
+    "lifecycle_status": "draft",
     "lines": 12,
     "name": "Home",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Home",
+    "private": false,
+    "protocol": [
+      "HTTPS"
+    ],
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
     "record_type": "Wiki documentation page",
     "retrieved_at": "2026-07-20T11:43:20Z",
+    "route": "document/Home",
     "sha256": "f6c86981523374cf145298274d85011283719234d1a10eeb1f1c24cb9c94ca5e",
+    "source_adapter": "pinned-wiki-snapshot",
     "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "source_observed_at": "2026-07-20T11:43:20Z",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "state": "bounded-review-draft",
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
     "title": "Home",
-    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki"
+    "topics": [
+      "documentation"
+    ],
+    "type": "Reference",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+    "visibility": "public-source-document"
   },
   {
+    "access_model": "anonymous-web",
     "bytes": 8711,
+    "concept_id": "knowledge/documents/Requesting-data.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "description": "Metadata for one page in the frozen ELS API wiki snapshot.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
     "file": "Requesting-data.md",
+    "formats": [
+      "markdown"
+    ],
     "id": "els-api:document:Requesting-data",
+    "isopen": false,
+    "issues": [],
     "license_evidence": {
       "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
       "status": "associated-repository",
       "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
     },
+    "lifecycle_status": "draft",
     "lines": 164,
     "name": "Requesting-data",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Requesting-data",
+    "private": false,
+    "protocol": [
+      "HTTPS"
+    ],
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
     "record_type": "Wiki documentation page",
     "retrieved_at": "2026-07-20T11:43:20Z",
+    "route": "document/Requesting-data",
     "sha256": "f15cc3eddb662a7b3e578a68cf7ce644ae8c2d8a39f06a047d7580f36d8643b7",
+    "source_adapter": "pinned-wiki-snapshot",
     "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "source_observed_at": "2026-07-20T11:43:20Z",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "state": "bounded-review-draft",
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
     "title": "Requesting data",
-    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data"
+    "topics": [
+      "documentation"
+    ],
+    "type": "Reference",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+    "visibility": "public-source-document"
   },
   {
+    "access_model": "anonymous-web",
     "bytes": 7030,
+    "concept_id": "knowledge/documents/Requesting-geographic-information.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "description": "Metadata for one page in the frozen ELS API wiki snapshot.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "file": "Requesting-geographic-information.md",
+    "formats": [
+      "markdown"
+    ],
     "id": "els-api:document:Requesting-geographic-information",
+    "isopen": false,
+    "issues": [],
     "license_evidence": {
       "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
       "status": "associated-repository",
       "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
     },
+    "lifecycle_status": "draft",
     "lines": 141,
     "name": "Requesting-geographic-information",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Requesting-geographic-information",
+    "private": false,
+    "protocol": [
+      "HTTPS"
+    ],
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
     "record_type": "Wiki documentation page",
     "retrieved_at": "2026-07-20T11:43:20Z",
+    "route": "document/Requesting-geographic-information",
     "sha256": "7eb059867836b105e6bde9aeb5eb7bf81952f6fc1c0c1ebe907c07871c388ba5",
+    "source_adapter": "pinned-wiki-snapshot",
     "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "source_observed_at": "2026-07-20T11:43:20Z",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "state": "bounded-review-draft",
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
     "title": "Requesting geographic information",
-    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    "topics": [
+      "documentation"
+    ],
+    "type": "Reference",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "visibility": "public-source-document"
   },
   {
+    "access_model": "anonymous-web",
     "bytes": 2076,
+    "concept_id": "knowledge/documents/Requesting-metadata.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "description": "Metadata for one page in the frozen ELS API wiki snapshot.",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
     "file": "Requesting-metadata.md",
+    "formats": [
+      "markdown"
+    ],
     "id": "els-api:document:Requesting-metadata",
+    "isopen": false,
+    "issues": [],
     "license_evidence": {
       "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
       "status": "associated-repository",
       "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
     },
+    "lifecycle_status": "draft",
     "lines": 43,
     "name": "Requesting-metadata",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Requesting-metadata",
+    "private": false,
+    "protocol": [
+      "HTTPS"
+    ],
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
     "record_type": "Wiki documentation page",
     "retrieved_at": "2026-07-20T11:43:20Z",
+    "route": "document/Requesting-metadata",
     "sha256": "ae20497f3249b5aa57fa13c7eece79201c9c075933c696ec234d2eb859be3682",
+    "source_adapter": "pinned-wiki-snapshot",
     "source_commit": "3da822e28d775f1213d328573da34aba8278d79f",
+    "source_observed_at": "2026-07-20T11:43:20Z",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "state": "bounded-review-draft",
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
     "title": "Requesting metadata",
-    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    "topics": [
+      "documentation"
+    ],
+    "type": "Reference",
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "visibility": "public-source-document"
   }
 ]

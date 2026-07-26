@@ -1,6 +1,7 @@
 {
   "attestedComputationCount": 0,
-  "conceptCount": 37,
+  "brokenLinksAllowed": true,
+  "conceptCount": 38,
   "conceptPaths": [
     "knowledge/artifacts/openapi-review.md",
     "knowledge/artifacts/selection-plan.md",
@@ -38,18 +39,95 @@
     "knowledge/operations/metadata-indicators.md",
     "knowledge/operations/metadata-taxonomy.md",
     "knowledge/service.md",
-    "knowledge/snapshots/wiki-and-source.md"
+    "knowledge/snapshots/wiki-and-source.md",
+    "knowledge/standards/governed-terms.md"
   ],
+  "coreConformance": {
+    "attestedComputationCount": 0,
+    "brokenLinksAllowed": true,
+    "conceptCount": 38,
+    "conceptPaths": [
+      "knowledge/artifacts/openapi-review.md",
+      "knowledge/artifacts/selection-plan.md",
+      "knowledge/documents/API-overview.md",
+      "knowledge/documents/Data-formats.md",
+      "knowledge/documents/Home.md",
+      "knowledge/documents/Requesting-data.md",
+      "knowledge/documents/Requesting-geographic-information.md",
+      "knowledge/documents/Requesting-metadata.md",
+      "knowledge/issues/boundary-internal-api.md",
+      "knowledge/issues/drift-data-hasgeo-default.md",
+      "knowledge/issues/drift-data-includenames.md",
+      "knowledge/issues/drift-geo-includedates.md",
+      "knowledge/issues/drift-metadata-dimension-route.md",
+      "knowledge/issues/gap-compatibility-policy.md",
+      "knowledge/issues/gap-data-measure.md",
+      "knowledge/issues/gap-geo-related-includenames.md",
+      "knowledge/issues/gap-response-schemas.md",
+      "knowledge/operations/data.md",
+      "knowledge/operations/geo-boundaries.md",
+      "knowledge/operations/geo-children.md",
+      "knowledge/operations/geo-levels.md",
+      "knowledge/operations/geo-list.md",
+      "knowledge/operations/geo-lookup.md",
+      "knowledge/operations/geo-parents.md",
+      "knowledge/operations/geo-postcode-autocomplete.md",
+      "knowledge/operations/geo-postcode.md",
+      "knowledge/operations/geo-related.md",
+      "knowledge/operations/geo-reverse.md",
+      "knowledge/operations/geo-search.md",
+      "knowledge/operations/geo-siblings.md",
+      "knowledge/operations/geo-similar.md",
+      "knowledge/operations/metadata-dimension.md",
+      "knowledge/operations/metadata-indicator.md",
+      "knowledge/operations/metadata-indicators.md",
+      "knowledge/operations/metadata-taxonomy.md",
+      "knowledge/service.md",
+      "knowledge/snapshots/wiki-and-source.md",
+      "knowledge/standards/governed-terms.md"
+    ],
+    "legacyV01FallbackCount": 0,
+    "lifecycle": {
+      "deprecated": 0,
+      "draft": 38,
+      "stable": 0
+    },
+    "markdownDocumentCount": 47,
+    "missingIndexesAllowed": true,
+    "missingOptionalFieldsAllowed": true,
+    "producerDeclaredObservationValuesIncluded": false,
+    "status": "conformant",
+    "trustTiers": {
+      "humanReviewed": 0,
+      "machineConfirmed": 0,
+      "unverified": 38
+    },
+    "unknownExtensionFieldsAllowed": true
+  },
   "entrypoint": "index.md",
   "legacyV01FallbackCount": 0,
   "lifecycle": {
     "deprecated": 0,
-    "draft": 37,
+    "draft": 38,
     "stable": 0
   },
-  "markdownDocumentCount": 45,
+  "markdownDocumentCount": 47,
+  "missingIndexesAllowed": true,
+  "missingOptionalFieldsAllowed": true,
   "producerDeclaredObservationValuesIncluded": false,
-  "schema": "okf-els-api.okf-conformance.v1",
+  "producerProfileConformance": {
+    "conceptCount": 38,
+    "profile": "okf-els-api.producer-profile.v1",
+    "requirements": {
+      "explicitLifecycle": "passed",
+      "generatedAt": "passed",
+      "linkedIndexes": "passed",
+      "rootIndex": "passed",
+      "sourceIds": "passed"
+    },
+    "status": "conformant"
+  },
+  "schema": "okf-els-api.okf-conformance.v2",
   "specification": {
     "resource": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md",
     "version": "0.2"
@@ -58,7 +136,7 @@
   "trustTiers": {
     "humanReviewed": 0,
     "machineConfirmed": 0,
-    "unverified": 37
+    "unverified": 38
   },
   "unknownExtensionFieldsAllowed": true
 }

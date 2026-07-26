@@ -129,7 +129,13 @@ def _usage_window(value: Any, label: str) -> None:
         raise OKFConformanceError(f"{label}.from must not be after {label}.to")
 
 
-def _validate_optional_families(path: Path, fields: Mapping[str, Any], body: str) -> None:
+def _validate_optional_families(
+    path: Path,
+    fields: Mapping[str, Any],
+    body: str,
+    *,
+    require_source_ids: bool = False,
+) -> None:
     generated = fields.get("generated")
     if generated is not None:
         if not isinstance(generated, Mapping) or not generated.get("by"):
@@ -153,11 +159,14 @@ def _validate_optional_families(path: Path, fields: Mapping[str, Any], body: str
             if source.get("author") is not None:
                 _actor(source["author"], f"{path}: sources[{index}].author")
             source_id = source.get("id")
-            if not isinstance(source_id, str) or not source_id:
+            if require_source_ids and (
+                not isinstance(source_id, str) or not source_id
+            ):
                 raise OKFConformanceError(
                     f"{path}: sources[{index}].id is required by profile"
                 )
-            source_ids.append(source_id)
+            if isinstance(source_id, str) and source_id:
+                source_ids.append(source_id)
             if source.get("last_modified") is not None:
                 _date(
                     source["last_modified"],
@@ -256,13 +265,11 @@ def _validate_optional_families(path: Path, fields: Mapping[str, Any], body: str
             )
 
 
-def validate_okf_bundle(root: Path) -> dict[str, Any]:
-    """Validate the generated Markdown and the stricter producer profile."""
+def validate_okf_core_bundle(root: Path) -> dict[str, Any]:
+    """Validate only the permissive OKF v0.2 core contract."""
 
     root = root.resolve()
     root_index = root / "index.md"
-    if not root_index.is_file():
-        raise OKFConformanceError("bundle root index.md is required")
 
     concept_paths: list[str] = []
     unverified = 0
@@ -278,17 +285,16 @@ def validate_okf_bundle(root: Path) -> dict[str, Any]:
         document = parse_generated_document(path)
         if path.name == "index.md":
             if path == root_index:
-                if document.frontmatter != {"okf_version": OKF_VERSION}:
+                if document.frontmatter not in (
+                    None,
+                    {"okf_version": OKF_VERSION},
+                ):
                     raise OKFConformanceError(
-                        "root index.md must declare only okf_version 0.2"
+                        "root index.md frontmatter may declare only okf_version 0.2"
                     )
             elif document.frontmatter is not None:
                 raise OKFConformanceError(
                     f"{relative}: subordinate index.md must not have frontmatter"
-                )
-            if not re.search(r"\[[^\]]+\]\([^)]+\)", document.body):
-                raise OKFConformanceError(
-                    f"{relative}: index.md must enumerate at least one link"
                 )
             continue
         if path.name == "log.md":
@@ -320,18 +326,6 @@ def validate_okf_bundle(root: Path) -> dict[str, Any]:
                 f"{relative}: okf_version is reserved for the root index"
             )
         _validate_optional_families(path, fields, document.body)
-
-        # This producer profile requires the optional v0.2 families it emits.
-        if not isinstance(fields.get("generated"), Mapping):
-            raise OKFConformanceError(f"{relative}: generated is required by profile")
-        if fields["generated"].get("at") is None:
-            raise OKFConformanceError(
-                f"{relative}: generated.at is required by profile"
-            )
-        if not isinstance(fields.get("sources"), list) or not fields["sources"]:
-            raise OKFConformanceError(f"{relative}: sources are required by profile")
-        if fields.get("status") not in {"draft", "stable", "deprecated"}:
-            raise OKFConformanceError(f"{relative}: explicit status is required")
         if "timestamp" in fields or re.search(
             r"^# Citations\s*$", document.body, re.MULTILINE
         ):
@@ -347,17 +341,11 @@ def validate_okf_bundle(root: Path) -> dict[str, Any]:
                 human_reviewed += 1
             else:
                 machine_confirmed += 1
-        lifecycle[fields["status"]] += 1
+        lifecycle[str(fields.get("status") or "stable")] += 1
         if concept_type == "Attested Computation":
             attested_computations += 1
 
     return {
-        "schema": "okf-els-api.okf-conformance.v1",
-        "specification": {
-            "version": OKF_VERSION,
-            "resource": OKF_SPECIFICATION,
-        },
-        "entrypoint": "index.md",
         "status": "conformant",
         "markdownDocumentCount": len(markdown_paths),
         "conceptCount": len(concept_paths),
@@ -371,5 +359,93 @@ def validate_okf_bundle(root: Path) -> dict[str, Any]:
         "legacyV01FallbackCount": legacy_fallbacks,
         "attestedComputationCount": attested_computations,
         "unknownExtensionFieldsAllowed": True,
+        "missingOptionalFieldsAllowed": True,
+        "brokenLinksAllowed": True,
+        "missingIndexesAllowed": True,
         "producerDeclaredObservationValuesIncluded": False,
+    }
+
+
+def validate_okf_producer_profile(root: Path) -> dict[str, Any]:
+    """Validate the stricter deterministic ELS authoring profile."""
+
+    root = root.resolve()
+    root_index = root / "index.md"
+    if not root_index.is_file():
+        raise OKFConformanceError("bundle root index.md is required by profile")
+    markdown_paths = sorted(root.rglob("*.md"))
+    concept_count = 0
+    for path in markdown_paths:
+        relative = path.relative_to(root).as_posix()
+        document = parse_generated_document(path)
+        if path.name == "index.md":
+            if path == root_index and document.frontmatter != {
+                "okf_version": OKF_VERSION
+            }:
+                raise OKFConformanceError(
+                    "root index.md must declare only okf_version 0.2 by profile"
+                )
+            if not re.search(r"\[[^\]]+\]\([^)]+\)", document.body):
+                raise OKFConformanceError(
+                    f"{relative}: index.md must enumerate at least one link by profile"
+                )
+            continue
+        if path.name == "log.md":
+            continue
+        fields = document.frontmatter
+        if fields is None:
+            raise OKFConformanceError(f"{relative}: concept frontmatter is required")
+        _validate_optional_families(
+            path,
+            fields,
+            document.body,
+            require_source_ids=True,
+        )
+        if not isinstance(fields.get("generated"), Mapping):
+            raise OKFConformanceError(f"{relative}: generated is required by profile")
+        if fields["generated"].get("at") is None:
+            raise OKFConformanceError(
+                f"{relative}: generated.at is required by profile"
+            )
+        if not isinstance(fields.get("sources"), list) or not fields["sources"]:
+            raise OKFConformanceError(f"{relative}: sources are required by profile")
+        if fields.get("status") not in {"draft", "stable", "deprecated"}:
+            raise OKFConformanceError(
+                f"{relative}: explicit status is required by profile"
+            )
+        concept_count += 1
+    return {
+        "status": "conformant",
+        "profile": "okf-els-api.producer-profile.v1",
+        "conceptCount": concept_count,
+        "requirements": {
+            "rootIndex": "passed",
+            "linkedIndexes": "passed",
+            "generatedAt": "passed",
+            "sourceIds": "passed",
+            "explicitLifecycle": "passed",
+        },
+    }
+
+
+def validate_okf_bundle(root: Path) -> dict[str, Any]:
+    """Report core and stricter producer-profile conformance separately."""
+
+    core = validate_okf_core_bundle(root)
+    profile = validate_okf_producer_profile(root)
+    return {
+        "schema": "okf-els-api.okf-conformance.v2",
+        "specification": {
+            "version": OKF_VERSION,
+            "resource": OKF_SPECIFICATION,
+        },
+        "entrypoint": "index.md",
+        "status": "conformant",
+        "coreConformance": core,
+        "producerProfileConformance": profile,
+        **{
+            key: value
+            for key, value in core.items()
+            if key != "status"
+        },
     }

@@ -1,0 +1,2055 @@
+{
+  "counts": {
+    "occurrences": 840,
+    "standardsTerms": 45,
+    "uiTerms": 15,
+    "usedStandardsTerms": 45,
+    "vocabularies": 8
+  },
+  "description": "Authoritative provenance, bounded-use meaning and validation state for standards and reader-facing terms emitted by this bundle.",
+  "generated_at": "2026-07-25T12:17:29Z",
+  "review": {
+    "applicationStatus": "validated-for-bounded-use",
+    "checkedAt": "2026-07-25T12:17:29Z",
+    "checkedBy": "process:okf-els-api-standards-review",
+    "liveLookupPerformed": false,
+    "method": "curated-static-specification-review",
+    "scope": "Terms emitted by the ELS OKF semantic and Explorer projections, plus Explorer UI terms used to explain those projections."
+  },
+  "schema": "okf-explorer-governed-terms.v1",
+  "snapshot": "els-wiki-2026-07-20",
+  "terms": [
+    {
+      "application": "The generated semantic catalogue is typed as a DCAT catalogue.",
+      "definition": "A curated collection of metadata about resources.",
+      "id": "dcat:Catalog",
+      "iri": "http://www.w3.org/ns/dcat#Catalog",
+      "kind": "class",
+      "label": "Catalog",
+      "provenance": {
+        "resource": "https://www.w3.org/TR/vocab-dcat-3/",
+        "version": "W3C Recommendation 22 August 2024",
+        "vocabulary": "dcat-3"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.@type"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "The ELS API service is a collection of operations accessible through an HTTP interface.",
+      "definition": "A collection of operations accessible through an interface that provides access to data or processing functions.",
+      "id": "dcat:DataService",
+      "iri": "http://www.w3.org/ns/dcat#DataService",
+      "kind": "class",
+      "label": "Data service",
+      "provenance": {
+        "resource": "https://www.w3.org/TR/vocab-dcat-3/",
+        "version": "W3C Recommendation 22 August 2024",
+        "vocabulary": "dcat-3"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/datasets-0.json",
+          "occurrences": 39,
+          "samplePaths": [
+            "$[0].dcat_type",
+            "$[0].standard_term_ids[0]",
+            "$[0].standards_alignment.dcat.term",
+            "$[1].standard_term_ids[0]",
+            "$[1].standards_alignment.dcat.parent_term"
+          ]
+        },
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dcat:service[0].@type"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "Links the catalogue to the ELS data-service resource.",
+      "definition": "Relates a catalogue to a data service that is part of it.",
+      "id": "dcat:service",
+      "iri": "http://www.w3.org/ns/dcat#service",
+      "kind": "property",
+      "label": "service",
+      "provenance": {
+        "resource": "https://www.w3.org/TR/vocab-dcat-3/",
+        "version": "W3C Recommendation 22 August 2024",
+        "vocabulary": "dcat-3"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dcat:service"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "Identifies the documented primary root location of the ELS API service without claiming that it was live-tested.",
+      "definition": "The root location or primary endpoint of a service.",
+      "id": "dcat:endpointURL",
+      "iri": "http://www.w3.org/ns/dcat#endpointURL",
+      "kind": "property",
+      "label": "endpoint URL",
+      "provenance": {
+        "resource": "https://www.w3.org/TR/vocab-dcat-3/",
+        "version": "W3C Recommendation 22 August 2024",
+        "vocabulary": "dcat-3"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dcat:service[0].dcat:endpointURL"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "Links the data service to the pinned wiki that describes endpoints and operations.",
+      "definition": "A resource describing services available through an endpoint, including operations and parameters.",
+      "id": "dcat:endpointDescription",
+      "iri": "http://www.w3.org/ns/dcat#endpointDescription",
+      "kind": "property",
+      "label": "endpoint description",
+      "provenance": {
+        "resource": "https://www.w3.org/TR/vocab-dcat-3/",
+        "version": "W3C Recommendation 22 August 2024",
+        "vocabulary": "dcat-3"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dcat:service[0].dcat:endpointDescription"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "States the specification followed by the generated OKF catalogue.",
+      "definition": "An established standard to which the described resource conforms.",
+      "id": "dct:conformsTo",
+      "iri": "http://purl.org/dc/terms/conformsTo",
+      "kind": "property",
+      "label": "conforms to",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dct:conformsTo"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Supplies human-readable descriptions for the catalogue, service and operation concepts.",
+      "definition": "An account of the described resource.",
+      "id": "dct:description",
+      "iri": "http://purl.org/dc/terms/description",
+      "kind": "property",
+      "label": "description",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 20,
+          "samplePaths": [
+            "$.dct:description",
+            "$.dcat:service[0].dct:description",
+            "$.dcat:service[0].okf:supportedOperation[0].dct:description",
+            "$.dcat:service[0].okf:supportedOperation[1].dct:description",
+            "$.dcat:service[0].okf:supportedOperation[2].dct:description"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Relates the generated catalogue to the pinned wiki documents included as source-document metadata.",
+      "definition": "A related resource included physically or logically in the described resource.",
+      "id": "dct:hasPart",
+      "iri": "http://purl.org/dc/terms/hasPart",
+      "kind": "property",
+      "label": "has part",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/relationships-0.json",
+          "occurrences": 12,
+          "samplePaths": [
+            "$[60].predicate_term",
+            "$[60].standard_term_ids[0]",
+            "$[61].predicate_term",
+            "$[61].standard_term_ids[0]",
+            "$[62].predicate_term"
+          ]
+        },
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dct:hasPart"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Carries the SHA-256 identifier of a pinned wiki page.",
+      "definition": "An unambiguous reference to the resource within a given context.",
+      "id": "dct:identifier",
+      "iri": "http://purl.org/dc/terms/identifier",
+      "kind": "property",
+      "label": "identifier",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 6,
+          "samplePaths": [
+            "$.dct:hasPart[0].dct:identifier",
+            "$.dct:hasPart[1].dct:identifier",
+            "$.dct:hasPart[2].dct:identifier",
+            "$.dct:hasPart[3].dct:identifier",
+            "$.dct:hasPart[4].dct:identifier"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Records the publication checkpoint of the generated catalogue, not a source modification date.",
+      "definition": "The date of formal issuance of the resource.",
+      "id": "dct:issued",
+      "iri": "http://purl.org/dc/terms/issued",
+      "kind": "property",
+      "label": "issued",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dct:issued"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Links the generated bundle to its own repository licence; upstream licence evidence is recorded separately.",
+      "definition": "A legal document giving official permission to do something with the resource.",
+      "id": "dct:license",
+      "iri": "http://purl.org/dc/terms/license",
+      "kind": "property",
+      "label": "license",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dct:license"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Identifies the organisation responsible for the described ELS service.",
+      "definition": "An entity responsible for making the resource available.",
+      "id": "dct:publisher",
+      "iri": "http://purl.org/dc/terms/publisher",
+      "kind": "property",
+      "label": "publisher",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 2,
+          "samplePaths": [
+            "$.dct:publisher",
+            "$.dcat:service[0].dct:publisher"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Links an operation or document projection to the pinned source from which its metadata was obtained.",
+      "definition": "A related resource from which the described resource is derived.",
+      "id": "dct:source",
+      "iri": "http://purl.org/dc/terms/source",
+      "kind": "property",
+      "label": "source",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/relationships-0.json",
+          "occurrences": 36,
+          "samplePaths": [
+            "$[1].predicate_term",
+            "$[1].standard_term_ids[0]",
+            "$[7].predicate_term",
+            "$[7].standard_term_ids[0]",
+            "$[9].predicate_term"
+          ]
+        },
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 24,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].dct:source",
+            "$.dcat:service[0].okf:supportedOperation[1].dct:source",
+            "$.dcat:service[0].okf:supportedOperation[2].dct:source",
+            "$.dcat:service[0].okf:supportedOperation[3].dct:source",
+            "$.dcat:service[0].okf:supportedOperation[4].dct:source"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Supplies human-readable titles for generated semantic resources.",
+      "definition": "A name given to the resource.",
+      "id": "dct:title",
+      "iri": "http://purl.org/dc/terms/title",
+      "kind": "property",
+      "label": "title",
+      "provenance": {
+        "resource": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+        "version": "DCMI Recommendation 20 January 2020",
+        "vocabulary": "dcterms-2020"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 26,
+          "samplePaths": [
+            "$.dct:title",
+            "$.dcat:service[0].dct:title",
+            "$.dcat:service[0].okf:supportedOperation[0].dct:title",
+            "$.dcat:service[0].okf:supportedOperation[1].dct:title",
+            "$.dcat:service[0].okf:supportedOperation[2].dct:title"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Types the organisation responsible for the upstream ELS service.",
+      "definition": "An agent such as a person, group or organisation.",
+      "id": "foaf:Agent",
+      "iri": "http://xmlns.com/foaf/0.1/Agent",
+      "kind": "class",
+      "label": "Agent",
+      "provenance": {
+        "resource": "http://xmlns.com/foaf/spec/20140114.html",
+        "version": "Paddington Edition 14 January 2014",
+        "vocabulary": "foaf-2014"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 2,
+          "samplePaths": [
+            "$.dct:publisher.@type",
+            "$.dcat:service[0].dct:publisher.@type"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "foaf-2014"
+    },
+    {
+      "application": "Types a pinned wiki page as a document rather than as a DCAT catalogue record.",
+      "definition": "A document.",
+      "id": "foaf:Document",
+      "iri": "http://xmlns.com/foaf/0.1/Document",
+      "kind": "class",
+      "label": "Document",
+      "provenance": {
+        "resource": "http://xmlns.com/foaf/spec/20140114.html",
+        "version": "Paddington Edition 14 January 2014",
+        "vocabulary": "foaf-2014"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/datasets-0.json",
+          "occurrences": 6,
+          "samplePaths": [
+            "$[19].standard_term_ids[0]",
+            "$[20].standard_term_ids[0]",
+            "$[21].standard_term_ids[0]",
+            "$[22].standard_term_ids[0]",
+            "$[23].standard_term_ids[0]"
+          ]
+        },
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 6,
+          "samplePaths": [
+            "$.dct:hasPart[0].@type",
+            "$.dct:hasPart[1].@type",
+            "$.dct:hasPart[2].@type",
+            "$.dct:hasPart[3].@type",
+            "$.dct:hasPart[4].@type"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "foaf-2014"
+    },
+    {
+      "application": "Provides the name of an upstream organisation represented as a FOAF agent.",
+      "definition": "A name for an entity.",
+      "id": "foaf:name",
+      "iri": "http://xmlns.com/foaf/0.1/name",
+      "kind": "property",
+      "label": "name",
+      "provenance": {
+        "resource": "http://xmlns.com/foaf/spec/20140114.html",
+        "version": "Paddington Edition 14 January 2014",
+        "vocabulary": "foaf-2014"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 2,
+          "samplePaths": [
+            "$.dct:publisher.foaf:name",
+            "$.dcat:service[0].dct:publisher.foaf:name"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "foaf-2014"
+    },
+    {
+      "application": "Types the non-executing representation of an HTTP operation.",
+      "definition": "An operation supported by a web API.",
+      "id": "hydra:Operation",
+      "iri": "http://www.w3.org/ns/hydra/core#Operation",
+      "kind": "class",
+      "label": "Operation",
+      "provenance": {
+        "resource": "https://www.hydra-cg.com/spec/latest/core/",
+        "version": "Community Group specification reviewed 26 July 2026",
+        "vocabulary": "hydra-core"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/datasets-0.json",
+          "occurrences": 54,
+          "samplePaths": [
+            "$[1].hydra_type",
+            "$[1].standard_term_ids[1]",
+            "$[1].standards_alignment.hydra.term",
+            "$[2].hydra_type",
+            "$[2].standard_term_ids[1]"
+          ]
+        },
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 18,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].@type",
+            "$.dcat:service[0].okf:supportedOperation[1].@type",
+            "$.dcat:service[0].okf:supportedOperation[2].@type",
+            "$.dcat:service[0].okf:supportedOperation[3].@type",
+            "$.dcat:service[0].okf:supportedOperation[4].@type"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Types the documented URI template associated with an operation through the producer-defined okf:requestTemplate property.",
+      "definition": "A template that can be expanded into an IRI using variable mappings.",
+      "id": "hydra:IriTemplate",
+      "iri": "http://www.w3.org/ns/hydra/core#IriTemplate",
+      "kind": "class",
+      "label": "IRI template",
+      "provenance": {
+        "resource": "https://www.hydra-cg.com/spec/latest/core/",
+        "version": "Community Group specification reviewed 26 July 2026",
+        "vocabulary": "hydra-core"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 18,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.@type",
+            "$.dcat:service[0].okf:supportedOperation[1].okf:requestTemplate.@type",
+            "$.dcat:service[0].okf:supportedOperation[2].okf:requestTemplate.@type",
+            "$.dcat:service[0].okf:supportedOperation[3].okf:requestTemplate.@type",
+            "$.dcat:service[0].okf:supportedOperation[4].okf:requestTemplate.@type"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Types one variable declaration inside an operation URI template.",
+      "definition": "A mapping from an IRI-template variable to its documented meaning and requirements.",
+      "id": "hydra:IriTemplateMapping",
+      "iri": "http://www.w3.org/ns/hydra/core#IriTemplateMapping",
+      "kind": "class",
+      "label": "IRI template mapping",
+      "provenance": {
+        "resource": "https://www.hydra-cg.com/spec/latest/core/",
+        "version": "Community Group specification reviewed 26 July 2026",
+        "vocabulary": "hydra-core"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 78,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[0].@type",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[1].@type",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[2].@type",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[3].@type",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[4].@type"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records the documented GET method of each bounded operation.",
+      "definition": "The HTTP method of an operation.",
+      "id": "hydra:method",
+      "iri": "http://www.w3.org/ns/hydra/core#method",
+      "kind": "property",
+      "label": "method",
+      "provenance": {
+        "resource": "https://www.hydra-cg.com/spec/latest/core/",
+        "version": "Community Group specification reviewed 26 July 2026",
+        "vocabulary": "hydra-core"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 18,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].hydra:method",
+            "$.dcat:service[0].okf:supportedOperation[1].hydra:method",
+            "$.dcat:service[0].okf:supportedOperation[2].hydra:method",
+            "$.dcat:service[0].okf:supportedOperation[3].hydra:method",
+            "$.dcat:service[0].okf:supportedOperation[4].hydra:method"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records the non-executing URL template for an ELS operation.",
+      "definition": "A string representation of an IRI template.",
+      "id": "hydra:template",
+      "iri": "http://www.w3.org/ns/hydra/core#template",
+      "kind": "property",
+      "label": "template",
+      "provenance": {
+        "resource": "https://www.hydra-cg.com/spec/latest/core/",
+        "version": "Community Group specification reviewed 26 July 2026",
+        "vocabulary": "hydra-core"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 18,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:template",
+            "$.dcat:service[0].okf:supportedOperation[1].okf:requestTemplate.hydra:template",
+            "$.dcat:service[0].okf:supportedOperation[2].okf:requestTemplate.hydra:template",
+            "$.dcat:service[0].okf:supportedOperation[3].okf:requestTemplate.hydra:template",
+            "$.dcat:service[0].okf:supportedOperation[4].okf:requestTemplate.hydra:template"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Associates an IRI template with its path and query variable mappings.",
+      "definition": "A variable mapping contained by an IRI template.",
+      "id": "hydra:mapping",
+      "iri": "http://www.w3.org/ns/hydra/core#mapping",
+      "kind": "property",
+      "label": "mapping",
+      "provenance": {
+        "resource": "https://www.hydra-cg.com/spec/latest/core/",
+        "version": "Community Group specification reviewed 26 July 2026",
+        "vocabulary": "hydra-core"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 18,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping",
+            "$.dcat:service[0].okf:supportedOperation[1].okf:requestTemplate.hydra:mapping",
+            "$.dcat:service[0].okf:supportedOperation[2].okf:requestTemplate.hydra:mapping",
+            "$.dcat:service[0].okf:supportedOperation[3].okf:requestTemplate.hydra:mapping",
+            "$.dcat:service[0].okf:supportedOperation[4].okf:requestTemplate.hydra:mapping"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records the name of a documented path or query variable.",
+      "definition": "The variable represented by an IRI-template mapping.",
+      "id": "hydra:variable",
+      "iri": "http://www.w3.org/ns/hydra/core#variable",
+      "kind": "property",
+      "label": "variable",
+      "provenance": {
+        "resource": "https://www.hydra-cg.com/spec/latest/core/",
+        "version": "Community Group specification reviewed 26 July 2026",
+        "vocabulary": "hydra-core"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 78,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[0].hydra:variable",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[1].hydra:variable",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[2].hydra:variable",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[3].hydra:variable",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[4].hydra:variable"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records whether a documented path or query variable is required.",
+      "definition": "Whether the described value is required.",
+      "id": "hydra:required",
+      "iri": "http://www.w3.org/ns/hydra/core#required",
+      "kind": "property",
+      "label": "required",
+      "provenance": {
+        "resource": "https://www.hydra-cg.com/spec/latest/core/",
+        "version": "Community Group specification reviewed 26 July 2026",
+        "vocabulary": "hydra-core"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 78,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[0].hydra:required",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[1].hydra:required",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[2].hydra:required",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[3].hydra:required",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[4].hydra:required"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records that the generated catalogue was derived from the pinned wiki and bounded application-source review.",
+      "definition": "Relates a derived entity to an entity from which it was derived.",
+      "id": "prov:wasDerivedFrom",
+      "iri": "http://www.w3.org/ns/prov#wasDerivedFrom",
+      "kind": "property",
+      "label": "was derived from",
+      "provenance": {
+        "resource": "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+        "version": "W3C Recommendation 30 April 2013",
+        "vocabulary": "prov-o-2013"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/relationships-0.json",
+          "occurrences": 24,
+          "samplePaths": [
+            "$[50].predicate_term",
+            "$[50].standard_term_ids[0]",
+            "$[51].predicate_term",
+            "$[51].standard_term_ids[0]",
+            "$[52].predicate_term"
+          ]
+        },
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.prov:wasDerivedFrom"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "prov-o-2013"
+    },
+    {
+      "application": "Classifies an ELS operation as the closest OpenAPI object without claiming that an upstream OpenAPI contract exists.",
+      "definition": "The OpenAPI object that describes one API operation on a path.",
+      "id": "openapi:operation-object",
+      "iri": "https://spec.openapis.org/oas/v3.1.0.html#operation-object",
+      "kind": "specification-object",
+      "label": "OpenAPI Operation Object",
+      "provenance": {
+        "resource": "https://spec.openapis.org/oas/v3.1.0.html",
+        "version": "3.1.0",
+        "vocabulary": "openapi-3.1.0"
+      },
+      "sourceLocator": "operation-object",
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/datasets-0.json",
+          "occurrences": 36,
+          "samplePaths": [
+            "$[1].standard_term_ids[2]",
+            "$[1].standards_alignment.openapi.term_id",
+            "$[2].standard_term_ids[2]",
+            "$[2].standards_alignment.openapi.term_id",
+            "$[3].standard_term_ids[2]"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "openapi-3.1.0"
+    },
+    {
+      "application": "Carries the bounded standards-alignment claim and its explicit limitations.",
+      "definition": "Producer-defined statement describing standards mappings without asserting full conformance.",
+      "id": "okf:alignmentClaim",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/alignmentClaim",
+      "kind": "property",
+      "label": "alignment claim",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:alignmentClaim"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Relates an API service to a bounded operation description in the Explorer relationship projection.",
+      "definition": "Producer-defined relation from an API service to one of its documented operations.",
+      "id": "okf:hasOperation",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+      "kind": "property",
+      "label": "has operation",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/relationships-0.json",
+          "occurrences": 36,
+          "samplePaths": [
+            "$[0].predicate_term",
+            "$[0].standard_term_ids[0]",
+            "$[6].predicate_term",
+            "$[6].standard_term_ids[0]",
+            "$[8].predicate_term"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Relates a service or operation to a preserved review finding.",
+      "definition": "Producer-defined relation from a reviewed concept to a finding about its documentation, governance or usage boundary.",
+      "id": "okf:hasFinding",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+      "kind": "property",
+      "label": "has finding",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "data/relationships-0.json",
+          "occurrences": 30,
+          "samplePaths": [
+            "$[2].predicate_term",
+            "$[2].standard_term_ids[0]",
+            "$[3].predicate_term",
+            "$[3].standard_term_ids[0]",
+            "$[4].predicate_term"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the reviewed application-source commit date separately from bundle generation.",
+      "definition": "Producer-defined date of the pinned application source used by the review.",
+      "id": "okf:applicationSourceModified",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/applicationSourceModified",
+      "kind": "property",
+      "label": "application source modified",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:applicationSourceModified"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records whether a parameter claim came from the wiki, source or both.",
+      "definition": "Producer-defined evidence classification for a projected assertion.",
+      "id": "okf:evidence",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/evidence",
+      "kind": "property",
+      "label": "evidence",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 78,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[0].okf:evidence",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[1].okf:evidence",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[2].okf:evidence",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[3].okf:evidence",
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate.hydra:mapping[4].okf:evidence"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "States that the bundle does not include API execution.",
+      "definition": "Producer-defined boolean indicating whether executable behavior is included.",
+      "id": "okf:executionIncluded",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/executionIncluded",
+      "kind": "property",
+      "label": "execution included",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 19,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:executionIncluded",
+            "$.dcat:service[0].okf:supportedOperation[1].okf:executionIncluded",
+            "$.dcat:service[0].okf:supportedOperation[2].okf:executionIncluded",
+            "$.dcat:service[0].okf:supportedOperation[3].okf:executionIncluded",
+            "$.dcat:service[0].okf:supportedOperation[4].okf:executionIncluded"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the generation checkpoint of a projection.",
+      "definition": "Producer-defined generation datetime for the projected artifact.",
+      "id": "okf:generatedAt",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/generatedAt",
+      "kind": "property",
+      "label": "generated at",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:generatedAt"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "States that current live deployment status was not checked.",
+      "definition": "Producer-defined declaration of the live-verification boundary.",
+      "id": "okf:liveStatus",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/liveStatus",
+      "kind": "property",
+      "label": "live status",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:liveStatus"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "States that an operation was not verified against a live deployment.",
+      "definition": "Producer-defined boolean indicating whether the described resource was checked live.",
+      "id": "okf:liveVerified",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/liveVerified",
+      "kind": "property",
+      "label": "live verified",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 18,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:liveVerified",
+            "$.dcat:service[0].okf:supportedOperation[1].okf:liveVerified",
+            "$.dcat:service[0].okf:supportedOperation[2].okf:liveVerified",
+            "$.dcat:service[0].okf:supportedOperation[3].okf:liveVerified",
+            "$.dcat:service[0].okf:supportedOperation[4].okf:liveVerified"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Links an operation to its non-executing Hydra IRI-template projection without using hydra:expects incorrectly.",
+      "definition": "Producer-defined relation from an API operation to its documented request IRI template.",
+      "id": "okf:requestTemplate",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/requestTemplate",
+      "kind": "property",
+      "label": "request template",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 18,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation[0].okf:requestTemplate",
+            "$.dcat:service[0].okf:supportedOperation[1].okf:requestTemplate",
+            "$.dcat:service[0].okf:supportedOperation[2].okf:requestTemplate",
+            "$.dcat:service[0].okf:supportedOperation[3].okf:requestTemplate",
+            "$.dcat:service[0].okf:supportedOperation[4].okf:requestTemplate"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Links the semantic catalogue to its normative OKF Markdown root.",
+      "definition": "Producer-defined link to the normative Markdown entrypoint.",
+      "id": "okf:normativeEntrypoint",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/normativeEntrypoint",
+      "kind": "property",
+      "label": "normative entrypoint",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:normativeEntrypoint"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "States that observation values are excluded from the bundle.",
+      "definition": "Producer-defined boolean indicating whether observation values are included.",
+      "id": "okf:observationsIncluded",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/observationsIncluded",
+      "kind": "property",
+      "label": "observations included",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dcat:service[0].okf:observationsIncluded"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the declared OKF core version.",
+      "definition": "Producer-defined OKF version identifier.",
+      "id": "okf:okfVersion",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/okfVersion",
+      "kind": "property",
+      "label": "OKF version",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:okfVersion"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Links the data-service instance to its bounded operation descriptions without asserting Hydra class semantics.",
+      "definition": "Producer-defined relation from a service instance to a documented operation.",
+      "id": "okf:supportedOperation",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/supportedOperation",
+      "kind": "property",
+      "label": "supported operation",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dcat:service[0].okf:supportedOperation"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records that the evidence set is a frozen snapshot.",
+      "definition": "Producer-defined snapshot-mode declaration.",
+      "id": "okf:snapshotMode",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/snapshotMode",
+      "kind": "property",
+      "label": "snapshot mode",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:snapshotMode"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Carries the internal/private/unstable source-state label without treating it as OKF lifecycle status.",
+      "definition": "Producer-defined source-state declaration.",
+      "id": "okf:status",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/status",
+      "kind": "property",
+      "label": "source status",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.dcat:service[0].okf:status"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the associated application-repository licence as source evidence without claiming it licenses the wiki.",
+      "definition": "Producer-defined link to licence evidence associated with an upstream source.",
+      "id": "okf:sourceLicenceEvidence",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/sourceLicenceEvidence",
+      "kind": "property",
+      "label": "source licence evidence",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:sourceLicenceEvidence"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the pinned wiki commit date separately from bundle generation.",
+      "definition": "Producer-defined date of the pinned wiki source used by the review.",
+      "id": "okf:wikiSourceModified",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/vocab/wikiSourceModified",
+      "kind": "property",
+      "label": "wiki source modified",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-v1"
+      },
+      "status": "validated",
+      "usage": [
+        {
+          "artifact": "okf-bundle.yamlld",
+          "occurrences": 1,
+          "samplePaths": [
+            "$.okf:wikiSourceModified"
+          ]
+        }
+      ],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Explorer help key api-evidence",
+      "definition": "Evidence resources linked to a record, such as an endpoint template, documentation, contract or source metadata row.",
+      "helpKey": "api-evidence",
+      "id": "ui:api-evidence",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/api-evidence",
+      "kind": "ui-term",
+      "label": "Evidence resources",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key metadata-quality",
+      "definition": "A deterministic score about metadata completeness only; it is not assurance, certification, uptime, security or service quality.",
+      "helpKey": "metadata-quality",
+      "id": "ui:metadata-quality",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/metadata-quality",
+      "kind": "ui-term",
+      "label": "Metadata quality",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key record-type",
+      "definition": "The normalized concept kind used for filtering and presentation.",
+      "helpKey": "record-type",
+      "id": "ui:record-type",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/record-type",
+      "kind": "ui-term",
+      "label": "Record type",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key source",
+      "definition": "The adapter or evidence process from which the projection was produced.",
+      "helpKey": "source",
+      "id": "ui:source",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/source",
+      "kind": "ui-term",
+      "label": "Source",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key confidence",
+      "definition": "Strength of the evidence supporting a projected record; this is distinct from OKF verification trust.",
+      "helpKey": "confidence",
+      "id": "ui:confidence",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/confidence",
+      "kind": "ui-term",
+      "label": "Evidence confidence",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key licence",
+      "definition": "The licence attached to the bundle or record, kept separate from associated-source licence evidence.",
+      "helpKey": "licence",
+      "id": "ui:licence",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/licence",
+      "kind": "ui-term",
+      "label": "Licence",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key licence-basis",
+      "definition": "How a licence statement was obtained, such as bundle-declared, source-declared, inherited or associated-repository evidence.",
+      "helpKey": "licence-basis",
+      "id": "ui:licence-basis",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/licence-basis",
+      "kind": "ui-term",
+      "label": "Licence basis",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key access-model",
+      "definition": "The documented authentication or approval requirement. Internal/private visibility does not by itself identify an access mechanism.",
+      "helpKey": "access-model",
+      "id": "ui:access-model",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/access-model",
+      "kind": "ui-term",
+      "label": "Access model",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key contract-status",
+      "definition": "Whether a machine-readable contract was found and whether it is upstream, generated or incomplete.",
+      "helpKey": "contract-status",
+      "id": "ui:contract-status",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/contract-status",
+      "kind": "ui-term",
+      "label": "Contract status",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key dcat-type",
+      "definition": "The closest applicable DCAT class or property role. Absence is preferable to applying an unrelated DCAT term.",
+      "helpKey": "dcat-type",
+      "id": "ui:dcat-type",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/dcat-type",
+      "kind": "ui-term",
+      "label": "DCAT term",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key openapi-type",
+      "definition": "The closest OpenAPI object or fragment; this is an export hint rather than proof of a complete OpenAPI description.",
+      "helpKey": "openapi-type",
+      "id": "ui:openapi-type",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/openapi-type",
+      "kind": "ui-term",
+      "label": "OpenAPI term",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key hydra-type",
+      "definition": "The applicable Hydra class or property used in the semantic API description.",
+      "helpKey": "hydra-type",
+      "id": "ui:hydra-type",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/hydra-type",
+      "kind": "ui-term",
+      "label": "Hydra term",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key standards-export-readiness",
+      "definition": "Whether required fields are available for a standards projection and which fields remain missing.",
+      "helpKey": "standards-export-readiness",
+      "id": "ui:standards-export-readiness",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/standards-export-readiness",
+      "kind": "ui-term",
+      "label": "Standards export readiness",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key source-date:search-result",
+      "definition": "The date on which the source evidence was observed or pinned; it is not the bundle generation time.",
+      "helpKey": "source-date:search-result",
+      "id": "ui:source-observed-date",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/source-observed-date",
+      "kind": "ui-term",
+      "label": "Source evidence observed",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    },
+    {
+      "application": "Explorer help key facet-quality",
+      "definition": "A generated assessment of how useful a field is for navigation; it does not measure the quality of the underlying service.",
+      "helpKey": "facet-quality",
+      "id": "ui:facet-quality",
+      "iri": "https://chris-page-gov.github.io/okf-explorer/ui-terms/facet-quality",
+      "kind": "ui-term",
+      "label": "Facet navigation signal",
+      "provenance": {
+        "resource": "/data/standards/terms.json",
+        "version": "1",
+        "vocabulary": "okf-explorer-ui-v1"
+      },
+      "status": "validated",
+      "usage": [],
+      "validation": {
+        "application": "validated",
+        "checkedAt": "2026-07-25T12:17:29Z",
+        "checkedBy": "process:okf-els-api-standards-review",
+        "meaning": "validated",
+        "method": "curated-static-specification-review",
+        "recognition": "validated"
+      },
+      "vocabulary": "okf-explorer-ui-v1"
+    }
+  ],
+  "title": "ELS OKF governed metadata terms",
+  "vocabularies": [
+    {
+      "id": "dcat-3",
+      "namespace": "http://www.w3.org/ns/dcat#",
+      "prefix": "dcat",
+      "source": "https://www.w3.org/TR/vocab-dcat-3/",
+      "title": "Data Catalog Vocabulary (DCAT) Version 3",
+      "version": "W3C Recommendation 22 August 2024"
+    },
+    {
+      "id": "dcterms-2020",
+      "namespace": "http://purl.org/dc/terms/",
+      "prefix": "dct",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+      "title": "DCMI Metadata Terms",
+      "version": "DCMI Recommendation 20 January 2020"
+    },
+    {
+      "id": "foaf-2014",
+      "namespace": "http://xmlns.com/foaf/0.1/",
+      "prefix": "foaf",
+      "source": "http://xmlns.com/foaf/spec/20140114.html",
+      "title": "FOAF Vocabulary Specification",
+      "version": "Paddington Edition 14 January 2014"
+    },
+    {
+      "id": "hydra-core",
+      "namespace": "http://www.w3.org/ns/hydra/core#",
+      "prefix": "hydra",
+      "source": "https://www.hydra-cg.com/spec/latest/core/",
+      "title": "Hydra Core Vocabulary",
+      "version": "Community Group specification reviewed 26 July 2026"
+    },
+    {
+      "id": "prov-o-2013",
+      "namespace": "http://www.w3.org/ns/prov#",
+      "prefix": "prov",
+      "source": "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+      "title": "PROV-O: The PROV Ontology",
+      "version": "W3C Recommendation 30 April 2013"
+    },
+    {
+      "id": "openapi-3.1.0",
+      "namespace": "https://spec.openapis.org/oas/v3.1.0.html#",
+      "prefix": "openapi",
+      "source": "https://spec.openapis.org/oas/v3.1.0.html",
+      "title": "OpenAPI Specification 3.1.0",
+      "version": "3.1.0"
+    },
+    {
+      "id": "okf-explorer-v1",
+      "namespace": "https://chris-page-gov.github.io/okf-explorer/vocab/",
+      "prefix": "okf",
+      "source": "/data/standards/terms.json",
+      "title": "OKF Explorer bounded projection vocabulary",
+      "version": "1"
+    },
+    {
+      "id": "okf-explorer-ui-v1",
+      "namespace": "https://chris-page-gov.github.io/okf-explorer/ui-terms/",
+      "prefix": "ui",
+      "source": "/data/standards/terms.json",
+      "title": "OKF Explorer reader-facing metadata terms",
+      "version": "1"
+    }
+  ]
+}

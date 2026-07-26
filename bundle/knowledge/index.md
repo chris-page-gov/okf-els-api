@@ -6,3 +6,4 @@
 * [Review issues](issues/) - nine preserved findings and gaps.
 * [Review artifacts](artifacts/) - generated OpenAPI and selection planning contracts.
 * [Source snapshot](snapshots/) - frozen wiki and application review boundary.
+* [Governed terms](standards/) - validated standards and Explorer UI terminology.

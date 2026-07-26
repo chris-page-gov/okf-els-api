@@ -1,0 +1,559 @@
+{
+  "facet_analysis": [
+    {
+      "cardinality": 8,
+      "coverage": 1.0,
+      "default_hidden": false,
+      "default_pinned": true,
+      "description": "The normalized kind of knowledge concept represented by the record.",
+      "display_priority": 10,
+      "entropy": 0.704592,
+      "examples": [
+        "API Contract Draft",
+        "API Service",
+        "ELS API operation"
+      ],
+      "expected_reduction": 0.691136,
+      "key": "record_type",
+      "label": "Concept type",
+      "recommendation": "primary",
+      "recommended_control": "distribution",
+      "top_share": 0.473684,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 1,
+          "label": "API Contract Draft",
+          "value": "API Contract Draft"
+        },
+        {
+          "count": 1,
+          "label": "API Service",
+          "value": "API Service"
+        },
+        {
+          "count": 18,
+          "label": "ELS API operation",
+          "value": "ELS API operation"
+        },
+        {
+          "count": 9,
+          "label": "Governance Finding",
+          "value": "Governance Finding"
+        },
+        {
+          "count": 1,
+          "label": "Request Planning Contract",
+          "value": "Request Planning Contract"
+        },
+        {
+          "count": 1,
+          "label": "Source Snapshot",
+          "value": "Source Snapshot"
+        },
+        {
+          "count": 1,
+          "label": "Standards Term Registry",
+          "value": "Standards Term Registry"
+        },
+        {
+          "count": 6,
+          "label": "Wiki documentation page",
+          "value": "Wiki documentation page"
+        }
+      ]
+    },
+    {
+      "cardinality": 9,
+      "coverage": 1.0,
+      "default_hidden": false,
+      "default_pinned": true,
+      "description": "The main ELS or bundle-review topic associated with a concept.",
+      "display_priority": 20,
+      "entropy": 0.80756,
+      "examples": [
+        "data",
+        "documentation",
+        "geography"
+      ],
+      "expected_reduction": 0.785319,
+      "key": "family",
+      "label": "Topic",
+      "recommendation": "primary",
+      "recommended_control": "distribution",
+      "top_share": 0.342105,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 1,
+          "label": "data",
+          "value": "data"
+        },
+        {
+          "count": 6,
+          "label": "documentation",
+          "value": "documentation"
+        },
+        {
+          "count": 13,
+          "label": "geography",
+          "value": "geography"
+        },
+        {
+          "count": 4,
+          "label": "metadata",
+          "value": "metadata"
+        },
+        {
+          "count": 1,
+          "label": "provenance",
+          "value": "provenance"
+        },
+        {
+          "count": 2,
+          "label": "review-artifact",
+          "value": "review-artifact"
+        },
+        {
+          "count": 9,
+          "label": "review-finding",
+          "value": "review-finding"
+        },
+        {
+          "count": 1,
+          "label": "service",
+          "value": "service"
+        },
+        {
+          "count": 1,
+          "label": "standards",
+          "value": "standards"
+        }
+      ]
+    },
+    {
+      "cardinality": 10,
+      "coverage": 1.0,
+      "default_hidden": false,
+      "default_pinned": false,
+      "description": "A documented API representation or metadata-document format.",
+      "display_priority": 30,
+      "entropy": 0.639719,
+      "examples": [
+        "application-json",
+        "cols.json",
+        "csv"
+      ],
+      "expected_reduction": 0.624402,
+      "key": "format",
+      "label": "Representation",
+      "recommendation": "secondary",
+      "recommended_control": "distribution",
+      "top_share": 0.5,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 16,
+          "label": "application-json",
+          "value": "application-json"
+        },
+        {
+          "count": 1,
+          "label": "cols.json",
+          "value": "cols.json"
+        },
+        {
+          "count": 1,
+          "label": "csv",
+          "value": "csv"
+        },
+        {
+          "count": 1,
+          "label": "csvw",
+          "value": "csvw"
+        },
+        {
+          "count": 2,
+          "label": "geojson",
+          "value": "geojson"
+        },
+        {
+          "count": 1,
+          "label": "json-stat",
+          "value": "json-stat"
+        },
+        {
+          "count": 19,
+          "label": "markdown",
+          "value": "markdown"
+        },
+        {
+          "count": 1,
+          "label": "rows.json",
+          "value": "rows.json"
+        },
+        {
+          "count": 1,
+          "label": "topojson",
+          "value": "topojson"
+        },
+        {
+          "count": 1,
+          "label": "xlsx",
+          "value": "xlsx"
+        }
+      ]
+    },
+    {
+      "cardinality": 2,
+      "coverage": 1.0,
+      "default_hidden": false,
+      "default_pinned": false,
+      "description": "Whether the concept has one or more preserved documentation or governance findings.",
+      "display_priority": 40,
+      "entropy": 0.86804,
+      "examples": [
+        "no",
+        "yes"
+      ],
+      "expected_reduction": 0.411357,
+      "key": "has_documentation_issues",
+      "label": "Has findings",
+      "recommendation": "secondary",
+      "recommended_control": "distribution",
+      "top_share": 0.710526,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 27,
+          "label": "no",
+          "value": "no"
+        },
+        {
+          "count": 11,
+          "label": "yes",
+          "value": "yes"
+        }
+      ]
+    },
+    {
+      "cardinality": 2,
+      "coverage": 1.0,
+      "default_hidden": false,
+      "default_pinned": false,
+      "description": "The upstream source publisher or the project responsible for a generated review artifact.",
+      "display_priority": 50,
+      "entropy": 0.926819,
+      "examples": [
+        "office-for-national-statistics",
+        "okf-els-api-project"
+      ],
+      "expected_reduction": 0.450139,
+      "key": "publisher",
+      "label": "Publisher",
+      "recommendation": "advanced",
+      "recommended_control": "distribution",
+      "top_share": 0.657895,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 25,
+          "label": "office-for-national-statistics",
+          "value": "office-for-national-statistics"
+        },
+        {
+          "count": 13,
+          "label": "okf-els-api-project",
+          "value": "okf-els-api-project"
+        }
+      ]
+    },
+    {
+      "cardinality": 3,
+      "coverage": 1.0,
+      "default_hidden": false,
+      "default_pinned": false,
+      "description": "The bounded evidence surface from which the record was projected.",
+      "display_priority": 60,
+      "entropy": 0.914767,
+      "examples": [
+        "generated-from-pinned-evidence",
+        "pinned-source-document",
+        "wiki-and-pinned-static-source"
+      ],
+      "expected_reduction": 0.608033,
+      "key": "source_tier",
+      "label": "Evidence tier",
+      "recommendation": "advanced",
+      "recommended_control": "distribution",
+      "top_share": 0.5,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 13,
+          "label": "generated-from-pinned-evidence",
+          "value": "generated-from-pinned-evidence"
+        },
+        {
+          "count": 6,
+          "label": "pinned-source-document",
+          "value": "pinned-source-document"
+        },
+        {
+          "count": 19,
+          "label": "wiki-and-pinned-static-source",
+          "value": "wiki-and-pinned-static-source"
+        }
+      ]
+    },
+    {
+      "cardinality": 3,
+      "coverage": 1.0,
+      "default_hidden": false,
+      "default_pinned": false,
+      "description": "Whether the described resource is internal/private or a public metadata artifact.",
+      "display_priority": 70,
+      "entropy": 0.914767,
+      "examples": [
+        "internal-private",
+        "public-metadata-bundle",
+        "public-source-document"
+      ],
+      "expected_reduction": 0.608033,
+      "key": "visibility",
+      "label": "Visibility",
+      "recommendation": "advanced",
+      "recommended_control": "distribution",
+      "top_share": 0.5,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 19,
+          "label": "internal-private",
+          "value": "internal-private"
+        },
+        {
+          "count": 13,
+          "label": "public-metadata-bundle",
+          "value": "public-metadata-bundle"
+        },
+        {
+          "count": 6,
+          "label": "public-source-document",
+          "value": "public-source-document"
+        }
+      ]
+    },
+    {
+      "cardinality": 1,
+      "coverage": 1.0,
+      "default_hidden": true,
+      "default_pinned": false,
+      "description": "The OKF lifecycle status projected for Explorer filtering.",
+      "display_priority": 80,
+      "entropy": 0.0,
+      "examples": [
+        "draft"
+      ],
+      "expected_reduction": 0.0,
+      "key": "lifecycle_status",
+      "label": "Lifecycle",
+      "recommendation": "suppressed",
+      "recommended_control": "distribution",
+      "top_share": 1.0,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 38,
+          "label": "draft",
+          "value": "draft"
+        }
+      ]
+    },
+    {
+      "cardinality": 2,
+      "coverage": 1.0,
+      "default_hidden": false,
+      "default_pinned": false,
+      "description": "The bounded state of the source or generated review record.",
+      "display_priority": 90,
+      "entropy": 1.0,
+      "examples": [
+        "bounded-review-draft",
+        "internal-private-unstable"
+      ],
+      "expected_reduction": 0.5,
+      "key": "state",
+      "label": "Source state",
+      "recommendation": "advanced",
+      "recommended_control": "distribution",
+      "top_share": 0.5,
+      "value_order": "count-desc",
+      "value_type": "nominal",
+      "values": [
+        {
+          "count": 19,
+          "label": "bounded-review-draft",
+          "value": "bounded-review-draft"
+        },
+        {
+          "count": 19,
+          "label": "internal-private-unstable",
+          "value": "internal-private-unstable"
+        }
+      ]
+    }
+  ],
+  "generated_at": "2026-07-25T12:17:29Z",
+  "narrative": {
+    "body": "Explore the service, operations, pinned source documents, preserved review findings, generated artifacts and governed metadata terms. Evidence strength does not upgrade OKF verification trust or establish a live deployment state.",
+    "title": "Bounded API discovery, not a service contract"
+  },
+  "relationship_overview": {
+    "types": [
+      {
+        "count": 12,
+        "kind": "derived-from",
+        "samples": [
+          {
+            "label": "derived from",
+            "source": "issue/boundary-internal-api",
+            "target": "snapshot/wiki-and-source"
+          },
+          {
+            "label": "derived from",
+            "source": "issue/drift-metadata-dimension-route",
+            "target": "snapshot/wiki-and-source"
+          },
+          {
+            "label": "derived from",
+            "source": "issue/drift-data-includenames",
+            "target": "snapshot/wiki-and-source"
+          }
+        ]
+      },
+      {
+        "count": 18,
+        "kind": "documented-by",
+        "samples": [
+          {
+            "label": "documented by",
+            "source": "operation/data",
+            "target": "document/Requesting-data"
+          },
+          {
+            "label": "documented by",
+            "source": "operation/geo-list",
+            "target": "document/Requesting-geographic-information"
+          },
+          {
+            "label": "documented by",
+            "source": "operation/geo-levels",
+            "target": "document/Requesting-geographic-information"
+          }
+        ]
+      },
+      {
+        "count": 13,
+        "kind": "has-documentation-issue",
+        "samples": [
+          {
+            "label": "has documentation finding",
+            "source": "operation/data",
+            "target": "issue/drift-data-hasgeo-default"
+          },
+          {
+            "label": "has documentation finding",
+            "source": "operation/data",
+            "target": "issue/drift-data-includenames"
+          },
+          {
+            "label": "has documentation finding",
+            "source": "operation/data",
+            "target": "issue/gap-data-measure"
+          }
+        ]
+      },
+      {
+        "count": 18,
+        "kind": "has-operation",
+        "samples": [
+          {
+            "label": "has operation",
+            "source": "service/els-api",
+            "target": "operation/data"
+          },
+          {
+            "label": "has operation",
+            "source": "service/els-api",
+            "target": "operation/geo-list"
+          },
+          {
+            "label": "has operation",
+            "source": "service/els-api",
+            "target": "operation/geo-levels"
+          }
+        ]
+      },
+      {
+        "count": 2,
+        "kind": "has-service-finding",
+        "samples": [
+          {
+            "label": "has service finding",
+            "source": "service/els-api",
+            "target": "issue/boundary-internal-api"
+          },
+          {
+            "label": "has service finding",
+            "source": "service/els-api",
+            "target": "issue/gap-compatibility-policy"
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "kind": "includes-document",
+        "samples": [
+          {
+            "label": "includes document",
+            "source": "snapshot/wiki-and-source",
+            "target": "document/API-overview"
+          },
+          {
+            "label": "includes document",
+            "source": "snapshot/wiki-and-source",
+            "target": "document/Data-formats"
+          },
+          {
+            "label": "includes document",
+            "source": "snapshot/wiki-and-source",
+            "target": "document/Home"
+          }
+        ]
+      }
+    ]
+  },
+  "schema": "okf-explorer-analysis.v1",
+  "snapshot": "els-wiki-2026-07-20",
+  "source_bundle": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
+  "summary": {
+    "description": "A bounded metadata-only concept graph for the ELS API wiki and static application-source review.",
+    "notices": [
+      "No live service requests were performed.",
+      "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests."
+    ],
+    "record_count": 38,
+    "relationship_count": 69,
+    "resource_count": 18,
+    "title": "Explore Local Statistics API discovery"
+  }
+}

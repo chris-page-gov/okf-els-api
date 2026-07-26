@@ -13,6 +13,8 @@ from okf_v02 import (  # noqa: E402
     render_concept,
     render_frontmatter,
     validate_okf_bundle,
+    validate_okf_core_bundle,
+    validate_okf_producer_profile,
 )
 
 
@@ -57,6 +59,24 @@ class OKFV02ValidatorTests(unittest.TestCase):
         self.assertEqual(report["conceptCount"], 1)
         self.assertEqual(report["trustTiers"]["unverified"], 1)
         self.assertTrue(report["unknownExtensionFieldsAllowed"])
+
+    def test_core_and_producer_profile_are_reported_separately(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        (root / "minimal.md").write_text(
+            "---\ntype: \"Minimal Concept\"\n---\n\n# Minimal\n",
+            encoding="utf-8",
+        )
+        core = validate_okf_core_bundle(root)
+        self.assertEqual(core["status"], "conformant")
+        self.assertEqual(core["conceptCount"], 1)
+        self.assertTrue(core["missingIndexesAllowed"])
+        with self.assertRaisesRegex(
+            OKFConformanceError,
+            "root index.md is required by profile",
+        ):
+            validate_okf_producer_profile(root)
 
     def test_verified_actor_derives_trust_tier(self) -> None:
         fields = self.valid_fields()

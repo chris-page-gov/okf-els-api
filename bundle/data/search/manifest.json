@@ -1,14 +1,14 @@
 {
   "counts": {
     "doc_map_shards": 1,
-    "documents": 18,
+    "documents": 38,
     "lexicon_chunks": 1,
-    "max_postings_per_token": 18,
-    "postings": 768,
+    "max_postings_per_token": 38,
+    "postings": 1237,
     "postings_shards": 1,
     "prefix_chunks": 1,
     "result_doc_chunks": 1,
-    "tokens": 193
+    "tokens": 366
   },
   "entrypoints": {
     "doc_map": "data/search/doc-map.json",
@@ -39,7 +39,7 @@
   "generated_at": "2026-07-25T12:17:29Z",
   "lexicon_shard_length": 1,
   "prefix_min_length": 3,
-  "result_doc_chunk_size": 18,
+  "result_doc_chunk_size": 38,
   "result_limit": 50,
   "schema": "okf-static-search.v1",
   "snapshot": "els-wiki-2026-07-20",

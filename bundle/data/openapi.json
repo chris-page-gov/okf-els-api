@@ -2,8 +2,8 @@
   "info": {
     "description": "The upstream wiki says this API is internal/private, is not intended for non-ONS web applications, may change without notice, and prevents cross-origin browser requests. This file is generated from a wiki snapshot and static source review; it is not an upstream ONS API contract.",
     "license": {
-      "name": "MIT (associated application repository)",
-      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/develop/LICENSE.md"
+      "name": "MIT (generated review artifact)",
+      "url": "https://github.com/chris-page-gov/okf-els-api/blob/main/LICENSE"
     },
     "title": "Explore Local Statistics internal API — OKF review draft",
     "version": "0.1.0"
@@ -1644,6 +1644,11 @@
     "observationsIncluded": false,
     "schema": "okf-els-api.openapi-review.v1",
     "sourceCommit": "795eaf204f47986f6be248a63f857a42afe4fdf2",
+    "sourceLicenceEvidence": {
+      "statement": "The wiki has no separate licence file. The associated application repository licenses software and associated documentation under MIT.",
+      "status": "associated-repository",
+      "url": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md"
+    },
     "sourceSnapshot": "els-wiki-2026-07-20",
     "status": "review-draft",
     "wikiCommit": "3da822e28d775f1213d328573da34aba8278d79f"

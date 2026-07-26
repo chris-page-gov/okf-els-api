@@ -14,14 +14,16 @@
     ]
   },
   "counts": {
-    "datasets": 18,
-    "publishers": 1,
-    "records": 18,
-    "relationships": 50,
+    "datasets": 38,
+    "operations": 18,
+    "publishers": 2,
+    "records": 38,
+    "relationships": 69,
     "resources": 18
   },
   "generated_at": "2026-07-25T12:17:29Z",
   "indexes": {
+    "analysis": "data/analysis/overview.json",
     "coverage": "data/coverage/ledger.json",
     "documents": "data/documents-0.json",
     "facets": "data/facets.json",
@@ -29,21 +31,52 @@
     "openapi": "data/openapi.json",
     "overview": "data/overview.json",
     "parameters": "data/parameters.json",
+    "presentation": "data/presentation.json",
     "review": "data/review/issues.json",
     "search": "data/search/manifest.json",
     "selection_contract": "data/selection-contract.json",
-    "snapshot": "data/provenance/wiki-snapshot.json"
+    "snapshot": "data/provenance/wiki-snapshot.json",
+    "term_validation": "data/standards/term-validation.json",
+    "terms": "data/standards/terms.json"
   },
   "performance": {
     "full_record_hydration": "single-chunk",
+    "relationship_hydration": "single-chunk",
+    "search": "static browser index",
     "startup_mode": "eager-small-corpus"
   },
   "schema": "okf-explorer-data-manifest.v1",
   "search": {
-    "documents": 18,
+    "documents": 38,
     "result_limit": 50,
     "schema": "okf-static-search.v1",
-    "tokens": 193
+    "tokens": 366
+  },
+  "shards": {
+    "datasets": [
+      {
+        "path": "data/datasets-0.json",
+        "sha256": "e3cd369bedcfffd9401faf6a4b6540317f088939066385b8f7031d8e8c836e91"
+      }
+    ],
+    "publishers": [
+      {
+        "path": "data/publishers-0.json",
+        "sha256": "0e5306a7937968ec0cd6197a7be1663702186d22942650bd1f0382e639801303"
+      }
+    ],
+    "relationships": [
+      {
+        "path": "data/relationships-0.json",
+        "sha256": "bded74de751c028fe8c8d46d27458087ead800e75d4e6bc1d6593aaf1e95d25e"
+      }
+    ],
+    "resources": [
+      {
+        "path": "data/resources-0.json",
+        "sha256": "61fc3ace4db93c53370ec7cd5fd8013a8a9a88af153dc914d94bbe646b6a86cb"
+      }
+    ]
   },
   "snapshot": "els-wiki-2026-07-20",
   "title": "Explore Local Statistics API discovery OKF"
