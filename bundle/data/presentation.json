@@ -1,0 +1,160 @@
+{
+  "defaults": {
+    "distribution_segment_limit": 10,
+    "facet_mode": "suggested",
+    "search_threshold": 48
+  },
+  "facets": [
+    {
+      "default_state": "pinned",
+      "description": "The normalized kind of knowledge concept represented by the record.",
+      "examples": [
+        "API Contract Draft",
+        "API Service",
+        "ELS API operation"
+      ],
+      "key": "record_type",
+      "label": "Concept type",
+      "open_control": "distribution",
+      "order": 10,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    },
+    {
+      "default_state": "pinned",
+      "description": "The main ELS or bundle-review topic associated with a concept.",
+      "examples": [
+        "data",
+        "documentation",
+        "geography"
+      ],
+      "key": "family",
+      "label": "Topic",
+      "open_control": "distribution",
+      "order": 20,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    },
+    {
+      "default_state": "shown",
+      "description": "A documented API representation or metadata-document format.",
+      "examples": [
+        "application-json",
+        "cols.json",
+        "csv"
+      ],
+      "key": "format",
+      "label": "Representation",
+      "open_control": "distribution",
+      "order": 30,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    },
+    {
+      "default_state": "shown",
+      "description": "Whether the concept has one or more preserved documentation or governance findings.",
+      "examples": [
+        "no",
+        "yes"
+      ],
+      "key": "has_documentation_issues",
+      "label": "Has findings",
+      "open_control": "distribution",
+      "order": 40,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    },
+    {
+      "default_state": "shown",
+      "description": "The upstream source publisher or the project responsible for a generated review artifact.",
+      "examples": [
+        "office-for-national-statistics",
+        "okf-els-api-project"
+      ],
+      "key": "publisher",
+      "label": "Publisher",
+      "open_control": "distribution",
+      "order": 50,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    },
+    {
+      "default_state": "shown",
+      "description": "The bounded evidence surface from which the record was projected.",
+      "examples": [
+        "generated-from-pinned-evidence",
+        "pinned-source-document",
+        "wiki-and-pinned-static-source"
+      ],
+      "key": "source_tier",
+      "label": "Evidence tier",
+      "open_control": "distribution",
+      "order": 60,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    },
+    {
+      "default_state": "shown",
+      "description": "Whether the described resource is internal/private or a public metadata artifact.",
+      "examples": [
+        "internal-private",
+        "public-metadata-bundle",
+        "public-source-document"
+      ],
+      "key": "visibility",
+      "label": "Visibility",
+      "open_control": "distribution",
+      "order": 70,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    },
+    {
+      "default_state": "hidden",
+      "description": "The OKF lifecycle status projected for Explorer filtering.",
+      "examples": [
+        "draft"
+      ],
+      "key": "lifecycle_status",
+      "label": "Lifecycle",
+      "open_control": "distribution",
+      "order": 80,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    },
+    {
+      "default_state": "shown",
+      "description": "The bounded state of the source or generated review record.",
+      "examples": [
+        "bounded-review-draft",
+        "internal-private-unstable"
+      ],
+      "key": "state",
+      "label": "Source state",
+      "open_control": "distribution",
+      "order": 90,
+      "value_order": "count-desc",
+      "value_type": "nominal"
+    }
+  ],
+  "panels": {
+    "left": {
+      "default_tab": "facets",
+      "tabs": [
+        "facets",
+        "browse",
+        "results"
+      ]
+    },
+    "right": {
+      "default_tab": "overview",
+      "tabs": [
+        "overview",
+        "evidence",
+        "data"
+      ]
+    }
+  },
+  "schema": "okf-explorer-presentation.v1",
+  "snapshot": "els-wiki-2026-07-20",
+  "status": "experimental"
+}

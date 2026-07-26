@@ -32,7 +32,8 @@ class BundleTests(unittest.TestCase):
         descriptor = load("okf-explorer.json")
         self.assertEqual(descriptor["kind"], "okf-large-corpus")
         self.assertEqual(descriptor["version"], "0.2.0")
-        self.assertEqual(descriptor["counts"]["records"], 18)
+        self.assertEqual(descriptor["counts"]["records"], 38)
+        self.assertEqual(descriptor["counts"]["operations"], 18)
         self.assertEqual(descriptor["counts"]["documents"], 6)
         self.assertEqual(descriptor["counts"]["issues"], 9)
         self.assertTrue(descriptor["scope"]["metadata_only"])
@@ -50,12 +51,19 @@ class BundleTests(unittest.TestCase):
             "derived-from-verified",
         )
         self.assertEqual(report["status"], "conformant")
-        self.assertEqual(report["conceptCount"], 37)
-        self.assertEqual(report["markdownDocumentCount"], 45)
-        self.assertEqual(report["trustTiers"]["unverified"], 37)
+        self.assertEqual(report["schema"], "okf-els-api.okf-conformance.v2")
+        self.assertEqual(report["coreConformance"]["status"], "conformant")
+        self.assertEqual(
+            report["producerProfileConformance"]["status"],
+            "conformant",
+        )
+        self.assertTrue(report["coreConformance"]["missingIndexesAllowed"])
+        self.assertEqual(report["conceptCount"], 38)
+        self.assertEqual(report["markdownDocumentCount"], 47)
+        self.assertEqual(report["trustTiers"]["unverified"], 38)
         self.assertEqual(report["trustTiers"]["machineConfirmed"], 0)
         self.assertEqual(report["trustTiers"]["humanReviewed"], 0)
-        self.assertEqual(report["lifecycle"]["draft"], 37)
+        self.assertEqual(report["lifecycle"]["draft"], 38)
         self.assertEqual(report["attestedComputationCount"], 0)
         self.assertEqual(report["legacyV01FallbackCount"], 0)
 
@@ -81,8 +89,8 @@ class BundleTests(unittest.TestCase):
             text=True,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("37 concepts", result.stdout)
-        self.assertIn("37 explicitly unverified", result.stdout)
+        self.assertIn("38 concepts", result.stdout)
+        self.assertIn("38 explicitly unverified", result.stdout)
 
     def test_snapshot_and_publication_dates_remain_distinct(self) -> None:
         publication = json.loads(
@@ -172,8 +180,24 @@ class BundleTests(unittest.TestCase):
         for paths in manifest["chunks"].values():
             for path in paths:
                 self.assertTrue((BUNDLE / path).is_file(), path)
-        self.assertEqual(manifest["counts"]["datasets"], 18)
+        self.assertEqual(manifest["counts"]["datasets"], 38)
+        self.assertEqual(manifest["counts"]["operations"], 18)
         self.assertEqual(manifest["counts"]["resources"], 18)
+        for name, reference in descriptor["entrypoint_integrity"].items():
+            payload = (BUNDLE / reference["path"]).read_bytes()
+            self.assertEqual(
+                hashlib.sha256(payload).hexdigest(),
+                reference["sha256"],
+                name,
+            )
+        for name, rows in manifest["shards"].items():
+            self.assertEqual(len(rows), 1, name)
+            payload = (BUNDLE / rows[0]["path"]).read_bytes()
+            self.assertEqual(
+                hashlib.sha256(payload).hexdigest(),
+                rows[0]["sha256"],
+                name,
+            )
 
     def test_pages_landing_and_okf_explorer_link(self) -> None:
         descriptor = load("okf-explorer.json")
@@ -196,7 +220,7 @@ class BundleTests(unittest.TestCase):
         descriptor = load("okf-explorer.json")
         search = load(descriptor["entrypoints"]["search_manifest"])
         self.assertEqual(search["schema"], "okf-static-search.v1")
-        self.assertEqual(search["counts"]["documents"], 18)
+        self.assertEqual(search["counts"]["documents"], 38)
         self.assertEqual(search["counts"]["postings_shards"], 1)
 
         lexicon = load(search["entrypoints"]["lexicon"]["_"])
@@ -205,6 +229,12 @@ class BundleTests(unittest.TestCase):
         results = load(search["entrypoints"]["result_docs"][0])
         matched = [results[row[0]]["name"] for row in postings]
         self.assertIn("geo-reverse", matched)
+        data_result = next(row for row in results if row["name"] == "data")
+        self.assertEqual(data_result["hydra_type"], "hydra:Operation")
+        self.assertIn(
+            "openapi:operation-object",
+            data_result["standard_term_ids"],
+        )
 
         document_map = load(search["entrypoints"]["doc_map"])
         self.assertEqual(set(document_map), {row["name"] for row in results})
@@ -213,7 +243,11 @@ class BundleTests(unittest.TestCase):
         self.assertIn("family", overview["facet_previews"])
 
     def test_every_operation_is_non_executing_get(self) -> None:
-        operations = load("data/datasets-0.json")
+        operations = [
+            record
+            for record in load("data/datasets-0.json")
+            if record["record_type"] == "ELS API operation"
+        ]
         self.assertEqual(len(operations), 18)
         self.assertEqual(len({operation["id"] for operation in operations}), 18)
         for operation in operations:
@@ -264,9 +298,103 @@ class BundleTests(unittest.TestCase):
         self.assertEqual(len(services), 1)
         self.assertEqual(services[0]["@type"], "dcat:DataService")
         self.assertFalse(services[0]["okf:executionIncluded"])
-        self.assertEqual(len(services[0]["hydra:supportedOperation"]), 18)
+        self.assertEqual(len(services[0]["okf:supportedOperation"]), 18)
+        self.assertNotIn("hydra:supportedOperation", services[0])
+        for operation in services[0]["okf:supportedOperation"]:
+            self.assertIn("okf:requestTemplate", operation)
+            self.assertNotIn("hydra:expects", operation)
+        self.assertIn("dct:hasPart", descriptor)
+        self.assertNotIn("dcat:record", descriptor)
         self.assertEqual(descriptor["okf:okfVersion"], "0.2")
         self.assertEqual(descriptor["okf:liveStatus"], "not-checked")
+
+    def test_governed_terms_cover_generated_standards_usage(self) -> None:
+        descriptor = load("okf-explorer.json")
+        registry = load(descriptor["entrypoints"]["terms"])
+        report = load(descriptor["entrypoints"]["term_validation"])
+        self.assertEqual(registry["schema"], "okf-explorer-governed-terms.v1")
+        self.assertEqual(registry["counts"]["standardsTerms"], 45)
+        self.assertEqual(registry["counts"]["uiTerms"], 15)
+        self.assertEqual(report["status"], "conformant")
+        self.assertEqual(report["counts"]["unregisteredTerms"], 0)
+        self.assertEqual(report["counts"]["unusedStandardsTerms"], 0)
+        by_id = {term["id"]: term for term in registry["terms"]}
+        self.assertEqual(by_id["hydra:Operation"]["kind"], "class")
+        self.assertIn("spec/latest/core", by_id["hydra:Operation"]["provenance"]["resource"])
+        self.assertIn(
+            "non-executing",
+            by_id["hydra:Operation"]["application"].lower(),
+        )
+        self.assertEqual(
+            by_id["openapi:operation-object"]["iri"],
+            "https://spec.openapis.org/oas/v3.1.0.html#operation-object",
+        )
+        self.assertEqual(
+            by_id["openapi:operation-object"]["sourceLocator"],
+            "operation-object",
+        )
+        for term in registry["terms"]:
+            self.assertEqual(
+                {
+                    term["validation"]["recognition"],
+                    term["validation"]["meaning"],
+                    term["validation"]["application"],
+                },
+                {"validated"},
+                term["id"],
+            )
+        self.assertEqual(
+            by_id["ui:access-model"]["helpKey"],
+            "access-model",
+        )
+
+    def test_every_relationship_endpoint_resolves_to_an_explorer_entity(self) -> None:
+        datasets = load("data/datasets-0.json")
+        publishers = load("data/publishers-0.json")
+        resources = load("data/resources-0.json")
+        relationships = load("data/relationships-0.json")
+        routes = {
+            *[record["route"] for record in datasets],
+            *[record["route"] for record in publishers],
+            *[record["route"] for record in resources],
+        }
+        for relationship in relationships:
+            self.assertIn(relationship["source"], routes)
+            self.assertIn(relationship["target"], routes)
+            self.assertIn("predicate", relationship)
+            self.assertIn("predicate_term", relationship)
+            self.assertIn("basis", relationship)
+            self.assertIn("observed_at", relationship)
+
+    def test_explorer_projection_uses_evidence_dates_not_generation_dates(self) -> None:
+        descriptor = load("okf-explorer.json")
+        operations = [
+            record
+            for record in load("data/datasets-0.json")
+            if record["record_type"] == "ELS API operation"
+        ]
+        results = load("data/search/results-0.json")
+        self.assertTrue(all("metadata_modified" not in row for row in operations))
+        self.assertTrue(
+            all(row["source_observed_at"] != descriptor["generated_at"] for row in operations)
+        )
+        self.assertTrue(
+            all(row["timestamp"] != descriptor["generated_at"] for row in results)
+        )
+
+    def test_descriptor_surfaces_both_semantic_serializations(self) -> None:
+        descriptor = load("okf-explorer.json")
+        self.assertEqual(descriptor["core_conformance"], "Markdown concept layer")
+        self.assertEqual(descriptor["entrypoints"]["markdown_index"], "index.md")
+        self.assertEqual(descriptor["semantic_descriptor"], "okf-bundle.yamlld")
+        self.assertEqual(
+            descriptor["entrypoints"]["semantic_jsonld"],
+            "okf-bundle.jsonld",
+        )
+        self.assertEqual(
+            descriptor["entrypoints"]["semantic_yamlld"],
+            "okf-bundle.yamlld",
+        )
 
     def test_checksum_manifest_matches_payloads(self) -> None:
         manifest = load("checksums.json")

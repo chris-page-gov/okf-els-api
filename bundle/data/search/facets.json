@@ -1,10 +1,18 @@
 {
   "family": {
     "data": [
-      0
+      1
+    ],
+    "documentation": [
+      19,
+      1,
+      1,
+      1,
+      1,
+      1
     ],
     "geography": [
-      1,
+      2,
       1,
       1,
       1,
@@ -19,15 +27,40 @@
       1
     ],
     "metadata": [
-      14,
+      15,
       1,
       1,
       1
+    ],
+    "provenance": [
+      36
+    ],
+    "review-artifact": [
+      34,
+      1
+    ],
+    "review-finding": [
+      25,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "service": [
+      0
+    ],
+    "standards": [
+      37
     ]
   },
   "format": {
     "application-json": [
-      1,
+      0,
+      2,
       1,
       2,
       1,
@@ -44,44 +77,85 @@
       1
     ],
     "cols.json": [
-      0
+      1
     ],
     "csv": [
-      0
+      1
     ],
     "csvw": [
-      0
+      1
     ],
     "geojson": [
-      3,
+      4,
       6
     ],
     "json-stat": [
-      0
+      1
+    ],
+    "markdown": [
+      19,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
     ],
     "rows.json": [
-      0
+      1
     ],
     "topojson": [
-      9
+      10
     ],
     "xlsx": [
-      0
+      1
     ]
   },
   "has_documentation_issues": {
     "no": [
-      1,
+      2,
       1,
       1,
       6,
       4,
       1,
       1,
-      2
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
     ],
     "yes": [
       0,
+      1,
       4,
       1,
       1,
@@ -91,6 +165,48 @@
       1,
       1,
       4
+    ]
+  },
+  "lifecycle_status": {
+    "draft": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
     ]
   },
   "publisher": {
@@ -112,10 +228,155 @@
       1,
       1,
       1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "okf-els-api-project": [
+      25,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "record_type": {
+    "API Contract Draft": [
+      34
+    ],
+    "API Service": [
+      0
+    ],
+    "ELS API operation": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "Governance Finding": [
+      25,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "Request Planning Contract": [
+      35
+    ],
+    "Source Snapshot": [
+      36
+    ],
+    "Standards Term Registry": [
+      37
+    ],
+    "Wiki documentation page": [
+      19,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "source_tier": {
+    "generated-from-pinned-evidence": [
+      25,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "pinned-source-document": [
+      19,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "wiki-and-pinned-static-source": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
       1
     ]
   },
   "state": {
+    "bounded-review-draft": [
+      19,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
     "internal-private-unstable": [
       0,
       1,
@@ -130,6 +391,53 @@
       1,
       1,
       1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "visibility": {
+    "internal-private": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "public-metadata-bundle": [
+      25,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "public-source-document": [
+      19,
       1,
       1,
       1,

@@ -7,22 +7,67 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "3.1"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "400"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "address"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "agents"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "all"
   },
   {
-    "df": 2,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "allowed"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "ambiguous"
+  },
+  {
+    "df": 3,
     "postings": "data/search/postings-0001.json",
     "token": "an"
   },
   {
-    "df": 18,
+    "df": 38,
     "postings": "data/search/postings-0001.json",
     "token": "api"
   },
   {
-    "df": 15,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "api-overview"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings-0001.json",
+    "token": "application"
+  },
+  {
+    "df": 16,
     "postings": "data/search/postings-0001.json",
     "token": "application-json"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "are"
   },
   {
     "df": 4,
@@ -30,9 +75,19 @@
     "token": "area"
   },
   {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "area-name"
+  },
+  {
     "df": 8,
     "postings": "data/search/postings-0001.json",
     "token": "areas"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "artifact"
   },
   {
     "df": 1,
@@ -47,7 +102,17 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "assume"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "at"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "authoritative"
   },
   {
     "df": 2,
@@ -62,22 +127,72 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
-    "token": "boundaries"
+    "token": "be"
   },
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "behaviour"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "boundaries"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
     "token": "boundary"
   },
   {
-    "df": 18,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "boundary-internal-api"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings-0001.json",
+    "token": "bounded"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "browsers"
+  },
+  {
+    "df": 19,
     "postings": "data/search/postings-0001.json",
     "token": "bundle"
   },
   {
-    "df": 4,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "but"
+  },
+  {
+    "df": 5,
     "postings": "data/search/postings-0001.json",
     "token": "by"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "calling"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings-0001.json",
+    "token": "can"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "cannot"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "checks"
   },
   {
     "df": 1,
@@ -88,6 +203,11 @@
     "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "children"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings-0001.json",
+    "token": "clients"
   },
   {
     "df": 1,
@@ -110,9 +230,29 @@
     "token": "cols.json"
   },
   {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "compatibility"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "conflict"
+  },
+  {
     "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "containing"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "contracts"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "control"
   },
   {
     "df": 2,
@@ -127,6 +267,16 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "critical-boundary"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "cross-origin"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "csv"
   },
   {
@@ -135,7 +285,7 @@
     "token": "csvw"
   },
   {
-    "df": 1,
+    "df": 3,
     "postings": "data/search/postings-0001.json",
     "token": "data"
   },
@@ -145,9 +295,34 @@
     "token": "data-endpoint"
   },
   {
-    "df": 3,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "data-formats"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "default"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "deprecation"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "differs"
+  },
+  {
+    "df": 4,
     "postings": "data/search/postings-0001.json",
     "token": "dimension"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "dimension-values"
   },
   {
     "df": 2,
@@ -155,12 +330,32 @@
     "token": "dimensions"
   },
   {
-    "df": 18,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "discover"
+  },
+  {
+    "df": 6,
+    "postings": "data/search/postings-0001.json",
+    "token": "document"
+  },
+  {
+    "df": 6,
+    "postings": "data/search/postings-0001.json",
+    "token": "documentation"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "documentation-gap"
+  },
+  {
+    "df": 22,
     "postings": "data/search/postings-0001.json",
     "token": "documented"
   },
   {
-    "df": 18,
+    "df": 19,
     "postings": "data/search/postings-0001.json",
     "token": "does"
   },
@@ -172,12 +367,67 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "draft"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "drift"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "drift-data-hasgeo-default"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "drift-data-includenames"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "drift-geo-includedates"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "drift-metadata-dimension-route"
+  },
+  {
+    "df": 20,
+    "postings": "data/search/postings-0001.json",
     "token": "els"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "els-api"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "els-api-service"
   },
   {
     "df": 18,
     "postings": "data/search/postings-0001.json",
     "token": "endpoint"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "error"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "establish"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "evidence"
   },
   {
     "df": 3,
@@ -188,6 +438,16 @@
     "df": 18,
     "postings": "data/search/postings-0001.json",
     "token": "execute"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "explained"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "explore"
   },
   {
     "df": 18,
@@ -212,6 +472,11 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "fields"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "filter"
   },
   {
@@ -227,7 +492,22 @@
   {
     "df": 2,
     "postings": "data/search/postings-0001.json",
+    "token": "following"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
     "token": "format"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "formats"
+  },
+  {
+    "df": 7,
+    "postings": "data/search/postings-0001.json",
+    "token": "frozen"
   },
   {
     "df": 2,
@@ -242,7 +522,32 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "gap-compatibility-policy"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "gap-data-measure"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "gap-geo-related-includenames"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "gap-response-schemas"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "generalised"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "generated"
   },
   {
     "df": 14,
@@ -390,7 +695,7 @@
     "token": "geoextent"
   },
   {
-    "df": 3,
+    "df": 5,
     "postings": "data/search/postings-0001.json",
     "token": "geographic"
   },
@@ -425,9 +730,24 @@
     "token": "geometry"
   },
   {
-    "df": 18,
+    "df": 20,
     "postings": "data/search/postings-0001.json",
     "token": "get"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "governance-gap"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "governed"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "governed-terms"
   },
   {
     "df": 4,
@@ -450,7 +770,17 @@
     "token": "gss"
   },
   {
-    "df": 3,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "handler"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "handlers"
+  },
+  {
+    "df": 4,
     "postings": "data/search/postings-0001.json",
     "token": "hasgeo"
   },
@@ -458,6 +788,21 @@
     "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "hasyear"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings-0001.json",
+    "token": "high"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "home"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "http"
   },
   {
     "df": 18,
@@ -470,12 +815,22 @@
     "token": "identified"
   },
   {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "identifiers"
+  },
+  {
     "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "immediate"
   },
   {
     "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "imply"
+  },
+  {
+    "df": 7,
     "postings": "data/search/postings-0001.json",
     "token": "in"
   },
@@ -490,7 +845,7 @@
     "token": "includechildren"
   },
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "includedates"
   },
@@ -500,7 +855,7 @@
     "token": "includelevel"
   },
   {
-    "df": 6,
+    "df": 7,
     "postings": "data/search/postings-0001.json",
     "token": "includenames"
   },
@@ -515,7 +870,12 @@
     "token": "includestatus"
   },
   {
-    "df": 6,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "incomplete"
+  },
+  {
+    "df": 7,
     "postings": "data/search/postings-0001.json",
     "token": "indicator"
   },
@@ -525,14 +885,64 @@
     "token": "indicators"
   },
   {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "information"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "instead"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "interaction"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "internal"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "internal-private"
+  },
+  {
     "df": 18,
     "postings": "data/search/postings-0001.json",
     "token": "internal-private-unstable"
   },
   {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "invalid"
+  },
+  {
+    "df": 5,
+    "postings": "data/search/postings-0001.json",
+    "token": "is"
+  },
+  {
+    "df": 9,
+    "postings": "data/search/postings-0001.json",
+    "token": "issue"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "it"
+  },
+  {
     "df": 18,
     "postings": "data/search/postings-0001.json",
     "token": "its"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "itself"
   },
   {
     "df": 1,
@@ -577,7 +987,17 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "listed"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "lng"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "local"
   },
   {
     "df": 1,
@@ -600,12 +1020,22 @@
     "token": "low-resolution"
   },
   {
+    "df": 19,
+    "postings": "data/search/postings-0001.json",
+    "token": "markdown"
+  },
+  {
     "df": 1,
     "postings": "data/search/postings-0001.json",
     "token": "matching"
   },
   {
     "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "meanings"
+  },
+  {
+    "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "measure"
   },
@@ -615,12 +1045,17 @@
     "token": "measures"
   },
   {
+    "df": 5,
+    "postings": "data/search/postings-0001.json",
+    "token": "medium"
+  },
+  {
     "df": 1,
     "postings": "data/search/postings-0001.json",
     "token": "members"
   },
   {
-    "df": 6,
+    "df": 14,
     "postings": "data/search/postings-0001.json",
     "token": "metadata"
   },
@@ -655,7 +1090,7 @@
     "token": "metadata-indicators-endpoint"
   },
   {
-    "df": 18,
+    "df": 19,
     "postings": "data/search/postings-0001.json",
     "token": "metadata-only"
   },
@@ -682,6 +1117,11 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "must"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
     "token": "name"
   },
   {
@@ -690,7 +1130,7 @@
     "token": "names"
   },
   {
-    "df": 18,
+    "df": 25,
     "postings": "data/search/postings-0001.json",
     "token": "national"
   },
@@ -700,17 +1140,27 @@
     "token": "nested"
   },
   {
-    "df": 18,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "no"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "non-executing"
+  },
+  {
+    "df": 21,
     "postings": "data/search/postings-0001.json",
     "token": "not"
   },
   {
-    "df": 18,
+    "df": 25,
     "postings": "data/search/postings-0001.json",
     "token": "office"
   },
   {
-    "df": 18,
+    "df": 25,
     "postings": "data/search/postings-0001.json",
     "token": "office-for-national-statistics"
   },
@@ -720,14 +1170,84 @@
     "token": "offset"
   },
   {
-    "df": 4,
+    "df": 13,
+    "postings": "data/search/postings-0001.json",
+    "token": "okf"
+  },
+  {
+    "df": 13,
+    "postings": "data/search/postings-0001.json",
+    "token": "okf-els-api-project"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "omission"
+  },
+  {
+    "df": 10,
     "postings": "data/search/postings-0001.json",
     "token": "one"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "ons"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "openapi"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "openapi-review"
+  },
+  {
+    "df": 18,
+    "postings": "data/search/postings-0001.json",
+    "token": "operation"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "operations"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "optional-rest"
   },
   {
     "df": 3,
     "postings": "data/search/postings-0001.json",
     "token": "optionally"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "outputs"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "overview"
+  },
+  {
+    "df": 6,
+    "postings": "data/search/postings-0001.json",
+    "token": "page"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "pages"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "parameter"
   },
   {
     "df": 2,
@@ -757,6 +1277,41 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "parties"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "path"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "payload"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "payload-size"
+  },
+  {
+    "df": 6,
+    "postings": "data/search/postings-0001.json",
+    "token": "pinned"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "plan"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "policy"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "possible"
   },
   {
@@ -775,6 +1330,56 @@
     "token": "prefixes"
   },
   {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "private"
+  },
+  {
+    "df": 13,
+    "postings": "data/search/postings-0001.json",
+    "token": "project"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "projection"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "proposed"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "prose"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "provenance"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "public"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "read-only"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "receive"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "reject"
+  },
+  {
     "df": 5,
     "postings": "data/search/postings-0001.json",
     "token": "related"
@@ -782,15 +1387,50 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "related-area"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "represented"
   },
   {
-    "df": 18,
+    "df": 19,
     "postings": "data/search/postings-0001.json",
     "token": "request"
   },
   {
-    "df": 18,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "request-plan"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings-0001.json",
+    "token": "requesting"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "requesting-data"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "requesting-geographic-information"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "requesting-metadata"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "requests"
+  },
+  {
+    "df": 19,
     "postings": "data/search/postings-0001.json",
     "token": "response"
   },
@@ -805,9 +1445,44 @@
     "token": "reverse"
   },
   {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "review"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "review-artifact"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "review-draft"
+  },
+  {
+    "df": 9,
+    "postings": "data/search/postings-0001.json",
+    "token": "review-finding"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "rigorously"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "route"
+  },
+  {
     "df": 1,
     "postings": "data/search/postings-0001.json",
     "token": "rows.json"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "safely"
   },
   {
     "df": 1,
@@ -823,6 +1498,31 @@
     "df": 3,
     "postings": "data/search/postings-0001.json",
     "token": "selected"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "selection"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "selection-plan"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "send"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "service"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "shape"
   },
   {
     "df": 1,
@@ -847,10 +1547,60 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "six"
+  },
+  {
+    "df": 7,
+    "postings": "data/search/postings-0001.json",
+    "token": "snapshot"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "source"
+  },
+  {
+    "df": 6,
+    "postings": "data/search/postings-0001.json",
+    "token": "source-document"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "source-only-capability"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "specific"
   },
   {
     "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "stability"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "stable"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "standard"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "standards"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "static"
+  },
+  {
+    "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "statistical"
   },
@@ -860,9 +1610,14 @@
     "token": "statistically"
   },
   {
-    "df": 18,
+    "df": 25,
     "postings": "data/search/postings-0001.json",
     "token": "statistics"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "status"
   },
   {
     "df": 18,
@@ -880,7 +1635,7 @@
     "token": "sub-topics"
   },
   {
-    "df": 1,
+    "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "supported"
   },
@@ -897,7 +1652,27 @@
   {
     "df": 1,
     "postings": "data/search/postings-0001.json",
+    "token": "term"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "terms"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "that"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
     "token": "their"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "third"
   },
   {
     "df": 18,
@@ -935,19 +1710,109 @@
     "token": "type"
   },
   {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "typed"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "undocumented"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "unstable"
+  },
+  {
     "df": 2,
     "postings": "data/search/postings-0001.json",
     "token": "up"
   },
   {
-    "df": 18,
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "usable"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "usage-boundary"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "useful"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "using"
+  },
+  {
+    "df": 20,
     "postings": "data/search/postings-0001.json",
     "token": "v1"
   },
   {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "validate"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "validated"
+  },
+  {
     "df": 2,
     "postings": "data/search/postings-0001.json",
+    "token": "validation"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings-0001.json",
     "token": "values"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "vocabulary"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "where"
+  },
+  {
+    "df": 9,
+    "postings": "data/search/postings-0001.json",
+    "token": "wiki"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "wiki-and-source"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "wiki-internal-conflict"
+  },
+  {
+    "df": 3,
+    "postings": "data/search/postings-0001.json",
+    "token": "wiki-source-conflict"
+  },
+  {
+    "df": 1,
+    "postings": "data/search/postings-0001.json",
+    "token": "without"
+  },
+  {
+    "df": 2,
+    "postings": "data/search/postings-0001.json",
+    "token": "wrong"
   },
   {
     "df": 18,

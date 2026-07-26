@@ -1,0 +1,577 @@
+{
+  "schema": "okf-els-api.standards-terms-source.v1",
+  "review": {
+    "applicationStatus": "validated-for-bounded-use",
+    "checkedAt": "2026-07-25T12:17:29Z",
+    "checkedBy": "process:okf-els-api-standards-review",
+    "liveLookupPerformed": false,
+    "method": "curated-static-specification-review",
+    "scope": "Terms emitted by the ELS OKF semantic and Explorer projections, plus Explorer UI terms used to explain those projections."
+  },
+  "vocabularies": [
+    {
+      "id": "dcat-3",
+      "namespace": "http://www.w3.org/ns/dcat#",
+      "prefix": "dcat",
+      "source": "https://www.w3.org/TR/vocab-dcat-3/",
+      "title": "Data Catalog Vocabulary (DCAT) Version 3",
+      "version": "W3C Recommendation 22 August 2024"
+    },
+    {
+      "id": "dcterms-2020",
+      "namespace": "http://purl.org/dc/terms/",
+      "prefix": "dct",
+      "source": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/",
+      "title": "DCMI Metadata Terms",
+      "version": "DCMI Recommendation 20 January 2020"
+    },
+    {
+      "id": "foaf-2014",
+      "namespace": "http://xmlns.com/foaf/0.1/",
+      "prefix": "foaf",
+      "source": "http://xmlns.com/foaf/spec/20140114.html",
+      "title": "FOAF Vocabulary Specification",
+      "version": "Paddington Edition 14 January 2014"
+    },
+    {
+      "id": "hydra-core",
+      "namespace": "http://www.w3.org/ns/hydra/core#",
+      "prefix": "hydra",
+      "source": "https://www.hydra-cg.com/spec/latest/core/",
+      "title": "Hydra Core Vocabulary",
+      "version": "Community Group specification reviewed 26 July 2026"
+    },
+    {
+      "id": "prov-o-2013",
+      "namespace": "http://www.w3.org/ns/prov#",
+      "prefix": "prov",
+      "source": "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+      "title": "PROV-O: The PROV Ontology",
+      "version": "W3C Recommendation 30 April 2013"
+    },
+    {
+      "id": "openapi-3.1.0",
+      "namespace": "https://spec.openapis.org/oas/v3.1.0.html#",
+      "prefix": "openapi",
+      "source": "https://spec.openapis.org/oas/v3.1.0.html",
+      "title": "OpenAPI Specification 3.1.0",
+      "version": "3.1.0"
+    },
+    {
+      "id": "okf-explorer-v1",
+      "namespace": "https://chris-page-gov.github.io/okf-explorer/vocab/",
+      "prefix": "okf",
+      "source": "/data/standards/terms.json",
+      "title": "OKF Explorer bounded projection vocabulary",
+      "version": "1"
+    },
+    {
+      "id": "okf-explorer-ui-v1",
+      "namespace": "https://chris-page-gov.github.io/okf-explorer/ui-terms/",
+      "prefix": "ui",
+      "source": "/data/standards/terms.json",
+      "title": "OKF Explorer reader-facing metadata terms",
+      "version": "1"
+    }
+  ],
+  "terms": [
+    {
+      "application": "The generated semantic catalogue is typed as a DCAT catalogue.",
+      "definition": "A curated collection of metadata about resources.",
+      "id": "dcat:Catalog",
+      "kind": "class",
+      "label": "Catalog",
+      "status": "validated",
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "The ELS API service is a collection of operations accessible through an HTTP interface.",
+      "definition": "A collection of operations accessible through an interface that provides access to data or processing functions.",
+      "id": "dcat:DataService",
+      "kind": "class",
+      "label": "Data service",
+      "status": "validated",
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "Links the catalogue to the ELS data-service resource.",
+      "definition": "Relates a catalogue to a data service that is part of it.",
+      "id": "dcat:service",
+      "kind": "property",
+      "label": "service",
+      "status": "validated",
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "Identifies the documented primary root location of the ELS API service without claiming that it was live-tested.",
+      "definition": "The root location or primary endpoint of a service.",
+      "id": "dcat:endpointURL",
+      "kind": "property",
+      "label": "endpoint URL",
+      "status": "validated",
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "Links the data service to the pinned wiki that describes endpoints and operations.",
+      "definition": "A resource describing services available through an endpoint, including operations and parameters.",
+      "id": "dcat:endpointDescription",
+      "kind": "property",
+      "label": "endpoint description",
+      "status": "validated",
+      "vocabulary": "dcat-3"
+    },
+    {
+      "application": "States the specification followed by the generated OKF catalogue.",
+      "definition": "An established standard to which the described resource conforms.",
+      "id": "dct:conformsTo",
+      "kind": "property",
+      "label": "conforms to",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Supplies human-readable descriptions for the catalogue, service and operation concepts.",
+      "definition": "An account of the described resource.",
+      "id": "dct:description",
+      "kind": "property",
+      "label": "description",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Relates the generated catalogue to the pinned wiki documents included as source-document metadata.",
+      "definition": "A related resource included physically or logically in the described resource.",
+      "id": "dct:hasPart",
+      "kind": "property",
+      "label": "has part",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Carries the SHA-256 identifier of a pinned wiki page.",
+      "definition": "An unambiguous reference to the resource within a given context.",
+      "id": "dct:identifier",
+      "kind": "property",
+      "label": "identifier",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Records the publication checkpoint of the generated catalogue, not a source modification date.",
+      "definition": "The date of formal issuance of the resource.",
+      "id": "dct:issued",
+      "kind": "property",
+      "label": "issued",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Links the generated bundle to its own repository licence; upstream licence evidence is recorded separately.",
+      "definition": "A legal document giving official permission to do something with the resource.",
+      "id": "dct:license",
+      "kind": "property",
+      "label": "license",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Identifies the organisation responsible for the described ELS service.",
+      "definition": "An entity responsible for making the resource available.",
+      "id": "dct:publisher",
+      "kind": "property",
+      "label": "publisher",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Links an operation or document projection to the pinned source from which its metadata was obtained.",
+      "definition": "A related resource from which the described resource is derived.",
+      "id": "dct:source",
+      "kind": "property",
+      "label": "source",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Supplies human-readable titles for generated semantic resources.",
+      "definition": "A name given to the resource.",
+      "id": "dct:title",
+      "kind": "property",
+      "label": "title",
+      "status": "validated",
+      "vocabulary": "dcterms-2020"
+    },
+    {
+      "application": "Types the organisation responsible for the upstream ELS service.",
+      "definition": "An agent such as a person, group or organisation.",
+      "id": "foaf:Agent",
+      "kind": "class",
+      "label": "Agent",
+      "status": "validated",
+      "vocabulary": "foaf-2014"
+    },
+    {
+      "application": "Types a pinned wiki page as a document rather than as a DCAT catalogue record.",
+      "definition": "A document.",
+      "id": "foaf:Document",
+      "kind": "class",
+      "label": "Document",
+      "status": "validated",
+      "vocabulary": "foaf-2014"
+    },
+    {
+      "application": "Provides the name of an upstream organisation represented as a FOAF agent.",
+      "definition": "A name for an entity.",
+      "id": "foaf:name",
+      "kind": "property",
+      "label": "name",
+      "status": "validated",
+      "vocabulary": "foaf-2014"
+    },
+    {
+      "application": "Types the non-executing representation of an HTTP operation.",
+      "definition": "An operation supported by a web API.",
+      "id": "hydra:Operation",
+      "kind": "class",
+      "label": "Operation",
+      "status": "validated",
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Types the documented URI template associated with an operation through the producer-defined okf:requestTemplate property.",
+      "definition": "A template that can be expanded into an IRI using variable mappings.",
+      "id": "hydra:IriTemplate",
+      "kind": "class",
+      "label": "IRI template",
+      "status": "validated",
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Types one variable declaration inside an operation URI template.",
+      "definition": "A mapping from an IRI-template variable to its documented meaning and requirements.",
+      "id": "hydra:IriTemplateMapping",
+      "kind": "class",
+      "label": "IRI template mapping",
+      "status": "validated",
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records the documented GET method of each bounded operation.",
+      "definition": "The HTTP method of an operation.",
+      "id": "hydra:method",
+      "kind": "property",
+      "label": "method",
+      "status": "validated",
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records the non-executing URL template for an ELS operation.",
+      "definition": "A string representation of an IRI template.",
+      "id": "hydra:template",
+      "kind": "property",
+      "label": "template",
+      "status": "validated",
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Associates an IRI template with its path and query variable mappings.",
+      "definition": "A variable mapping contained by an IRI template.",
+      "id": "hydra:mapping",
+      "kind": "property",
+      "label": "mapping",
+      "status": "validated",
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records the name of a documented path or query variable.",
+      "definition": "The variable represented by an IRI-template mapping.",
+      "id": "hydra:variable",
+      "kind": "property",
+      "label": "variable",
+      "status": "validated",
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records whether a documented path or query variable is required.",
+      "definition": "Whether the described value is required.",
+      "id": "hydra:required",
+      "kind": "property",
+      "label": "required",
+      "status": "validated",
+      "vocabulary": "hydra-core"
+    },
+    {
+      "application": "Records that the generated catalogue was derived from the pinned wiki and bounded application-source review.",
+      "definition": "Relates a derived entity to an entity from which it was derived.",
+      "id": "prov:wasDerivedFrom",
+      "kind": "property",
+      "label": "was derived from",
+      "status": "validated",
+      "vocabulary": "prov-o-2013"
+    },
+    {
+      "application": "Classifies an ELS operation as the closest OpenAPI object without claiming that an upstream OpenAPI contract exists.",
+      "definition": "The OpenAPI object that describes one API operation on a path.",
+      "id": "openapi:operation-object",
+      "kind": "specification-object",
+      "label": "OpenAPI Operation Object",
+      "sourceLocator": "operation-object",
+      "status": "validated",
+      "vocabulary": "openapi-3.1.0"
+    },
+    {
+      "application": "Carries the bounded standards-alignment claim and its explicit limitations.",
+      "definition": "Producer-defined statement describing standards mappings without asserting full conformance.",
+      "id": "okf:alignmentClaim",
+      "kind": "property",
+      "label": "alignment claim",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Relates an API service to a bounded operation description in the Explorer relationship projection.",
+      "definition": "Producer-defined relation from an API service to one of its documented operations.",
+      "id": "okf:hasOperation",
+      "kind": "property",
+      "label": "has operation",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Relates a service or operation to a preserved review finding.",
+      "definition": "Producer-defined relation from a reviewed concept to a finding about its documentation, governance or usage boundary.",
+      "id": "okf:hasFinding",
+      "kind": "property",
+      "label": "has finding",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the reviewed application-source commit date separately from bundle generation.",
+      "definition": "Producer-defined date of the pinned application source used by the review.",
+      "id": "okf:applicationSourceModified",
+      "kind": "property",
+      "label": "application source modified",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records whether a parameter claim came from the wiki, source or both.",
+      "definition": "Producer-defined evidence classification for a projected assertion.",
+      "id": "okf:evidence",
+      "kind": "property",
+      "label": "evidence",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "States that the bundle does not include API execution.",
+      "definition": "Producer-defined boolean indicating whether executable behavior is included.",
+      "id": "okf:executionIncluded",
+      "kind": "property",
+      "label": "execution included",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the generation checkpoint of a projection.",
+      "definition": "Producer-defined generation datetime for the projected artifact.",
+      "id": "okf:generatedAt",
+      "kind": "property",
+      "label": "generated at",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "States that current live deployment status was not checked.",
+      "definition": "Producer-defined declaration of the live-verification boundary.",
+      "id": "okf:liveStatus",
+      "kind": "property",
+      "label": "live status",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "States that an operation was not verified against a live deployment.",
+      "definition": "Producer-defined boolean indicating whether the described resource was checked live.",
+      "id": "okf:liveVerified",
+      "kind": "property",
+      "label": "live verified",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Links an operation to its non-executing Hydra IRI-template projection without using hydra:expects incorrectly.",
+      "definition": "Producer-defined relation from an API operation to its documented request IRI template.",
+      "id": "okf:requestTemplate",
+      "kind": "property",
+      "label": "request template",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Links the semantic catalogue to its normative OKF Markdown root.",
+      "definition": "Producer-defined link to the normative Markdown entrypoint.",
+      "id": "okf:normativeEntrypoint",
+      "kind": "property",
+      "label": "normative entrypoint",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "States that observation values are excluded from the bundle.",
+      "definition": "Producer-defined boolean indicating whether observation values are included.",
+      "id": "okf:observationsIncluded",
+      "kind": "property",
+      "label": "observations included",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the declared OKF core version.",
+      "definition": "Producer-defined OKF version identifier.",
+      "id": "okf:okfVersion",
+      "kind": "property",
+      "label": "OKF version",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Links the data-service instance to its bounded operation descriptions without asserting Hydra class semantics.",
+      "definition": "Producer-defined relation from a service instance to a documented operation.",
+      "id": "okf:supportedOperation",
+      "kind": "property",
+      "label": "supported operation",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records that the evidence set is a frozen snapshot.",
+      "definition": "Producer-defined snapshot-mode declaration.",
+      "id": "okf:snapshotMode",
+      "kind": "property",
+      "label": "snapshot mode",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Carries the internal/private/unstable source-state label without treating it as OKF lifecycle status.",
+      "definition": "Producer-defined source-state declaration.",
+      "id": "okf:status",
+      "kind": "property",
+      "label": "source status",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the associated application-repository licence as source evidence without claiming it licenses the wiki.",
+      "definition": "Producer-defined link to licence evidence associated with an upstream source.",
+      "id": "okf:sourceLicenceEvidence",
+      "kind": "property",
+      "label": "source licence evidence",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    },
+    {
+      "application": "Records the pinned wiki commit date separately from bundle generation.",
+      "definition": "Producer-defined date of the pinned wiki source used by the review.",
+      "id": "okf:wikiSourceModified",
+      "kind": "property",
+      "label": "wiki source modified",
+      "status": "validated",
+      "vocabulary": "okf-explorer-v1"
+    }
+  ],
+  "uiTerms": [
+    {
+      "definition": "Evidence resources linked to a record, such as an endpoint template, documentation, contract or source metadata row.",
+      "helpKey": "api-evidence",
+      "id": "ui:api-evidence",
+      "label": "Evidence resources"
+    },
+    {
+      "definition": "A deterministic score about metadata completeness only; it is not assurance, certification, uptime, security or service quality.",
+      "helpKey": "metadata-quality",
+      "id": "ui:metadata-quality",
+      "label": "Metadata quality"
+    },
+    {
+      "definition": "The normalized concept kind used for filtering and presentation.",
+      "helpKey": "record-type",
+      "id": "ui:record-type",
+      "label": "Record type"
+    },
+    {
+      "definition": "The adapter or evidence process from which the projection was produced.",
+      "helpKey": "source",
+      "id": "ui:source",
+      "label": "Source"
+    },
+    {
+      "definition": "Strength of the evidence supporting a projected record; this is distinct from OKF verification trust.",
+      "helpKey": "confidence",
+      "id": "ui:confidence",
+      "label": "Evidence confidence"
+    },
+    {
+      "definition": "The licence attached to the bundle or record, kept separate from associated-source licence evidence.",
+      "helpKey": "licence",
+      "id": "ui:licence",
+      "label": "Licence"
+    },
+    {
+      "definition": "How a licence statement was obtained, such as bundle-declared, source-declared, inherited or associated-repository evidence.",
+      "helpKey": "licence-basis",
+      "id": "ui:licence-basis",
+      "label": "Licence basis"
+    },
+    {
+      "definition": "The documented authentication or approval requirement. Internal/private visibility does not by itself identify an access mechanism.",
+      "helpKey": "access-model",
+      "id": "ui:access-model",
+      "label": "Access model"
+    },
+    {
+      "definition": "Whether a machine-readable contract was found and whether it is upstream, generated or incomplete.",
+      "helpKey": "contract-status",
+      "id": "ui:contract-status",
+      "label": "Contract status"
+    },
+    {
+      "definition": "The closest applicable DCAT class or property role. Absence is preferable to applying an unrelated DCAT term.",
+      "helpKey": "dcat-type",
+      "id": "ui:dcat-type",
+      "label": "DCAT term"
+    },
+    {
+      "definition": "The closest OpenAPI object or fragment; this is an export hint rather than proof of a complete OpenAPI description.",
+      "helpKey": "openapi-type",
+      "id": "ui:openapi-type",
+      "label": "OpenAPI term"
+    },
+    {
+      "definition": "The applicable Hydra class or property used in the semantic API description.",
+      "helpKey": "hydra-type",
+      "id": "ui:hydra-type",
+      "label": "Hydra term"
+    },
+    {
+      "definition": "Whether required fields are available for a standards projection and which fields remain missing.",
+      "helpKey": "standards-export-readiness",
+      "id": "ui:standards-export-readiness",
+      "label": "Standards export readiness"
+    },
+    {
+      "definition": "The date on which the source evidence was observed or pinned; it is not the bundle generation time.",
+      "helpKey": "source-date:search-result",
+      "id": "ui:source-observed-date",
+      "label": "Source evidence observed"
+    },
+    {
+      "definition": "A generated assessment of how useful a field is for navigation; it does not measure the quality of the underlying service.",
+      "helpKey": "facet-quality",
+      "id": "ui:facet-quality",
+      "label": "Facet navigation signal"
+    }
+  ]
+}

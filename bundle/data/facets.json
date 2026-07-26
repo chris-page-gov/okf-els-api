@@ -6,6 +6,11 @@
       "value": "data"
     },
     {
+      "count": 6,
+      "label": "documentation",
+      "value": "documentation"
+    },
+    {
       "count": 13,
       "label": "geography",
       "value": "geography"
@@ -14,11 +19,36 @@
       "count": 4,
       "label": "metadata",
       "value": "metadata"
+    },
+    {
+      "count": 1,
+      "label": "provenance",
+      "value": "provenance"
+    },
+    {
+      "count": 2,
+      "label": "review-artifact",
+      "value": "review-artifact"
+    },
+    {
+      "count": 9,
+      "label": "review-finding",
+      "value": "review-finding"
+    },
+    {
+      "count": 1,
+      "label": "service",
+      "value": "service"
+    },
+    {
+      "count": 1,
+      "label": "standards",
+      "value": "standards"
     }
   ],
   "format": [
     {
-      "count": 15,
+      "count": 16,
       "label": "application-json",
       "value": "application-json"
     },
@@ -48,6 +78,11 @@
       "value": "json-stat"
     },
     {
+      "count": 19,
+      "label": "markdown",
+      "value": "markdown"
+    },
+    {
       "count": 1,
       "label": "rows.json",
       "value": "rows.json"
@@ -65,28 +100,121 @@
   ],
   "has_documentation_issues": [
     {
-      "count": 8,
+      "count": 27,
       "label": "no",
       "value": "no"
     },
     {
-      "count": 10,
+      "count": 11,
       "label": "yes",
       "value": "yes"
     }
   ],
+  "lifecycle_status": [
+    {
+      "count": 38,
+      "label": "draft",
+      "value": "draft"
+    }
+  ],
   "publisher": [
     {
-      "count": 18,
+      "count": 25,
       "label": "office-for-national-statistics",
       "value": "office-for-national-statistics"
+    },
+    {
+      "count": 13,
+      "label": "okf-els-api-project",
+      "value": "okf-els-api-project"
+    }
+  ],
+  "record_type": [
+    {
+      "count": 1,
+      "label": "API Contract Draft",
+      "value": "API Contract Draft"
+    },
+    {
+      "count": 1,
+      "label": "API Service",
+      "value": "API Service"
+    },
+    {
+      "count": 18,
+      "label": "ELS API operation",
+      "value": "ELS API operation"
+    },
+    {
+      "count": 9,
+      "label": "Governance Finding",
+      "value": "Governance Finding"
+    },
+    {
+      "count": 1,
+      "label": "Request Planning Contract",
+      "value": "Request Planning Contract"
+    },
+    {
+      "count": 1,
+      "label": "Source Snapshot",
+      "value": "Source Snapshot"
+    },
+    {
+      "count": 1,
+      "label": "Standards Term Registry",
+      "value": "Standards Term Registry"
+    },
+    {
+      "count": 6,
+      "label": "Wiki documentation page",
+      "value": "Wiki documentation page"
+    }
+  ],
+  "source_tier": [
+    {
+      "count": 13,
+      "label": "generated-from-pinned-evidence",
+      "value": "generated-from-pinned-evidence"
+    },
+    {
+      "count": 6,
+      "label": "pinned-source-document",
+      "value": "pinned-source-document"
+    },
+    {
+      "count": 19,
+      "label": "wiki-and-pinned-static-source",
+      "value": "wiki-and-pinned-static-source"
     }
   ],
   "state": [
     {
-      "count": 18,
+      "count": 19,
+      "label": "bounded-review-draft",
+      "value": "bounded-review-draft"
+    },
+    {
+      "count": 19,
       "label": "internal-private-unstable",
       "value": "internal-private-unstable"
+    }
+  ],
+  "visibility": [
+    {
+      "count": 19,
+      "label": "internal-private",
+      "value": "internal-private"
+    },
+    {
+      "count": 13,
+      "label": "public-metadata-bundle",
+      "value": "public-metadata-bundle"
+    },
+    {
+      "count": 6,
+      "label": "public-source-document",
+      "value": "public-source-document"
     }
   ]
 }

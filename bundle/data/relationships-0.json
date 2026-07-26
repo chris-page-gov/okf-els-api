@@ -1,352 +1,1415 @@
 [
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/data.[format]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:7f893b43a1ab9709",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/data"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:e1c54bf1f9f2a326",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/data",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-data"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+      "drift-data-hasgeo-default"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:9075a7caa620f6b4",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/data",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/drift-data-hasgeo-default"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+      "drift-data-includenames"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:307040f62d4830d2",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/data",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/drift-data-includenames"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+      "gap-data-measure"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:47e0c5a7ddc64115",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/data",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/gap-data-measure"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+      "gap-response-schemas"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:acf62579cc6b1c84",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/data",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/gap-response-schemas"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/list/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:ca965ec35d32a9ae",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-list"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:bae084a33d624176",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-list",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/levels/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:26b3d21a26560554",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-levels"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:7a34ba1a87bd6c96",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-levels",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/lookup/[code]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:8414f4bfe9a19532",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-lookup"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:792e6966145ef131",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-lookup",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:d285aa315c7f463f",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-related"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:ffa6d5f7437bdbc3",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-related",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "gap-geo-related-includenames"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:22152711f452e954",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/geo-related",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/gap-geo-related-includenames"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/parents/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:55b6df8d5aa9cca4",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-parents"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:6aae2f088b44665d",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-parents",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "gap-geo-related-includenames"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:c7fef5c79e3f76fb",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/geo-parents",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/gap-geo-related-includenames"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/children/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:6a94e1736f14acae",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-children"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:fd14f92911dfcb22",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-children",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "gap-geo-related-includenames"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:383ecfc1cb96034f",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/geo-children",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/gap-geo-related-includenames"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/siblings/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:0dc95dca567e73f7",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-siblings"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:51dfca60e944abe3",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-siblings",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "gap-geo-related-includenames"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:bb1ac9b27e61998f",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/geo-siblings",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/gap-geo-related-includenames"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/related/[code]/similar/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:d2997c70b4fcb04d",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-similar"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:61d00a1f9a5a9fbc",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-similar",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "gap-geo-related-includenames"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:fbd72979960338ed",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/geo-similar",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/gap-geo-related-includenames"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/boundaries.[format]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:7d44d597c77d6143",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-boundaries"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:919816226b41579e",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-boundaries",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/search/[name]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:5253aca35b93491e",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-search"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:898a65695b84f7d5",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-search",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "drift-geo-includedates"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:648582e2d9f5e15c",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/geo-search",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/drift-geo-includedates"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/reverse/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:d9f2943c3605dbfb",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-reverse"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:6c2c2af15e6592d4",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-reverse",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "drift-geo-includedates"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:3649c39e449181d9",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/geo-reverse",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/drift-geo-includedates"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:bd2874859f759434",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-postcode"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:4289e2a2b30ad24b",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-postcode",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "drift-geo-includedates"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:bb18bc4da9d153db",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/geo-postcode",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/drift-geo-includedates"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/geo/postcodes/[code]/autocomplete/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:d646eb539c506bfb",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/geo-postcode-autocomplete"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:0eedd59ae3ff4fc7",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/geo-postcode-autocomplete",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-geographic-information"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:9324576e70763974",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/metadata-indicators"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:f297febfae9a465d",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/metadata-indicators",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-metadata"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:fced7ec764919015",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/metadata-indicator"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:d454b9ee1b722625",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/metadata-indicator",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-metadata"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/indicators/[...indicator]/dimensions/[...dimension]/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:0d5017f18d48765d",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/metadata-dimension"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:4959487610b14611",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/metadata-dimension",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-metadata"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The bounded review register attaches this finding to the operation.",
     "confidence": "observed",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "drift-metadata-dimension-route"
+    ],
     "evidence_type": "wiki-source-comparison",
+    "id": "relationship:3e82e43cdfa0b613",
     "kind": "has-documentation-issue",
+    "label": "has documentation finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "operation/metadata-dimension",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/drift-metadata-dimension-route"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation is represented by the pinned wiki and reviewed route handler.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+      "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/src/routes/(api)/api/v1/metadata/taxonomy/+server.ts"
+    ],
     "evidence_type": "wiki-and-static-source-review",
+    "id": "relationship:8d8e5eb3cbbd36cd",
     "kind": "has-operation",
+    "label": "has operation",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation",
+    "predicate_term": "okf:hasOperation",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasOperation"
+    ],
     "target": "operation/metadata-taxonomy"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The operation register identifies this pinned wiki page as its documentation source.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata"
+    ],
     "evidence_type": "wiki-page-reference",
+    "id": "relationship:73166f15c372136c",
     "kind": "documented-by",
+    "label": "documented by",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/source",
+    "predicate_term": "dct:source",
     "source": "operation/metadata-taxonomy",
+    "standard_term_ids": [
+      "dct:source"
+    ],
     "target": "document/Requesting-metadata"
   },
   {
+    "assertion_status": "normalized",
+    "basis": "The finding applies to the documented service boundary.",
     "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+      "boundary-internal-api"
+    ],
     "evidence_type": "wiki-warning",
-    "kind": "has-usage-boundary",
+    "id": "relationship:ecadc0e2f8337d90",
+    "kind": "has-service-finding",
+    "label": "has service finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
     "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
     "target": "issue/boundary-internal-api"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:b189194ec7f04ce8",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/boundary-internal-api",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:e99f6bab5589b358",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/drift-metadata-dimension-route",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:d9da4638854f89e0",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/drift-data-includenames",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:aafe233a3449a62f",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/drift-geo-includedates",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:f41c27533b129434",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/drift-data-hasgeo-default",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:0e473434d34a4eb7",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/gap-geo-related-includenames",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:605c5f78590e6a68",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/gap-data-measure",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:8cc4ee6b88da6db7",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/gap-response-schemas",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding applies to the documented service boundary.",
+    "confidence": "declared",
+    "evidence": [
+      "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+      "gap-compatibility-policy"
+    ],
+    "evidence_type": "wiki-warning",
+    "id": "relationship:ae0ef0dd8af5acf1",
+    "kind": "has-service-finding",
+    "label": "has service finding",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding",
+    "predicate_term": "okf:hasFinding",
+    "source": "service/els-api",
+    "standard_term_ids": [
+      "okf:hasFinding"
+    ],
+    "target": "issue/gap-compatibility-policy"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The finding was produced from the frozen wiki and application-source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:619bac11d15254f5",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "issue/gap-compatibility-policy",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The source snapshot manifest includes this exact wiki-page digest.",
+    "confidence": "observed",
+    "evidence": [
+      "3cd0d3c641577924139bfdb0e53ed52c714cd68cb511f33100e7cabeb2704b97"
+    ],
+    "evidence_type": "snapshot-manifest",
+    "id": "relationship:def6b032e36a19f7",
+    "kind": "includes-document",
+    "label": "includes document",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/hasPart",
+    "predicate_term": "dct:hasPart",
+    "source": "snapshot/wiki-and-source",
+    "standard_term_ids": [
+      "dct:hasPart"
+    ],
+    "target": "document/API-overview"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The source snapshot manifest includes this exact wiki-page digest.",
+    "confidence": "observed",
+    "evidence": [
+      "5abc72a81ac74e3210ceb9087d64b506bf01a2a77520344cea330e88ff589bee"
+    ],
+    "evidence_type": "snapshot-manifest",
+    "id": "relationship:977497e86bc93794",
+    "kind": "includes-document",
+    "label": "includes document",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/hasPart",
+    "predicate_term": "dct:hasPart",
+    "source": "snapshot/wiki-and-source",
+    "standard_term_ids": [
+      "dct:hasPart"
+    ],
+    "target": "document/Data-formats"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The source snapshot manifest includes this exact wiki-page digest.",
+    "confidence": "observed",
+    "evidence": [
+      "f6c86981523374cf145298274d85011283719234d1a10eeb1f1c24cb9c94ca5e"
+    ],
+    "evidence_type": "snapshot-manifest",
+    "id": "relationship:6e0aa4d9425711b5",
+    "kind": "includes-document",
+    "label": "includes document",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/hasPart",
+    "predicate_term": "dct:hasPart",
+    "source": "snapshot/wiki-and-source",
+    "standard_term_ids": [
+      "dct:hasPart"
+    ],
+    "target": "document/Home"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The source snapshot manifest includes this exact wiki-page digest.",
+    "confidence": "observed",
+    "evidence": [
+      "f15cc3eddb662a7b3e578a68cf7ce644ae8c2d8a39f06a047d7580f36d8643b7"
+    ],
+    "evidence_type": "snapshot-manifest",
+    "id": "relationship:99df5bd75c41fa1f",
+    "kind": "includes-document",
+    "label": "includes document",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/hasPart",
+    "predicate_term": "dct:hasPart",
+    "source": "snapshot/wiki-and-source",
+    "standard_term_ids": [
+      "dct:hasPart"
+    ],
+    "target": "document/Requesting-data"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The source snapshot manifest includes this exact wiki-page digest.",
+    "confidence": "observed",
+    "evidence": [
+      "7eb059867836b105e6bde9aeb5eb7bf81952f6fc1c0c1ebe907c07871c388ba5"
+    ],
+    "evidence_type": "snapshot-manifest",
+    "id": "relationship:6cf1472f0475e470",
+    "kind": "includes-document",
+    "label": "includes document",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/hasPart",
+    "predicate_term": "dct:hasPart",
+    "source": "snapshot/wiki-and-source",
+    "standard_term_ids": [
+      "dct:hasPart"
+    ],
+    "target": "document/Requesting-geographic-information"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The source snapshot manifest includes this exact wiki-page digest.",
+    "confidence": "observed",
+    "evidence": [
+      "ae20497f3249b5aa57fa13c7eece79201c9c075933c696ec234d2eb859be3682"
+    ],
+    "evidence_type": "snapshot-manifest",
+    "id": "relationship:f3856615d68ae134",
+    "kind": "includes-document",
+    "label": "includes document",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://purl.org/dc/terms/hasPart",
+    "predicate_term": "dct:hasPart",
+    "source": "snapshot/wiki-and-source",
+    "standard_term_ids": [
+      "dct:hasPart"
+    ],
+    "target": "document/Requesting-metadata"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The generated artifact is deterministically derived from the frozen evidence registers.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "deterministic-build",
+    "id": "relationship:2c62829f068de5ea",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "artifact/openapi-review",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The generated artifact is deterministically derived from the frozen evidence registers.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "deterministic-build",
+    "id": "relationship:55563be6b7996f03",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "artifact/selection-plan",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
+  },
+  {
+    "assertion_status": "normalized",
+    "basis": "The service concept is a metadata projection of the frozen source review.",
+    "confidence": "observed",
+    "evidence": [
+      "els-wiki-2026-07-20"
+    ],
+    "evidence_type": "bounded-review-register",
+    "id": "relationship:effe05c9f5a7688d",
+    "kind": "derived-from",
+    "label": "derived from",
+    "observed_at": "2026-07-20T11:43:20Z",
+    "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "predicate_term": "prov:wasDerivedFrom",
+    "source": "service/els-api",
+    "standard_term_ids": [
+      "prov:wasDerivedFrom"
+    ],
+    "target": "snapshot/wiki-and-source"
   }
 ]

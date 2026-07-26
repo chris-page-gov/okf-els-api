@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-07-25T12:17:29Z",
+  "checkedBy": "process:okf-els-api-standards-review",
+  "checks": {
+    "authoritativeProvenance": "passed",
+    "boundedApplicationReviewed": "passed",
+    "generatedTermCoverage": "passed",
+    "meaningReviewed": "passed",
+    "namespaceExpansion": "passed",
+    "termKindDeclared": "passed",
+    "termRecognition": "passed",
+    "uniqueIdentifiers": "passed"
+  },
+  "counts": {
+    "occurrences": 840,
+    "pendingApplicationReviews": 0,
+    "registeredTerms": 60,
+    "unregisteredTerms": 0,
+    "unusedStandardsTerms": 0,
+    "usedTerms": 45
+  },
+  "generated_at": "2026-07-25T12:17:29Z",
+  "limitations": [
+    "This is a deterministic closed-world publication check against the checked-in curated register.",
+    "It does not perform a live vocabulary lookup or claim human review.",
+    "A validated mapping applies only to the artifact locations and bounded meanings recorded in the registry."
+  ],
+  "liveLookupPerformed": false,
+  "method": "curated-static-specification-review",
+  "pendingApplicationReviews": [],
+  "schema": "okf-explorer-governed-term-validation.v1",
+  "scope": "Terms emitted by the ELS OKF semantic and Explorer projections, plus Explorer UI terms used to explain those projections.",
+  "snapshot": "els-wiki-2026-07-20",
+  "status": "conformant",
+  "unregisteredTerms": [],
+  "unusedStandardsTerms": []
+}

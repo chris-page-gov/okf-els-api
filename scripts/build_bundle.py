@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import html
 import json
+import math
 import re
 import shutil
 import sys
@@ -33,10 +34,12 @@ DEFAULT_OUTPUT = ROOT / "bundle"
 REGISTER_PATH = ROOT / "source" / "api-register.json"
 SNAPSHOT_PATH = ROOT / "source" / "wiki-snapshot.json"
 PUBLICATION_PATH = ROOT / "source" / "publication.json"
+STANDARDS_TERMS_PATH = ROOT / "source" / "standards-terms.json"
 PAGES_ROOT = "https://chris-page-gov.github.io/okf-els-api/"
 PUBLISHED_DESCRIPTOR = f"{PAGES_ROOT}okf-explorer.json"
 EXPLORER_ROOT = "https://chris-page-gov.github.io/okf-explorer/"
 BUNDLE_VERSION = "0.2.0"
+BUNDLE_LICENSE = "https://github.com/chris-page-gov/okf-els-api/blob/main/LICENSE"
 EXPLORER_DESCRIPTOR = f"{PUBLISHED_DESCRIPTOR}?version={BUNDLE_VERSION}"
 EXPLORER_URL = f"{EXPLORER_ROOT}?bundle={quote(EXPLORER_DESCRIPTOR, safe='')}"
 SEARCH_FIELD_WEIGHTS = {
@@ -79,6 +82,18 @@ def canonical_json(value: Any) -> str:
     ) + "\n"
 
 
+def canonical_json_bytes(value: Any) -> bytes:
+    return canonical_json(value).encode("utf-8")
+
+
+def json_resource_reference(path: str, value: Any) -> dict[str, Any]:
+    payload = canonical_json_bytes(value)
+    return {
+        "path": path,
+        "sha256": digest_bytes(payload),
+    }
+
+
 def read_object(path: Path) -> dict[str, Any]:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
@@ -103,6 +118,321 @@ def digest_json(value: Any) -> str:
             sort_keys=True,
         ).encode("utf-8")
     )
+
+
+_COMPACT_TERM = re.compile(r"^([A-Za-z][A-Za-z0-9_-]*):([A-Za-z][A-Za-z0-9._-]*)$")
+
+
+def _term_occurrences(
+    value: Any,
+    *,
+    artifact: str,
+    prefixes: set[str],
+    path: str = "$",
+) -> list[dict[str, str]]:
+    occurrences: list[dict[str, str]] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            match = _COMPACT_TERM.fullmatch(str(key))
+            if match and match.group(1) in prefixes:
+                occurrences.append(
+                    {
+                        "artifact": artifact,
+                        "path": f"{path}.{key}",
+                        "role": "key",
+                        "term": str(key),
+                    }
+                )
+            child_path = f"{path}.{key}"
+            if key == "standard_term_ids" and isinstance(child, list):
+                for index, term in enumerate(child):
+                    occurrences.append(
+                        {
+                            "artifact": artifact,
+                            "path": f"{child_path}[{index}]",
+                            "role": "declared-term",
+                            "term": str(term),
+                        }
+                    )
+            else:
+                occurrences.extend(
+                    _term_occurrences(
+                        child,
+                        artifact=artifact,
+                        prefixes=prefixes,
+                        path=child_path,
+                    )
+                )
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            occurrences.extend(
+                _term_occurrences(
+                    child,
+                    artifact=artifact,
+                    prefixes=prefixes,
+                    path=f"{path}[{index}]",
+                )
+            )
+    elif isinstance(value, str):
+        match = _COMPACT_TERM.fullmatch(value)
+        if match and match.group(1) in prefixes:
+            occurrences.append(
+                {
+                    "artifact": artifact,
+                    "path": path,
+                    "role": "value",
+                    "term": value,
+                }
+            )
+    return occurrences
+
+
+def governed_terms(
+    source: dict[str, Any],
+    *,
+    snapshot_id: str,
+    generated_at: str,
+    artifacts: dict[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Build and validate the governed standards/UI term datapack.
+
+    This is a closed-world publication check. It confirms that each emitted
+    compact term is registered, expands through the declared namespace, has
+    authoritative provenance, and carries a reviewed bounded-use statement.
+    It does not claim that a live vocabulary endpoint was queried.
+    """
+
+    if source.get("schema") != "okf-els-api.standards-terms-source.v1":
+        raise BuildError("Unsupported standards-term source schema")
+    vocabularies = source.get("vocabularies")
+    terms = source.get("terms")
+    ui_terms = source.get("uiTerms")
+    if not isinstance(vocabularies, list) or not isinstance(terms, list):
+        raise BuildError("Standards-term source requires vocabularies and terms")
+    if not isinstance(ui_terms, list):
+        raise BuildError("Standards-term source requires uiTerms")
+    review = source.get("review")
+    if not isinstance(review, dict):
+        raise BuildError("Standards-term source requires a review record")
+    for required in ("method", "checkedBy", "checkedAt", "scope"):
+        if not str(review.get(required) or "").strip():
+            raise BuildError(f"Standards-term review requires {required}")
+    if review.get("applicationStatus") != "validated-for-bounded-use":
+        raise BuildError("Standards-term review must validate bounded application")
+    if not isinstance(review.get("liveLookupPerformed"), bool):
+        raise BuildError("Standards-term review must record whether live lookup occurred")
+
+    vocabulary_by_id: dict[str, dict[str, Any]] = {}
+    vocabulary_by_prefix: dict[str, dict[str, Any]] = {}
+    for vocabulary in vocabularies:
+        if not isinstance(vocabulary, dict):
+            raise BuildError("Every standards vocabulary must be an object")
+        vocabulary_id = str(vocabulary.get("id") or "")
+        prefix = str(vocabulary.get("prefix") or "")
+        namespace = str(vocabulary.get("namespace") or "")
+        source_url = str(vocabulary.get("source") or "")
+        if not vocabulary_id or not prefix or not namespace or not source_url:
+            raise BuildError("Standards vocabulary id, prefix, namespace and source are required")
+        if vocabulary_id in vocabulary_by_id or prefix in vocabulary_by_prefix:
+            raise BuildError(f"Duplicate standards vocabulary or prefix: {vocabulary_id}")
+        vocabulary_by_id[vocabulary_id] = vocabulary
+        vocabulary_by_prefix[prefix] = vocabulary
+
+    public_terms: list[dict[str, Any]] = []
+    term_by_id: dict[str, dict[str, Any]] = {}
+    for term in terms:
+        if not isinstance(term, dict):
+            raise BuildError("Every governed standards term must be an object")
+        term_id = str(term.get("id") or "")
+        vocabulary_id = str(term.get("vocabulary") or "")
+        match = _COMPACT_TERM.fullmatch(term_id)
+        vocabulary = vocabulary_by_id.get(vocabulary_id)
+        if not match or vocabulary is None:
+            raise BuildError(f"Invalid governed term identifier or vocabulary: {term_id}")
+        if match.group(1) != vocabulary["prefix"]:
+            raise BuildError(f"Governed term prefix does not match vocabulary: {term_id}")
+        if term_id in term_by_id:
+            raise BuildError(f"Duplicate governed term: {term_id}")
+        if term.get("status") != "validated":
+            raise BuildError(f"Used governed term is not application-validated: {term_id}")
+        for required in ("label", "definition", "application", "kind"):
+            if not str(term.get(required) or "").strip():
+                raise BuildError(f"Governed term {term_id} requires {required}")
+        if term["kind"] == "specification-object":
+            source_locator = str(term.get("sourceLocator") or "")
+            if source_locator != match.group(2):
+                raise BuildError(
+                    f"Specification-object term {term_id} must use its authoritative "
+                    "source locator as the compact local name"
+                )
+        row = dict(term)
+        row["iri"] = f"{vocabulary['namespace']}{match.group(2)}"
+        row["provenance"] = {
+            "vocabulary": vocabulary_id,
+            "resource": vocabulary["source"],
+            "version": vocabulary["version"],
+        }
+        row["validation"] = {
+            "recognition": "validated",
+            "meaning": "validated",
+            "application": "validated",
+            "method": review["method"],
+            "checkedBy": review["checkedBy"],
+            "checkedAt": review["checkedAt"],
+        }
+        public_terms.append(row)
+        term_by_id[term_id] = row
+
+    public_ui_terms: list[dict[str, Any]] = []
+    for term in ui_terms:
+        if not isinstance(term, dict):
+            raise BuildError("Every governed UI term must be an object")
+        term_id = str(term.get("id") or "")
+        match = _COMPACT_TERM.fullmatch(term_id)
+        if not match or match.group(1) != "ui":
+            raise BuildError(f"Invalid governed UI term identifier: {term_id}")
+        if term_id in term_by_id:
+            raise BuildError(f"Duplicate governed term: {term_id}")
+        for required in ("label", "definition", "helpKey"):
+            if not str(term.get(required) or "").strip():
+                raise BuildError(f"Governed UI term {term_id} requires {required}")
+        vocabulary = vocabulary_by_prefix["ui"]
+        row = {
+            **term,
+            "application": f"Explorer help key {term['helpKey']}",
+            "iri": f"{vocabulary['namespace']}{match.group(2)}",
+            "kind": "ui-term",
+            "provenance": {
+                "vocabulary": vocabulary["id"],
+                "resource": vocabulary["source"],
+                "version": vocabulary["version"],
+            },
+            "validation": {
+                "recognition": "validated",
+                "meaning": "validated",
+                "application": "validated",
+                "method": review["method"],
+                "checkedBy": review["checkedBy"],
+                "checkedAt": review["checkedAt"],
+            },
+            "status": "validated",
+            "vocabulary": vocabulary["id"],
+        }
+        public_ui_terms.append(row)
+        term_by_id[term_id] = row
+
+    prefixes = set(vocabulary_by_prefix)
+    occurrences = [
+        occurrence
+        for artifact, value in artifacts.items()
+        for occurrence in _term_occurrences(
+            value,
+            artifact=artifact,
+            prefixes=prefixes,
+        )
+    ]
+    unregistered = sorted(
+        {
+            occurrence["term"]
+            for occurrence in occurrences
+            if occurrence["term"] not in term_by_id
+        }
+    )
+    if unregistered:
+        raise BuildError(
+            "Generated artifacts use unregistered governed terms: "
+            + ", ".join(unregistered)
+        )
+
+    occurrences_by_term: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for occurrence in occurrences:
+        occurrences_by_term[occurrence["term"]].append(occurrence)
+    unused = sorted(
+        term["id"]
+        for term in public_terms
+        if not occurrences_by_term.get(term["id"])
+    )
+    if unused:
+        raise BuildError(
+            "Governed standards terms are not used by generated artifacts: "
+            + ", ".join(unused)
+        )
+
+    for term in [*public_terms, *public_ui_terms]:
+        rows = occurrences_by_term.get(term["id"], [])
+        grouped: dict[str, list[dict[str, str]]] = defaultdict(list)
+        for row in rows:
+            grouped[row["artifact"]].append(row)
+        term["usage"] = [
+            {
+                "artifact": artifact,
+                "occurrences": len(artifact_rows),
+                "samplePaths": [
+                    item["path"] for item in artifact_rows[:5]
+                ],
+            }
+            for artifact, artifact_rows in sorted(grouped.items())
+        ]
+
+    review = dict(review)
+    registry = {
+        "schema": "okf-explorer-governed-terms.v1",
+        "snapshot": snapshot_id,
+        "generated_at": generated_at,
+        "title": "ELS OKF governed metadata terms",
+        "description": (
+            "Authoritative provenance, bounded-use meaning and validation state "
+            "for standards and reader-facing terms emitted by this bundle."
+        ),
+        "review": review,
+        "vocabularies": vocabularies,
+        "terms": [*public_terms, *public_ui_terms],
+        "counts": {
+            "vocabularies": len(vocabularies),
+            "standardsTerms": len(public_terms),
+            "uiTerms": len(public_ui_terms),
+            "usedStandardsTerms": len(occurrences_by_term),
+            "occurrences": len(occurrences),
+        },
+    }
+    report = {
+        "schema": "okf-explorer-governed-term-validation.v1",
+        "snapshot": snapshot_id,
+        "generated_at": generated_at,
+        "status": "conformant",
+        "scope": review["scope"],
+        "method": review["method"],
+        "checkedBy": review["checkedBy"],
+        "checkedAt": review["checkedAt"],
+        "liveLookupPerformed": review["liveLookupPerformed"],
+        "checks": {
+            "uniqueIdentifiers": "passed",
+            "termRecognition": "passed",
+            "namespaceExpansion": "passed",
+            "authoritativeProvenance": "passed",
+            "termKindDeclared": "passed",
+            "meaningReviewed": "passed",
+            "boundedApplicationReviewed": "passed",
+            "generatedTermCoverage": "passed",
+        },
+        "counts": {
+            "registeredTerms": len(term_by_id),
+            "usedTerms": len(occurrences_by_term),
+            "occurrences": len(occurrences),
+            "unregisteredTerms": 0,
+            "unusedStandardsTerms": 0,
+            "pendingApplicationReviews": 0,
+        },
+        "unregisteredTerms": [],
+        "unusedStandardsTerms": [],
+        "pendingApplicationReviews": [],
+        "limitations": [
+            "This is a deterministic closed-world publication check against the checked-in curated register.",
+            "It does not perform a live vocabulary lookup or claim human review.",
+            "A validated mapping applies only to the artifact locations and bounded meanings recorded in the registry.",
+        ],
+    }
+    return registry, report
 
 
 class Writer:
@@ -258,6 +588,42 @@ def parameter_record(
     return row
 
 
+def operation_standards_alignment() -> dict[str, Any]:
+    return {
+        "claim": "standards-alignable-not-conformant",
+        "profiles": ["DCAT 3", "Hydra Core", "OpenAPI 3.1.0"],
+        "dcat": {
+            "term": None,
+            "parent_term": "dcat:DataService",
+            "export_status": "roll-up-to-parent-service",
+            "required_missing": [],
+            "explanation": (
+                "DCAT models the parent API as dcat:DataService; an individual "
+                "HTTP operation has no direct DCAT class in this projection."
+            ),
+        },
+        "hydra": {
+            "term": "hydra:Operation",
+            "export_status": "bounded-operation-description",
+            "required_missing": ["returns", "status codes", "response class"],
+        },
+        "openapi": {
+            "term": "OpenAPI Operation Object",
+            "term_id": "openapi:operation-object",
+            "export_status": "operation-fragment",
+            "required_missing": [
+                "complete response schemas",
+                "common error schema",
+                "upstream security scheme",
+            ],
+        },
+        "notes": [
+            "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+            "Evidence confidence is independent from OKF verified trust and live deployment status.",
+        ],
+    }
+
+
 def operation_records(
     register: dict[str, Any],
     snapshot: dict[str, Any],
@@ -298,9 +664,21 @@ def operation_records(
                 "notes": operation["summary"],
                 "description": operation["summary"],
                 "record_type": "ELS API operation",
-                "dcat_type": "hydra:Operation",
+                "type": "API Endpoint",
+                "concept_id": f"knowledge/operations/{operation['id']}.md",
+                "dcat_type": None,
+                "hydra_type": "hydra:Operation",
+                "openapi_type": "OpenAPI Operation Object",
+                "standard_term_ids": [
+                    "dcat:DataService",
+                    "hydra:Operation",
+                    "openapi:operation-object",
+                ],
+                "standards_alignment": operation_standards_alignment(),
                 "source_surface": "els-api-wiki",
                 "source_adapter": "wiki-and-static-source-review",
+                "source_tier": "wiki-and-pinned-static-source",
+                "confidence": "static-source-observed",
                 "publisher": "office-for-national-statistics",
                 "publisher_title": "Office for National Statistics",
                 "route": f"operation/{operation['id']}",
@@ -318,6 +696,12 @@ def operation_records(
                     register["status"],
                 ],
                 "state": register["status"],
+                "lifecycle_status": "draft",
+                "visibility": "internal-private",
+                "access_model": "not-documented",
+                "contract_status": "generated-review-draft-not-upstream-contract",
+                "private": True,
+                "isopen": False,
                 "method": "GET",
                 "path_template": path,
                 "documented_path_template": operation["documentedPath"],
@@ -367,9 +751,16 @@ def operation_records(
                     "service_quality_evaluated": False,
                 },
                 "license_id": "mit-associated-repository",
-                "license_title": "MIT (associated application repository)",
-                "license_source_id": snapshot["licenceEvidence"]["url"],
-                "metadata_modified": generated_at,
+                "license_title": "MIT evidence from associated application repository",
+                "license_source_id": (
+                    f"{register['sourceVerification']['repository']}/blob/"
+                    f"{register['sourceVerification']['commit']}/LICENSE.md"
+                ),
+                "license_source_title": (
+                    "Associated application repository licence; the wiki has no "
+                    "separate licence file"
+                ),
+                "license_basis": "associated-repository-evidence-not-wiki-license",
                 "source_observed_at": snapshot["retrievedAt"],
                 "provenance": {
                     "schema": "okf-provenance.v1",
@@ -391,17 +782,249 @@ def document_records(snapshot: dict[str, Any]) -> list[dict[str, Any]]:
             "id": f"els-api:document:{page['name']}",
             "name": page["name"],
             "title": page["name"].replace("-", " "),
+            "notes": "Pinned wiki source-document metadata.",
+            "description": "Metadata for one page in the frozen ELS API wiki snapshot.",
             "record_type": "Wiki documentation page",
+            "type": "Reference",
+            "concept_id": f"knowledge/documents/{page['name']}.md",
+            "route": f"document/{page['name']}",
+            "open": f"document/{page['name']}",
             "url": page["url"],
+            "documentation": page["url"],
             "file": page["file"],
             "sha256": page["sha256"],
             "lines": page["lines"],
             "bytes": page["bytes"],
             "source_commit": snapshot["source"]["commit"],
             "retrieved_at": snapshot["retrievedAt"],
+            "source_observed_at": snapshot["retrievedAt"],
+            "source_surface": "els-api-wiki",
+            "source_adapter": "pinned-wiki-snapshot",
+            "source_tier": "pinned-source-document",
+            "confidence": "source-observed",
+            "publisher": "office-for-national-statistics",
+            "publisher_title": "Office for National Statistics",
+            "formats": ["markdown"],
+            "protocol": ["HTTPS"],
+            "topics": ["documentation"],
+            "tags": ["wiki", "source-document", "snapshot"],
+            "state": "bounded-review-draft",
+            "lifecycle_status": "draft",
+            "visibility": "public-source-document",
+            "access_model": "anonymous-web",
+            "contract_status": "source-document",
+            "private": False,
+            "isopen": False,
+            "issues": [],
+            "standard_term_ids": ["foaf:Document"],
             "license_evidence": snapshot["licenceEvidence"],
         }
         for page in snapshot["pages"]
+    ]
+
+
+def explorer_concept_records(
+    register: dict[str, Any],
+    snapshot: dict[str, Any],
+    operations: list[dict[str, Any]],
+    documents: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    project_publisher = "okf-els-api-project"
+    project_title = "OKF ELS API project"
+    common_project = {
+        "publisher": project_publisher,
+        "publisher_title": project_title,
+        "source_surface": "bounded-wiki-and-source-review",
+        "source_adapter": "okf-els-api-build",
+        "source_tier": "generated-from-pinned-evidence",
+        "confidence": "bounded-review",
+        "formats": ["markdown"],
+        "protocol": ["HTTPS"],
+        "state": "bounded-review-draft",
+        "lifecycle_status": "draft",
+        "visibility": "public-metadata-bundle",
+        "access_model": "anonymous-web",
+        "private": False,
+        "isopen": True,
+        "source_observed_at": snapshot["retrievedAt"],
+        "issues": [],
+        "standard_term_ids": [],
+    }
+    service = {
+        "id": "els-api:service",
+        "record_id": "els-api:service",
+        "native_id": "els-api",
+        "name": "els-api-service",
+        "title": register["title"],
+        "notes": register["description"],
+        "description": register["description"],
+        "record_type": "API Service",
+        "type": "API Service",
+        "concept_id": "knowledge/service.md",
+        "route": "service/els-api",
+        "open": "service/els-api",
+        "url": register["baseUrl"],
+        "documentation": snapshot["source"]["url"],
+        "host": "www.ons.gov.uk",
+        "publisher": "office-for-national-statistics",
+        "publisher_title": "Office for National Statistics",
+        "source_surface": "els-api-wiki",
+        "source_adapter": "wiki-and-static-source-review",
+        "source_tier": "wiki-and-pinned-static-source",
+        "confidence": "static-source-observed",
+        "formats": ["application-json"],
+        "protocol": ["HTTPS", "REST/HTTP"],
+        "topics": ["service"],
+        "tags": ["api", "ons", "internal-private", "metadata-only"],
+        "state": register["status"],
+        "lifecycle_status": "draft",
+        "visibility": "internal-private",
+        "access_model": "not-documented",
+        "contract_status": "generated-review-draft-not-upstream-contract",
+        "private": True,
+        "isopen": False,
+        "source_observed_at": snapshot["retrievedAt"],
+        "issues": [
+            issue
+            for issue in register["issues"]
+            if issue["id"] in {"boundary-internal-api", "gap-compatibility-policy"}
+        ],
+        "dcat_type": "dcat:DataService",
+        "standard_term_ids": ["dcat:DataService"],
+        "standards_alignment": {
+            "claim": "standards-alignable-not-conformant",
+            "profiles": ["DCAT 3", "Hydra Core", "OpenAPI 3.1.0"],
+            "dcat": {
+                "term": "dcat:DataService",
+                "export_status": "service-description-with-gaps",
+                "required_missing": [
+                    "machine-readable upstream endpoint description",
+                    "documented access rights",
+                ],
+            },
+            "notes": [
+                "The service mapping is a generated metadata projection and does not certify the upstream service as DCAT conformant."
+            ],
+        },
+    }
+    issue_records = [
+        {
+            **common_project,
+            "id": f"els-api:issue:{issue['id']}",
+            "record_id": f"els-api:issue:{issue['id']}",
+            "native_id": issue["id"],
+            "name": issue["id"],
+            "title": issue["title"],
+            "notes": issue["statement"],
+            "description": issue["statement"],
+            "record_type": "Governance Finding",
+            "type": "Governance Finding",
+            "concept_id": f"knowledge/issues/{issue['id']}.md",
+            "route": f"issue/{issue['id']}",
+            "open": f"issue/{issue['id']}",
+            "url": f"{PAGES_ROOT}knowledge/issues/{issue['id']}.md",
+            "documentation": f"{PAGES_ROOT}knowledge/issues/{issue['id']}.md",
+            "topics": ["review-finding"],
+            "tags": ["review-finding", issue["kind"], issue["severity"]],
+            "severity": issue["severity"],
+            "finding_kind": issue["kind"],
+            "recommendation": issue["recommendation"],
+        }
+        for issue in register["issues"]
+    ]
+    artifact_definitions = [
+        {
+            "id": "openapi-review",
+            "title": "ELS API OpenAPI review draft",
+            "description": "Generated OpenAPI 3.1 projection of the bounded source review.",
+            "record_type": "API Contract Draft",
+            "resource": "data/openapi.json",
+            "tags": ["openapi", "review-draft", "non-executing"],
+            "contract_status": "generated-review-draft-not-upstream-contract",
+        },
+        {
+            "id": "selection-plan",
+            "title": "ELS API non-executing selection plan",
+            "description": "Checks a proposed GET request plan without calling the service.",
+            "record_type": "Request Planning Contract",
+            "resource": "data/selection-contract.json",
+            "tags": ["request-plan", "validation", "non-executing"],
+            "contract_status": "non-executing-planning-contract",
+        },
+    ]
+    artifact_records = [
+        {
+            **common_project,
+            "id": f"els-api:artifact:{artifact['id']}",
+            "record_id": f"els-api:artifact:{artifact['id']}",
+            "native_id": artifact["id"],
+            "name": artifact["id"],
+            "title": artifact["title"],
+            "notes": artifact["description"],
+            "description": artifact["description"],
+            "record_type": artifact["record_type"],
+            "type": artifact["record_type"],
+            "concept_id": f"knowledge/artifacts/{artifact['id']}.md",
+            "route": f"artifact/{artifact['id']}",
+            "open": f"artifact/{artifact['id']}",
+            "url": f"{PAGES_ROOT}{artifact['resource']}",
+            "documentation": f"{PAGES_ROOT}knowledge/artifacts/{artifact['id']}.md",
+            "topics": ["review-artifact"],
+            "tags": artifact["tags"],
+            "contract_status": artifact["contract_status"],
+        }
+        for artifact in artifact_definitions
+    ]
+    snapshot_record = {
+        **common_project,
+        "id": "els-api:snapshot:wiki-and-source",
+        "record_id": "els-api:snapshot:wiki-and-source",
+        "native_id": "wiki-and-source",
+        "name": "wiki-and-source",
+        "title": "ELS wiki and application source review boundary",
+        "notes": "Frozen evidence from six wiki pages and a bounded static review of v1 GET route handlers.",
+        "description": "Frozen evidence from six wiki pages and a bounded static review of v1 GET route handlers.",
+        "record_type": "Source Snapshot",
+        "type": "Source Snapshot",
+        "concept_id": "knowledge/snapshots/wiki-and-source.md",
+        "route": "snapshot/wiki-and-source",
+        "open": "snapshot/wiki-and-source",
+        "url": f"{PAGES_ROOT}data/provenance/wiki-snapshot.json",
+        "documentation": f"{PAGES_ROOT}knowledge/snapshots/wiki-and-source.md",
+        "topics": ["provenance"],
+        "tags": ["snapshot", "provenance", "drift"],
+        "snapshot_id": snapshot["snapshotId"],
+        "snapshot_mode": "frozen",
+        "live_status": "not-checked",
+    }
+    standards_record = {
+        **common_project,
+        "id": "els-api:standards:governed-terms",
+        "record_id": "els-api:standards:governed-terms",
+        "native_id": "governed-terms",
+        "name": "governed-terms",
+        "title": "ELS OKF governed metadata terms",
+        "notes": "Validated term identifiers, authoritative provenance and bounded application meanings.",
+        "description": "Validated term identifiers, authoritative provenance and bounded application meanings.",
+        "record_type": "Standards Term Registry",
+        "type": "Standards Term Registry",
+        "concept_id": "knowledge/standards/governed-terms.md",
+        "route": "standard/governed-terms",
+        "open": "standard/governed-terms",
+        "url": f"{PAGES_ROOT}data/standards/terms.json",
+        "documentation": f"{PAGES_ROOT}knowledge/standards/governed-terms.md",
+        "topics": ["standards"],
+        "tags": ["standards", "vocabulary", "validation", "provenance"],
+        "contract_status": "validated-bounded-term-register",
+    }
+    return [
+        service,
+        *operations,
+        *documents,
+        *issue_records,
+        *artifact_records,
+        snapshot_record,
+        standards_record,
     ]
 
 
@@ -442,48 +1065,165 @@ def resource_records(
 def relationship_records(
     register: dict[str, Any],
     records: list[dict[str, Any]],
+    documents: list[dict[str, Any]],
+    snapshot: dict[str, Any],
 ) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    for record in records:
+
+    def add(
+        *,
+        source: str,
+        target: str,
+        kind: str,
+        label: str,
+        predicate: str,
+        predicate_term: str,
+        confidence: str,
+        evidence_type: str,
+        evidence: list[str],
+        basis: str,
+    ) -> None:
+        relationship_id = digest_json(
+            {
+                "source": source,
+                "target": target,
+                "predicate": predicate,
+            }
+        )[:16]
         rows.append(
             {
-                "kind": "has-operation",
-                "source": "service/els-api",
-                "target": record["route"],
-                "confidence": "declared",
-                "evidence_type": "wiki-and-static-source-review",
+                "id": f"relationship:{relationship_id}",
+                "kind": kind,
+                "label": label,
+                "source": source,
+                "target": target,
+                "predicate": predicate,
+                "predicate_term": predicate_term,
+                "standard_term_ids": [predicate_term],
+                "assertion_status": "normalized",
+                "confidence": confidence,
+                "evidence_type": evidence_type,
+                "evidence": evidence,
+                "basis": basis,
+                "observed_at": snapshot["retrievedAt"],
             }
         )
-        rows.append(
-            {
-                "kind": "documented-by",
-                "source": record["route"],
-                "target": f"document/{record['documentation'].rsplit('/', 1)[-1]}",
-                "confidence": "declared",
-                "evidence_type": "wiki-page-reference",
-            }
+
+    for record in records:
+        add(
+            source="service/els-api",
+            target=record["route"],
+            kind="has-operation",
+            label="has operation",
+            predicate=(
+                "https://chris-page-gov.github.io/okf-explorer/vocab/hasOperation"
+            ),
+            predicate_term="okf:hasOperation",
+            confidence="declared",
+            evidence_type="wiki-and-static-source-review",
+            evidence=[
+                record["documentation"],
+                record["documentation_evidence"]["source_handler"],
+            ],
+            basis="The operation is represented by the pinned wiki and reviewed route handler.",
+        )
+        add(
+            source=record["route"],
+            target=f"document/{record['documentation'].rsplit('/', 1)[-1]}",
+            kind="documented-by",
+            label="documented by",
+            predicate="http://purl.org/dc/terms/source",
+            predicate_term="dct:source",
+            confidence="declared",
+            evidence_type="wiki-page-reference",
+            evidence=[record["documentation"]],
+            basis="The operation register identifies this pinned wiki page as its documentation source.",
         )
         for issue in record["issues"]:
-            rows.append(
-                {
-                    "kind": "has-documentation-issue",
-                    "source": record["route"],
-                    "target": f"issue/{issue['id']}",
-                    "confidence": "observed",
-                    "evidence_type": "wiki-source-comparison",
-                }
+            add(
+                source=record["route"],
+                target=f"issue/{issue['id']}",
+                kind="has-documentation-issue",
+                label="has documentation finding",
+                predicate=(
+                    "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding"
+                ),
+                predicate_term="okf:hasFinding",
+                confidence="observed",
+                evidence_type="wiki-source-comparison",
+                evidence=[record["documentation"], issue["id"]],
+                basis="The bounded review register attaches this finding to the operation.",
             )
+
     for issue in register["issues"]:
-        if issue["id"] == "boundary-internal-api":
-            rows.append(
-                {
-                    "kind": "has-usage-boundary",
-                    "source": "service/els-api",
-                    "target": f"issue/{issue['id']}",
-                    "confidence": "declared",
-                    "evidence_type": "wiki-warning",
-                }
+        if issue["id"] in {"boundary-internal-api", "gap-compatibility-policy"}:
+            add(
+                source="service/els-api",
+                target=f"issue/{issue['id']}",
+                kind="has-service-finding",
+                label="has service finding",
+                predicate=(
+                    "https://chris-page-gov.github.io/okf-explorer/vocab/hasFinding"
+                ),
+                predicate_term="okf:hasFinding",
+                confidence="declared",
+                evidence_type="wiki-warning",
+                evidence=[snapshot["source"]["url"], issue["id"]],
+                basis="The finding applies to the documented service boundary.",
             )
+        add(
+            source=f"issue/{issue['id']}",
+            target="snapshot/wiki-and-source",
+            kind="derived-from",
+            label="derived from",
+            predicate="http://www.w3.org/ns/prov#wasDerivedFrom",
+            predicate_term="prov:wasDerivedFrom",
+            confidence="observed",
+            evidence_type="bounded-review-register",
+            evidence=[snapshot["snapshotId"]],
+            basis="The finding was produced from the frozen wiki and application-source review.",
+        )
+
+    for document in documents:
+        add(
+            source="snapshot/wiki-and-source",
+            target=document["route"],
+            kind="includes-document",
+            label="includes document",
+            predicate="http://purl.org/dc/terms/hasPart",
+            predicate_term="dct:hasPart",
+            confidence="observed",
+            evidence_type="snapshot-manifest",
+            evidence=[document["sha256"]],
+            basis="The source snapshot manifest includes this exact wiki-page digest.",
+        )
+
+    for artifact_id in ("openapi-review", "selection-plan"):
+        add(
+            source=f"artifact/{artifact_id}",
+            target="snapshot/wiki-and-source",
+            kind="derived-from",
+            label="derived from",
+            predicate="http://www.w3.org/ns/prov#wasDerivedFrom",
+            predicate_term="prov:wasDerivedFrom",
+            confidence="observed",
+            evidence_type="deterministic-build",
+            evidence=[snapshot["snapshotId"]],
+            basis="The generated artifact is deterministically derived from the frozen evidence registers.",
+        )
+
+    add(
+        source="service/els-api",
+        target="snapshot/wiki-and-source",
+        kind="derived-from",
+        label="derived from",
+        predicate="http://www.w3.org/ns/prov#wasDerivedFrom",
+        predicate_term="prov:wasDerivedFrom",
+        confidence="observed",
+        evidence_type="bounded-review-register",
+        evidence=[snapshot["snapshotId"]],
+        basis="The service concept is a metadata projection of the frozen source review.",
+    )
     return rows
 
 
@@ -590,8 +1330,8 @@ def build_openapi(
                 "snapshot and static source review; it is not an upstream ONS API contract."
             ),
             "license": {
-                "name": "MIT (associated application repository)",
-                "url": snapshot["licenceEvidence"]["url"],
+                "name": "MIT (generated review artifact)",
+                "url": BUNDLE_LICENSE,
             },
         },
         "servers": [{"url": register["baseUrl"]}],
@@ -610,6 +1350,14 @@ def build_openapi(
             "liveProbePerformed": False,
             "observationsIncluded": False,
             "executionIncluded": False,
+            "sourceLicenceEvidence": {
+                "status": snapshot["licenceEvidence"]["status"],
+                "statement": snapshot["licenceEvidence"]["statement"],
+                "url": (
+                    f"{register['sourceVerification']['repository']}/blob/"
+                    f"{register['sourceVerification']['commit']}/LICENSE.md"
+                ),
+            },
         },
     }
 
@@ -628,7 +1376,7 @@ def semantic_descriptor(
             "hydra:method": "GET",
             "dct:title": record["title"],
             "dct:description": record["description"],
-            "hydra:expects": {
+            "okf:requestTemplate": {
                 "@type": "hydra:IriTemplate",
                 "hydra:template": record["url"],
                 "hydra:mapping": [
@@ -662,13 +1410,19 @@ def semantic_descriptor(
         "dct:title": "Explore Local Statistics API discovery OKF",
         "dct:description": register["description"],
         "dct:publisher": {
-            "@id": "https://www.ons.gov.uk/",
+            "@id": "https://github.com/chris-page-gov/okf-els-api",
             "@type": "foaf:Agent",
-            "foaf:name": "Office for National Statistics",
+            "foaf:name": "OKF ELS API project",
         },
         "dct:issued": publication["generatedAt"],
         "dct:conformsTo": {"@id": OKF_SPECIFICATION},
-        "dct:license": {"@id": snapshot["licenceEvidence"]["url"]},
+        "dct:license": {"@id": BUNDLE_LICENSE},
+        "okf:sourceLicenceEvidence": {
+            "@id": (
+                f"{register['sourceVerification']['repository']}/blob/"
+                f"{register['sourceVerification']['commit']}/LICENSE.md"
+            )
+        },
         "prov:wasDerivedFrom": [
             {"@id": snapshot["source"]["url"]},
             {"@id": register["sourceVerification"]["repository"]},
@@ -679,15 +1433,20 @@ def semantic_descriptor(
                 "@type": "dcat:DataService",
                 "dct:title": register["title"],
                 "dct:description": register["policy"]["warning"],
+                "dct:publisher": {
+                    "@id": "https://www.ons.gov.uk/",
+                    "@type": "foaf:Agent",
+                    "foaf:name": "Office for National Statistics",
+                },
                 "dcat:endpointURL": {"@id": register["baseUrl"]},
                 "dcat:endpointDescription": {"@id": snapshot["source"]["url"]},
-                "hydra:supportedOperation": operations,
+                "okf:supportedOperation": operations,
                 "okf:status": register["status"],
                 "okf:executionIncluded": False,
                 "okf:observationsIncluded": False,
             }
         ],
-        "dcat:record": [
+        "dct:hasPart": [
             {
                 "@id": f"urn:okf:els-api:document:{document['name']}",
                 "@type": "foaf:Document",
@@ -723,6 +1482,199 @@ def facet_rows(values: list[str]) -> list[dict[str, Any]]:
     ]
 
 
+def explorer_facet_values(record: dict[str, Any], key: str) -> list[str]:
+    if key == "family":
+        return [str(value) for value in record.get("topics", [])]
+    if key == "format":
+        return [str(value) for value in record.get("formats", [])]
+    if key == "has_documentation_issues":
+        return ["yes" if record.get("issues") else "no"]
+    value = record.get(key)
+    if isinstance(value, list):
+        return [str(item) for item in value if item not in (None, "")]
+    return [] if value in (None, "") else [str(value)]
+
+
+def explorer_facets(records: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    keys = [
+        "record_type",
+        "family",
+        "format",
+        "has_documentation_issues",
+        "publisher",
+        "source_tier",
+        "visibility",
+        "lifecycle_status",
+        "state",
+    ]
+    return {
+        key: facet_rows(
+            [
+                value
+                for record in records
+                for value in explorer_facet_values(record, key)
+            ]
+        )
+        for key in keys
+    }
+
+
+FACET_DEFINITIONS = {
+    "record_type": (
+        "Concept type",
+        "The normalized kind of knowledge concept represented by the record.",
+    ),
+    "family": (
+        "Topic",
+        "The main ELS or bundle-review topic associated with a concept.",
+    ),
+    "format": (
+        "Representation",
+        "A documented API representation or metadata-document format.",
+    ),
+    "has_documentation_issues": (
+        "Has findings",
+        "Whether the concept has one or more preserved documentation or governance findings.",
+    ),
+    "publisher": (
+        "Publisher",
+        "The upstream source publisher or the project responsible for a generated review artifact.",
+    ),
+    "source_tier": (
+        "Evidence tier",
+        "The bounded evidence surface from which the record was projected.",
+    ),
+    "visibility": (
+        "Visibility",
+        "Whether the described resource is internal/private or a public metadata artifact.",
+    ),
+    "lifecycle_status": (
+        "Lifecycle",
+        "The OKF lifecycle status projected for Explorer filtering.",
+    ),
+    "state": (
+        "Source state",
+        "The bounded state of the source or generated review record.",
+    ),
+}
+
+
+def facet_analysis(
+    records: list[dict[str, Any]],
+    facets: dict[str, list[dict[str, Any]]],
+) -> list[dict[str, Any]]:
+    total = len(records)
+    rows: list[dict[str, Any]] = []
+    primary = {"record_type", "family"}
+    secondary = {"format", "has_documentation_issues"}
+    for priority, (key, values) in enumerate(facets.items(), start=1):
+        assignments = sum(row["count"] for row in values)
+        covered = sum(
+            1 for record in records if explorer_facet_values(record, key)
+        )
+        probabilities = [
+            row["count"] / assignments for row in values if assignments
+        ]
+        entropy = (
+            -sum(probability * math.log2(probability) for probability in probabilities)
+            / math.log2(len(probabilities))
+            if len(probabilities) > 1
+            else 0.0
+        )
+        expected_reduction = (
+            1
+            - sum(
+                (row["count"] / assignments) * min(row["count"] / total, 1.0)
+                for row in values
+            )
+            if assignments and total
+            else 0.0
+        )
+        if len(values) <= 1:
+            recommendation = "suppressed"
+        elif key in primary:
+            recommendation = "primary"
+        elif key in secondary:
+            recommendation = "secondary"
+        else:
+            recommendation = "advanced"
+        label, description = FACET_DEFINITIONS[key]
+        rows.append(
+            {
+                "key": key,
+                "label": label,
+                "description": description,
+                "coverage": round(covered / total, 6) if total else 0,
+                "cardinality": len(values),
+                "top_share": (
+                    round(max(row["count"] for row in values) / total, 6)
+                    if values and total
+                    else 0
+                ),
+                "entropy": round(entropy, 6),
+                "expected_reduction": round(expected_reduction, 6),
+                "recommended_control": (
+                    "distribution" if len(values) <= 12 else "search"
+                ),
+                "recommendation": recommendation,
+                "display_priority": priority * 10,
+                "default_pinned": key in primary,
+                "default_hidden": recommendation == "suppressed",
+                "value_type": "nominal",
+                "value_order": "count-desc",
+                "examples": [row["value"] for row in values[:3]],
+                "values": values,
+            }
+        )
+    return rows
+
+
+def presentation_profile(
+    snapshot_id: str,
+    analysis: list[dict[str, Any]],
+) -> dict[str, Any]:
+    return {
+        "schema": "okf-explorer-presentation.v1",
+        "status": "experimental",
+        "snapshot": snapshot_id,
+        "defaults": {
+            "facet_mode": "suggested",
+            "search_threshold": 48,
+            "distribution_segment_limit": 10,
+        },
+        "facets": [
+            {
+                "key": row["key"],
+                "label": row["label"],
+                "description": row["description"],
+                "value_type": row["value_type"],
+                "order": row["display_priority"],
+                "default_state": (
+                    "hidden"
+                    if row["recommendation"] == "suppressed"
+                    else "pinned"
+                    if row["recommendation"] == "primary"
+                    else "shown"
+                ),
+                "open_control": row["recommended_control"],
+                "value_order": row["value_order"],
+                "examples": row["examples"],
+            }
+            for row in analysis
+        ],
+        "panels": {
+            "left": {
+                "tabs": ["facets", "browse", "results"],
+                "default_tab": "facets",
+            },
+            "right": {
+                "tabs": ["overview", "evidence", "data"],
+                "default_tab": "overview",
+            },
+        },
+    }
+
+
 def search_tokens(value: Any) -> list[str]:
     text = unicodedata.normalize("NFKD", str(value))
     text = "".join(character for character in text if not unicodedata.combining(character))
@@ -750,17 +1702,44 @@ def search_result_documents(
             "publisher": record["publisher"],
             "publisher_title": record["publisher_title"],
             "resource_count": resource_counts[record["name"]],
-            "formats": record["formats"],
-            "tags": record["tags"],
-            "topics": record["topics"],
-            "timestamp": record["metadata_modified"],
-            "notes": record["notes"],
-            "endpoint_host": record["host"],
-            "documentation_host": "github.com",
-            "access_model": "internal-private",
+            "formats": record.get("formats", []),
+            "tags": record.get("tags", []),
+            "topics": record.get("topics", []),
+            "timestamp": record.get("source_observed_at"),
+            "notes": record.get("notes", record.get("description", "")),
+            "endpoint_host": record.get("host"),
+            "documentation_host": (
+                "github.com"
+                if str(record.get("documentation", "")).startswith(
+                    "https://github.com/"
+                )
+                else None
+            ),
+            "access_model": record.get("access_model"),
+            "visibility": record.get("visibility"),
+            "contract_status": record.get("contract_status"),
             "record_type": record["record_type"],
+            "record_id": record.get("record_id", record["id"]),
+            "native_id": record.get("native_id", record["name"]),
+            "source_adapter": record.get("source_adapter"),
+            "source_surface": record.get("source_surface"),
+            "source_tier": record.get("source_tier"),
+            "confidence": record.get("confidence"),
+            "license_id": record.get("license_id"),
+            "license_title": record.get("license_title"),
+            "license_source_id": record.get("license_source_id"),
+            "license_source_title": record.get("license_source_title"),
+            "license_basis": record.get("license_basis"),
+            "concept_id": record.get("concept_id"),
+            "lifecycle_status": record.get("lifecycle_status"),
+            "dcat_type": record.get("dcat_type"),
+            "openapi_type": record.get("openapi_type"),
+            "hydra_type": record.get("hydra_type"),
+            "standard_term_ids": record.get("standard_term_ids", []),
+            "standards_alignment": record.get("standards_alignment"),
             "open": record["open"],
             "url": record["url"],
+            "documentation": record.get("documentation"),
         }
         for ordinal, record in enumerate(records)
     ]
@@ -789,18 +1768,20 @@ def static_search_index(
     postings: dict[str, dict[int, list[int]]] = defaultdict(dict)
     for ordinal, record in enumerate(records):
         related_resources = resources_by_dataset[record["name"]]
+        parameters = record.get("parameters", [])
         fields = {
             "title": record["title"],
             "route": " ".join(
                 [
-                    record["path_template"],
-                    record["documented_path_template"],
-                    *[parameter["name"] for parameter in record["parameters"]],
+                    record.get("route", ""),
+                    record.get("path_template", ""),
+                    record.get("documented_path_template", ""),
+                    *[parameter["name"] for parameter in parameters],
                 ]
             ),
-            "name": f"{record['name']} {record['native_id']}",
+            "name": f"{record['name']} {record.get('native_id', '')}",
             "publisher": f"{record['publisher']} {record['publisher_title']}",
-            "notes": f"{record['notes']} {record['description']}",
+            "notes": f"{record.get('notes', '')} {record.get('description', '')}",
             "resources": " ".join(
                 " ".join(
                     str(resource.get(key, ""))
@@ -808,8 +1789,10 @@ def static_search_index(
                 )
                 for resource in related_resources
             ),
-            "formats": " ".join(record["formats"]),
-            "tags": " ".join([*record["tags"], *record["topics"]]),
+            "formats": " ".join(record.get("formats", [])),
+            "tags": " ".join(
+                [*record.get("tags", []), *record.get("topics", [])]
+            ),
         }
         for field, value in fields.items():
             for token in search_tokens(value):
@@ -843,16 +1826,27 @@ def static_search_index(
         "format": defaultdict(list),
         "has_documentation_issues": defaultdict(list),
         "publisher": defaultdict(list),
+        "record_type": defaultdict(list),
+        "source_tier": defaultdict(list),
+        "visibility": defaultdict(list),
+        "lifecycle_status": defaultdict(list),
         "state": defaultdict(list),
     }
     for ordinal, record in enumerate(records):
-        facet_ordinals["family"][record["topics"][0]].append(ordinal)
+        for topic in record.get("topics", []):
+            facet_ordinals["family"][topic].append(ordinal)
         facet_ordinals["has_documentation_issues"][
-            "yes" if record["issues"] else "no"
+            "yes" if record.get("issues") else "no"
         ].append(ordinal)
         facet_ordinals["publisher"][record["publisher"]].append(ordinal)
+        facet_ordinals["record_type"][record["record_type"]].append(ordinal)
+        facet_ordinals["source_tier"][record["source_tier"]].append(ordinal)
+        facet_ordinals["visibility"][record["visibility"]].append(ordinal)
+        facet_ordinals["lifecycle_status"][record["lifecycle_status"]].append(
+            ordinal
+        )
         facet_ordinals["state"][record["state"]].append(ordinal)
-        for format_id in record["formats"]:
+        for format_id in record.get("formats", []):
             facet_ordinals["format"][format_id].append(ordinal)
     search_facets = {
         key: {
@@ -954,6 +1948,7 @@ def write_okf_markdown(
     publication: dict[str, Any],
     records: list[dict[str, Any]],
     documents: list[dict[str, Any]],
+    standards_source: dict[str, Any],
 ) -> dict[str, Any]:
     """Write the normative OKF v0.2 layer and return its validation report."""
 
@@ -1025,6 +2020,8 @@ def write_okf_markdown(
             "planning contracts.\n"
             "* [Source snapshot](snapshots/) - frozen wiki and application review "
             "boundary.\n"
+            "* [Governed terms](standards/) - validated standards and Explorer "
+            "UI terminology.\n"
         ),
     )
     writer.write_text(
@@ -1070,6 +2067,14 @@ def write_okf_markdown(
             "# Source snapshots\n\n"
             "* [Wiki and application source review](wiki-and-source.md) - frozen "
             "evidence boundary and live-status declaration.\n"
+        ),
+    )
+    writer.write_text(
+        "knowledge/standards/index.md",
+        (
+            "# Governed metadata terms\n\n"
+            "* [Term registry](governed-terms.md) - identifiers, definitions, "
+            "provenance, bounded applications and validation results.\n"
         ),
     )
 
@@ -1135,6 +2140,48 @@ def write_okf_markdown(
                 "The nine drift findings compare the two pinned evidence surfaces. "
                 "They do not assert the present state of the wiki, branch or deployed "
                 "service."
+            ),
+        ),
+    )
+    writer.write_text(
+        "knowledge/standards/governed-terms.md",
+        render_concept(
+            {
+                "type": "Standards Term Registry",
+                "title": "ELS OKF governed metadata terms",
+                "description": (
+                    "Validated identifiers, authoritative provenance and bounded "
+                    "application meanings for standards and Explorer UI terms."
+                ),
+                "resource": "/data/standards/terms.json",
+                "tags": ["standards", "vocabulary", "validation", "provenance"],
+                "status": "draft",
+                "generated": generated,
+                "sources": [
+                    {
+                        "id": vocabulary["id"],
+                        "resource": vocabulary["source"],
+                        "title": vocabulary["title"],
+                    }
+                    for vocabulary in standards_source["vocabularies"]
+                ],
+                "validation_report": "/data/standards/term-validation.json",
+                "snapshot_mode": "frozen",
+                "live_status": "not-checked",
+            },
+            (
+                "# Validation model\n\n"
+                "The register separates recognition of an identifier from the "
+                "correctness of its application. Every emitted compact term must "
+                "have a declared namespace, primary specification provenance, term "
+                "kind, bounded-use explanation and validated application status.\n\n"
+                "# Trust boundary\n\n"
+                "The validation is a deterministic closed-world check against the "
+                "checked-in curated register. It is machine-confirmed publication "
+                "evidence, not human review, live vocabulary verification or a claim "
+                "that the upstream API conforms to every referenced standard.\n\n"
+                "See the [machine-readable validation report]"
+                "(/data/standards/term-validation.json)."
             ),
         ),
     )
@@ -1452,6 +2499,8 @@ def landing_page(
         <a href="okf-bundle.yamlld"><strong>Semantic YAML-LD</strong><span>Byte-stable YAML 1.2 projection</span></a>
         <a href="data/openapi.json"><strong>OpenAPI review draft</strong><span>18 source-reviewed GET operations</span></a>
         <a href="data/review/issues.json"><strong>Drift register</strong><span>Wiki conflicts and documentation gaps</span></a>
+        <a href="data/standards/terms.json"><strong>Governed terms</strong><span>Definitions, provenance and bounded application validation</span></a>
+        <a href="data/standards/term-validation.json"><strong>Term validation</strong><span>Coverage and application checks for emitted terminology</span></a>
         <a href="data/coverage/ledger.json"><strong>Coverage ledger</strong><span>Bounded denominator and exclusions</span></a>
         <a href="checksums.json"><strong>Checksums</strong><span>Deterministic SHA-256 manifest</span></a>
       </div>
@@ -1547,40 +2596,76 @@ def write_bundle(target: Path) -> None:
     register = read_object(REGISTER_PATH)
     snapshot = read_object(SNAPSHOT_PATH)
     publication = read_object(PUBLICATION_PATH)
+    standards_source = read_object(STANDARDS_TERMS_PATH)
     validate_inputs(register, snapshot)
     validate_publication(publication)
     generated_at = publication["generatedAt"]
     writer = Writer(target)
-    records = operation_records(register, snapshot, generated_at)
+
+    operations = operation_records(register, snapshot, generated_at)
     documents = document_records(snapshot)
-    resources = resource_records(register, records)
-    relationships = relationship_records(register, records)
-    openapi = build_openapi(register, records, snapshot)
-    family_counts = Counter(record["topics"][0] for record in records)
+    records = explorer_concept_records(
+        register,
+        snapshot,
+        operations,
+        documents,
+    )
+    resources = resource_records(register, operations)
+    relationships = relationship_records(
+        register,
+        operations,
+        documents,
+        snapshot,
+    )
+    openapi = build_openapi(register, operations, snapshot)
+    semantic = semantic_descriptor(
+        register,
+        operations,
+        documents,
+        snapshot,
+        publication,
+    )
+    term_registry, term_validation = governed_terms(
+        standards_source,
+        snapshot_id=snapshot["snapshotId"],
+        generated_at=generated_at,
+        artifacts={
+            "okf-bundle.yamlld": semantic,
+            "data/datasets-0.json": records,
+            "data/relationships-0.json": relationships,
+        },
+    )
+
+    family_counts = Counter(record["topics"][0] for record in operations)
     issue_counts = Counter(
         issue["severity"] for issue in register["issues"]
     )
-    publisher = {
-        "id": "office-for-national-statistics",
-        "name": "office-for-national-statistics",
-        "title": "Office for National Statistics",
-        "description": "Publisher of the Explore Local Statistics service.",
-        "url": "https://www.ons.gov.uk/",
-        "dataset_count": len(records),
-        "resource_count": len(resources),
-        "route": "publisher/office-for-national-statistics",
-    }
-    facets = {
-        "family": facet_rows([record["topics"][0] for record in records]),
-        "format": facet_rows(
-            [format_id for record in records for format_id in record["formats"]]
-        ),
-        "has_documentation_issues": facet_rows(
-            ["yes" if record["issues"] else "no" for record in records]
-        ),
-        "publisher": facet_rows([record["publisher"] for record in records]),
-        "state": facet_rows([record["state"] for record in records]),
-    }
+    publisher_counts = Counter(record["publisher"] for record in records)
+    publishers = [
+        {
+            "id": "office-for-national-statistics",
+            "name": "office-for-national-statistics",
+            "title": "Office for National Statistics",
+            "description": "Publisher of the Explore Local Statistics service and wiki.",
+            "url": "https://www.ons.gov.uk/",
+            "dataset_count": publisher_counts["office-for-national-statistics"],
+            "resource_count": len(resources),
+            "route": "publisher/office-for-national-statistics",
+        },
+        {
+            "id": "okf-els-api-project",
+            "name": "okf-els-api-project",
+            "title": "OKF ELS API project",
+            "description": "Publisher of the generated bounded review bundle and artifacts.",
+            "url": "https://github.com/chris-page-gov/okf-els-api",
+            "dataset_count": publisher_counts["okf-els-api-project"],
+            "resource_count": 0,
+            "route": "publisher/okf-els-api-project",
+        },
+    ]
+    facets = explorer_facets(records)
+    facet_analysis_rows = facet_analysis(records, facets)
+    presentation = presentation_profile(snapshot["snapshotId"], facet_analysis_rows)
     search_manifest, search_outputs = static_search_index(
         records,
         resources,
@@ -1588,6 +2673,58 @@ def write_bundle(target: Path) -> None:
         generated_at,
     )
     result_documents = search_outputs["data/search/results-0.json"]
+    analysis = {
+        "schema": "okf-explorer-analysis.v1",
+        "snapshot": snapshot["snapshotId"],
+        "generated_at": generated_at,
+        "source_bundle": PUBLISHED_DESCRIPTOR,
+        "summary": {
+            "title": "Explore Local Statistics API discovery",
+            "description": (
+                "A bounded metadata-only concept graph for the ELS API wiki and "
+                "static application-source review."
+            ),
+            "record_count": len(records),
+            "resource_count": len(resources),
+            "relationship_count": len(relationships),
+            "notices": [
+                "No live service requests were performed.",
+                register["policy"]["warning"],
+            ],
+        },
+        "facet_analysis": facet_analysis_rows,
+        "relationship_overview": {
+            "types": [
+                {
+                    "kind": kind,
+                    "count": count,
+                    "samples": [
+                        {
+                            "source": relationship["source"],
+                            "target": relationship["target"],
+                            "label": relationship["label"],
+                        }
+                        for relationship in relationships
+                        if relationship["kind"] == kind
+                    ][:3],
+                }
+                for kind, count in sorted(
+                    Counter(
+                        relationship["kind"] for relationship in relationships
+                    ).items()
+                )
+            ]
+        },
+        "narrative": {
+            "title": "Bounded API discovery, not a service contract",
+            "body": (
+                "Explore the service, operations, pinned source documents, "
+                "preserved review findings, generated artifacts and governed "
+                "metadata terms. Evidence strength does not upgrade OKF "
+                "verification trust or establish a live deployment state."
+            ),
+        },
+    }
     overview = {
         "schema": "okf-els-api.overview.v1",
         "title": "Explore Local Statistics API discovery",
@@ -1595,14 +2732,17 @@ def write_bundle(target: Path) -> None:
         "generated_at": generated_at,
         "status": register["status"],
         "counts": {
-            "operations": len(records),
+            "records": len(records),
+            "operations": len(operations),
             "documents": len(documents),
             "formats": len(register["formats"]),
             "issues": len(register["issues"]),
             "datasets": len(records),
-            "publishers": 1,
+            "publishers": len(publishers),
             "resources": len(resources),
             "relationships": len(relationships),
+            "governed_terms": term_registry["counts"]["standardsTerms"]
+            + term_registry["counts"]["uiTerms"],
         },
         "top_publishers": [
             {
@@ -1610,6 +2750,7 @@ def write_bundle(target: Path) -> None:
                 "title": publisher["title"],
                 "dataset_count": publisher["dataset_count"],
             }
+            for publisher in publishers
         ],
         "recent_datasets": result_documents[:6],
         "format_counts": facets["format"],
@@ -1637,7 +2778,7 @@ def write_bundle(target: Path) -> None:
         },
         "implementationReview": {
             "handlerFiles": register["sourceVerification"]["routeHandlerCount"],
-            "operationRecords": len(records),
+            "operationRecords": len(operations),
             "routeSetSha256": register["sourceVerification"]["routeSetSha256"],
             "completeForAllBehaviour": False,
         },
@@ -1654,25 +2795,45 @@ def write_bundle(target: Path) -> None:
             "handler set only; not complete for all ELS behaviour or deployment state."
         ),
     }
+
+    conformance = write_okf_markdown(
+        writer,
+        register,
+        snapshot,
+        publication,
+        operations,
+        documents,
+        standards_source,
+    )
+
+    chunk_payloads = {
+        "datasets": ("data/datasets-0.json", records),
+        "publishers": ("data/publishers-0.json", publishers),
+        "relationships": ("data/relationships-0.json", relationships),
+        "resources": ("data/resources-0.json", resources),
+    }
     manifest = {
         "schema": "okf-explorer-data-manifest.v1",
         "title": "Explore Local Statistics API discovery OKF",
         "snapshot": snapshot["snapshotId"],
         "generated_at": generated_at,
         "chunks": {
-            "datasets": ["data/datasets-0.json"],
-            "publishers": ["data/publishers-0.json"],
-            "relationships": ["data/relationships-0.json"],
-            "resources": ["data/resources-0.json"],
+            key: [path] for key, (path, _payload) in chunk_payloads.items()
+        },
+        "shards": {
+            key: [json_resource_reference(path, payload)]
+            for key, (path, payload) in chunk_payloads.items()
         },
         "counts": {
             "datasets": len(records),
             "records": len(records),
-            "publishers": 1,
+            "operations": len(operations),
+            "publishers": len(publishers),
             "relationships": len(relationships),
             "resources": len(resources),
         },
         "indexes": {
+            "analysis": "data/analysis/overview.json",
             "coverage": "data/coverage/ledger.json",
             "documents": "data/documents-0.json",
             "facets": "data/facets.json",
@@ -1680,10 +2841,13 @@ def write_bundle(target: Path) -> None:
             "openapi": "data/openapi.json",
             "overview": "data/overview.json",
             "parameters": "data/parameters.json",
+            "presentation": "data/presentation.json",
             "review": "data/review/issues.json",
             "search": "data/search/manifest.json",
             "selection_contract": "data/selection-contract.json",
             "snapshot": "data/provenance/wiki-snapshot.json",
+            "term_validation": "data/standards/term-validation.json",
+            "terms": "data/standards/terms.json",
         },
         "search": {
             "schema": search_manifest["schema"],
@@ -1694,7 +2858,22 @@ def write_bundle(target: Path) -> None:
         "performance": {
             "startup_mode": "eager-small-corpus",
             "full_record_hydration": "single-chunk",
+            "relationship_hydration": "single-chunk",
+            "search": "static browser index",
         },
+    }
+    entrypoint_payloads = {
+        "analysis_overview": ("data/analysis/overview.json", analysis),
+        "conformance": ("data/standards/okf-v0.2.json", conformance),
+        "data_manifest": ("data/manifest.json", manifest),
+        "overview_index": ("data/overview.json", overview),
+        "presentation": ("data/presentation.json", presentation),
+        "search_manifest": ("data/search/manifest.json", search_manifest),
+        "term_validation": (
+            "data/standards/term-validation.json",
+            term_validation,
+        ),
+        "terms": ("data/standards/terms.json", term_registry),
     }
     descriptor = {
         "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld",
@@ -1709,43 +2888,58 @@ def write_bundle(target: Path) -> None:
         "snapshot": snapshot["snapshotId"],
         "generated_at": generated_at,
         "okf_version": OKF_VERSION,
+        "core_conformance": "Markdown concept layer",
         "normative_entrypoint": "index.md",
-        "publisher": "https://www.ons.gov.uk/",
-        "license": snapshot["licenceEvidence"]["url"],
-        "semantic_descriptor": "okf-bundle.jsonld",
+        "publisher": "https://github.com/chris-page-gov/okf-els-api",
+        "license": BUNDLE_LICENSE,
+        "semantic_descriptor": "okf-bundle.yamlld",
+        "performance": manifest["performance"],
         "counts": {
             "records": len(records),
             "datasets": len(records),
+            "operations": len(operations),
             "resources": len(resources),
-            "publishers": 1,
+            "publishers": len(publishers),
             "relationships": len(relationships),
             "documents": len(documents),
             "formats": len(register["formats"]),
             "issues": len(register["issues"]),
+            "governed_terms": term_registry["counts"]["standardsTerms"]
+            + term_registry["counts"]["uiTerms"],
         },
         "entrypoints": {
+            "analysis_overview": "data/analysis/overview.json",
             "coverage": "data/coverage/ledger.json",
             "conformance": "data/standards/okf-v0.2.json",
             "data_manifest": "data/manifest.json",
             "documents": "data/documents-0.json",
             "formats": "data/formats.json",
+            "markdown_index": "index.md",
             "openapi": "data/openapi.json",
             "overview_index": "data/overview.json",
             "parameters": "data/parameters.json",
+            "presentation": "data/presentation.json",
             "review": "data/review/issues.json",
             "search_manifest": "data/search/manifest.json",
             "selection_contract": "data/selection-contract.json",
             "snapshot": "data/provenance/wiki-snapshot.json",
             "semantic_jsonld": "okf-bundle.jsonld",
             "semantic_yamlld": "okf-bundle.yamlld",
+            "term_validation": "data/standards/term-validation.json",
+            "terms": "data/standards/terms.json",
             "viewer": "https://chris-page-gov.github.io/okf-explorer/",
+        },
+        "entrypoint_integrity": {
+            key: json_resource_reference(path, payload)
+            for key, (path, payload) in entrypoint_payloads.items()
         },
         "scope": {
             "metadata_only": True,
             "live_execution_included": False,
             "observations_included": False,
             "wiki_pages": snapshot["denominator"]["pageCount"],
-            "api_operations": len(records),
+            "api_operations": len(operations),
+            "knowledge_concepts": len(records),
             "complete_for_declared_source_files": True,
             "complete_for_all_els_behaviour": False,
         },
@@ -1762,6 +2956,23 @@ def write_bundle(target: Path) -> None:
                 "normative_entrypoint": "index.md",
                 "trust_model": "derived-from-verified",
                 "attested_computation_execution": "not-included",
+            },
+            "okf-explorer-analysis.v1": {
+                "entrypoint": "analysis_overview",
+                "mode": "external",
+            },
+            "okf-explorer-presentation.v1": {
+                "entrypoint": "presentation",
+                "mode": "external",
+            },
+            "okf-semantic-model.v1": {
+                "status": "experimental",
+                "term_registry": "terms",
+                "validation_report": "term_validation",
+                "validation_model": (
+                    "recognition-provenance-kind-and-bounded-application"
+                ),
+                "live_vocabulary_lookup_performed": False,
             },
             "okf-api-discovery.v1": {
                 "openapi": "openapi",
@@ -1781,13 +2992,15 @@ def write_bundle(target: Path) -> None:
             },
         },
         "vocabulary": {
-            "record_singular": "API operation",
-            "record_plural": "API operations",
+            "record_singular": "knowledge concept",
+            "record_plural": "knowledge concepts",
             "resource_singular": "endpoint template",
             "resource_plural": "endpoint templates",
             "publisher_singular": "publisher",
             "publisher_plural": "publishers",
-            "search_placeholder": "Search routes, parameters, formats and geography operations",
+            "search_placeholder": (
+                "Search operations, documents, findings, artifacts and standards terms"
+            ),
         },
         "warning": register["policy"]["warning"],
         "publication": {
@@ -1806,13 +3019,7 @@ def write_bundle(target: Path) -> None:
             "prov": "http://www.w3.org/ns/prov#",
         }
     }
-    semantic = semantic_descriptor(
-        register,
-        records,
-        documents,
-        snapshot,
-        publication,
-    )
+
     writer.write_json("okf-explorer.json", descriptor)
     writer.write_json("okf-bundle.jsonld", semantic)
     # JSON is a strict YAML 1.2 subset, making this a byte-stable YAML-LD
@@ -1823,34 +3030,30 @@ def write_bundle(target: Path) -> None:
     writer.write_json("data/documents-0.json", documents)
     writer.write_json("data/formats.json", register["formats"])
     writer.write_json("data/parameters.json", register["parameters"])
-    writer.write_json("data/publishers-0.json", [publisher])
+    writer.write_json("data/publishers-0.json", publishers)
     writer.write_json("data/relationships-0.json", relationships)
     writer.write_json("data/resources-0.json", resources)
     writer.write_json("data/overview.json", overview)
+    writer.write_json("data/analysis/overview.json", analysis)
     writer.write_json("data/manifest.json", manifest)
     writer.write_json("data/facets.json", facets)
+    writer.write_json("data/presentation.json", presentation)
     writer.write_json("data/coverage/ledger.json", coverage)
     writer.write_json("data/openapi.json", openapi)
     writer.write_json("data/provenance/wiki-snapshot.json", snapshot)
     writer.write_json("data/review/issues.json", register["issues"])
+    writer.write_json("data/standards/terms.json", term_registry)
+    writer.write_json("data/standards/term-validation.json", term_validation)
+    writer.write_json("data/standards/okf-v0.2.json", conformance)
     writer.write_json("data/selection-contract.json", selection_contract(register))
     for path, payload in search_outputs.items():
         writer.write_json(path, payload)
     writer.write_text(
         "index.html",
-        landing_page(register, snapshot, publication, len(records)),
+        landing_page(register, snapshot, publication, len(operations)),
     )
     writer.write_text("site.css", landing_styles())
     writer.write_text(".nojekyll", "")
-    conformance = write_okf_markdown(
-        writer,
-        register,
-        snapshot,
-        publication,
-        records,
-        documents,
-    )
-    writer.write_json("data/standards/okf-v0.2.json", conformance)
     writer.write_json("checksums.json", writer.checksum_manifest())
 
 

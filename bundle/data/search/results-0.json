@@ -1,6 +1,80 @@
 [
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/service.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": "dcat:DataService",
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+    "documentation_host": "github.com",
+    "endpoint_host": "www.ons.gov.uk",
+    "formats": [
+      "application-json"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "els-api-service",
+    "native_id": "els-api",
+    "notes": "Read-only statistical, metadata and geographic operations documented by the Explore Local Statistics application wiki.",
+    "open": "service/els-api",
+    "openapi_type": null,
+    "ordinal": 0,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:service",
+    "record_type": "API Service",
+    "resource_count": 0,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "export_status": "service-description-with-gaps",
+        "required_missing": [
+          "machine-readable upstream endpoint description",
+          "documented access rights"
+        ],
+        "term": "dcat:DataService"
+      },
+      "notes": [
+        "The service mapping is a generated metadata projection and does not certify the upstream service as DCAT conformant."
+      ],
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
+    "tags": [
+      "api",
+      "ons",
+      "internal-private",
+      "metadata-only"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Explore Local Statistics internal API",
+    "topics": [
+      "service"
+    ],
+    "url": "https://www.ons.gov.uk/explore-local-statistics",
+    "visibility": "internal-private"
+  },
+  {
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/data.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
@@ -11,502 +85,2538 @@
       "rows.json",
       "cols.json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "data",
+    "native_id": "data",
     "notes": "Filter one or more indicators by topic, geography, time, dimensions and measures.",
     "open": "operation/data",
-    "ordinal": 0,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 1,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:data",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "data",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "Filter and download statistical data",
     "topics": [
       "data"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/data.{format}"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/data.{format}",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-list.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-list",
+    "native_id": "geo-list",
     "notes": "List names, codes and selected metadata for geographies represented in ELS.",
     "open": "operation/geo-list",
-    "ordinal": 1,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 2,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-list",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List geographic areas",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/list"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/list",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-levels.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-levels",
+    "native_id": "geo-levels",
     "notes": "List geography-level keys, type prefixes and optionally their area codes.",
     "open": "operation/geo-levels",
-    "ordinal": 2,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 3,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-levels",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List geography levels",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/levels"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/levels",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-lookup.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "geojson"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-lookup",
+    "native_id": "geo-lookup",
     "notes": "Return a GeoJSON feature with boundary geometry and extended metadata for a GSS code.",
     "open": "operation/geo-lookup",
-    "ordinal": 3,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 4,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-lookup",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "Look up one geographic area",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/lookup/{code}"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/lookup/{code}",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-related.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-related",
+    "native_id": "geo-related",
     "notes": "Return parents, children, siblings and statistically similar areas.",
     "open": "operation/geo-related",
-    "ordinal": 4,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 5,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-related",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List all related areas",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-parents.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-parents",
+    "native_id": "geo-parents",
     "notes": "List parents for an area identified by GSS code.",
     "open": "operation/geo-parents",
-    "ordinal": 5,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 6,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-parents",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List parent areas",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/parents"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/parents",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-children.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-children",
+    "native_id": "geo-children",
     "notes": "List immediate children or children at a selected geography level.",
     "open": "operation/geo-children",
-    "ordinal": 6,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 7,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-children",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List child areas",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/children"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/children",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-siblings.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-siblings",
+    "native_id": "geo-siblings",
     "notes": "List siblings sharing an immediate or selected parent level.",
     "open": "operation/geo-siblings",
-    "ordinal": 7,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 8,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-siblings",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List sibling areas",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/siblings"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/siblings",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-similar.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-similar",
+    "native_id": "geo-similar",
     "notes": "List cluster members and the 20 most similar areas for supported groupings.",
     "open": "operation/geo-similar",
-    "ordinal": 8,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 9,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-similar",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List statistically similar areas",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/similar"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/related/{code}/similar",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-boundaries.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "geojson",
       "topojson"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-boundaries",
+    "native_id": "geo-boundaries",
     "notes": "Return filtered, low-resolution boundaries as GeoJSON or TopoJSON.",
     "open": "operation/geo-boundaries",
-    "ordinal": 9,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 10,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-boundaries",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "Get generalised boundaries",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/boundaries.{format}"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/boundaries.{format}",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-search.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-search",
+    "native_id": "geo-search",
     "notes": "Search area names and optionally fall back to postcode autocomplete.",
     "open": "operation/geo-search",
-    "ordinal": 10,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 11,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-search",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "Search areas by name",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/search/{name}"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/search/{name}",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-reverse.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-reverse",
+    "native_id": "geo-reverse",
     "notes": "Return areas containing a longitude and latitude.",
     "open": "operation/geo-reverse",
-    "ordinal": 11,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 12,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-reverse",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "Reverse geographic lookup",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/reverse"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/reverse",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-postcode.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-postcode",
+    "native_id": "geo-postcode",
     "notes": "Return postcode coordinates and containing geographies.",
     "open": "operation/geo-postcode",
-    "ordinal": 12,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 13,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-postcode",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "Look up a full postcode",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/geo-postcode-autocomplete.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "geo-postcode-autocomplete",
+    "native_id": "geo-postcode-autocomplete",
     "notes": "Return matching postcodes and coordinates for a partial postcode.",
     "open": "operation/geo-postcode-autocomplete",
-    "ordinal": 13,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 14,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:geo-postcode-autocomplete",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "geography",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "Autocomplete a partial postcode",
     "topics": [
       "geography"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}/autocomplete"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/geo/postcodes/{code}/autocomplete",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/metadata-indicators.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "metadata-indicators",
+    "native_id": "metadata-indicators",
     "notes": "Return metadata for indicators filtered by topic, geography and year.",
     "open": "operation/metadata-indicators",
-    "ordinal": 14,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 15,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:metadata-indicators",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "metadata",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List indicator metadata",
     "topics": [
       "metadata"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/metadata-indicator.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "metadata-indicator",
+    "native_id": "metadata-indicator",
     "notes": "Return metadata for one indicator and optionally its full dimension values.",
     "open": "operation/metadata-indicator",
-    "ordinal": 15,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 16,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:metadata-indicator",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "metadata",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "Get one indicator's metadata",
     "topics": [
       "metadata"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/metadata-dimension.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "metadata-dimension",
+    "native_id": "metadata-dimension",
     "notes": "Return possible values for a specific dimension of a specific indicator.",
     "open": "operation/metadata-dimension",
-    "ordinal": 16,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 17,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:metadata-dimension",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "metadata",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List values for one indicator dimension",
     "topics": [
       "metadata"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/indicators/{indicator}/dimensions/{dimension}",
+    "visibility": "internal-private"
   },
   {
-    "access_model": "internal-private",
+    "access_model": "not-documented",
+    "concept_id": "knowledge/operations/metadata-taxonomy.md",
+    "confidence": "static-source-observed",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
     "documentation_host": "github.com",
     "endpoint_host": "www.ons.gov.uk",
     "formats": [
       "application-json"
     ],
+    "hydra_type": "hydra:Operation",
+    "license_basis": "associated-repository-evidence-not-wiki-license",
+    "license_id": "mit-associated-repository",
+    "license_source_id": "https://github.com/ONSdigital/explore-local-statistics-app/blob/795eaf204f47986f6be248a63f857a42afe4fdf2/LICENSE.md",
+    "license_source_title": "Associated application repository licence; the wiki has no separate licence file",
+    "license_title": "MIT evidence from associated application repository",
+    "lifecycle_status": "draft",
     "name": "metadata-taxonomy",
+    "native_id": "metadata-taxonomy",
     "notes": "Return indicators grouped into topics and sub-topics, nested or flat.",
     "open": "operation/metadata-taxonomy",
-    "ordinal": 17,
+    "openapi_type": "OpenAPI Operation Object",
+    "ordinal": 18,
     "publisher": "office-for-national-statistics",
     "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:operation:metadata-taxonomy",
     "record_type": "ELS API operation",
     "resource_count": 1,
+    "source_adapter": "wiki-and-static-source-review",
+    "source_surface": "els-api-wiki",
+    "source_tier": "wiki-and-pinned-static-source",
+    "standard_term_ids": [
+      "dcat:DataService",
+      "hydra:Operation",
+      "openapi:operation-object"
+    ],
+    "standards_alignment": {
+      "claim": "standards-alignable-not-conformant",
+      "dcat": {
+        "explanation": "DCAT models the parent API as dcat:DataService; an individual HTTP operation has no direct DCAT class in this projection.",
+        "export_status": "roll-up-to-parent-service",
+        "parent_term": "dcat:DataService",
+        "required_missing": [],
+        "term": null
+      },
+      "hydra": {
+        "export_status": "bounded-operation-description",
+        "required_missing": [
+          "returns",
+          "status codes",
+          "response class"
+        ],
+        "term": "hydra:Operation"
+      },
+      "notes": [
+        "The Hydra and OpenAPI mappings describe a generated bounded review projection, not an upstream contract.",
+        "Evidence confidence is independent from OKF verified trust and live deployment status."
+      ],
+      "openapi": {
+        "export_status": "operation-fragment",
+        "required_missing": [
+          "complete response schemas",
+          "common error schema",
+          "upstream security scheme"
+        ],
+        "term": "OpenAPI Operation Object",
+        "term_id": "openapi:operation-object"
+      },
+      "profiles": [
+        "DCAT 3",
+        "Hydra Core",
+        "OpenAPI 3.1.0"
+      ]
+    },
     "tags": [
       "api",
       "get",
       "metadata",
       "internal-private-unstable"
     ],
-    "timestamp": "2026-07-25T12:17:29Z",
+    "timestamp": "2026-07-20T11:43:20Z",
     "title": "List the indicator taxonomy",
     "topics": [
       "metadata"
     ],
-    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/taxonomy"
+    "url": "https://www.ons.gov.uk/explore-local-statistics/api/v1/metadata/taxonomy",
+    "visibility": "internal-private"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/documents/API-overview.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/API-overview",
+    "documentation_host": "github.com",
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "API-overview",
+    "native_id": "API-overview",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/API-overview",
+    "openapi_type": null,
+    "ordinal": 19,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:document:API-overview",
+    "record_type": "Wiki documentation page",
+    "resource_count": 0,
+    "source_adapter": "pinned-wiki-snapshot",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "standards_alignment": null,
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "API overview",
+    "topics": [
+      "documentation"
+    ],
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/API-overview",
+    "visibility": "public-source-document"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/documents/Data-formats.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Data-formats",
+    "documentation_host": "github.com",
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "Data-formats",
+    "native_id": "Data-formats",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Data-formats",
+    "openapi_type": null,
+    "ordinal": 20,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:document:Data-formats",
+    "record_type": "Wiki documentation page",
+    "resource_count": 0,
+    "source_adapter": "pinned-wiki-snapshot",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "standards_alignment": null,
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Data formats",
+    "topics": [
+      "documentation"
+    ],
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Data-formats",
+    "visibility": "public-source-document"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/documents/Home.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+    "documentation_host": "github.com",
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "Home",
+    "native_id": "Home",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Home",
+    "openapi_type": null,
+    "ordinal": 21,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:document:Home",
+    "record_type": "Wiki documentation page",
+    "resource_count": 0,
+    "source_adapter": "pinned-wiki-snapshot",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "standards_alignment": null,
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Home",
+    "topics": [
+      "documentation"
+    ],
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki",
+    "visibility": "public-source-document"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/documents/Requesting-data.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+    "documentation_host": "github.com",
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "Requesting-data",
+    "native_id": "Requesting-data",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Requesting-data",
+    "openapi_type": null,
+    "ordinal": 22,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:document:Requesting-data",
+    "record_type": "Wiki documentation page",
+    "resource_count": 0,
+    "source_adapter": "pinned-wiki-snapshot",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "standards_alignment": null,
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Requesting data",
+    "topics": [
+      "documentation"
+    ],
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-data",
+    "visibility": "public-source-document"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/documents/Requesting-geographic-information.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "documentation_host": "github.com",
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "Requesting-geographic-information",
+    "native_id": "Requesting-geographic-information",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Requesting-geographic-information",
+    "openapi_type": null,
+    "ordinal": 23,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:document:Requesting-geographic-information",
+    "record_type": "Wiki documentation page",
+    "resource_count": 0,
+    "source_adapter": "pinned-wiki-snapshot",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "standards_alignment": null,
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Requesting geographic information",
+    "topics": [
+      "documentation"
+    ],
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-geographic-information",
+    "visibility": "public-source-document"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/documents/Requesting-metadata.md",
+    "confidence": "source-observed",
+    "contract_status": "source-document",
+    "dcat_type": null,
+    "documentation": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "documentation_host": "github.com",
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "Requesting-metadata",
+    "native_id": "Requesting-metadata",
+    "notes": "Pinned wiki source-document metadata.",
+    "open": "document/Requesting-metadata",
+    "openapi_type": null,
+    "ordinal": 24,
+    "publisher": "office-for-national-statistics",
+    "publisher_title": "Office for National Statistics",
+    "record_id": "els-api:document:Requesting-metadata",
+    "record_type": "Wiki documentation page",
+    "resource_count": 0,
+    "source_adapter": "pinned-wiki-snapshot",
+    "source_surface": "els-api-wiki",
+    "source_tier": "pinned-source-document",
+    "standard_term_ids": [
+      "foaf:Document"
+    ],
+    "standards_alignment": null,
+    "tags": [
+      "wiki",
+      "source-document",
+      "snapshot"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Requesting metadata",
+    "topics": [
+      "documentation"
+    ],
+    "url": "https://github.com/ONSdigital/explore-local-statistics-app/wiki/Requesting-metadata",
+    "visibility": "public-source-document"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/boundary-internal-api.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/boundary-internal-api.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "boundary-internal-api",
+    "native_id": "boundary-internal-api",
+    "notes": "The bundle must not imply that the API is public, supported for third parties, stable, or usable cross-origin from browsers.",
+    "open": "issue/boundary-internal-api",
+    "openapi_type": null,
+    "ordinal": 25,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:boundary-internal-api",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "usage-boundary",
+      "critical-boundary"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "The API is internal/private and unstable",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/boundary-internal-api.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/drift-metadata-dimension-route.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/drift-metadata-dimension-route.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "drift-metadata-dimension-route",
+    "native_id": "drift-metadata-dimension-route",
+    "notes": "Following the documented route can address the wrong optional-rest route instead of the dimension handler.",
+    "open": "issue/drift-metadata-dimension-route",
+    "openapi_type": null,
+    "ordinal": 26,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:drift-metadata-dimension-route",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "wiki-source-conflict",
+      "high"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Dimension-values route differs",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/drift-metadata-dimension-route.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/drift-data-includenames.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/drift-data-includenames.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "drift-data-includenames",
+    "native_id": "drift-data-includenames",
+    "notes": "Clients following the prose can send an invalid parameter or assume the wrong payload shape.",
+    "open": "issue/drift-data-includenames",
+    "openapi_type": null,
+    "ordinal": 27,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:drift-data-includenames",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "wiki-internal-conflict",
+      "high"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Area-name parameter name and default conflict",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/drift-data-includenames.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/drift-geo-includedates.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/drift-geo-includedates.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "drift-geo-includedates",
+    "native_id": "drift-geo-includedates",
+    "notes": "Documented requests using includeDates can receive HTTP 400.",
+    "open": "issue/drift-geo-includedates",
+    "openapi_type": null,
+    "ordinal": 28,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:drift-geo-includedates",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "wiki-source-conflict",
+      "high"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "includeDates is documented where handlers reject it",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/drift-geo-includedates.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/drift-data-hasgeo-default.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/drift-data-hasgeo-default.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "drift-data-hasgeo-default",
+    "native_id": "drift-data-hasgeo-default",
+    "notes": "The omission behaviour is ambiguous.",
+    "open": "issue/drift-data-hasgeo-default",
+    "openapi_type": null,
+    "ordinal": 29,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:drift-data-hasgeo-default",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "wiki-source-conflict",
+      "medium"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "hasGeo default differs",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/drift-data-hasgeo-default.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/gap-geo-related-includenames.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/gap-geo-related-includenames.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "gap-geo-related-includenames",
+    "native_id": "gap-geo-related-includenames",
+    "notes": "Clients cannot discover a useful payload-size and shape control from the wiki.",
+    "open": "issue/gap-geo-related-includenames",
+    "openapi_type": null,
+    "ordinal": 30,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:gap-geo-related-includenames",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "source-only-capability",
+      "medium"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Related-area includeNames parameter is undocumented",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/gap-geo-related-includenames.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/gap-data-measure.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/gap-data-measure.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "gap-data-measure",
+    "native_id": "gap-data-measure",
+    "notes": "Allowed values and interaction with indicator and status fields are not documented.",
+    "open": "issue/gap-data-measure",
+    "openapi_type": null,
+    "ordinal": 31,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:gap-data-measure",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "documentation-gap",
+      "medium"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "measure is listed but not explained",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/gap-data-measure.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/gap-response-schemas.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/gap-response-schemas.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "gap-response-schemas",
+    "native_id": "gap-response-schemas",
+    "notes": "Typed clients cannot be generated safely and agents cannot validate outputs rigorously.",
+    "open": "issue/gap-response-schemas",
+    "openapi_type": null,
+    "ordinal": 32,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:gap-response-schemas",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "documentation-gap",
+      "medium"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "Response and error contracts are incomplete",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/gap-response-schemas.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/issues/gap-compatibility-policy.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/gap-compatibility-policy.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "gap-compatibility-policy",
+    "native_id": "gap-compatibility-policy",
+    "notes": "The v1 path does not itself establish stability.",
+    "open": "issue/gap-compatibility-policy",
+    "openapi_type": null,
+    "ordinal": 33,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:issue:gap-compatibility-policy",
+    "record_type": "Governance Finding",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "review-finding",
+      "governance-gap",
+      "medium"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "No compatibility or deprecation policy",
+    "topics": [
+      "review-finding"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/knowledge/issues/gap-compatibility-policy.md",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/artifacts/openapi-review.md",
+    "confidence": "bounded-review",
+    "contract_status": "generated-review-draft-not-upstream-contract",
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/artifacts/openapi-review.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "openapi-review",
+    "native_id": "openapi-review",
+    "notes": "Generated OpenAPI 3.1 projection of the bounded source review.",
+    "open": "artifact/openapi-review",
+    "openapi_type": null,
+    "ordinal": 34,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:artifact:openapi-review",
+    "record_type": "API Contract Draft",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "openapi",
+      "review-draft",
+      "non-executing"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "ELS API OpenAPI review draft",
+    "topics": [
+      "review-artifact"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/data/openapi.json",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/artifacts/selection-plan.md",
+    "confidence": "bounded-review",
+    "contract_status": "non-executing-planning-contract",
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/artifacts/selection-plan.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "selection-plan",
+    "native_id": "selection-plan",
+    "notes": "Checks a proposed GET request plan without calling the service.",
+    "open": "artifact/selection-plan",
+    "openapi_type": null,
+    "ordinal": 35,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:artifact:selection-plan",
+    "record_type": "Request Planning Contract",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "request-plan",
+      "validation",
+      "non-executing"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "ELS API non-executing selection plan",
+    "topics": [
+      "review-artifact"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/data/selection-contract.json",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/snapshots/wiki-and-source.md",
+    "confidence": "bounded-review",
+    "contract_status": null,
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/snapshots/wiki-and-source.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "wiki-and-source",
+    "native_id": "wiki-and-source",
+    "notes": "Frozen evidence from six wiki pages and a bounded static review of v1 GET route handlers.",
+    "open": "snapshot/wiki-and-source",
+    "openapi_type": null,
+    "ordinal": 36,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:snapshot:wiki-and-source",
+    "record_type": "Source Snapshot",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "snapshot",
+      "provenance",
+      "drift"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "ELS wiki and application source review boundary",
+    "topics": [
+      "provenance"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/data/provenance/wiki-snapshot.json",
+    "visibility": "public-metadata-bundle"
+  },
+  {
+    "access_model": "anonymous-web",
+    "concept_id": "knowledge/standards/governed-terms.md",
+    "confidence": "bounded-review",
+    "contract_status": "validated-bounded-term-register",
+    "dcat_type": null,
+    "documentation": "https://chris-page-gov.github.io/okf-els-api/knowledge/standards/governed-terms.md",
+    "documentation_host": null,
+    "endpoint_host": null,
+    "formats": [
+      "markdown"
+    ],
+    "hydra_type": null,
+    "license_basis": null,
+    "license_id": null,
+    "license_source_id": null,
+    "license_source_title": null,
+    "license_title": null,
+    "lifecycle_status": "draft",
+    "name": "governed-terms",
+    "native_id": "governed-terms",
+    "notes": "Validated term identifiers, authoritative provenance and bounded application meanings.",
+    "open": "standard/governed-terms",
+    "openapi_type": null,
+    "ordinal": 37,
+    "publisher": "okf-els-api-project",
+    "publisher_title": "OKF ELS API project",
+    "record_id": "els-api:standards:governed-terms",
+    "record_type": "Standards Term Registry",
+    "resource_count": 0,
+    "source_adapter": "okf-els-api-build",
+    "source_surface": "bounded-wiki-and-source-review",
+    "source_tier": "generated-from-pinned-evidence",
+    "standard_term_ids": [],
+    "standards_alignment": null,
+    "tags": [
+      "standards",
+      "vocabulary",
+      "validation",
+      "provenance"
+    ],
+    "timestamp": "2026-07-20T11:43:20Z",
+    "title": "ELS OKF governed metadata terms",
+    "topics": [
+      "standards"
+    ],
+    "url": "https://chris-page-gov.github.io/okf-els-api/data/standards/terms.json",
+    "visibility": "public-metadata-bundle"
   }
 ]

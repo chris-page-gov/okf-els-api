@@ -1,12 +1,22 @@
 [
   {
-    "dataset_count": 18,
-    "description": "Publisher of the Explore Local Statistics service.",
+    "dataset_count": 25,
+    "description": "Publisher of the Explore Local Statistics service and wiki.",
     "id": "office-for-national-statistics",
     "name": "office-for-national-statistics",
     "resource_count": 18,
     "route": "publisher/office-for-national-statistics",
     "title": "Office for National Statistics",
     "url": "https://www.ons.gov.uk/"
+  },
+  {
+    "dataset_count": 13,
+    "description": "Publisher of the generated bounded review bundle and artifacts.",
+    "id": "okf-els-api-project",
+    "name": "okf-els-api-project",
+    "resource_count": 0,
+    "route": "publisher/okf-els-api-project",
+    "title": "OKF ELS API project",
+    "url": "https://github.com/chris-page-gov/okf-els-api"
   }
 ]
