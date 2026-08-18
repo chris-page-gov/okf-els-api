@@ -53,3 +53,30 @@ The public entrypoints are:
 
 See [REVIEW.md](REVIEW.md) for the suitability assessment and recommended next
 steps.
+
+## Build and publication lifecycle
+
+[`okf.publication.json`](okf.publication.json) is the machine-readable
+publication contract. It maps the frozen source registers to generated
+semantic, Explorer, checksum and Pages projections, and declares the checks,
+documentation lockstep and exact-byte promotion boundary. The separate
+[`okf.semantic.json`](okf.semantic.json) records graph meaning and its limits.
+
+The contract's command strings are untrusted data: review them against
+`AGENTS.md` and the repository code before execution. Run the local contract
+and lockstep checks with:
+
+```bash
+python3 scripts/check_publication_contract.py
+python3 scripts/check_documentation_lockstep.py
+```
+
+The full beginner-facing walkthrough, including why CI checks the committed
+bundle without rebuilding over it, is in the
+[build and publication method](docs/publication-method.md).
+
+The repository is still migrating to the complete method. GitHub Pages now
+promotes the exact checked and tested `bundle/` bytes without a publication-time
+rebuild, but an exact-commit real-browser receipt is not yet integrated. The
+public entry points above must not be treated as verified deployment evidence
+until that gate passes for the deployed commit.

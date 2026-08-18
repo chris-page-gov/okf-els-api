@@ -1,0 +1,524 @@
+{
+  "schema": "okf-repository-publication-contract.v1",
+  "modified": "2026-08-18",
+  "locale": "en-GB",
+  "time_zone": "Europe/London",
+  "repository": {
+    "name": "okf-els-api",
+    "url": "https://github.com/chris-page-gov/okf-els-api",
+    "role": "small-bundle",
+    "root_index": "bundle/index.md",
+    "lifecycle": "migration"
+  },
+  "semantic_contract": {
+    "path": "okf.semantic.json",
+    "profile": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md"
+  },
+  "source_families": [
+    {
+      "id": "frozen-els-registers",
+      "label": "Frozen ELS wiki and application review registers",
+      "description": "Checked-in metadata registers for the pinned wiki snapshot, bounded application-source review, governed terms and publication checkpoint.",
+      "kind": "structured-data-folder",
+      "paths": [
+        "source/**"
+      ],
+      "formats": [
+        "application/json"
+      ],
+      "origin": "mixed",
+      "authority": "mixed",
+      "snapshot_policy": "pinned-revision",
+      "inventory": {
+        "method": "pinned-source-register",
+        "manifest_path": "source/wiki-snapshot.json",
+        "identity": [
+          "relative-path",
+          "source-identifier",
+          "source-version",
+          "observed-at"
+        ]
+      },
+      "rights": {
+        "status": "mixed",
+        "evidence": [
+          "https://github.com/chris-page-gov/okf-els-api/blob/main/LICENSE",
+          "https://github.com/ONSdigital/explore-local-statistics-app"
+        ],
+        "limitations": [
+          "The repository licence covers this publication; upstream source material retains its recorded rights and attribution."
+        ]
+      },
+      "sensitivity": {
+        "status": "assessed-no-personal-data",
+        "assessment": "The bounded source registers contain API documentation metadata and static review evidence; observation values, postcode results, coordinates, credentials, cookies and personal information are prohibited.",
+        "evidence": [
+          "https://github.com/chris-page-gov/okf-els-api/blob/main/README.md"
+        ]
+      },
+      "extraction": {
+        "mode": "deterministic-local",
+        "network_access": "prohibited",
+        "command_ids": [
+          "build-bundle"
+        ],
+        "limitations": [
+          "Ordinary builds consume only checked-in registers and do not call the ELS API or refresh upstream sources."
+        ]
+      },
+      "invalidates": [
+        "source",
+        "semantic",
+        "runtime",
+        "application",
+        "documentation",
+        "release",
+        "deployment"
+      ],
+      "limitations": [
+        "The registers preserve conflicts between the pinned wiki and application source instead of selecting a live truth."
+      ]
+    }
+  ],
+  "boundaries": {
+    "authored": [
+      {
+        "path": "source/**",
+        "role": "source-register",
+        "source_family_id": "frozen-els-registers"
+      },
+      {
+        "path": "scripts/**",
+        "role": "generator"
+      },
+      {
+        "path": "tests/**",
+        "role": "test"
+      },
+      {
+        "path": "README.md",
+        "role": "documentation"
+      },
+      {
+        "path": "REVIEW.md",
+        "role": "documentation"
+      },
+      {
+        "path": "docs/**",
+        "role": "documentation"
+      },
+      {
+        "path": "AGENTS.md",
+        "role": "policy"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "role": "changelog"
+      },
+      {
+        "path": "okf.semantic.json",
+        "role": "policy"
+      },
+      {
+        "path": "okf.publication.json",
+        "role": "publication-contract",
+        "source_family_id": "frozen-els-registers"
+      },
+      {
+        "path": ".github/workflows/**",
+        "role": "workflow"
+      }
+    ],
+    "generated": [
+      {
+        "path": "bundle/okf-bundle.yamlld",
+        "role": "semantic-yaml-ld",
+        "plane": "semantic",
+        "required": true,
+        "build_command_ids": [
+          "build-bundle"
+        ],
+        "check_command_ids": [
+          "check-bundle",
+          "check-okf"
+        ]
+      },
+      {
+        "path": "bundle/okf-bundle.jsonld",
+        "role": "semantic-json-ld",
+        "plane": "semantic",
+        "required": true,
+        "build_command_ids": [
+          "build-bundle"
+        ],
+        "check_command_ids": [
+          "check-bundle",
+          "check-okf"
+        ]
+      },
+      {
+        "path": "bundle/data/**",
+        "role": "semantic-shards",
+        "plane": "runtime",
+        "required": true,
+        "build_command_ids": [
+          "build-bundle"
+        ],
+        "check_command_ids": [
+          "check-bundle",
+          "test-suite"
+        ]
+      },
+      {
+        "path": "bundle/okf-explorer.json",
+        "role": "explorer-runtime",
+        "plane": "application",
+        "required": true,
+        "build_command_ids": [
+          "build-bundle"
+        ],
+        "check_command_ids": [
+          "check-bundle",
+          "test-suite"
+        ]
+      },
+      {
+        "path": "bundle/checksums.json",
+        "role": "checksum-manifest",
+        "plane": "release",
+        "required": true,
+        "build_command_ids": [
+          "build-bundle"
+        ],
+        "check_command_ids": [
+          "check-bundle",
+          "test-suite"
+        ]
+      },
+      {
+        "path": "bundle/**",
+        "role": "site",
+        "plane": "deployment",
+        "required": true,
+        "build_command_ids": [
+          "build-bundle"
+        ],
+        "check_command_ids": [
+          "check-bundle",
+          "test-suite"
+        ]
+      }
+    ]
+  },
+  "planes": [
+    {
+      "id": "source",
+      "depends_on": [],
+      "paths": [
+        "source/**",
+        "okf.publication.json",
+        "okf.semantic.json"
+      ],
+      "command_ids": [
+        "check-publication-contract",
+        "validate-json"
+      ]
+    },
+    {
+      "id": "semantic",
+      "depends_on": [
+        "source"
+      ],
+      "paths": [
+        "scripts/**",
+        "tests/**",
+        "bundle/okf-bundle.yamlld",
+        "bundle/okf-bundle.jsonld",
+        "bundle/knowledge/**"
+      ],
+      "command_ids": [
+        "build-bundle",
+        "check-bundle",
+        "check-okf",
+        "test-suite"
+      ]
+    },
+    {
+      "id": "runtime",
+      "depends_on": [
+        "semantic"
+      ],
+      "paths": [
+        "bundle/data/**",
+        "bundle/index.md"
+      ],
+      "command_ids": [
+        "build-bundle",
+        "check-bundle",
+        "test-suite",
+        "validate-json"
+      ]
+    },
+    {
+      "id": "documentation",
+      "depends_on": [
+        "source"
+      ],
+      "paths": [
+        "README.md",
+        "REVIEW.md",
+        "docs/**",
+        "AGENTS.md",
+        "CHANGELOG.md"
+      ],
+      "command_ids": [
+        "check-publication-contract",
+        "check-lockstep"
+      ]
+    },
+    {
+      "id": "application",
+      "depends_on": [
+        "runtime"
+      ],
+      "paths": [
+        "bundle/okf-explorer.json",
+        "bundle/data/search/**"
+      ],
+      "command_ids": [
+        "build-bundle",
+        "check-bundle",
+        "test-suite"
+      ]
+    },
+    {
+      "id": "release",
+      "depends_on": [
+        "semantic",
+        "runtime",
+        "documentation",
+        "application"
+      ],
+      "paths": [
+        "bundle/checksums.json",
+        "bundle/data/standards/**"
+      ],
+      "command_ids": [
+        "build-bundle",
+        "check-bundle",
+        "test-suite",
+        "check-lockstep"
+      ]
+    },
+    {
+      "id": "deployment",
+      "depends_on": [
+        "release"
+      ],
+      "paths": [
+        ".github/workflows/**",
+        "bundle/index.html",
+        "bundle/site.css",
+        "bundle/.nojekyll"
+      ],
+      "command_ids": [
+        "build-bundle",
+        "check-bundle",
+        "test-suite"
+      ]
+    }
+  ],
+  "tooling": {
+    "commands": [
+      {
+        "id": "build-bundle",
+        "kind": "build",
+        "planes": [
+          "semantic",
+          "runtime",
+          "application",
+          "release",
+          "deployment"
+        ],
+        "command": "python3 scripts/build_bundle.py",
+        "source": "AGENTS.md",
+        "review_status": "reviewed-local-guidance",
+        "network": "none",
+        "mutates": "generated-only",
+        "timeout_minutes": 10
+      },
+      {
+        "id": "check-bundle",
+        "kind": "check",
+        "planes": [
+          "semantic",
+          "runtime",
+          "application",
+          "release",
+          "deployment"
+        ],
+        "command": "python3 scripts/build_bundle.py --check",
+        "source": "AGENTS.md",
+        "review_status": "reviewed-local-guidance",
+        "network": "none",
+        "mutates": "none",
+        "timeout_minutes": 10
+      },
+      {
+        "id": "check-okf",
+        "kind": "check",
+        "planes": [
+          "semantic"
+        ],
+        "command": "python3 scripts/check_okf.py",
+        "source": "AGENTS.md",
+        "review_status": "reviewed-local-guidance",
+        "network": "none",
+        "mutates": "none",
+        "timeout_minutes": 5
+      },
+      {
+        "id": "check-publication-contract",
+        "kind": "check",
+        "planes": [
+          "source",
+          "documentation"
+        ],
+        "command": "python3 scripts/check_publication_contract.py",
+        "source": "AGENTS.md",
+        "review_status": "reviewed-local-guidance",
+        "network": "none",
+        "mutates": "none",
+        "timeout_minutes": 2
+      },
+      {
+        "id": "check-lockstep",
+        "kind": "check",
+        "planes": [
+          "documentation",
+          "release"
+        ],
+        "command": "python3 scripts/check_documentation_lockstep.py",
+        "source": "AGENTS.md",
+        "review_status": "reviewed-local-guidance",
+        "network": "none",
+        "mutates": "none",
+        "timeout_minutes": 2
+      },
+      {
+        "id": "test-suite",
+        "kind": "test",
+        "planes": [
+          "semantic",
+          "runtime",
+          "application",
+          "release",
+          "deployment"
+        ],
+        "command": "python3 -m unittest discover -s tests -v",
+        "source": "AGENTS.md",
+        "review_status": "reviewed-local-guidance",
+        "network": "none",
+        "mutates": "none",
+        "timeout_minutes": 10
+      },
+      {
+        "id": "validate-json",
+        "kind": "check",
+        "planes": [
+          "source",
+          "runtime"
+        ],
+        "command": "find bundle source -name '*.json' -print0 | xargs -0 -n1 python3 -m json.tool",
+        "source": ".github/workflows/pages.yml",
+        "review_status": "reviewed-local-guidance",
+        "network": "none",
+        "mutates": "none",
+        "timeout_minutes": 5
+      }
+    ]
+  },
+  "lockstep": {
+    "controlled_paths": [
+      "okf.publication.json",
+      "okf.semantic.json",
+      "source/**",
+      "scripts/**",
+      "tests/**",
+      "bundle/**",
+      ".github/workflows/**"
+    ],
+    "documentation_paths": [
+      "README.md",
+      "REVIEW.md",
+      "docs/**",
+      "AGENTS.md"
+    ],
+    "changelog_path": "CHANGELOG.md",
+    "check_command_id": "check-lockstep",
+    "dependency_update_policy": "assess-release-bound-bytes-no-blanket-exemption",
+    "unknown_path_policy": "fail-closed"
+  },
+  "ci": {
+    "provider": "github-actions",
+    "workflow_paths": [
+      ".github/workflows/pages.yml"
+    ],
+    "impact_routing": "full-suite",
+    "parallelism": "serial",
+    "unknown_path_policy": "full-suite",
+    "browser": {
+      "ordinary": {
+        "policy": "not-applicable",
+        "engines": [],
+        "command_ids": []
+      },
+      "cross_engine": {
+        "policy": "not-applicable",
+        "engines": [],
+        "command_ids": [],
+        "installation": {
+          "policy": "none",
+          "command_ids": []
+        }
+      }
+    }
+  },
+  "publication": {
+    "mode": "automatic-protected-main",
+    "scope": "bounded-demonstrator",
+    "authority": {
+      "decision": "Protected main publishes only the checked-in metadata-only bundle under the repository's documented internal/private API and no-live-execution boundaries.",
+      "evidence_paths": [
+        "README.md",
+        "source/api-register.json"
+      ]
+    },
+    "candidate_policy": "promote-exact-assured-bytes-without-rebuild",
+    "targets": [
+      {
+        "id": "github-pages",
+        "kind": "github-pages",
+        "workflow_path": ".github/workflows/pages.yml",
+        "public_base_url": "https://chris-page-gov.github.io/okf-els-api/",
+        "exact_commit_required": true,
+        "promote_without_rebuild": true
+      }
+    ]
+  },
+  "verification": {
+    "required": false,
+    "browser": "not-applicable",
+    "exact_commit_required": true,
+    "identity_checks": [],
+    "journeys": [],
+    "console_policy": "not-applicable",
+    "command_ids": []
+  },
+  "limitations": [
+    "The repository is migrating to publication-method v1: CI validates and promotes the exact checked-in bundle, but an exact-commit real-browser receipt is not yet integrated.",
+    "Existing public URLs are discovery entry points only; this contract does not claim that the currently deployed commit or browser journey has been verified.",
+    "A successful repository build does not make the internal/private upstream API public, supported, stable or live-verified.",
+    "Declared command strings are untrusted metadata and must be reviewed against repository guidance before execution."
+  ]
+}

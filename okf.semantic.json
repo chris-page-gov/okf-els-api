@@ -1,0 +1,85 @@
+{
+  "schema": "okf-repository-semantic-contract.v1",
+  "repository": {
+    "name": "okf-els-api",
+    "role": "small-bundle",
+    "root_index": "bundle/index.md"
+  },
+  "okf_core": {
+    "version": "0.2",
+    "status": "conformant",
+    "specification": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md"
+  },
+  "semantic_layer": {
+    "profile": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md",
+    "state": "generated-json-ld-with-byte-equivalent-yaml-ld-projection",
+    "authoritative_inputs": [
+      "source/api-register.json",
+      "source/publication.json",
+      "source/standards-terms.json",
+      "source/wiki-snapshot.json",
+      "scripts/build_bundle.py",
+      "scripts/okf_v02.py"
+    ],
+    "context_policy": "generated-local-context-no-browser-remote-expansion",
+    "identity_policy": "stable-generated-identities-plus-local-okf-paths",
+    "outputs": [
+      {
+        "path": "bundle/okf-bundle.yamlld",
+        "role": "semantic-yaml-ld",
+        "generated": true,
+        "required": true
+      },
+      {
+        "path": "bundle/okf-bundle.jsonld",
+        "role": "semantic-json-ld",
+        "generated": true,
+        "required": true
+      },
+      {
+        "path": "bundle/okf-explorer.json",
+        "role": "explorer-runtime",
+        "generated": true,
+        "required": true
+      }
+    ],
+    "limitations": [
+      "This metadata-only graph describes a frozen wiki and application-source review; it does not make the internal API public, supported, stable or live-verified.",
+      "The generated YAML-LD is the byte-equivalent JSON representation already published by this repository, rather than an assertion that every YAML-LD consumer supports the projection.",
+      "This repository does not claim the additive Bundle Wiki v1 evidence-bearing relationship profile."
+    ]
+  },
+  "reader": {
+    "consumer": "https://chris-page-gov.github.io/okf-explorer/",
+    "delivery": "json-small-bundle-projection",
+    "preserves": [
+      "stable-generated-identities",
+      "local-routes",
+      "source-provenance",
+      "review-issues",
+      "snapshot-boundary",
+      "rights",
+      "lifecycle"
+    ]
+  },
+  "relationship_contract": {
+    "authoring": "generated-from-frozen-source-registers",
+    "direct_triple_policy": "generated-from-one-bounded-source-model",
+    "predicate_policy": "declared-local-context-terms",
+    "required_fields": [
+      "stable-identity",
+      "source-provenance",
+      "snapshot-status"
+    ],
+    "schema": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md"
+  },
+  "tooling": {
+    "build": [
+      "python3 scripts/build_bundle.py"
+    ],
+    "check": [
+      "python3 scripts/build_bundle.py --check",
+      "python3 scripts/check_okf.py"
+    ]
+  }
+}
