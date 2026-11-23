@@ -80,3 +80,7 @@ promotes the exact checked and tested `bundle/` bytes without a publication-time
 rebuild, but an exact-commit real-browser receipt is not yet integrated. The
 public entry points above must not be treated as verified deployment evidence
 until that gate passes for the deployed commit.
+
+## OKF standards and bundle discovery
+
+The [central standards register](https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md) records current and historical OKF specifications, version-specific pins and the public bundle catalogue. Use the [machine-readable register](https://raw.githubusercontent.com/chris-page-gov/okf-explorer/main/registry/okf-standards.json) to resolve the version implemented by this repository.
