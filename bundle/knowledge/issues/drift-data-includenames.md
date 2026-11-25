@@ -4,7 +4,7 @@ title: "Area-name parameter name and default conflict"
 description: "Clients following the prose can send an invalid parameter or assume the wrong payload shape."
 tags: ["review-finding","wiki-internal-conflict","high"]
 status: "draft"
-generated: {"by":"process:okf-els-api-build","at":"2026-07-25T12:17:29Z"}
+generated: {"by":"process:okf-els-api-build","at":"2026-11-25T00:00:00Z"}
 sources: [{"id":"els-wiki","resource":"https://github.com/ONSdigital/explore-local-statistics-app/wiki","title":"Explore Local Statistics application wiki","last_modified":"2026-07-20","pinned_commit":"3da822e28d775f1213d328573da34aba8278d79f"},{"id":"els-application","resource":"https://github.com/ONSdigital/explore-local-statistics-app/tree/795eaf204f47986f6be248a63f857a42afe4fdf2","title":"Explore Local Statistics application source review","last_modified":"2026-07-17","pinned_commit":"795eaf204f47986f6be248a63f857a42afe4fdf2"}]
 finding_kind: "wiki-internal-conflict"
 severity: "high"

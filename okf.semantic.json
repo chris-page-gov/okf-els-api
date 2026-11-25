@@ -6,20 +6,35 @@
     "root_index": "bundle/index.md"
   },
   "okf_core": {
-    "version": "0.2",
+    "version": "0.3",
     "status": "conformant",
-    "specification": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md"
+    "specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md"
   },
+  "historical_core": {
+    "version": "0.2",
+    "specification": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md",
+    "previous_bundle_version": "0.2.0"
+  },
+  "format_migration": {
+    "implementation_date": "2026-11-25",
+    "standard_announcement_date": "2026-11-18",
+    "source_snapshot_unchanged": true
+  },
+  "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/",
+  "profile_role": "reader-guidance-reference-only-no-profile-conformance-claim",
   "semantic_layer": {
-    "profile": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md",
+    "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/",
+    "profile_role": "reader-guidance-reference-only-no-profile-conformance-claim",
     "state": "generated-json-ld-with-byte-equivalent-yaml-ld-projection",
+    "projection_claim": ["DCAT", "Hydra", "PROV"],
     "authoritative_inputs": [
       "source/api-register.json",
       "source/publication.json",
       "source/standards-terms.json",
       "source/wiki-snapshot.json",
       "scripts/build_bundle.py",
-      "scripts/okf_v02.py"
+      "scripts/okf_v03.py",
+      "source/walkthrough.json"
     ],
     "context_policy": "generated-local-context-no-browser-remote-expansion",
     "identity_policy": "stable-generated-identities-plus-local-okf-paths",
@@ -46,7 +61,7 @@
     "limitations": [
       "This metadata-only graph describes a frozen wiki and application-source review; it does not make the internal API public, supported, stable or live-verified.",
       "The generated YAML-LD is the byte-equivalent JSON representation already published by this repository, rather than an assertion that every YAML-LD consumer supports the projection.",
-      "This repository does not claim the additive Bundle Wiki v1 evidence-bearing relationship profile."
+      "Reader-facing prose may explain evidence links, but the producer does not claim the additive Bundle Wiki v1 evidence-bearing relationship profile."
     ]
   },
   "reader": {
@@ -71,7 +86,7 @@
       "source-provenance",
       "snapshot-status"
     ],
-    "schema": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md"
+    "schema": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md"
   },
   "tooling": {
     "build": [

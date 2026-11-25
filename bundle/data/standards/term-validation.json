@@ -19,7 +19,7 @@
     "unusedStandardsTerms": 0,
     "usedTerms": 45
   },
-  "generated_at": "2026-07-25T12:17:29Z",
+  "generated_at": "2026-11-25T00:00:00Z",
   "limitations": [
     "This is a deterministic closed-world publication check against the checked-in curated register.",
     "It does not perform a live vocabulary lookup or claim human review.",

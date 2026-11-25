@@ -31,7 +31,7 @@ class BundleTests(unittest.TestCase):
     def test_declared_counts_and_safety_boundary(self) -> None:
         descriptor = load("okf-explorer.json")
         self.assertEqual(descriptor["kind"], "okf-large-corpus")
-        self.assertEqual(descriptor["version"], "0.2.0")
+        self.assertEqual(descriptor["version"], "0.3.0")
         self.assertEqual(descriptor["counts"]["records"], 38)
         self.assertEqual(descriptor["counts"]["operations"], 18)
         self.assertEqual(descriptor["counts"]["documents"], 6)
@@ -41,46 +41,53 @@ class BundleTests(unittest.TestCase):
         self.assertFalse(descriptor["scope"]["observations_included"])
         self.assertIn("internal/private", descriptor["warning"])
 
-    def test_okf_v02_normative_layer_and_trust_boundary(self) -> None:
+    def test_okf_v03_normative_layer_and_trust_boundary(self) -> None:
         descriptor = load("okf-explorer.json")
-        report = load("data/standards/okf-v0.2.json")
-        self.assertEqual(descriptor["okf_version"], "0.2")
+        report = load("data/standards/okf-core-0.3.json")
+        self.assertEqual(descriptor["okf_version"], "0.3")
+        self.assertEqual(
+            descriptor["profile"],
+            "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/",
+        )
         self.assertEqual(descriptor["normative_entrypoint"], "index.md")
+        self.assertEqual(report["schema"], "okf-els-api.okf-conformance.v3")
+        self.assertEqual(report["conceptCount"], 40)
+        self.assertEqual(report["trustTiers"]["unverified"], 40)
+        self.assertEqual(report["lifecycle"]["draft"], 40)
+        self.assertTrue(report["allConceptsRemainUnverified"])
+        self.assertEqual(len(report["conceptPaths"]), len(set(report["conceptPaths"])))
+        register = json.loads((ROOT / "source/api-register.json").read_text())
+        snapshot = json.loads((ROOT / "source/wiki-snapshot.json").read_text())
+        original_paths = {
+            "knowledge/service.md",
+            "knowledge/snapshots/wiki-and-source.md",
+            "knowledge/standards/governed-terms.md",
+            "knowledge/artifacts/openapi-review.md",
+            "knowledge/artifacts/selection-plan.md",
+            *(f"knowledge/operations/{row['id']}.md" for row in register["operations"]),
+            *(f"knowledge/documents/{row['name']}.md" for row in snapshot["pages"]),
+            *(f"knowledge/issues/{row['id']}.md" for row in register["issues"]),
+        }
+        self.assertEqual(len(original_paths), 38)
+        self.assertTrue(original_paths.issubset(report["conceptPaths"]))
         self.assertEqual(
-            descriptor["extensions"]["okf-v0.2"]["trust_model"],
-            "derived-from-verified",
+            set(report["conceptPaths"]) - original_paths,
+            {
+                "knowledge/complex-question-guide.md",
+                "knowledge/artifacts/ai-handoff.md",
+            },
         )
-        self.assertEqual(report["status"], "conformant")
-        self.assertEqual(report["schema"], "okf-els-api.okf-conformance.v2")
-        self.assertEqual(report["coreConformance"]["status"], "conformant")
-        self.assertEqual(
-            report["producerProfileConformance"]["status"],
-            "conformant",
-        )
-        self.assertTrue(report["coreConformance"]["missingIndexesAllowed"])
-        self.assertEqual(report["conceptCount"], 38)
-        self.assertEqual(report["markdownDocumentCount"], 47)
-        self.assertEqual(report["trustTiers"]["unverified"], 38)
-        self.assertEqual(report["trustTiers"]["machineConfirmed"], 0)
-        self.assertEqual(report["trustTiers"]["humanReviewed"], 0)
-        self.assertEqual(report["lifecycle"]["draft"], 38)
-        self.assertEqual(report["attestedComputationCount"], 0)
-        self.assertEqual(report["legacyV01FallbackCount"], 0)
 
         root_index = (BUNDLE / "index.md").read_text(encoding="utf-8")
-        self.assertTrue(root_index.startswith('---\nokf_version: "0.2"\n---\n'))
+        self.assertTrue(root_index.startswith('---\nokf_version: "0.3"\n---\n'))
         for relative in report["conceptPaths"]:
             concept = (BUNDLE / relative).read_text(encoding="utf-8")
             self.assertTrue(concept.startswith("---\ntype:"), relative)
             self.assertIn('\nstatus: "draft"\n', concept, relative)
-            self.assertIn(
-                '"by":"process:okf-els-api-build"',
-                concept,
-                relative,
-            )
+            self.assertIn('"by":"process:okf-els-api-build"', concept, relative)
             self.assertNotIn("\nverified:", concept, relative)
 
-    def test_okf_v02_checker_accepts_generated_report(self) -> None:
+    def test_okf_v03_checker_accepts_generated_report(self) -> None:
         result = subprocess.run(
             [sys.executable, "scripts/check_okf.py"],
             cwd=ROOT,
@@ -89,8 +96,8 @@ class BundleTests(unittest.TestCase):
             text=True,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("38 concepts", result.stdout)
-        self.assertIn("38 explicitly unverified", result.stdout)
+        self.assertIn("40 concepts", result.stdout)
+        self.assertIn("40 explicitly unverified", result.stdout)
 
     def test_snapshot_and_publication_dates_remain_distinct(self) -> None:
         publication = json.loads(
@@ -124,7 +131,7 @@ class BundleTests(unittest.TestCase):
         yamlld = (BUNDLE / "okf-bundle.yamlld").read_bytes()
         self.assertEqual(yamlld, jsonld)
         semantic = json.loads(yamlld)
-        self.assertEqual(semantic["okf:okfVersion"], "0.2")
+        self.assertEqual(semantic["okf:okfVersion"], "0.3")
         self.assertEqual(semantic["okf:snapshotMode"], "frozen")
         self.assertEqual(semantic["okf:liveStatus"], "not-checked")
 
@@ -210,10 +217,72 @@ class BundleTests(unittest.TestCase):
             "bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json",
             publication["okf_explorer"],
         )
-        self.assertIn("%3Fversion%3D0.2.0", publication["okf_explorer"])
+        self.assertIn("%3Fversion%3D0.3.0", publication["okf_explorer"])
         landing = (BUNDLE / "index.html").read_text(encoding="utf-8")
         self.assertIn(publication["okf_explorer"], landing)
         self.assertTrue((BUNDLE / "site.css").is_file())
+
+    def test_complex_question_browser_guide_has_bound_identity_and_sources(self) -> None:
+        descriptor = load("okf-explorer.json")
+        manifest = load("data/manifest.json")
+        self.assertEqual(
+            descriptor["@id"],
+            "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
+        )
+        self.assertEqual(descriptor["version"], "0.3.0")
+        self.assertEqual(descriptor["okf_version"], "0.3")
+        self.assertEqual(descriptor["entrypoints"]["complex_question"], "complex-question.html")
+        self.assertEqual(manifest["indexes"]["complex_question"], "complex-question.html")
+        self.assertIn("complex_question", descriptor["entrypoint_integrity"])
+        checksums = load("checksums.json")
+        guide_checksum = next(
+            item for item in checksums["files"] if item["path"] == "complex-question.html"
+        )
+        self.assertEqual(
+            descriptor["entrypoint_integrity"]["complex_question"]["sha256"],
+            guide_checksum["sha256"],
+        )
+        page = (BUNDLE / "complex-question.html").read_text(encoding="utf-8")
+        self.assertIn('aria-label="Evidence stages"', page)
+        evidence_nav = page.split('<nav class="evidence-controls"', 1)[1].split("</nav>", 1)[0]
+        expected_stages = (
+            "knowledge/documents/Requesting-data.md",
+            "knowledge/operations/data.md",
+            "knowledge/issues/index.md",
+            "knowledge/artifacts/selection-plan.md",
+        )
+        self.assertEqual(evidence_nav.count("<a href="), 4)
+        for target in expected_stages:
+            self.assertIn(f'href="{target}"', evidence_nav)
+        self.assertIn('aria-labelledby="source-title"', page)
+        self.assertIn("Worked answer from the pinned records", page)
+        self.assertIn("drift-data-hasgeo-default.md", page)
+        self.assertIn("includeNames", page)
+        self.assertIn("els-wiki-2026-07-20", page)
+        data_operation = (BUNDLE / "knowledge/operations/data.md").read_text()
+        self.assertIn("# Parameter evidence", data_operation)
+        self.assertIn("`time`", data_operation)
+        self.assertIn("Recorded default: `latest`", data_operation)
+        self.assertIn("geography-level keys or GSS codes", data_operation)
+        self.assertIn('id="handoff-prompt" readonly', page)
+        self.assertNotIn("knowledge/issues/;", page)
+        self.assertIn('src="knowledge/artifacts/complex-question.svg"', page)
+        for target in (
+            "knowledge/documents/Requesting-data.md",
+            "knowledge/operations/data.md",
+            "knowledge/issues/index.md",
+            "knowledge/artifacts/selection-plan.md",
+        ):
+            self.assertIn(f'href="{target}"', page)
+        for target in (
+            "knowledge/issues/drift-data-hasgeo-default.md",
+            "knowledge/issues/drift-data-includenames.md",
+            "knowledge/issues/gap-data-measure.md",
+            "knowledge/issues/gap-response-schemas.md",
+            "knowledge/snapshots/wiki-and-source.md",
+        ):
+            self.assertIn(target, page)
+        self.assertIn("@media (max-width: 440px)", (BUNDLE / "site.css").read_text())
         self.assertTrue((BUNDLE / ".nojekyll").is_file())
 
     def test_okf_explorer_search_index_covers_operations(self) -> None:
@@ -305,7 +374,7 @@ class BundleTests(unittest.TestCase):
             self.assertNotIn("hydra:expects", operation)
         self.assertIn("dct:hasPart", descriptor)
         self.assertNotIn("dcat:record", descriptor)
-        self.assertEqual(descriptor["okf:okfVersion"], "0.2")
+        self.assertEqual(descriptor["okf:okfVersion"], "0.3")
         self.assertEqual(descriptor["okf:liveStatus"], "not-checked")
 
     def test_governed_terms_cover_generated_standards_usage(self) -> None:

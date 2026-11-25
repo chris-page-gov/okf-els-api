@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import quote
 
-from okf_v02 import (
+from okf_v03 import (
     OKFConformanceError,
     OKF_SPEC_COMMIT,
     OKF_SPECIFICATION,
@@ -35,10 +35,11 @@ REGISTER_PATH = ROOT / "source" / "api-register.json"
 SNAPSHOT_PATH = ROOT / "source" / "wiki-snapshot.json"
 PUBLICATION_PATH = ROOT / "source" / "publication.json"
 STANDARDS_TERMS_PATH = ROOT / "source" / "standards-terms.json"
+WALKTHROUGH_PATH = ROOT / "source" / "walkthrough.json"
 PAGES_ROOT = "https://chris-page-gov.github.io/okf-els-api/"
 PUBLISHED_DESCRIPTOR = f"{PAGES_ROOT}okf-explorer.json"
 EXPLORER_ROOT = "https://chris-page-gov.github.io/okf-explorer/"
-BUNDLE_VERSION = "0.2.0"
+BUNDLE_VERSION = "0.3.0"
 BUNDLE_LICENSE = "https://github.com/chris-page-gov/okf-els-api/blob/main/LICENSE"
 EXPLORER_DESCRIPTOR = f"{PUBLISHED_DESCRIPTOR}?version={BUNDLE_VERSION}"
 EXPLORER_URL = f"{EXPLORER_ROOT}?bundle={quote(EXPLORER_DESCRIPTOR, safe='')}"
@@ -544,11 +545,11 @@ def validate_publication(publication: dict[str, Any]) -> None:
     if not isinstance(specification, dict):
         raise BuildError("Publication has no OKF specification pin")
     if specification.get("version") != OKF_VERSION:
-        raise BuildError("Publication must target OKF v0.2")
+        raise BuildError("Publication must target OKF v0.3")
     if specification.get("commit") != OKF_SPEC_COMMIT:
-        raise BuildError("Publication must pin the reviewed OKF v0.2 commit")
+        raise BuildError("Publication must pin the reviewed OKF v0.3 commit")
     if specification.get("resource") != OKF_SPECIFICATION:
-        raise BuildError("Publication must use the pinned OKF v0.2 specification")
+        raise BuildError("Publication must use the pinned OKF v0.3 specification")
     generated_at = publication.get("generatedAt")
     if not isinstance(generated_at, str):
         raise BuildError("Publication generatedAt must be an ISO 8601 datetime")
@@ -1950,12 +1951,41 @@ def write_okf_markdown(
     documents: list[dict[str, Any]],
     standards_source: dict[str, Any],
 ) -> dict[str, Any]:
-    """Write the normative OKF v0.2 layer and return its validation report."""
+    """Write the normative OKF Core 0.3 layer and return its validation report."""
 
     generated = {
         "by": publication["generatedBy"],
         "at": publication["generatedAt"],
     }
+    walkthrough = read_object(WALKTHROUGH_PATH)
+    if walkthrough.get("schema") != "okf-els-api.walkthrough.v1":
+        raise BuildError("Unsupported complex-question walkthrough source")
+    if not isinstance(walkthrough.get("question"), str) or not isinstance(
+        walkthrough.get("prompt"), str
+    ):
+        raise BuildError("Walkthrough source requires a question and bounded prompt")
+    expected_evidence = {
+        "knowledge/documents/Requesting-data.md",
+        "knowledge/documents/Requesting-geographic-information.md",
+        "knowledge/operations/data.md",
+        "knowledge/operations/geo-lookup.md",
+        "knowledge/issues/drift-data-hasgeo-default.md",
+        "knowledge/issues/drift-data-includenames.md",
+        "knowledge/issues/gap-data-measure.md",
+        "knowledge/issues/gap-response-schemas.md",
+        "knowledge/artifacts/selection-plan.md",
+        "knowledge/snapshots/wiki-and-source.md",
+    }
+    evidence = walkthrough.get("evidence")
+    if not isinstance(evidence, list) or len(evidence) != len(set(evidence)):
+        raise BuildError("Walkthrough evidence must be a unique list of exact bundle paths")
+    if set(evidence) != expected_evidence:
+        raise BuildError("Walkthrough evidence paths differ from the reviewed source set")
+    worked_answer = walkthrough.get("worked_answer")
+    if not isinstance(worked_answer, dict) or set(worked_answer) != {
+        "dates", "geography", "conflicts", "limits"
+    } or any(not isinstance(text, str) or not text.strip() for text in worked_answer.values()):
+        raise BuildError("Walkthrough requires qualified date, geography, conflict and limits answers")
     wiki_modified = snapshot["source"]["commitDate"][:10]
     source_modified = register["sourceVerification"]["commitDate"][:10]
     wiki_source = {
@@ -1982,13 +2012,13 @@ def write_okf_markdown(
         + (
             "\n# Explore Local Statistics API discovery OKF\n\n"
             f"{register['policy']['warning']}\n\n"
-            "This Markdown tree is the normative OKF v0.2 layer. JSON, JSON-LD, "
+            "This Markdown tree is the normative OKF Core 0.3 layer. JSON, JSON-LD, "
             "YAML-LD, OpenAPI and search files are generated projections.\n\n"
             "## Explore\n\n"
             "* [Knowledge concepts](knowledge/) - service, operation, source, "
             "review and contract concepts.\n"
             "* [Update log](log.md) - publication history.\n"
-            "* [OKF conformance report](data/standards/okf-v0.2.json) - "
+            "* [OKF conformance report](data/standards/okf-core-0.3.json) - "
             "producer validation evidence.\n"
             "* [OKF Explorer descriptor](okf-explorer.json) - interactive "
             "projection entrypoint.\n"
@@ -1998,8 +2028,12 @@ def write_okf_markdown(
         "log.md",
         (
             "# Bundle update log\n\n"
+            "## 2026-11-25\n"
+            "* **Migration**: Added a normative OKF Core 0.3 Markdown concept layer "
+            "without inventing verification, freshness or attestation claims.\n"
+            "* **Guide**: Added a source-linked complex-question walkthrough and bounded AI handoff.\n\n"
             "## 2026-07-25\n"
-            "* **Migration**: Added a normative OKF v0.2 Markdown concept layer "
+            "* **Migration**: Added a normative OKF Core 0.2 Markdown concept layer "
             "without inventing verification, freshness or attestation claims.\n"
             "* **Clarification**: Separated the bundle generation checkpoint from "
             "the pinned wiki and application-source modification dates.\n\n"
@@ -2022,6 +2056,77 @@ def write_okf_markdown(
             "boundary.\n"
             "* [Governed terms](standards/) - validated standards and Explorer "
             "UI terminology.\n"
+        ),
+    )
+    writer.write_text(
+        "knowledge/complex-question-guide.md",
+        render_concept(
+            {
+                "type": "Reader Guide",
+                "title": "Trace a complex ELS API question",
+                "description": "A source-linked route through frozen wiki claims, reviewed application evidence, and preserved conflicts.",
+                "resource": "/source/walkthrough.json",
+                "tags": ["reader-guide", "provenance", "complex-question"],
+                "status": "draft",
+                "generated": generated,
+                "sources": [wiki_source, application_source],
+                "snapshot_mode": "frozen",
+                "live_status": "not-checked",
+            },
+            (
+                "# Question\n\n"
+                f"{walkthrough['question']}\n\n"
+                "![Evidence path from wiki request guidance, through the operation concept and review issues, to a non-executing selection plan](artifacts/complex-question.svg)\n\n"
+                "## Follow the evidence\n\n"
+                "1. Read the [data request page](documents/Requesting-data.md) and "
+                "[geographic information page](documents/Requesting-geographic-information.md), "
+                "both pinned to the declared wiki snapshot.\n"
+                "2. Compare the [data operation](operations/data.md) and "
+                "[geographic lookup operation](operations/geo-lookup.md) with the "
+                "[preserved review findings](issues/index.md).\n"
+                "3. Use the [selection plan](artifacts/selection-plan.md) to check "
+                "whether proposed arguments match the reviewed shape. It does not call the API.\n"
+                "4. Keep any answer qualified by the [snapshot boundary](snapshots/wiki-and-source.md): "
+                "this bundle does not establish current live behaviour.\n\n"
+                "## Copyable AI handoff\n\n"
+                "Copy the bounded prompt in [AI handoff](artifacts/ai-handoff.md). It names the "
+                "source records and asks the model to separate claims, conflicts and unknowns.\n"
+            ),
+        ),
+    )
+    writer.write_text(
+        "knowledge/artifacts/complex-question.svg",
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 620" role="img" aria-labelledby="t d">\n'
+        '<title id="t">Evidence path for a complex question</title><desc id="d">Four linked stages: frozen wiki pages, operation concepts, preserved review findings, and a non-executing selection plan.</desc>\n'
+        '<style>text{font:26px Arial,sans-serif;fill:#16212d}.box{fill:#fff;stroke:#003c57;stroke-width:3}.arrow{stroke:#007c91;stroke-width:4;marker-end:url(#a)}</style>\n'
+        '<defs><marker id="a" markerWidth="12" markerHeight="12" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#007c91"/></marker></defs>\n'
+        '<a href="../documents/Requesting-data.md"><rect class="box" x="70" y="20" width="560" height="105" rx="12"/><text x="100" y="84">1 · Pinned wiki claims</text></a>\n'
+        '<path class="arrow" d="M350 132v24"/><a href="../operations/data.md"><rect class="box" x="70" y="165" width="560" height="105" rx="12"/><text x="100" y="229">2 · Operation concepts</text></a>\n'
+        '<path class="arrow" d="M350 277v24"/><a href="../issues/index.md"><rect class="box" x="70" y="310" width="560" height="105" rx="12"/><text x="100" y="374">3 · Preserved conflicts</text></a>\n'
+        '<path class="arrow" d="M350 422v24"/><a href="selection-plan.md"><rect class="box" x="70" y="455" width="560" height="105" rx="12"/><text x="100" y="519">4 · Plan shape, no request</text></a>\n'
+        '</svg>\n',
+    )
+    writer.write_text(
+        "knowledge/artifacts/ai-handoff.md",
+        render_concept(
+            {
+                "type": "Reader Guide",
+                "title": "Bounded AI handoff for ELS API evidence",
+                "description": "A copyable, source-bounded prompt that preserves uncertainty and forbids live execution.",
+                "resource": "/knowledge/artifacts/ai-handoff.md",
+                "tags": ["reader-guide", "ai-handoff", "bounded-evidence"],
+                "status": "draft",
+                "generated": generated,
+                "sources": [wiki_source, application_source],
+                "snapshot_mode": "frozen",
+                "live_status": "not-checked",
+            },
+            "# Copyable AI handoff\n\n"
+            "Copy the prompt below with the exact linked bundle files available to the model.\n\n"
+            "```text\n"
+            f"Using only these exact bundle files: {'; '.join(walkthrough['evidence'])}. "
+            f"Answer: {walkthrough['question']} {walkthrough['prompt']}\n"
+            "```\n",
         ),
     )
     writer.write_text(
@@ -2137,6 +2242,8 @@ def write_okf_markdown(
                 f"`{register['sourceVerification']['commit']}` "
                 f"({register['sourceVerification']['commitDate']}).\n"
                 "* Current live/upstream state: **not checked**.\n\n"
+                f"* Wiki rights statement: {snapshot['licenceEvidence']['statement']} "
+                f"[evidence]({snapshot['licenceEvidence']['url']}).\n\n"
                 "The nine drift findings compare the two pinned evidence surfaces. "
                 "They do not assert the present state of the wiki, branch or deployed "
                 "service."
@@ -2203,6 +2310,19 @@ def write_okf_markdown(
         parameter_names = ", ".join(
             f"`{parameter['name']}`" for parameter in record["parameters"]
         )
+        def parameter_evidence(parameter: dict[str, Any]) -> str:
+            default = parameter.get("default")
+            if default is None:
+                return f"* `{parameter['name']}`: {parameter['description']}"
+            value = str(default).lower() if isinstance(default, bool) else default
+            return (
+                f"* `{parameter['name']}`: {parameter['description']} "
+                f"Recorded default: `{value}`."
+            )
+
+        parameter_details = "\n".join(
+            parameter_evidence(parameter) for parameter in record["parameters"]
+        )
         writer.write_text(
             f"knowledge/operations/{record['native_id']}.md",
             render_concept(
@@ -2221,6 +2341,7 @@ def write_okf_markdown(
                             "title": document["title"],
                             "pinned_commit": snapshot["source"]["commit"],
                             "revision_at": snapshot["source"]["commitDate"],
+                            "last_modified": snapshot["source"]["commitDate"][:10],
                             "sha256": document["sha256"],
                         },
                         {
@@ -2233,6 +2354,9 @@ def write_okf_markdown(
                             "revision_at": register["sourceVerification"][
                                 "commitDate"
                             ],
+                            "last_modified": register["sourceVerification"][
+                                "commitDate"
+                            ][:10],
                         },
                     ],
                     "method": "GET",
@@ -2249,6 +2373,8 @@ def write_okf_markdown(
                     f"`GET {record['path_template']}`\n\n"
                     f"Parameters represented by the bounded review: "
                     f"{parameter_names or 'none'}.\n\n"
+                    "# Parameter evidence\n\n"
+                    f"{parameter_details or '* No query parameters are recorded.'}\n\n"
                     f"Source page: [{document['title']}]"
                     f"(../documents/{document['name']}.md).\n\n"
                     "# Preserved review findings\n\n"
@@ -2279,8 +2405,10 @@ def write_okf_markdown(
                             "title": document["title"],
                             "pinned_commit": document["source_commit"],
                             "revision_at": snapshot["source"]["commitDate"],
+                            "last_modified": snapshot["source"]["commitDate"][:10],
                         }
                     ],
+                    "license_evidence": document["license_evidence"],
                     "snapshot_mode": "frozen",
                     "live_status": "not-checked",
                 },
@@ -2393,7 +2521,13 @@ def write_okf_markdown(
         ),
     )
 
-    return validate_okf_bundle(writer.root)
+    report = validate_okf_bundle(writer.root)
+    missing_evidence = [
+        path for path in walkthrough["evidence"] if not (writer.root / path).is_file()
+    ]
+    if missing_evidence:
+        raise BuildError(f"Walkthrough evidence paths are missing: {missing_evidence}")
+    return report
 
 
 def landing_page(
@@ -2430,10 +2564,11 @@ def landing_page(
         </span>
       </a>
       <nav aria-label="Bundle links">
-        <a href="index.md">OKF 0.2</a>
+        <a href="index.md">OKF Core 0.3</a>
         <a href="okf-explorer.json">Descriptor</a>
         <a href="data/openapi.json">OpenAPI</a>
         <a href="data/review/issues.json">Review findings</a>
+        <a href="complex-question.html">Complex question guide</a>
       </nav>
     </div>
   </header>
@@ -2492,8 +2627,8 @@ def landing_page(
       <p class="eyebrow">Human and machine entrypoints</p>
       <h2 id="files-title">Use the evidence directly</h2>
       <div class="file-grid">
-        <a href="index.md"><strong>OKF v0.2 Markdown</strong><span>Normative concept-tree entrypoint</span></a>
-        <a href="data/standards/okf-v0.2.json"><strong>Conformance report</strong><span>Producer validation and trust/lifecycle counts</span></a>
+        <a href="index.md"><strong>OKF Core 0.3 Markdown</strong><span>Normative concept-tree entrypoint</span></a>
+        <a href="data/standards/okf-core-0.3.json"><strong>Conformance report</strong><span>Producer validation and trust/lifecycle counts</span></a>
         <a href="okf-explorer.json"><strong>OKF descriptor</strong><span>Portable OKF Explorer entrypoint</span></a>
         <a href="okf-bundle.jsonld"><strong>Semantic JSON-LD</strong><span>DCAT, Hydra and PROV representation</span></a>
         <a href="okf-bundle.yamlld"><strong>Semantic YAML-LD</strong><span>Byte-stable YAML 1.2 projection</span></a>
@@ -2502,6 +2637,7 @@ def landing_page(
         <a href="data/standards/terms.json"><strong>Governed terms</strong><span>Definitions, provenance and bounded application validation</span></a>
         <a href="data/standards/term-validation.json"><strong>Term validation</strong><span>Coverage and application checks for emitted terminology</span></a>
         <a href="data/coverage/ledger.json"><strong>Coverage ledger</strong><span>Bounded denominator and exclusions</span></a>
+        <a href="complex-question.html"><strong>Complex question guide</strong><span>Follow sources, findings and a non-executing plan</span></a>
         <a href="checksums.json"><strong>Checksums</strong><span>Deterministic SHA-256 manifest</span></a>
       </div>
     </section>
@@ -2512,6 +2648,97 @@ def landing_page(
       <a href="https://github.com/chris-page-gov/okf-els-api">Source repository</a>
     </div>
   </footer>
+</body>
+</html>
+"""
+
+
+def complex_question_page(
+    register: dict[str, Any], snapshot: dict[str, Any], walkthrough: dict[str, Any]
+) -> str:
+    """Build the accessible, browser-rendered source guide from frozen records."""
+
+    warning = html.escape(register["policy"]["warning"])
+    wiki_url = html.escape(snapshot["source"]["url"], quote=True)
+    wiki_commit = html.escape(snapshot["source"]["commit"])
+    wiki_rights = html.escape(snapshot["licenceEvidence"]["statement"])
+    rights_url = html.escape(snapshot["licenceEvidence"]["url"], quote=True)
+    source_commit = html.escape(register["sourceVerification"]["commit"])
+    question = html.escape(walkthrough["question"])
+    evidence_list = "; ".join(walkthrough["evidence"])
+    prompt = html.escape(
+        f"Using only these exact bundle files: {evidence_list}. Answer: "
+        f"{walkthrough['question']} {walkthrough['prompt']}"
+    )
+    answer_dates = html.escape(walkthrough["worked_answer"]["dates"])
+    answer_geography = html.escape(walkthrough["worked_answer"]["geography"])
+    answer_conflicts = html.escape(walkthrough["worked_answer"]["conflicts"])
+    answer_limits = html.escape(walkthrough["worked_answer"]["limits"])
+    bundle_identity = html.escape(PUBLISHED_DESCRIPTOR)
+    snapshot_id = html.escape(snapshot["snapshotId"])
+    return f"""<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Trace a complex ELS API question</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body class="question-page">
+  <a class="skip-link" href="#main-content">Skip to the evidence guide</a>
+  <header class="site-header"><div class="shell header-inner">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">OKF</span><span><strong>Explore Local Statistics API</strong><small>metadata-only discovery bundle</small></span></a>
+    <nav aria-label="Bundle links"><a href="index.html">Bundle home</a><a href="index.md">OKF Core 0.3 source</a></nav>
+  </div></header>
+  <main id="main-content" class="shell question-main">
+    <p class="eyebrow">Source-linked walkthrough · frozen evidence</p>
+    <h1>Trace a complex ELS API question</h1>
+    <p class="question-callout"><strong>Question</strong><br>{question}</p>
+    <p class="warning question-warning">{warning}</p>
+    <p class="bundle-identity">Bundle identity: <code>{bundle_identity}</code> · version <code>{BUNDLE_VERSION}</code> · OKF Core <code>{OKF_VERSION}</code> · snapshot <code>{snapshot_id}</code>.</p>
+    <section aria-labelledby="answer-title" class="worked-answer">
+      <h2 id="answer-title">Worked answer from the pinned records</h2>
+      <h3>Date filters</h3>
+      <p>{answer_dates} See the pinned <a href="knowledge/documents/Requesting-data.md">wiki page</a> and <a href="knowledge/operations/data.md">reviewed data operation</a>.</p>
+      <h3>Geography filters</h3>
+      <p>{answer_geography} See the pinned <a href="knowledge/documents/Requesting-geographic-information.md">geography page</a>, <a href="knowledge/operations/data.md">data operation</a> and <a href="knowledge/operations/geo-lookup.md">single-area lookup</a>.</p>
+      <h3>Conflicts and evidence limits</h3>
+      <p>{answer_conflicts} Read the <a href="knowledge/issues/drift-data-hasgeo-default.md">hasGeo default finding</a> and <a href="knowledge/issues/drift-data-includenames.md">includeNames finding</a>.</p>
+      <p>{answer_limits} See the <a href="knowledge/issues/gap-data-measure.md">measure documentation gap</a>, <a href="knowledge/issues/gap-response-schemas.md">response-schema gap</a> and <a href="knowledge/snapshots/wiki-and-source.md">snapshot boundary</a>.</p>
+    </section>
+    <figure class="question-diagram">
+      <img src="knowledge/artifacts/complex-question.svg" alt="Four linked evidence stages: pinned wiki claims, operation concepts, preserved conflicts and a non-executing plan shape.">
+      <figcaption>Follow each stage to inspect the source or review record behind it.</figcaption>
+    </figure>
+    <nav class="evidence-controls" aria-label="Evidence stages">
+      <a href="knowledge/documents/Requesting-data.md"><span>1</span><strong>Wiki guidance</strong><small>Data and geography pages</small></a>
+      <a href="knowledge/operations/data.md"><span>2</span><strong>Operation concepts</strong><small>Reviewed route shapes</small></a>
+      <a href="knowledge/issues/index.md"><span>3</span><strong>Known conflicts</strong><small>Findings and evidence gaps</small></a>
+      <a href="knowledge/artifacts/selection-plan.md"><span>4</span><strong>Plan shape</strong><small>No API request is made</small></a>
+    </nav>
+    <section aria-labelledby="source-title" class="source-panel">
+      <h2 id="source-title">Source and rights controls</h2>
+      <details><summary>Wiki snapshot and rights evidence</summary>
+        <p><a href="{wiki_url}">Pinned ELS wiki</a>, commit <code>{wiki_commit}</code>.</p>
+        <p>{wiki_rights} <a href="{rights_url}">View associated licence evidence</a>.</p>
+      </details>
+      <details><summary>Application source review</summary>
+        <p>Static review pinned to application commit <code>{source_commit}</code>. This does not establish current application or live service behaviour.</p>
+        <p><a href="knowledge/snapshots/wiki-and-source.md">Read the complete snapshot boundary</a>.</p>
+      </details>
+    </section>
+    <section aria-labelledby="handoff-title" class="handoff-panel">
+      <h2 id="handoff-title">Copyable AI handoff</h2>
+      <p>Select the bounded prompt below and copy it with the linked bundle evidence available to your model.</p>
+      <label for="handoff-prompt">Prompt</label>
+      <textarea id="handoff-prompt" readonly rows="10" spellcheck="false">{prompt}</textarea>
+      <p class="boundary-note">The prompt forbids live calls and requires unsupported claims to be labelled as insufficient evidence.</p>
+      <a href="knowledge/artifacts/ai-handoff.md">Open the plain Markdown prompt</a>
+    </section>
+  </main>
+  <footer><div class="shell"><p>Bundle generation and both source snapshot dates remain distinct. Current live state: not checked.</p><a href="./">Return to the bundle</a></div></footer>
 </body>
 </html>
 """
@@ -2579,15 +2806,41 @@ footer { padding: 2.5rem 0; color: var(--white); background: var(--ink); }
 footer .shell { display: flex; justify-content: space-between; gap: 2rem; }
 footer a { color: var(--white); }
 footer p { margin: 0; }
+.bundle-identity { color: var(--muted); overflow-wrap: anywhere; }
+.worked-answer { margin: 2rem 0; padding: 1.5rem; background: var(--white); border: 1px solid var(--line); border-left: 5px solid var(--purple); }
+.worked-answer h2 { margin-bottom: 1.5rem; }
+.worked-answer h3 { margin: 1.4rem 0 .4rem; font-size: 1.15rem; }
+.worked-answer p { max-width: 70ch; }
+.question-main { padding-top: 2.5rem; padding-bottom: 4rem; }
+.question-main h1 { margin-bottom: 1.5rem; }
+.question-callout, .source-panel, .handoff-panel { margin: 1.5rem 0; padding: 1.5rem; background: var(--white); border: 1px solid var(--line); border-left: 5px solid var(--cyan); }
+.question-warning { color: var(--ink); box-shadow: none; }
+.question-diagram { margin: 2rem 0; padding: 1rem; background: var(--white); border: 1px solid var(--line); }
+.question-diagram img { display: block; width: 100%; height: auto; }
+.question-diagram figcaption { margin-top: .75rem; color: var(--muted); }
+.evidence-controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+.evidence-controls a { display: flex; min-height: 8rem; flex-direction: column; gap: .35rem; padding: 1rem; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-bottom: 4px solid var(--cyan); text-decoration: none; }
+.evidence-controls a span { color: var(--blue); font-size: 1.4rem; font-weight: 800; }
+.evidence-controls a small { color: var(--muted); }
+.source-panel details { margin: 1rem 0; padding: 1rem; border: 1px solid var(--line); }
+.source-panel summary { cursor: pointer; font-weight: 700; }
+.handoff-panel label { display: block; margin-bottom: .4rem; font-weight: 700; }
+.handoff-panel textarea { display: block; width: 100%; min-height: 14rem; padding: .8rem; color: var(--ink); background: #f6f7f8; border: 1px solid #89949c; font: inherit; }
+.boundary-note { color: var(--muted); }
 @media (max-width: 760px) {
   .header-inner, footer .shell { align-items: flex-start; flex-direction: column; padding: 1rem 0; }
   .hero { padding: 3.5rem 0; }
   .hero-grid { grid-template-columns: 1fr; }
   .cards { grid-template-columns: repeat(2, 1fr); }
   .file-grid { grid-template-columns: 1fr; }
+  .evidence-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .question-main { padding-top: 1.5rem; }
+  .question-diagram { padding: .5rem; }
 }
 @media (max-width: 440px) {
   .cards { grid-template-columns: 1fr; }
+  .evidence-controls { grid-template-columns: 1fr; }
+  .question-callout, .source-panel, .handoff-panel { padding: 1rem; }
 }
 """
 
@@ -2597,6 +2850,7 @@ def write_bundle(target: Path) -> None:
     snapshot = read_object(SNAPSHOT_PATH)
     publication = read_object(PUBLICATION_PATH)
     standards_source = read_object(STANDARDS_TERMS_PATH)
+    walkthrough = read_object(WALKTHROUGH_PATH)
     validate_inputs(register, snapshot)
     validate_publication(publication)
     generated_at = publication["generatedAt"]
@@ -2805,6 +3059,7 @@ def write_bundle(target: Path) -> None:
         documents,
         standards_source,
     )
+    question_page = complex_question_page(register, snapshot, walkthrough)
 
     chunk_payloads = {
         "datasets": ("data/datasets-0.json", records),
@@ -2835,6 +3090,7 @@ def write_bundle(target: Path) -> None:
         "indexes": {
             "analysis": "data/analysis/overview.json",
             "coverage": "data/coverage/ledger.json",
+            "complex_question": "complex-question.html",
             "documents": "data/documents-0.json",
             "facets": "data/facets.json",
             "formats": "data/formats.json",
@@ -2864,7 +3120,7 @@ def write_bundle(target: Path) -> None:
     }
     entrypoint_payloads = {
         "analysis_overview": ("data/analysis/overview.json", analysis),
-        "conformance": ("data/standards/okf-v0.2.json", conformance),
+        "conformance": ("data/standards/okf-core-0.3.json", conformance),
         "data_manifest": ("data/manifest.json", manifest),
         "overview_index": ("data/overview.json", overview),
         "presentation": ("data/presentation.json", presentation),
@@ -2875,11 +3131,19 @@ def write_bundle(target: Path) -> None:
         ),
         "terms": ("data/standards/terms.json", term_registry),
     }
+    entrypoint_integrity = {
+        key: json_resource_reference(path, payload)
+        for key, (path, payload) in entrypoint_payloads.items()
+    }
+    entrypoint_integrity["complex_question"] = {
+        "path": "complex-question.html",
+        "sha256": digest_bytes(question_page.encode("utf-8")),
+    }
     descriptor = {
-        "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld",
+        "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/context.jsonld",
         "@id": PUBLISHED_DESCRIPTOR,
         "schema": "okf-explorer-large-corpus.v1",
-        "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
+        "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/",
         "kind": "okf-large-corpus",
         "title": "Explore Local Statistics API discovery OKF",
         "description": register["description"],
@@ -2910,11 +3174,13 @@ def write_bundle(target: Path) -> None:
         "entrypoints": {
             "analysis_overview": "data/analysis/overview.json",
             "coverage": "data/coverage/ledger.json",
-            "conformance": "data/standards/okf-v0.2.json",
+            "complex_question": "complex-question.html",
+            "conformance": "data/standards/okf-core-0.3.json",
             "data_manifest": "data/manifest.json",
             "documents": "data/documents-0.json",
             "formats": "data/formats.json",
             "markdown_index": "index.md",
+            "complex_question": "complex-question.html",
             "openapi": "data/openapi.json",
             "overview_index": "data/overview.json",
             "parameters": "data/parameters.json",
@@ -2929,10 +3195,7 @@ def write_bundle(target: Path) -> None:
             "terms": "data/standards/terms.json",
             "viewer": "https://chris-page-gov.github.io/okf-explorer/",
         },
-        "entrypoint_integrity": {
-            key: json_resource_reference(path, payload)
-            for key, (path, payload) in entrypoint_payloads.items()
-        },
+        "entrypoint_integrity": entrypoint_integrity,
         "scope": {
             "metadata_only": True,
             "live_execution_included": False,
@@ -2951,7 +3214,7 @@ def write_bundle(target: Path) -> None:
             "verification_mode": register["sourceVerification"]["mode"],
         },
         "extensions": {
-            "okf-v0.2": {
+            "okf-core-0.3": {
                 "specification": OKF_SPECIFICATION,
                 "normative_entrypoint": "index.md",
                 "trust_model": "derived-from-verified",
@@ -3044,7 +3307,7 @@ def write_bundle(target: Path) -> None:
     writer.write_json("data/review/issues.json", register["issues"])
     writer.write_json("data/standards/terms.json", term_registry)
     writer.write_json("data/standards/term-validation.json", term_validation)
-    writer.write_json("data/standards/okf-v0.2.json", conformance)
+    writer.write_json("data/standards/okf-core-0.3.json", conformance)
     writer.write_json("data/selection-contract.json", selection_contract(register))
     for path, payload in search_outputs.items():
         writer.write_json(path, payload)
@@ -3052,7 +3315,12 @@ def write_bundle(target: Path) -> None:
         "index.html",
         landing_page(register, snapshot, publication, len(operations)),
     )
+    writer.write_text(
+        "complex-question.html",
+        question_page,
+    )
     writer.write_text("site.css", landing_styles())
+    writer.write_text("favicon.svg", '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="8" fill="#003c57"/><path d="M8 47V17h8l16 19V17h8v30h-8L16 28v19z" fill="#fff"/><circle cx="52" cy="47" r="5" fill="#00a6a6"/></svg>\n')
     writer.write_text(".nojekyll", "")
     writer.write_json("checksums.json", writer.checksum_manifest())
 

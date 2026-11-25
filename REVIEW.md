@@ -35,9 +35,11 @@ not execute requests.
   commit.
 - A draft OpenAPI 3.1 document clearly marked as a review artifact.
 - A machine-readable drift and documentation-gap register.
-- A normative OKF v0.2 Markdown tree with structured `generated`, `sources`
+- A normative OKF Core 0.3 Markdown tree with structured `generated`, `sources`
   and lifecycle metadata.
-- An explicit trust result: all 37 concepts are unverified because this
+- A visual guide anchored by a source-linked complex question and a bounded
+  copyable AI handoff.
+- An explicit trust result: all 40 concepts are unverified because this
   repository records no human or machine verification event.
 - A frozen snapshot concept that distinguishes publication time from both
   pinned source dates and labels current live state as not checked.
@@ -59,7 +61,7 @@ verification, or historical compatibility analysis were performed.
 The build process is identified as the generator, not as a verifier. No
 concept is labelled stable, human-reviewed or machine-confirmed, and the
 passive request-planning contract is expressly not an Attested Computation.
-Those boundaries preserve the evidence state while allowing an OKF v0.2
+Those boundaries preserve the evidence state while allowing an OKF Core 0.3
 consumer to surface provenance, trust and lifecycle consistently.
 
 ## Important review findings
