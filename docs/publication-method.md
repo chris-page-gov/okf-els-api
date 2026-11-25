@@ -17,7 +17,8 @@ reviewed against `AGENTS.md` and the repository code before anyone runs them.
 
 ## Source, projections and checks
 
-The four JSON files under `source/` are the frozen source family. Running
+The frozen source registers under `source/` include the wiki and application
+review, rights evidence and the authored question walkthrough. Running
 `scripts/build_bundle.py` creates all files under `bundle/` deterministically.
 Those generated files are committed so a pull request can show the exact bytes
 that would be published.
@@ -31,6 +32,12 @@ For a source change:
    changelog lockstep check.
 5. Commit source, generated projections, relevant documentation and
    `CHANGELOG.md` together.
+
+The OKF Core 0.3 Markdown tree remains the normative source for reader
+navigation. Its visual question guide links to the pinned wiki pages, related
+operation concepts, preserved review findings and a non-executing request
+selection plan. The copyable AI handoff carries the same source boundaries and
+requires unsupported claims to be labelled as insufficient evidence.
 
 CI starts from a clean checkout and runs `scripts/build_bundle.py --check`
 without a preceding build. This makes a stale committed projection fail instead

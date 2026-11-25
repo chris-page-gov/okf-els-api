@@ -12,7 +12,8 @@
   },
   "semantic_contract": {
     "path": "okf.semantic.json",
-    "profile": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md"
+    "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/",
+    "profile_role": "reader-guidance-reference-only-no-profile-conformance-claim"
   },
   "source_families": [
     {

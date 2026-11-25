@@ -1,11 +1,16 @@
 {
   "algorithm": "sha256",
-  "fileCount": 81,
+  "fileCount": 86,
   "files": [
     {
       "bytes": 0,
       "path": ".nojekyll",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7743,
+      "path": "complex-question.html",
+      "sha256": "aea678a581e8c8819f8e2731da381f8a1ecd38aa3081bf0062461dace968b53b"
     },
     {
       "bytes": 305,
@@ -15,7 +20,7 @@
     {
       "bytes": 15117,
       "path": "data/analysis/overview.json",
-      "sha256": "9985a0f7f125aa519496269ec731f328e9667d63c1590b329f652385312d8034"
+      "sha256": "76ddf8bd3b5ad2fabc3a61c7dfe2b97fb8d3732e78da2ee519db367a3d344ca2"
     },
     {
       "bytes": 1041,
@@ -43,9 +48,9 @@
       "sha256": "30645407c0714fdb632750b0cbb13baeef0a0f3f7b6cbbc0d99c4543ad802f07"
     },
     {
-      "bytes": 2277,
+      "bytes": 2326,
       "path": "data/manifest.json",
-      "sha256": "647993cb933cafc76213ca1f6eab3ad5a8692045b8d23b70ff0830fcf370705e"
+      "sha256": "a8b09a36acab834a1ff3207d7d7bbd739e45cbb902c3892136436307c3ac8988"
     },
     {
       "bytes": 57868,
@@ -55,7 +60,7 @@
     {
       "bytes": 27056,
       "path": "data/overview.json",
-      "sha256": "9c8a492d6c861c5912109f7df0cbaf5b8777ada64e344204010270430f8d7369"
+      "sha256": "24d96b69a497f8ae773bac5af5fb4482fac9d54a77f10ad20d9a2d1994756a9c"
     },
     {
       "bytes": 4572,
@@ -110,7 +115,7 @@
     {
       "bytes": 1177,
       "path": "data/search/manifest.json",
-      "sha256": "459054e99bf8cab21db18dcb3d77e960d81bb21fdc4d14e8eeb8fbeb07df04cd"
+      "sha256": "2c04d54a3b6d0591e0a737f40ae7911a81b8285a83418956fd90c58634ac2ca5"
     },
     {
       "bytes": 72193,
@@ -133,29 +138,44 @@
       "sha256": "c3d1c11d33d4aa5160e2943036b23ec0c08452ab82508c54308bc9983477e706"
     },
     {
-      "bytes": 5324,
-      "path": "data/standards/okf-v0.2.json",
-      "sha256": "29b98a85fd2d123f6489adb4ad778de31be9a49667580106188072f78cbde901"
+      "bytes": 2507,
+      "path": "data/standards/okf-core-0.3.json",
+      "sha256": "b854efde0f98aa0d6679bdc51c816a3c36e7e49338ef992acf9e88760ed03497"
     },
     {
       "bytes": 1381,
       "path": "data/standards/term-validation.json",
-      "sha256": "e1dd04c673e2438dfbe71fdbcc94e1228f722e1560773dc31be03c7006dcf56d"
+      "sha256": "c6767e68a95978c8e8f02e400a8946455f58f2181a2a54d6b1492584e80b2014"
     },
     {
       "bytes": 75098,
       "path": "data/standards/terms.json",
-      "sha256": "380715e67b38f21d12a951acbda106f82d2465a6f996b9ac08f3b446c678dba5"
+      "sha256": "20ce91a88349732e96ca12e986d8293eb8aa2293549f663c36c4a8b2ec73b965"
     },
     {
-      "bytes": 5819,
+      "bytes": 226,
+      "path": "favicon.svg",
+      "sha256": "c927a66434fb0fc5bbd74e8ae7156f801170694d38370bcbbf1e0b60f9957139"
+    },
+    {
+      "bytes": 6045,
       "path": "index.html",
-      "sha256": "fc737f74b028bfea9d97a7b3d5e708ad2891197f69625e6377beb63ffaa81aa6"
+      "sha256": "134f900e0d861932153d040632227fe0d510c874d2cbe58eff339736ab97faac"
     },
     {
-      "bytes": 700,
+      "bytes": 708,
       "path": "index.md",
-      "sha256": "90e95f492befd2f054d347f154a570f99cb0bdf577839334b2362d24c5ad199c"
+      "sha256": "26f0fe2a474abe08db78bf0b3d42d5d71bf5554aea843a8167834fe0fd429e94"
+    },
+    {
+      "bytes": 2045,
+      "path": "knowledge/artifacts/ai-handoff.md",
+      "sha256": "2aa7401a6cd91927862363990d9649a3200004162123ca2380abda9c0714b9b5"
+    },
+    {
+      "bytes": 1354,
+      "path": "knowledge/artifacts/complex-question.svg",
+      "sha256": "3185a4c92927219e6386f621e69c822a8a2e30439778e37e3a48aa0ba5894b81"
     },
     {
       "bytes": 215,
@@ -165,42 +185,47 @@
     {
       "bytes": 766,
       "path": "knowledge/artifacts/openapi-review.md",
-      "sha256": "0cec490dd44fa1f6caf9a5b95254c8ac5e838c5563b4ff43fdcec25efc4343cd"
+      "sha256": "a0a7ec5cda4110a0f64af8accb13fdb6b73fd7d28f7a3ceaaa01fc9247f159ba"
     },
     {
       "bytes": 798,
       "path": "knowledge/artifacts/selection-plan.md",
-      "sha256": "7429ac84ba1a113d0ffa8c3eaf9981a2533ef28b3dca8e4eb22db3a258e20533"
+      "sha256": "72e1572c6c9013b51046628fc4f17df307664e67b59ab5af4308f253cea38df2"
     },
     {
-      "bytes": 941,
+      "bytes": 2115,
+      "path": "knowledge/complex-question-guide.md",
+      "sha256": "152fb37060b099475d15293494a86dbb4c384ea3d899ef0aa4057536903c72ae"
+    },
+    {
+      "bytes": 1263,
       "path": "knowledge/documents/API-overview.md",
-      "sha256": "a0b9d8c92010ba6631b96c546b986c7cf12ff8d5700174441494bf4853391729"
+      "sha256": "508ee6a150b9d5d2549a7705ac1d90efa1075d2963c97d5cc001bdbdc6a63af2"
     },
     {
-      "bytes": 942,
+      "bytes": 1264,
       "path": "knowledge/documents/Data-formats.md",
-      "sha256": "22e8584947c316d733082011de1fb2d056060d4d6b74141310106bb74b516208"
+      "sha256": "55b82aa1ccd1828881413ba314df4a383e4df872dbf81c73df18f78a20db8b79"
     },
     {
-      "bytes": 891,
+      "bytes": 1213,
       "path": "knowledge/documents/Home.md",
-      "sha256": "0e603d1b4605a1f2a95c6ecfab4039b59eca6e232d0decaaf4e95a0045bd68f5"
+      "sha256": "583788cd695559f331045f09927da248685ca066d9422c773fad0ddc4b552b89"
     },
     {
-      "bytes": 957,
+      "bytes": 1279,
       "path": "knowledge/documents/Requesting-data.md",
-      "sha256": "498d3b78f729ee8c536f01c759b9a532c0bb4ff257ec23ddb0132149f52c4b08"
+      "sha256": "238a2b3437a44d73ef81ecacaf51eb0bfeec7e8d721ae971da88b6ca81c2f4f7"
     },
     {
-      "bytes": 1047,
+      "bytes": 1369,
       "path": "knowledge/documents/Requesting-geographic-information.md",
-      "sha256": "9369e01d3412e739aef46b22498528aee8f3e4aa15dba05bc2f3675bf5d6800c"
+      "sha256": "d2cb6d94c381c9acdb7c341876a8c01676bef7ae4e05ef873214739694ebd638"
     },
     {
-      "bytes": 976,
+      "bytes": 1298,
       "path": "knowledge/documents/Requesting-metadata.md",
-      "sha256": "4e7f797432d4d25f3b4b7481fc3076fd14df6a39f2dfe42971c2c6f7ce4e548e"
+      "sha256": "d8cd69c719e52f14ef9585873f6682a8cee83e7ea885126850247ec767b91ea4"
     },
     {
       "bytes": 444,
@@ -215,47 +240,47 @@
     {
       "bytes": 1700,
       "path": "knowledge/issues/boundary-internal-api.md",
-      "sha256": "b57ea759014b1eeec696ef5851c6e632e166e6377071a564de87b93fa8bfae4f"
+      "sha256": "022fa1dca1b4c047ec08854ec71c92a836cf2f6f671c92575f665220c225cf77"
     },
     {
       "bytes": 1608,
       "path": "knowledge/issues/drift-data-hasgeo-default.md",
-      "sha256": "31c0956613c43b93c6f1d20b017f100c28a2f8d90a04f942e561fb67165c4aec"
+      "sha256": "9d72d2507570c11fea31fb50c5f8f2a6732bb6bdc87d0b24650115f7bbd7e007"
     },
     {
       "bytes": 1933,
       "path": "knowledge/issues/drift-data-includenames.md",
-      "sha256": "ce43c02087aa4d1cacae1dcbee3df91ac2f31538e081ee5dd28dc2c02639a68e"
+      "sha256": "605334127b9665afbf46ad60c78f16e3fd894cb7f6b8262776aa323fb91a643e"
     },
     {
       "bytes": 1817,
       "path": "knowledge/issues/drift-geo-includedates.md",
-      "sha256": "6840d85b49d59cac948d0352636f483ef552cdccca99128e8188faa4528c04fa"
+      "sha256": "eb04e61ebc54cb37ede865ad1d8e3347631ae2534e9ae7bc1e9ec4473f3e08b6"
     },
     {
       "bytes": 1790,
       "path": "knowledge/issues/drift-metadata-dimension-route.md",
-      "sha256": "65cdbf5491c0496525084ab9db6c26ddaf701310f28a06b018d1ebb647330fbc"
+      "sha256": "49a92dce8b62e33c5d6666b3ebfbc9a84d14217b92fa9fc40f52b1bc8312cb1f"
     },
     {
       "bytes": 1650,
       "path": "knowledge/issues/gap-compatibility-policy.md",
-      "sha256": "a997f544c9d368797089c5ab41a52996ef0613d549e8bde2af887f38c49ab976"
+      "sha256": "41cd378f269b89c73066f77c3acac0ed5b332b10bff8e0dbf6377fc2c485af6b"
     },
     {
       "bytes": 1777,
       "path": "knowledge/issues/gap-data-measure.md",
-      "sha256": "552733e6bb111665eb311341962f2d2c222aeeceacd1ee7de04679d129ebc24a"
+      "sha256": "6037442f0fefbfb5455f0577841881455ceda8e5a2b1608b5bcf5834c4e9fc08"
     },
     {
       "bytes": 1829,
       "path": "knowledge/issues/gap-geo-related-includenames.md",
-      "sha256": "fcf57f9cf70c0800996907f6e33fbf60e7f0539887ed04c5805383e999c91f2c"
+      "sha256": "0dbd822aec411faba5db8c7ca5ae93772c1f92a5691584b2c0910c6d4fe7f61a"
     },
     {
       "bytes": 1923,
       "path": "knowledge/issues/gap-response-schemas.md",
-      "sha256": "af2a1f68a1c08f81bba29f60f7684e5fd00f55ec35bcd0faa2d66c8c91bb83a9"
+      "sha256": "90d98f318fbe2fb6188ba714303aaaedf5251b44ab788fe4c43265085b029ffb"
     },
     {
       "bytes": 959,
@@ -263,74 +288,74 @@
       "sha256": "663cb73c454e67da21894d58fb26ee244c0e390a3688b7d9da1ff268d497bcb0"
     },
     {
-      "bytes": 2201,
+      "bytes": 3734,
       "path": "knowledge/operations/data.md",
-      "sha256": "056b095b5c9a54a0755afec5098dc7fd05f85dec9890b6b34cb5792c08190576"
+      "sha256": "0e467ef66f4f28f39ae1a7ba1eeb069b14dc4f43d2f2d9140fc199857ba6dbee"
     },
     {
-      "bytes": 1868,
+      "bytes": 2247,
       "path": "knowledge/operations/geo-boundaries.md",
-      "sha256": "8e8f976294141f0b0be389d59b29df17c5b1249efb21bdbe1401ff1f9750e4fc"
+      "sha256": "ccec148ee252418e0ad8568471f36cdf784844dfb201a7778d0d05100e61d751"
     },
     {
-      "bytes": 1928,
+      "bytes": 2193,
       "path": "knowledge/operations/geo-children.md",
-      "sha256": "23633e42cdd22622b54181192f47a375be97dc3ac2d7974d62e016b2c9800e0a"
+      "sha256": "775f64a406e99fcc85a915db70633b62e068abd5c630ca206f5cf114e5d5c131"
     },
     {
-      "bytes": 1788,
+      "bytes": 2055,
       "path": "knowledge/operations/geo-levels.md",
-      "sha256": "b1f830dc9aa48b0e499d8c600ce76e51ca7790c4b8f4495a3d252ab587c3f6dc"
+      "sha256": "b2c621b7f34d619f267242517a6eb65d049404169fb01f6cac7d5a6e6f0ae204"
     },
     {
-      "bytes": 1894,
+      "bytes": 2843,
       "path": "knowledge/operations/geo-list.md",
-      "sha256": "623853ff5185f7efc2bd757183fa742c23883e0304feef3c35bacc0aa97bcef5"
+      "sha256": "37ad863bcb69ec852552eefa9373a04488fe2767f96851a8d228c9fdb284167a"
     },
     {
-      "bytes": 1825,
+      "bytes": 1926,
       "path": "knowledge/operations/geo-lookup.md",
-      "sha256": "7d3d1637e1c4af1123dd18a44575bbc0b1039f13ef0e64388b22b745292d82e3"
+      "sha256": "8e8a990d2c950d3901fe133fb6429ce887cbdc0fc0ded7029933eae88e071827"
     },
     {
-      "bytes": 1894,
+      "bytes": 2090,
       "path": "knowledge/operations/geo-parents.md",
-      "sha256": "eb790fff2363ad768a3881cbc7601672ec09fbf3750f177ba9a908799cc153c2"
+      "sha256": "07f6249fa6b2a0447a78c9f87a36c605a302c5dd3ef291c45e16b11446bce3b1"
     },
     {
-      "bytes": 1916,
+      "bytes": 2158,
       "path": "knowledge/operations/geo-postcode-autocomplete.md",
-      "sha256": "b8ce9daebcc4cdd4e06b60931be2d16982782752c5924dddffa8d085aec60c11"
+      "sha256": "9b7449d37a93bbb802784d4a7f15c361a34168895ddc90d2424537c0ebc999b2"
     },
     {
-      "bytes": 1889,
+      "bytes": 2275,
       "path": "knowledge/operations/geo-postcode.md",
-      "sha256": "3f3240bdd6859996c0cbd439fff29fd2ba447f0ec989b600e6335117a0781417"
+      "sha256": "3d94a6c358a06e0f954c37a21a967003b7682e4dbef9f2bdc43801e02728b0aa"
     },
     {
-      "bytes": 1878,
+      "bytes": 2074,
       "path": "knowledge/operations/geo-related.md",
-      "sha256": "c9ec954d76b1ab0180bcae4d12cbd4ed87398bf01e59c0b39695b2f618aaeb0e"
+      "sha256": "df345e3aa913586400b5e449275a6f0f39da598dfa0158c65e3e951c648abd2a"
     },
     {
-      "bytes": 1846,
+      "bytes": 2277,
       "path": "knowledge/operations/geo-reverse.md",
-      "sha256": "26377425a73243c557445bcd49696c33733613ff5c3dfc88c5a982ad6a4027e5"
+      "sha256": "a5f3cdd42e546ba258fb3bb72cb49f897e678be55786790ef95b19335a55d77e"
     },
     {
-      "bytes": 1924,
+      "bytes": 2548,
       "path": "knowledge/operations/geo-search.md",
-      "sha256": "dd326a38c6100eae6ab0e4c1217c0919e7c1adc15b08f5a39f9862a43dd46105"
+      "sha256": "3238182386968e5760a2285ed9e16f36f825944ab356a0e92ab79c92c3d890aa"
     },
     {
-      "bytes": 1927,
+      "bytes": 2199,
       "path": "knowledge/operations/geo-siblings.md",
-      "sha256": "202f9607182af428274979c4d8521bbf63a029fc708aa46fc4178c8b71142c84"
+      "sha256": "5346f5d2d88997ee9ef7d6e637ba4facaf9832cfb3b993f9692465a554cc7878"
     },
     {
-      "bytes": 1936,
+      "bytes": 2132,
       "path": "knowledge/operations/geo-similar.md",
-      "sha256": "f12cafc3c2d5656e6d089c40a5a7816d59af55150a7911c450ea0b697d148460"
+      "sha256": "f3f43c7b25c116a901b047ca2caedc02877380c3462ddca93ef422b76985d3c2"
     },
     {
       "bytes": 2155,
@@ -338,29 +363,29 @@
       "sha256": "5d02dd947ed45814dac3bfcbd30154f593a4464a6e6784cef9edbdde63e81927"
     },
     {
-      "bytes": 1999,
+      "bytes": 2142,
       "path": "knowledge/operations/metadata-dimension.md",
-      "sha256": "d7a44534766d7ba8ac0ff08b59b063c8142c82672d73195b5335a7ecef04ab03"
+      "sha256": "78e40ddc0ea22ce0fcaaaff916a543b73cf24385c8d3eb31e23458ea2d6ad4fe"
     },
     {
-      "bytes": 1849,
+      "bytes": 2042,
       "path": "knowledge/operations/metadata-indicator.md",
-      "sha256": "f94aa08e8f752cae83447e896fb80d37740343040771d09202cf82a350909641"
+      "sha256": "5536d3fee3c1213029fb57941cbb79388013d332640b6bdab6d678f7aaf01211"
     },
     {
-      "bytes": 1855,
+      "bytes": 2587,
       "path": "knowledge/operations/metadata-indicators.md",
-      "sha256": "8f237b7b334b8a681dd69d02f69c6d85f343e6c64f0ff9dca538e96db1c92fa7"
+      "sha256": "d7d9b29c2907d98489b4ae24437f50edb34ed502d1ba8a1ffff4c56254462f2d"
     },
     {
-      "bytes": 1805,
+      "bytes": 2380,
       "path": "knowledge/operations/metadata-taxonomy.md",
-      "sha256": "a568be61b476aa0a3c2ff8e0740a3f002c7555ebf1a41d2bedc2065ffedc7f9a"
+      "sha256": "0e9b6f86e80e98be0cc7a05df381e48d62f845d1ed11be5030349051ca83e722"
     },
     {
       "bytes": 1606,
       "path": "knowledge/service.md",
-      "sha256": "267310fccba2258f8e2770d119d77a151a3f01ff378ad46b1623b0383aae87ba"
+      "sha256": "1c44b56eb14ac543baafea1ccd66d201ae65665beb965852eca1e1fad029e010"
     },
     {
       "bytes": 135,
@@ -368,14 +393,14 @@
       "sha256": "fbe3620af48e6f6e9f5b0cc138e5343d469f5507658c1ee8654eb8e8db41d757"
     },
     {
-      "bytes": 1525,
+      "bytes": 1782,
       "path": "knowledge/snapshots/wiki-and-source.md",
-      "sha256": "d772b7bd7b90c0d4e27228fb8f28d5c3d0659a4351ad9f5a89974d4c6ee53ce3"
+      "sha256": "1969b528c91bfb6a5966b5f98da37769607508c3cc2e1b0d539f0055ab259901"
     },
     {
       "bytes": 2112,
       "path": "knowledge/standards/governed-terms.md",
-      "sha256": "a2bea24b81b873bad7b6dcf0066fc1748c56b35cbb03403ee44ae5a539a3e6e8"
+      "sha256": "d8f016e0876651f5fe8226e287c4df079e63a678da537781d6bac0a010779233"
     },
     {
       "bytes": 149,
@@ -383,31 +408,31 @@
       "sha256": "56ff242d7bd226386cfb64bb24d099ef49111a055d47c18fb07c7d1a6aede756"
     },
     {
-      "bytes": 381,
+      "bytes": 624,
       "path": "log.md",
-      "sha256": "3244591edff23d6a8647b68377ec3250cc49b9bcb5680f4edd13f44b3c2e73e5"
+      "sha256": "1185e4a3c6309025463cede466fad9c9ccf18a6b85993ef56e1c4ef7656d4d4e"
     },
     {
-      "bytes": 36559,
+      "bytes": 36561,
       "path": "okf-bundle.jsonld",
-      "sha256": "4640f6a17860ea4bd7be566601b305044a1fb28a45c73bc2d3e4eef5f67fcce6"
+      "sha256": "07803efeffa34b860aeae842c2de0bdb029564bf4ac30c2d0553167298ee68be"
     },
     {
-      "bytes": 36559,
+      "bytes": 36561,
       "path": "okf-bundle.yamlld",
-      "sha256": "4640f6a17860ea4bd7be566601b305044a1fb28a45c73bc2d3e4eef5f67fcce6"
+      "sha256": "07803efeffa34b860aeae842c2de0bdb029564bf4ac30c2d0553167298ee68be"
     },
     {
-      "bytes": 6667,
+      "bytes": 6885,
       "path": "okf-explorer.json",
-      "sha256": "1437c0d0ecbc077873ce6906892630110fda1f59266e14518a6e78f7af39ce91"
+      "sha256": "5eae8137f03ef753a1a5eaaadc5e1e2080fc86abcc050fc1a0c4d02881413600"
     },
     {
-      "bytes": 4432,
+      "bytes": 6605,
       "path": "site.css",
-      "sha256": "12460681d23f95b1c5afca4cf3d7742b6b831f70bbdd7cd82357523816383696"
+      "sha256": "aedf134e4b8c7ea7da36fed63fe7cc12a1cde82887d95c887247f39b05a23d95"
     }
   ],
-  "rootSha256": "76ee660683b574779bd311c846f2398d760aa42e8fc5473c1b4520a0f787f1cb",
+  "rootSha256": "78f9706e4afa98f6f225c1545b6ef55e1ae42a90e2141dcfdb9e289c595fb55d",
   "schema": "okf-els-api.checksums.v1"
 }

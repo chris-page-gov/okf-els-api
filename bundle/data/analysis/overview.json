@@ -412,7 +412,7 @@
       ]
     }
   ],
-  "generated_at": "2026-07-25T12:17:29Z",
+  "generated_at": "2026-11-25T00:00:00Z",
   "narrative": {
     "body": "Explore the service, operations, pinned source documents, preserved review findings, generated artifacts and governed metadata terms. Evidence strength does not upgrade OKF verification trust or establish a live deployment state.",
     "title": "Bounded API discovery, not a service contract"

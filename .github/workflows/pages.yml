@@ -49,7 +49,7 @@ jobs:
       - name: Verify committed bundle before publication
         run: python scripts/build_bundle.py --check
 
-      - name: Validate OKF v0.2 concept layer
+      - name: Validate OKF Core 0.3 concept layer
         run: python scripts/check_okf.py
 
       - name: Run tests
@@ -61,12 +61,13 @@ jobs:
       - name: Verify public entrypoints
         run: |
           test -f bundle/index.html
+          test -f bundle/complex-question.html
           test -f bundle/index.md
           test -f bundle/.nojekyll
           test -f bundle/okf-explorer.json
           test -f bundle/okf-bundle.jsonld
           test -f bundle/okf-bundle.yamlld
-          test -f bundle/data/standards/okf-v0.2.json
+          test -f bundle/data/standards/okf-core-0.3.json
           test -f bundle/data/openapi.json
           test -f bundle/data/review/issues.json
           test -f bundle/data/coverage/ledger.json

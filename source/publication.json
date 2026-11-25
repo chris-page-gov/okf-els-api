@@ -1,10 +1,21 @@
 {
-  "generatedAt": "2026-07-25T12:17:29Z",
+  "generatedAt": "2026-11-25T00:00:00Z",
   "generatedBy": "process:okf-els-api-build",
   "okfSpecification": {
+    "commit": "527e81aff55992be21507e97004286789126f88c",
+    "resource": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
+    "version": "0.3"
+  },
+  "historicalCore": {
     "commit": "3fcbb9f828c2f23d109c855ee403c3a4c81f3a96",
     "resource": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md",
-    "version": "0.2"
+    "version": "0.2",
+    "previousBundleVersion": "0.2.0"
+  },
+  "formatMigration": {
+    "implementationDate": "2026-11-25",
+    "standardAnnouncementDate": "2026-11-18",
+    "sourceSnapshotUnchanged": true
   },
   "schema": "okf-els-api.publication.v1"
 }

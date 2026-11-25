@@ -1,5 +1,5 @@
 {
-  "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld",
+  "@context": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/context.jsonld",
   "@id": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
   "core_conformance": "Markdown concept layer",
   "counts": {
@@ -18,19 +18,23 @@
   "entrypoint_integrity": {
     "analysis_overview": {
       "path": "data/analysis/overview.json",
-      "sha256": "9985a0f7f125aa519496269ec731f328e9667d63c1590b329f652385312d8034"
+      "sha256": "76ddf8bd3b5ad2fabc3a61c7dfe2b97fb8d3732e78da2ee519db367a3d344ca2"
+    },
+    "complex_question": {
+      "path": "complex-question.html",
+      "sha256": "aea678a581e8c8819f8e2731da381f8a1ecd38aa3081bf0062461dace968b53b"
     },
     "conformance": {
-      "path": "data/standards/okf-v0.2.json",
-      "sha256": "29b98a85fd2d123f6489adb4ad778de31be9a49667580106188072f78cbde901"
+      "path": "data/standards/okf-core-0.3.json",
+      "sha256": "b854efde0f98aa0d6679bdc51c816a3c36e7e49338ef992acf9e88760ed03497"
     },
     "data_manifest": {
       "path": "data/manifest.json",
-      "sha256": "647993cb933cafc76213ca1f6eab3ad5a8692045b8d23b70ff0830fcf370705e"
+      "sha256": "a8b09a36acab834a1ff3207d7d7bbd739e45cbb902c3892136436307c3ac8988"
     },
     "overview_index": {
       "path": "data/overview.json",
-      "sha256": "9c8a492d6c861c5912109f7df0cbaf5b8777ada64e344204010270430f8d7369"
+      "sha256": "24d96b69a497f8ae773bac5af5fb4482fac9d54a77f10ad20d9a2d1994756a9c"
     },
     "presentation": {
       "path": "data/presentation.json",
@@ -38,20 +42,21 @@
     },
     "search_manifest": {
       "path": "data/search/manifest.json",
-      "sha256": "459054e99bf8cab21db18dcb3d77e960d81bb21fdc4d14e8eeb8fbeb07df04cd"
+      "sha256": "2c04d54a3b6d0591e0a737f40ae7911a81b8285a83418956fd90c58634ac2ca5"
     },
     "term_validation": {
       "path": "data/standards/term-validation.json",
-      "sha256": "e1dd04c673e2438dfbe71fdbcc94e1228f722e1560773dc31be03c7006dcf56d"
+      "sha256": "c6767e68a95978c8e8f02e400a8946455f58f2181a2a54d6b1492584e80b2014"
     },
     "terms": {
       "path": "data/standards/terms.json",
-      "sha256": "380715e67b38f21d12a951acbda106f82d2465a6f996b9ac08f3b446c678dba5"
+      "sha256": "20ce91a88349732e96ca12e986d8293eb8aa2293549f663c36c4a8b2ec73b965"
     }
   },
   "entrypoints": {
     "analysis_overview": "data/analysis/overview.json",
-    "conformance": "data/standards/okf-v0.2.json",
+    "complex_question": "complex-question.html",
+    "conformance": "data/standards/okf-core-0.3.json",
     "coverage": "data/coverage/ledger.json",
     "data_manifest": "data/manifest.json",
     "documents": "data/documents-0.json",
@@ -78,6 +83,12 @@
       "read_only_documented_method": "GET",
       "selection_contract": "selection_contract"
     },
+    "okf-core-0.3": {
+      "attested_computation_execution": "not-included",
+      "normative_entrypoint": "index.md",
+      "specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
+      "trust_model": "derived-from-verified"
+    },
     "okf-documentation-review.v1": {
       "conflicts_preserved": true,
       "live_probe_performed": false,
@@ -93,7 +104,7 @@
     },
     "okf-pages-publication.v1": {
       "descriptor": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
-      "explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json%3Fversion%3D0.2.0",
+      "explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json%3Fversion%3D0.3.0",
       "site": "https://chris-page-gov.github.io/okf-els-api/"
     },
     "okf-semantic-model.v1": {
@@ -102,29 +113,23 @@
       "term_registry": "terms",
       "validation_model": "recognition-provenance-kind-and-bounded-application",
       "validation_report": "term_validation"
-    },
-    "okf-v0.2": {
-      "attested_computation_execution": "not-included",
-      "normative_entrypoint": "index.md",
-      "specification": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/3fcbb9f828c2f23d109c855ee403c3a4c81f3a96/okf/SPEC.md",
-      "trust_model": "derived-from-verified"
     }
   },
-  "generated_at": "2026-07-25T12:17:29Z",
+  "generated_at": "2026-11-25T00:00:00Z",
   "kind": "okf-large-corpus",
   "license": "https://github.com/chris-page-gov/okf-els-api/blob/main/LICENSE",
   "normative_entrypoint": "index.md",
-  "okf_version": "0.2",
+  "okf_version": "0.3",
   "performance": {
     "full_record_hydration": "single-chunk",
     "relationship_hydration": "single-chunk",
     "search": "static browser index",
     "startup_mode": "eager-small-corpus"
   },
-  "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/",
+  "profile": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/",
   "publication": {
     "descriptor": "https://chris-page-gov.github.io/okf-els-api/okf-explorer.json",
-    "okf_explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json%3Fversion%3D0.2.0",
+    "okf_explorer": "https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-els-api%2Fokf-explorer.json%3Fversion%3D0.3.0",
     "site": "https://chris-page-gov.github.io/okf-els-api/"
   },
   "publisher": "https://github.com/chris-page-gov/okf-els-api",
@@ -150,7 +155,7 @@
   },
   "status": "bounded-review-draft",
   "title": "Explore Local Statistics API discovery OKF",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "vocabulary": {
     "publisher_plural": "publishers",
     "publisher_singular": "publisher",

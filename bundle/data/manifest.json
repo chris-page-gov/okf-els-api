@@ -21,9 +21,10 @@
     "relationships": 69,
     "resources": 18
   },
-  "generated_at": "2026-07-25T12:17:29Z",
+  "generated_at": "2026-11-25T00:00:00Z",
   "indexes": {
     "analysis": "data/analysis/overview.json",
+    "complex_question": "complex-question.html",
     "coverage": "data/coverage/ledger.json",
     "documents": "data/documents-0.json",
     "facets": "data/facets.json",
