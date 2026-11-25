@@ -244,6 +244,16 @@ class BundleTests(unittest.TestCase):
         )
         page = (BUNDLE / "complex-question.html").read_text(encoding="utf-8")
         self.assertIn('aria-label="Evidence stages"', page)
+        evidence_nav = page.split('<nav class="evidence-controls"', 1)[1].split("</nav>", 1)[0]
+        expected_stages = (
+            "knowledge/documents/Requesting-data.md",
+            "knowledge/operations/data.md",
+            "knowledge/issues/index.md",
+            "knowledge/artifacts/selection-plan.md",
+        )
+        self.assertEqual(evidence_nav.count("<a href="), 4)
+        for target in expected_stages:
+            self.assertIn(f'href="{target}"', evidence_nav)
         self.assertIn('aria-labelledby="source-title"', page)
         self.assertIn("Worked answer from the pinned records", page)
         self.assertIn("drift-data-hasgeo-default.md", page)

@@ -22,7 +22,7 @@
     },
     "complex_question": {
       "path": "complex-question.html",
-      "sha256": "aea678a581e8c8819f8e2731da381f8a1ecd38aa3081bf0062461dace968b53b"
+      "sha256": "537e52ce3d05774f89b7d1854cbe86635e589845e325c5d21f26a21c753c77d7"
     },
     "conformance": {
       "path": "data/standards/okf-core-0.3.json",
